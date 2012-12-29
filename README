@@ -1,6 +1,9 @@
         Open source binary files
 
-This repository include binary file compiled by:
+This repository include binary files compiled by:
     *) GNU Compiler Collection 4.7
     *) Microsoft (R) C/C++ Optimizing Compiler 16 and 17
     *) Intel C++ Compiler XE 2011 and 2013
+
+These files distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY.
