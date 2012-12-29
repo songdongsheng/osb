@@ -1,0 +1,27 @@
+1 VERSIONINFO
+ FILEVERSION 2, 8, 4, 0
+ PRODUCTVERSION 2, 8, 4, 0
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x00L
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904b0"
+    BEGIN
+      VALUE "ProductName", "libarchive\0"
+      VALUE "FileDescription", "bsdtar command-line program\0"
+      VALUE "FileVersion", "2.8.4.0\0"
+      VALUE "ProductVersion", "2.8.4.0\0"
+      VALUE "InternalName", "bsdtar.exe\0"
+      VALUE "OriginalFilename", "bsdtar.exe\0"
+      VALUE "LegalCopyright", "Copyright (c) 2003-2010, libarchive authors\0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END
