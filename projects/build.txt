@@ -1,0 +1,27 @@
+*) <ClCompile>
+      <SDLCheck>true</SDLCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>      
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+
+*) PlatformToolset
+Visual Studio 2010 (v100)
+Visual Studio 2012 (v110)
+Visual Studio 2012 - Windows XP (v110_xp)
+Intel C++ Compiler XE 12.1 (v100)
+Intel C++ Compiler XE 13.0
+
+*) msbuild
+msbuild sqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=Win32;PlatformToolset="Intel C++ Compiler XE 12.1"
+msbuild sqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;PlatformToolset="Intel C++ Compiler XE 12.1"
+
+msbuild sqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=Win32;PlatformToolset="Intel C++ Compiler XE 13.0"
+msbuild sqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;PlatformToolset="Intel C++ Compiler XE 13.0"
+
+msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=Win32;PlatformToolset="Intel C++ Compiler XE 12.1"
+msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;PlatformToolset="Intel C++ Compiler XE 12.1"
+
+msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=Win32;PlatformToolset="Intel C++ Compiler XE 13.0"
+msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;PlatformToolset="Intel C++ Compiler XE 13.0"

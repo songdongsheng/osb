@@ -2,7 +2,7 @@
 
 This repository include binary files compiled by:
     *) GNU Compiler Collection 4.7
-    *) Microsoft (R) C/C++ Optimizing Compiler 16 and 17
+    *) Microsoft (R) C/C++ Optimizing Compiler 16 (VS 2010) and 17 (VS 2012)
     *) Intel C++ Compiler XE 2011 and 2013
 
 These files distributed in the hope that it will be useful,
