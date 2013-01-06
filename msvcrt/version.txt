@@ -1,3 +1,6 @@
-ARCH    Windows Version     MSVCRT Version      Size        SHA1
-x86     6.1.7601            7.0.7601.17744      2011-12-16  690,688     df2756c114ca2d3b2b16d459a93f285924a55202
-x64     6.1.7601            7.0.7601.17744      2011-12-16  634,880     964ee2d28dc71210982f72e567df89f9f527b67b
+ARCH    Windows Version     MSVCRT Version      Date        Size        SHA1
+x64     6.1.7601            7.0.7601.17744      2011-12-16  634,880     964ee2d28dc71210982f72e567df89f9f527b67b    Windows 7 x64/Server 2008 R2
+x86     6.1.7601            7.0.7601.17744      2011-12-16  690,688     df2756c114ca2d3b2b16d459a93f285924a55202    Windows 7
+
+x86     5.2.3790            7.0.3790.3959       2007-02-18  348,672     9943ebce9aba9322d0767a5dc47c5234d54a74b4    Windows Server 2003 R2 x64
+x64     5.2.3790            7.0.3790.3959       2007-02-17  520,192     5216cb9c4b03a278dd0f29b2c04a64a49701d170    Windows Server 2003 R2 x64
