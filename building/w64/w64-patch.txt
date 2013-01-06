@@ -1,5 +1,9 @@
 cd /home/cauchy/vcs/svn/mingw-w64/stable/v2.x/mingw-w64-headers
 
+if [ "x$?" != "x0" ]; then
+    exit $?
+fi
+
 #if (__MSVCRT_VERSION__ >= 0x0800)
 #endif /* __MSVCRT_VERSION__ >= 0x0800 */
 
@@ -24,7 +28,6 @@ char *getcwd(char *buf, size_t size);
 #pragma pop_macro("getcwd")
 
 M       crt/_mingw.h.in
-M       crt/_mingw_mac.h
 M       crt/string.h
 M       crt/io.h
 M       crt/process.h
@@ -93,7 +96,7 @@ _FILE_OFFSET_BITS=64
 #define creat           _creat
 #define dup             _dup
 #define dup2            _dup2
-#define eof             _eof
+/* #define eof             _eof */
 #define filelength      _filelength
 #define isatty          _isatty
 #define locking         _locking
