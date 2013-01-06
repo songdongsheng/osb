@@ -1,0 +1,205 @@
+cd /home/cauchy/vcs/svn/mingw-w64/stable/v2.x/mingw-w64-headers
+
+#if (__MSVCRT_VERSION__ >= 0x0800)
+#endif /* __MSVCRT_VERSION__ >= 0x0800 */
+
+#ifdef _USE_32BIT_TIME_T
+#endif /* _USE_32BIT_TIME_T */
+
+
+#ifndef NO_OLDNAMES
+#endif /* NO_OLDNAMES */
+
+
+#pragma warning(push)
+#pragma warning(disable: 4141) /* Using deprecated twice */ 
+_Check_return_ _CRT_NONSTDC_DEPRECATE(_access) _CRTIMP int __cdecl access(_In_z_ const char * _Filename, _In_ int _AccessMode);
+#pragma warning(pop)
+
+_CRT_INSECURE_DEPRECATE_MEMORY(memcpy_s) void *  __cdecl memcpy(_Out_opt_bytecapcount_(_Size) void * _Dst, _In_opt_bytecount_(_Size) const void * _Src, _In_ size_t _Size);
+
+#pragma push_macro("getcwd")
+#undef getcwd
+char *getcwd(char *buf, size_t size);
+#pragma pop_macro("getcwd")
+
+M       crt/_mingw.h.in
+M       crt/_mingw_mac.h
+M       crt/string.h
+M       crt/io.h
+M       crt/process.h
+M       crt/direct.h
+M       crt/sys/stat.h
+M       crt/stdio.h
+M       crt/math.h
+M       crt/time.h
+
+_FILE_OFFSET_BITS=64
+-------------------------------- _mingw.h.in : 241 --------------------------------
+--- crt/_mingw.h.in     (revision 5524)
++++ crt/_mingw.h.in     (working copy)
+@@ -240,7 +240,7 @@
+
+ #ifndef __MSVCRT_VERSION__
+ /*  High byte is the major version, low byte is the minor. */
+-# define __MSVCRT_VERSION__ 0x0700
++# define __MSVCRT_VERSION__ 0x0A01
+ #endif
+
+
+@@ -464,11 +464,9 @@
+ #endif /* _WINT_T */
+ #endif /* _WCTYPE_T_DEFINED */
+
+-#if defined (_WIN32) && !defined (_WIN64) && !defined (__MINGW_USE_VC2005_COMPAT)/* && !(defined(_FILE_OFFSET_BITS) && _FILE_OFFSET_BITS == 64)*/
+-#ifndef _USE_32BIT_TIME_T
+-#define _USE_32BIT_TIME_T
++#ifndef _FILE_OFFSET_BITS
++#define _FILE_OFFSET_BITS 64
+ #endif
+-#endif
+
+ #ifdef _USE_32BIT_TIME_T
+ #ifdef _WIN64
+
+-------------------------------- process.h :181 --------------------------------
+#if (__MSVCRT_VERSION__ >= 0x0800)
+#define cwait           _cwait
+#define execl           _execl
+#define execle          _execle
+#define execlp          _execlp
+#define execlpe         _execlpe
+#define spawnl          _spawnl
+#define spawnle         _spawnle
+#define spawnlp         _spawnlp
+#define spawnlpe        _spawnlpe
+#define getpid          _getpid
+#endif /* __MSVCRT_VERSION__ >= 0x0800 */
+
+-------------------------------- direct.h : 63 --------------------------------
+#if (__MSVCRT_VERSION__ >= 0x0800)
+#define getcwd          _getcwd
+#define chdir           _chdir
+#define mkdir           _mkdir
+#define rmdir           _rmdir
+#endif /* __MSVCRT_VERSION__ >= 0x0800 */
+
+-------------------------------- io.h : 361 --------------------------------
+#if (__MSVCRT_VERSION__ >= 0x0800)
+#define access          _access
+#define chmod           _chmod
+#define chsize          _chsize
+#define close           _close
+#define creat           _creat
+#define dup             _dup
+#define dup2            _dup2
+#define eof             _eof
+#define filelength      _filelength
+#define isatty          _isatty
+#define locking         _locking
+#define lseek           _lseek
+#define mktemp          _mktemp
+#define open            _open
+#define read            _read
+#define setmode         _setmode
+#define sopen           _sopen
+#define tell            _tell
+#define umask           _umask
+#define write           _write
+#endif /* __MSVCRT_VERSION__ >= 0x0800 */
+
+-------------------------------- stdio.h : 924 --------------------------------
+#if (__MSVCRT_VERSION__ >= 0x0800)
+#define fdopen          _fdopen
+#define fileno          _fileno
+#define unlink          _unlink
+#define tempnam         _tempnam
+#define fcloseall       _fcloseall
+#define fdopen          _fdopen
+#define fgetchar        _fgetchar
+#define fileno          _fileno
+#define flushall        _flushall
+#define fputchar        _fputchar
+#define getw            _getw
+#define putw            _putw
+#define rmtmp           _rmtmp
+#endif /* __MSVCRT_VERSION__ >= 0x0800 */
+
+-------------------------------- math.h : 893 --------------------------------
+#if (__MSVCRT_VERSION__ >= 0x0800)
+#define j0              _j0
+#define j1              _j1
+#define jn              _jn
+#define y0              _y0
+#define y1              _y1
+#define yn              _yn
+#define hypot           _hypot
+#define copysign        _copysign
+#define nextafter       _nextafter
+#define chgsign         _chgsign
+#define finite          _finite
+#define fpclass         _fpclass
+#endif /* __MSVCRT_VERSION__ >= 0x0800 */
+
+-------------------------------- string.h : 172 --------------------------------
+#if (__MSVCRT_VERSION__ >= 0x0800)
+#define strdup          _strdup
+#define strcmpi         _strcmpi
+#define stricmp         _stricmp
+#define strlwr          _strlwr
+#define strnicmp        _strnicmp
+#define strnset         _strnset
+#define strrev          _strrev
+#define strset          _strset
+#define strupr          _strupr
+
+#define wcsdup          _wcsdup
+#define wcsicmp         _wcsicmp
+#define wcsnicmp        _wcsnicmp
+#define wcsnset         _wcsnset
+#define wcsrev          _wcsrev
+#define wcsset          _wcsset
+#define wcslwr          _wcslwr
+#define wcsupr          _wcsupr
+#define wcsicoll        _wcsicoll
+#endif /* __MSVCRT_VERSION__ >= 0x0800 */
+
+-------------------------------- sys/stat.h : 263 --------------------------------
+#ifdef _USE_32BIT_TIME_T
+#define _fstat      _fstat32
+#define _fstati64   _fstat32i64
+#define _stat       _stat32
+#define _stati64    _stat32i64
+#define _wstat      _wstat32
+#define _wstati64   _wstat32i64
+
+#else
+#define _fstat      _fstat64i32
+#define _fstati64   _fstat64
+#define _stat       _stat64i32
+#define _stati64    _stat64
+#define _wstat      _wstat64i32
+#define _wstati64   _wstat64
+
+#endif
+
+-------------------------------- time.h : 267 --------------------------------
+#if (__MSVCRT_VERSION__ >= 0x0800)
+#ifdef _USE_32BIT_TIME_T
+#define difftime    _difftime32
+#define ctime       _ctime32
+#define gmtime      _gmtime32
+#define localtime   _localtime32
+#define mktime      _mktime32
+#define _mkgmtime   _mkgmtime32
+#define time        _time32
+#else
+#define difftime    _difftime64
+#define ctime       _ctime64
+#define gmtime      _gmtime64
+#define localtime   _localtime64
+#define mktime      _mktime64
+#define _mkgmtime   _mkgmtime64
+#define time        _time64
+#endif /* _USE_32BIT_TIME_T */
+#endif /* __MSVCRT_VERSION__ >= 0x0800 */
