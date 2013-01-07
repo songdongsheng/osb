@@ -1,4 +1,7 @@
 ARCH    Windows Version     MSVCRT Version      Date        Size        SHA1
+x64     6.2.9200            7.0.9200.16384      2012-07-26  654,848     3149d67fd028f32816378c05c87f9e0951cde916    Windows 8/Server 2012
+x86     6.2.9200            7.0.9200.16384      2012-07-26  709,632     aa3b421be1b8f9d1a3bdfeee1ff3fb46323dc0b4    Windows 8
+
 x64     6.1.7601            7.0.7601.17744      2011-12-16  634,880     964ee2d28dc71210982f72e567df89f9f527b67b    Windows 7/Server 2008 R2
 x86     6.1.7601            7.0.7601.17744      2011-12-16  690,688     df2756c114ca2d3b2b16d459a93f285924a55202    Windows 7
 
