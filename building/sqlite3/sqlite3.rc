@@ -1,8 +1,8 @@
 #include <verrsrc.h>
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3, 7, 15, 1
- PRODUCTVERSION 3, 7, 15, 1
+ FILEVERSION 3, 7, 15, 2
+ PRODUCTVERSION 3, 7, 15, 2
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS VS_FF_DEBUG
@@ -20,8 +20,8 @@ BEGIN
       VALUE "CompanyName", "SQLite Development Team"
       VALUE "ProductName", "SQLite3"
       VALUE "FileDescription", "SQLite3"
-      VALUE "FileVersion", "3.7.15.1"
-      VALUE "ProductVersion", "3.7.15.1"
+      VALUE "FileVersion", "3.7.15.2"
+      VALUE "ProductVersion", "3.7.15.2"
       VALUE "InternalName", "sqlite3.exe"
       VALUE "OriginalFilename", "sqlite3.exe"
       VALUE "LegalCopyright", "Public domain"
