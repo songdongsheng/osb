@@ -14,6 +14,10 @@ Intel C++ Compiler XE 12.1 (v100)
 Intel C++ Compiler XE 13.0
 
 *) msbuild
+TargetName=sqlite3
+Configuration=Release|Debug
+Platform=Win32|x64
+
 msbuild sqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=Win32;PlatformToolset="Intel C++ Compiler XE 12.1"
 msbuild sqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;PlatformToolset="Intel C++ Compiler XE 12.1"
 
