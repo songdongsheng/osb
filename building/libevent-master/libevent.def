@@ -394,6 +394,7 @@ evutil_closesocket
 evutil_freeaddrinfo
 evutil_gai_strerror
 evutil_getaddrinfo
+evutil_gettimeofday
 evutil_inet_ntop
 evutil_inet_pton
 evutil_make_listen_socket_reuseable
