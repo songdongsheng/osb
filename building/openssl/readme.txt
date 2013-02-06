@@ -47,4 +47,6 @@ set OPENSSL_CONF=C:\var\pool\openssl\ssl\openssl.cnf
             fclose(fp);
         }
     }
+
+BIO_printf(bio_err, "WARNING: can't open config file: %s\n",p);
 ------------------------------------------------------------------------
