@@ -5,6 +5,8 @@ bzip2.exe       1.0.6           msvcr100.dll    2010-09-11
 curl.exe        7.29.0          msvcr100.dll    2013-02-06
 expat           2.1.0           msvcr100.dll    2012-05-15
 fossil.exe      1.24            msvcr100.dll    2012-10-22
+libevent        2.0.21          msvcr100.dll    2012-11-18
+libevent        2.1.2-g2901542  msvcr100.dll    2013-02-05
 libssh2.dll     1.4.3           msvcr100.dll    2012-12-02
 openssl.exe     1.0.1d          msvcr100.dll    2013-02-05
 sqlite3.exe     3.7.15.1        msvcr100.dll    2012-12-19
