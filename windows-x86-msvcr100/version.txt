@@ -3,6 +3,7 @@ msvcp100.dll    10.0.40219.325  msvcr100.dll    2011-06-11
 sqlncli11.dll   11.0.3000.0     msvcr100.dll    2010-10-20
 bzip2.exe       1.0.6           msvcr100.dll    2010-09-11
 curl.exe        7.29.0          msvcr100.dll    2013-02-06
+expat           2.1.0           msvcr100.dll    2012-05-15
 fossil.exe      1.24            msvcr100.dll    2012-10-22
 libssh2.dll     1.4.3           msvcr100.dll    2012-12-02
 openssl.exe     1.0.1d          msvcr100.dll    2013-02-05
