@@ -1,0 +1,23 @@
+digraph {
+/*
+    dot -Tsvg httpd-relationship.dot > httpd-relationship.svg
+    #node [ fontname="simhei.ttf" ];
+    #edge [ fontname="simsun.ttc" ];
+*/
+    node [color=lightblue2, style=filled];
+
+    zlib -> OpenSSL
+    zlib -> httpd
+    OpenSSL -> PostgreSQL
+    apr -> "apr-iconv"
+    apr -> "apr-util"
+    "apr-iconv" -> "apr-util"
+    "Free TDS" -> "apr-util"
+    Oracle -> "apr-util"
+    PostgreSQL  -> "apr-util"
+    "Berkeley DB" -> "apr-util"
+
+    apr -> httpd
+    "apr-util" -> httpd
+    OpenSSL -> httpd
+}

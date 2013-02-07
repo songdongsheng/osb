@@ -1,0 +1,11 @@
+------------------------------------------------------------------------
+export PATH=${HOME}/gcc-4.7-w32-linux/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+i686-w64-mingw32-nm libmingw*     | grep ' T ' | awk '{print $3}' | sort -u > GW
+i686-w64-mingw32-nm libmsvcrt.a   | grep ' T ' | awk '{print $3}' | sort -u > MS
+i686-w64-mingw32-nm libmsvcr90.a  | grep ' T ' | awk '{print $3}' | sort -u > MS
+i686-w64-mingw32-nm libmsvcr100.a | grep ' T ' | awk '{print $3}' | sort -u > MS
+i686-w64-mingw32-nm libmsvcr110.a | grep ' T ' | awk '{print $3}' | sort -u > MS
+
+cat GW MS | sort | uniq -d
+------------------------------------------------------------------------

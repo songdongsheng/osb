@@ -1,0 +1,41 @@
+svn_opt_subcommand_desc2_t
+print_command_info2
+
+svn_opt_subcommand_desc3_t
+print_command_info3
+
+apr_pstrcat
+http://apr.apache.org/docs/apr/1.4/group__apr__strings.html
+
+*) setup
+apt-get install ruby ruby1.8 ruby1.8-dev apache2-mpm-prefork apache2-prefork-dev
+ii  ruby                               4.5
+ii  ruby1.8                            1.8.7.302-2
+ii  ruby1.8-dev                        1.8.7.302-2
+ii  apache2-mpm-prefork                2.2.16-6
+ii  apache2-prefork-dev                2.2.16-6
+
+*) configure
+git clean -dfx && git status
+./autogen.sh
+./configure --enable-maintainer-mode --prefix=/home/oracle/tmp/svn-1.7
+make -j8; make
+
+*) patch
+subversion/libsvn_subr/cache-membuffer.c:1221: warning: ¡®svn_membuffer_cache_get_partial¡¯ defined but not used
+subversion/libsvn_subr/cache-membuffer.c:1254: warning: ¡®svn_membuffer_cache_is_cachable¡¯ defined but not used
+
+subversion/include/svn_opt.h svn_opt_subcommand_desc2_t
+
+const char *aliases[SVN_OPT_MAX_ALIASES];
+const char *help;
+
+gcc -O2 -c -I/usr/include/apr-1.0 -I/home/oracle/tmp/svn-1.7/include/subversion-1 -I/home/oracle/vcs/git/subversion/subversion/ 
+
+*) function which use svn_cl__cmd_table:
+    svn_opt_get_canonical_subcommand2(svn_cl__cmd_table, "help");
+    svn_opt_print_help3
+
+ *
+ * Same as svn_opt_subcommand_takes_option3(), but acts on
+ * #svn_opt_subcommand_desc3_t.

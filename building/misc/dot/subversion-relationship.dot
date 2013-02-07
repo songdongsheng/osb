@@ -1,0 +1,30 @@
+digraph {
+/*
+    dot -Tsvg subversion-relationship.dot > subversion-relationship.svg
+    #node [ fontname="simhei.ttf" ];
+    #edge [ fontname="simsun.ttc" ];
+*/
+    node [color=lightblue2, style=filled];
+
+    zlib -> OpenSSL
+    apr -> "apr-iconv"
+    apr -> "apr-util"
+    "apr-iconv" -> "apr-util"
+
+    zlib -> neon
+    OpenSSL -> neon
+    expat -> neon
+    neon -> svn
+    serf -> svn
+    apr -> svn
+    "apr-util" -> svn
+    zlib -> svn
+    SQLite -> svn
+    SASL -> svn
+    "Berkeley DB" -> svn
+    "Berkeley DB" -> SASL
+
+    apr -> serf
+    zlib -> serf
+    OpenSSL -> serf
+}

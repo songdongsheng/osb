@@ -1,0 +1,37 @@
+#include <verrsrc.h>
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+ FILEFLAGS VS_FF_DEBUG
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS VOS_NT_WINDOWS32
+ FILETYPE VFT_APP
+ FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Sweetheart"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "ProductName", "Simple Service"
+            VALUE "ProductVersion", "1.0.0.1"
+            VALUE "FileDescription", "Simple Service"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "SimpleService.exe"
+            VALUE "OriginalFilename", "SimpleService.exe"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 0x04b0
+    END
+END
+
+LANGUAGE 0x0,0x0
+1 11 "MSG0000.bin"
