@@ -1,7 +1,7 @@
 *) <ClCompile>
       <SDLCheck>true</SDLCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>      
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -29,3 +29,6 @@ msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;Plat
 
 msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=Win32;PlatformToolset="Intel C++ Compiler XE 13.0"
 msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;PlatformToolset="Intel C++ Compiler XE 13.0"
+
+*) msiexec
+msiexec /a PathToMSIFile /qb TARGETDIR=FullPathOfDirectoryToExtractTo
