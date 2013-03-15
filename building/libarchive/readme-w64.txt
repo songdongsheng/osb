@@ -1,5 +1,5 @@
 mkdir -p /tmp/w64/include /tmp/w64/lib /tmp/w64/bin
-path/to/src/xz/configure --prefix=/tmp/w32 --host=x86_64-w64-mingw32 --disable-nls
+path/to/src/xz/configure --prefix=/tmp/w64 --host=x86_64-w64-mingw32 --disable-nls
 signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll grep.exe
 
 export PATH=${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/cauchy/gcc-4.7-w64-linux/bin

@@ -1,0 +1,45 @@
+--------------------------------------------------------------
+# system build (106 MB)
+rm -fr ${HOME}/obj/system-build
+mkdir -p ${HOME}/obj/system-build
+cd ${HOME}/obj/system-build && \
+        ${HOME}/src/qemu-1.4.0/configure \
+                --prefix=/opt/qemu-1.4 \
+                --interp-prefix=/opt/qemu-1.4/binfmt/%M \
+                --disable-user \
+                --audio-drv-list=alsa,oss,sdl,pa
+
+        make -j4 && sudo make install
+
+--------------------------------------------------------------
+
+# user build (42 MB)
+rm -fr ${HOME}/obj/user-build
+mkdir -p ${HOME}/obj/user-build
+cd ${HOME}/obj/user-build && \
+        ${HOME}/src/qemu-1.4.0/configure \
+                --prefix=/opt/qemu-1.4 \
+                --interp-prefix=/opt/qemu-1.4/binfmt/%M \
+                --disable-system
+
+        make -j4 && sudo make install
+
+--------------------------------------------------------------
+
+# static user build (65 MB)
+rm -fr ${HOME}/obj/user-static-build
+mkdir -p ${HOME}/obj/user-static-build
+cd ${HOME}/obj/user-static-build && \
+        ${HOME}/src/qemu-1.4.0/configure \
+                --prefix=/opt/qemu-1.4 \
+                --interp-prefix=/opt/qemu-1.4/binfmt-static/%M \
+                --disable-system
+                --static
+
+        make -j4
+
+        # static user build
+        for target in ${HOME}/obj/user-static-build/*-*-user/qemu-* ; do
+            sudo install -m 755 $target /opt/qemu-1.4/bin/$(basename $target)-static
+        done
+--------------------------------------------------------------
