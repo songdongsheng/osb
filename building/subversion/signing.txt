@@ -1,0 +1,38 @@
+Summary:
+--------
+
+   +1 to release.
+
+PLATFORM:
+---------
+Windows Server 2008 R2
+Microsoft Visual Studio 2012 Update 1
+
+TESTED:
+-------
+[ fsfs | bdb ] x [ file | svn | http (neon) | http (serf) ]
+
+RESULTS:
+--------
+All Tests Pass
+
+DEPENDENCIES:
+-------------
+Apache: 2.2.24, 2.4.4
+APR: 1.4.6
+APR-Util: 1.5.2
+Serf: 1.2.0
+Neon: 0.29.6
+zlib: 1.2.7
+OpenSSL: 1.0.1e
+SQLite: 3.7.16.1
+Python: 2.7.4, 3.3.1
+
+Signatures:
+-----------
+
+   (See the appropriate distribution files.)
+
+
+---------
+Dongsheng
