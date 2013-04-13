@@ -1,0 +1,53 @@
+
+http://packages.debian.org/wheezy/amd64/qemu-user-static/filelist
+http://ftp.debian.org/debian/pool/main/q/qemu/qemu-user-static_1.1.2+dfsg-6a_amd64.deb
+
+ls -la /usr/share/binfmts
+
+# load the binfmt_misc module
+if [ ! -d /proc/sys/fs/binfmt_misc ]; then
+  /sbin/modprobe binfmt_misc
+fi
+if [ ! -f /proc/sys/fs/binfmt_misc/register ]; then
+  mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc
+fi
+
+:name:type:offset:magic:mask:interpreter:flags
+:name:type::magic::interpreter:flags
+
+There are some restrictions:
+ - the whole register string may not exceed 255 characters
+ - the magic must reside in the first 128 bytes of the file, i.e.
+   offset+size(magic) has to be less than 128
+ - the interpreter string may not exceed 127 characters
+
+If you want to pass special arguments to your interpreter, you can
+write a wrapper script for it. See Documentation/java.txt for an
+example ("$@").
+
+     ':Java:M::\xca\xfe\xba\xbe::/usr/local/bin/javawrapper:'
+     ':ExecutableJAR:E::jar::/usr/local/bin/jarwrapper:'
+
+
+echo   ':arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/opt/qemu-1.4/bin/qemu-arm:' > /proc/sys/fs/binfmt_misc/register
+
+sudo update-binfmts --import /usr/share/binfmts/qemu-arm
+sudo update-binfmts --import /usr/share/binfmts/qemu-ppc64
+sudo update-binfmts --import /usr/share/binfmts/qemu-sparc64
+update-binfmts --display
+
+cat >/home/cauchy/cross/arm-linux-gnueabihf.sh << EOF
+#!/bin/sh -e
+/opt/qemu-1.4/bin/qemu-arm /home/cauchy/cross/arm-linux-gnueabihf/lib/ld-linux-armhf.so.3 --library-path /home/cauchy/cross/arm-linux-gnueabihf/lib:/home/cauchy/cross/arm-linux-gnueabihf/usr/arm-linux-gnueabihf/lib "\$@"
+EOF
+
+cat >/home/cauchy/cross/powerpc64-linux.sh << EOF
+#!/bin/sh -e
+/opt/qemu-1.4/bin/qemu-ppc64 /home/cauchy/cross/powerpc64-linux/lib64/ld64.so.1 --library-path /home/cauchy/cross/powerpc64-linux/lib64:/home/cauchy/cross/powerpc64-linux/usr/powerpc64-linux/lib64 "\$@"
+EOF
+
+cat >/home/cauchy/cross/sparc64-linux.sh << EOF
+#!/bin/sh -e
+/opt/qemu-1.4/bin/qemu-sparc64 /home/cauchy/cross/sparc64-linux/lib64/ld-linux.so.2 --library-path /home/cauchy/cross/sparc64-linux/lib64:/home/cauchy/cross/sparc64-linux/usr/sparc64-linux/lib64 "\$@"
+EOF
+chmod +x /home/cauchy/cross/*.sh

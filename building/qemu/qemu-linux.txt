@@ -1,28 +1,62 @@
 --------------------------------------------------------------
+export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+
+--------------------------------------------------------------
+sparc64-linux-gcc -static hello.c
+qemu-sparc64 ./a.out
+sparc64-linux-gcc hello.c
+qemu-sparc64 ./cross/sparc64-linux/lib64/ld-linux.so.2 --library-path ./cross/sparc64-linux/lib64 ./a.out
+
+sparc64-linux-g++ -static hello.cpp
+qemu-sparc64 ./a.out
+sparc64-linux-g++ hello.cpp
+qemu-sparc64 ./cross/sparc64-linux/lib64/ld-linux.so.2 --library-path ./cross/sparc64-linux/lib64:./cross/sparc64-linux/usr/sparc64-linux/lib64/ ./a.out
+
+powerpc64-linux-gcc -static hello.c
+qemu-ppc64 ./a.out
+powerpc64-linux-gcc hello.c
+qemu-ppc64 ./cross/powerpc64-linux/lib64/ld64.so.1 --library-path ./cross/powerpc64-linux/lib64 ./a.out
+
+powerpc64-linux-g++ -static hello.cpp
+qemu-ppc64 ./a.out
+powerpc64-linux-g++ hello.cpp
+qemu-ppc64 ./cross/powerpc64-linux/lib64/ld64.so.1 --library-path ./cross/powerpc64-linux/lib64:./cross/powerpc64-linux/usr/powerpc64-linux/lib64/ ./a.out
+
+arm-linux-gnueabihf-gcc -static hello.c
+qemu-arm ./a.out
+arm-linux-gnueabihf-gcc hello.c
+qemu-arm ./cross/arm-linux-gnueabihf/lib/ld-linux-armhf.so.3 --library-path ./cross/arm-linux-gnueabihf/lib/ ./a.out
+
+arm-linux-gnueabihf-g++ -static hello.cpp
+qemu-arm ./a.out
+arm-linux-gnueabihf-g++ hello.cpp
+qemu-arm ./cross/arm-linux-gnueabihf/lib/ld-linux-armhf.so.3 --library-path ./cross/arm-linux-gnueabihf/lib/:./cross/arm-linux-gnueabihf/usr/arm-linux-gnueabihf/lib/ ./a.out
+
+--------------------------------------------------------------
 # system build (106 MB)
 rm -fr ${HOME}/obj/system-build
 mkdir -p ${HOME}/obj/system-build
 cd ${HOME}/obj/system-build && \
-        ${HOME}/src/qemu-1.4.0/configure \
+        ${QEMU_SRC_DIR}/configure \
                 --prefix=/opt/qemu-1.4 \
                 --interp-prefix=/opt/qemu-1.4/binfmt/%M \
                 --disable-user \
                 --audio-drv-list=alsa,oss,sdl,pa
 
-        make -j4 && sudo make install
+        make -j${NR_JOBS} && sudo make install
 
 --------------------------------------------------------------
-
 # user build (42 MB)
 rm -fr ${HOME}/obj/user-build
 mkdir -p ${HOME}/obj/user-build
 cd ${HOME}/obj/user-build && \
-        ${HOME}/src/qemu-1.4.0/configure \
+        ${QEMU_SRC_DIR}/configure \
                 --prefix=/opt/qemu-1.4 \
                 --interp-prefix=/opt/qemu-1.4/binfmt/%M \
                 --disable-system
 
-        make -j4 && sudo make install
+        make -j${NR_JOBS} && sudo make install
 
 --------------------------------------------------------------
 
@@ -30,13 +64,13 @@ cd ${HOME}/obj/user-build && \
 rm -fr ${HOME}/obj/user-static-build
 mkdir -p ${HOME}/obj/user-static-build
 cd ${HOME}/obj/user-static-build && \
-        ${HOME}/src/qemu-1.4.0/configure \
+        ${QEMU_SRC_DIR}/configure \
                 --prefix=/opt/qemu-1.4 \
                 --interp-prefix=/opt/qemu-1.4/binfmt-static/%M \
                 --disable-system
                 --static
 
-        make -j4
+        make -j${NR_JOBS}
 
         # static user build
         for target in ${HOME}/obj/user-static-build/*-*-user/qemu-* ; do
