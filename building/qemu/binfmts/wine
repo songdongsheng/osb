@@ -1,0 +1,3 @@
+package wine
+interpreter /home/cauchy/wine/bin/wine
+magic MZ

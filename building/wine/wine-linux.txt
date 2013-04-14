@@ -1,0 +1,71 @@
+*) build wine
+sudo dpkg --add-architecture i386
+sudo apt-get update
+
+sudo apt-get build-dep wine
+sudo apt-get install binfmt-support prelink libx11-dev libxrender-dev \
+    libfreetype6-dev libfontconfig1-dev libglu1-mesa-dev libasound2-dev \
+    libjpeg8-dev libpng12-dev libv4l-dev libtiff4-dev libxml2-dev libxslt1-dev \
+    unixodbc-dev
+
+export WINE_SRC_DIR=${HOME}/vcs/git/wine
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+
+rm -fr ${HOME}/obj/wine64; mkdir -p ${HOME}/obj/wine64; cd ${HOME}/obj/wine64
+${WINE_SRC_DIR}/configure --prefix=${HOME}/wine --disable-win16 --enable-win64
+make -j${NR_JOBS}; make install
+
+rm -fr ${HOME}/obj/wine32; mkdir -p ${HOME}/obj/wine32; cd ${HOME}/obj/wine32
+${WINE_SRC_DIR}/configure --prefix=${HOME}/wine --disable-win16 --with-wine64=${HOME}/obj/wine64
+make -j${NR_JOBS}; make install
+
+*) binfmt
+echo ':wine:M::MZ::/home/cauchy/wine/bin/wine:'  > /proc/sys/fs/binfmt_misc/register
+/usr/sbin/update-binfmts --display
+
+*) Xvfb
+export DISPLAY=":1"
+/usr/bin/Xvfb :1 -ac -screen 0 1024x768x8 &
+/usr/bin/xclock -display :1 &
+/usr/bin/xwininfo -root -tree | grep xclock
+
+*) run testing under wine
+CC="i686-w64-mingw32-gcc -m64" \
+CXX="i686-w64-mingw32-g++ -m64" \
+AR=i686-w64-mingw32-ar \
+RANLIB=i686-w64-mingw32-ranlib \
+NM=i686-w64-mingw32-nm \
+LD=i686-w64-mingw32-ld \
+AS="i686-w64-mingw32-as -64" \
+# ================================ native gmp ================================
+rm -fr ${HOME}/obj/gmp; mkdir -p ${HOME}/obj/gmp; cd ${HOME}/obj/gmp
+${GMP_SOURCE_DIR}/configure --prefix=${HOME}/gcc-preq-w64/gmp-5.0 \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
+    --enable-cxx --disable-shared ABI=64
+
+make ${MAKE_FLAGS} && make install
+
+make -k check 
+
+# ================================ native mpfr ================================
+rm -fr ${HOME}/obj/mpfr; mkdir -p ${HOME}/obj/mpfr; cd ${HOME}/obj/mpfr
+${MPFR_SOURCE_DIR}/configure --prefix=${HOME}/gcc-preq-w64/mpfr-3.1 \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
+    --disable-shared \
+    --with-gmp=${HOME}/gcc-preq-w64/gmp-5.0
+
+make ${MAKE_FLAGS} && make install
+
+make -k check 
+
+# ================================ native mpc ================================
+rm -fr ${HOME}/obj/mpc; mkdir -p ${HOME}/obj/mpc; cd ${HOME}/obj/mpc
+${MPC_SOURCE_DIR}/configure --prefix=${HOME}/gcc-preq-w64/mpc-1.0 \
+    -build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
+    --disable-shared \
+    --with-gmp=${HOME}/gcc-preq-w64/gmp-5.0 \
+    --with-mpfr=${HOME}/gcc-preq-w64/mpfr-3.1
+
+make ${MAKE_FLAGS} && make install
+
+make -k check
