@@ -52,4 +52,9 @@ cat >/home/cauchy/cross/sparc64-linux.sh << EOF
 #!/bin/sh -e
 /opt/qemu-1.4/bin/qemu-sparc64 /home/cauchy/cross/sparc64-linux/lib64/ld-linux.so.2 --library-path /home/cauchy/cross/sparc64-linux/lib64:/home/cauchy/cross/sparc64-linux/usr/sparc64-linux/lib64 "\$@"
 EOF
+
+cat >/home/cauchy/cross/sparc64-linux-static.sh << EOF
+#!/bin/sh -e
+/opt/qemu-1.4/bin/qemu-sparc64 "\$@"
+EOF
 chmod +x /home/cauchy/cross/*.sh

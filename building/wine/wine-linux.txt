@@ -2,6 +2,9 @@
 sudo dpkg --add-architecture i386
 sudo apt-get update
 
+sudo apt-get install libfreetype6-dev:i386
+sudo apt-get install libfreetype6-dev:amd64
+
 sudo apt-get build-dep wine
 sudo apt-get install binfmt-support prelink libx11-dev libxrender-dev \
     libfreetype6-dev libfontconfig1-dev libglu1-mesa-dev libasound2-dev \
