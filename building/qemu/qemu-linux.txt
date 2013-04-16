@@ -35,9 +35,9 @@ qemu-arm ./cross/arm-linux-gnueabihf/lib/ld-linux-armhf.so.3 --library-path ./cr
 
 --------------------------------------------------------------
 # system build (106 MB)
-rm -fr ${HOME}/obj/system-build
-mkdir -p ${HOME}/obj/system-build
-cd ${HOME}/obj/system-build && \
+rm -fr ${HOME}/obj/qemu-system-build
+mkdir -p ${HOME}/obj/qemu-system-build
+cd ${HOME}/obj/qemu-system-build && \
         ${QEMU_SRC_DIR}/configure \
                 --prefix=/opt/qemu-1.4 \
                 --interp-prefix=/opt/qemu-1.4/binfmt/%M \
@@ -48,9 +48,9 @@ cd ${HOME}/obj/system-build && \
 
 --------------------------------------------------------------
 # user build (42 MB)
-rm -fr ${HOME}/obj/user-build
-mkdir -p ${HOME}/obj/user-build
-cd ${HOME}/obj/user-build && \
+rm -fr ${HOME}/obj/qemu-user-build
+mkdir -p ${HOME}/obj/qemu-user-build
+cd ${HOME}/obj/qemu-user-build && \
         ${QEMU_SRC_DIR}/configure \
                 --prefix=/opt/qemu-1.4 \
                 --interp-prefix=/opt/qemu-1.4/binfmt/%M \
@@ -61,9 +61,9 @@ cd ${HOME}/obj/user-build && \
 --------------------------------------------------------------
 
 # static user build (65 MB)
-rm -fr ${HOME}/obj/user-static-build
-mkdir -p ${HOME}/obj/user-static-build
-cd ${HOME}/obj/user-static-build && \
+rm -fr ${HOME}/obj/qemu-user-static-build
+mkdir -p ${HOME}/obj/qemu-user-static-build
+cd ${HOME}/obj/qemu-user-static-build && \
         ${QEMU_SRC_DIR}/configure \
                 --prefix=/opt/qemu-1.4 \
                 --interp-prefix=/opt/qemu-1.4/binfmt-static/%M \
