@@ -3,37 +3,6 @@ export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 
 --------------------------------------------------------------
-sparc64-linux-gcc -static hello.c
-qemu-sparc64 ./a.out
-sparc64-linux-gcc hello.c
-qemu-sparc64 ./cross/sparc64-linux/lib64/ld-linux.so.2 --library-path ./cross/sparc64-linux/lib64 ./a.out
-
-sparc64-linux-g++ -static hello.cpp
-qemu-sparc64 ./a.out
-sparc64-linux-g++ hello.cpp
-qemu-sparc64 ./cross/sparc64-linux/lib64/ld-linux.so.2 --library-path ./cross/sparc64-linux/lib64:./cross/sparc64-linux/usr/sparc64-linux/lib64/ ./a.out
-
-powerpc64-linux-gcc -static hello.c
-qemu-ppc64 ./a.out
-powerpc64-linux-gcc hello.c
-qemu-ppc64 ./cross/powerpc64-linux/lib64/ld64.so.1 --library-path ./cross/powerpc64-linux/lib64 ./a.out
-
-powerpc64-linux-g++ -static hello.cpp
-qemu-ppc64 ./a.out
-powerpc64-linux-g++ hello.cpp
-qemu-ppc64 ./cross/powerpc64-linux/lib64/ld64.so.1 --library-path ./cross/powerpc64-linux/lib64:./cross/powerpc64-linux/usr/powerpc64-linux/lib64/ ./a.out
-
-arm-linux-gnueabihf-gcc -static hello.c
-qemu-arm ./a.out
-arm-linux-gnueabihf-gcc hello.c
-qemu-arm ./cross/arm-linux-gnueabihf/lib/ld-linux-armhf.so.3 --library-path ./cross/arm-linux-gnueabihf/lib/ ./a.out
-
-arm-linux-gnueabihf-g++ -static hello.cpp
-qemu-arm ./a.out
-arm-linux-gnueabihf-g++ hello.cpp
-qemu-arm ./cross/arm-linux-gnueabihf/lib/ld-linux-armhf.so.3 --library-path ./cross/arm-linux-gnueabihf/lib/:./cross/arm-linux-gnueabihf/usr/arm-linux-gnueabihf/lib/ ./a.out
-
---------------------------------------------------------------
 # system build (106 MB)
 rm -fr ${HOME}/obj/qemu-system-build
 mkdir -p ${HOME}/obj/qemu-system-build
@@ -59,7 +28,6 @@ cd ${HOME}/obj/qemu-user-build && \
         make -j${NR_JOBS} && sudo make install
 
 --------------------------------------------------------------
-
 # static user build (65 MB)
 rm -fr ${HOME}/obj/qemu-user-static-build
 mkdir -p ${HOME}/obj/qemu-user-static-build
@@ -76,4 +44,24 @@ cd ${HOME}/obj/qemu-user-static-build && \
         for target in ${HOME}/obj/user-static-build/*-*-user/qemu-* ; do
             sudo install -m 755 $target /opt/qemu-1.4/bin/$(basename $target)-static
         done
+
+--------------------------------------------------------------
+sparc64-linux (sparc64-unknown-linux-gnu):
+    /lib64/ld-linux.so.2
+
+powerpc64-linux (powerpc64-unknown-linux-gnu):
+    /lib64/ld64.so.1
+
+x86_64-linux (x86_64-pc-linux-gnu):
+    /lib64/ld-linux-x86-64.so.2
+
+i686-linux (i686-pc-linux-gnu):
+    /lib/ld-linux.so.2
+
+arm-linux-gnueabihf (arm-unknown-linux-gnueabihf):
+    /lib/ld-linux-armhf.so.3
+
+aarch64-linux (aarch64-unknown-linux-gnu):
+    /lib/ld-linux-aarch64.so.1
+
 --------------------------------------------------------------
