@@ -1,2 +1,3 @@
 libiconv-2.dll  1.14            native          2013-04-28
 libintl-8.dll   0.18.2.1        native          2013-04-28
+libffi-6.dll    3.0.13          native          2013-04-28

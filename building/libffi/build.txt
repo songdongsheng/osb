@@ -1,0 +1,27 @@
+-------------------------------- Prepare --------------------------------
+ftp://sourceware.org/pub/libffi/libffi-3.0.13.tar.gz
+
+export LIBFFI_SRC_DIR=${HOME}/src/libffi-3.0.13
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+-------------------------------- Building libiconv without NLS --------------------------------
+rm -fr ${OBJ_ROOT}/libffi ; mkdir -p ${OBJ_ROOT}/libffi ; cd ${OBJ_ROOT}/libffi
+${LIBFFI_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --disable-static
+
+make -j${NR_JOBS}
+make install-strip
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll libffi-6.dll
+
+------------------------------------------------------------------------
