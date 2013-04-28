@@ -381,7 +381,7 @@ extern int vsnprintf (char *, size_t, const char *, va_list);
 
 #endif
 
-#if 0
+#if 1
 
 #if !(defined asprintf && defined _GL_STDIO_H) /* don't override gnulib */
 #undef asprintf
