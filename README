@@ -1,7 +1,7 @@
         Open source binary files
 
 This repository include binary files compiled by:
-    *) GNU Compiler Collection 4.7 (msvcrt)
+    *) GNU Compiler Collection 4.8 (msvcrt)
     *) Microsoft (R) C/C++ Optimizing Compiler 16 (VS 2010, msvcr100) and 17 (VS 2012, msvcr110)
     *) Intel C++ Compiler XE 2011 (msvcr100) and 2013 (msvcr110)
 
