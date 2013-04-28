@@ -27,7 +27,7 @@
 #
 # export PATH=${HOME}/gcc-4.7-w64-linux/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # CFLAGS='-march=x86-64 -O2 -flto -pipe' CXXFLAGS='-march=x86-64 -O2 -flto -pipe' LDFLAGS='-s' \
-# path/to/src/xz/configure --prefix=/tmp/w32 --host=x86_64-w64-mingw32 --disable-nls
+# path/to/src/xz/configure --prefix=/tmp/w64 --host=x86_64-w64-mingw32 --disable-nls
 # signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll grep.exe
 #
 # http://www.mpfr.org/mpfr-3.1.1/mpfr-3.1.1.tar.xz

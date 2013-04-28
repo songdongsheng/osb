@@ -1,0 +1,66 @@
+-------------------------------- Prepare --------------------------------
+# i686-w64-mingw32-gcc -march=x86-64 -mtune=generic -dM -E -  < /dev/null | sort
+# x86_64-w64-mingw32-gcc -march=x86-64 -mtune=generic -dM -E -  < /dev/null | sort
+# CFLAGS='-march=x86-64 -O2 -flto -pipe' CXXFLAGS='-march=x86-64 -O2 -flto -pipe' LDFLAGS='-s' \
+# path/to/src/xz/configure --prefix=/tmp/w32 --host=i686-w64-mingw32 --disable-nls
+# path/to/src/xz/configure --prefix=/tmp/w64 --host=x86_64-w64-mingw32 --disable-nls
+
+LIBGCC_S_SJLJ-1.DLL
+    __udivdi3
+    __umoddi3
+
+$ x86_64-w64-mingw32-objdump -x libiconv-2.dll | grep "DLL Name"
+$ i686-w64-mingw32-objdump -x libiconv-2.dll | grep "DLL Name"
+        DLL Name: libgcc_s_sjlj-1.dll
+        DLL Name: KERNEL32.dll
+        DLL Name: msvcrt.dll
+
+http://ftp.gnu.org/gnu/libiconv/
+http://ftp.gnu.org/gnu/gettext/
+
+export LIBICONV_SRC_DIR=${HOME}/src/libiconv-1.14
+export GETTEXT_SRC_DIR=${HOME}/src/gettext-0.18.2.1
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+-------------------------------- Building libiconv without NLS --------------------------------
+rm -fr ${OBJ_ROOT}/libiconv ; mkdir -p ${OBJ_ROOT}/libiconv ; cd ${OBJ_ROOT}/libiconv
+${LIBICONV_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --disable-static
+
+make -j${NR_JOBS}
+make install-strip
+
+-------------------------------- Building gettext --------------------------------
+rm -fr ${OBJ_ROOT}/gettext ; mkdir -p ${OBJ_ROOT}/gettext ; cd ${OBJ_ROOT}/gettext
+${GETTEXT_SRC_DIR}/configure --prefix=${BIN_ROOT} \
+    --host=${HOST_TRIPLET} --disable-static \
+    --with-libiconv-prefix=${BIN_ROOT}
+
+make -j${NR_JOBS}
+make install-strip
+
+    --with-libiconv-prefix=${BIN_ROOT}
+
+-------------------------------- Building libiconv with NLS --------------------------------
+rm -fr ${OBJ_ROOT}/libiconv ; mkdir -p ${OBJ_ROOT}/libiconv ; cd ${OBJ_ROOT}/libiconv
+${LIBICONV_SRC_DIR}/configure --prefix=${BIN_ROOT} \
+    --host=${HOST_TRIPLET} --disable-static \
+    --with-libintl-prefix=${BIN_ROOT}
+
+make -j${NR_JOBS}
+make install-strip
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll libintl-8.dll
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll *.dll *.exe
+
+------------------------------------------------------------------------
