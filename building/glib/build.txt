@@ -33,9 +33,3 @@ make install-strip
 signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll libffi-6.dll
 
 ------------------------------------------------------------------------
-make -f win32/Makefile.gcc
-
-cp zlib1.dll /usr/local/bin
-cp zconf.h zlib.h /usr/local/include
-cp libz.a /usr/local/lib
-cp libzdll.a /usr/local/lib/libz.dll.a

@@ -1,0 +1,14 @@
+vi win32/Makefile.gcc
+    PREFIX = i686-w64-mingw32-
+    PREFIX = x86_64-w64-mingw32-
+
+export BIN_ROOT=${HOME}/w32
+export BIN_ROOT=${HOME}/w64
+
+make -f win32/Makefile.gcc
+
+install -m 0755 -d ${BIN_ROOT}/bin ${BIN_ROOT}/lib ${BIN_ROOT}/include
+install -m 0644 -t ${BIN_ROOT}/bin zlib1.dll
+install -m 0644 -t ${BIN_ROOT}/include zconf.h zlib.h
+install -m 0644 -t ${BIN_ROOT}/lib libz.a
+install -m 0644 -T zlib1.dll ${BIN_ROOT}/lib/libz.dll.a
