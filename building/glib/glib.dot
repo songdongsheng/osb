@@ -1,0 +1,11 @@
+/*
+    dot glib.dot -T pdf -o glib.pdf
+    dot glib.dot -T svg -o glib.svg
+ */
+digraph "Dependency Graph" {
+    zlib -> glib;
+    libffi -> glib;
+    libiconv -> glib;
+    libiconv -> libintl -> glib;
+    libintl -> libiconv [color=red, style=dotted];
+}

@@ -14,7 +14,7 @@ export OBJ_ROOT=${HOME}/obj/w64
 export BIN_ROOT=${HOME}/w64
 export HOST_TRIPLET=x86_64-w64-mingw32
 
--------------------------------- Building libiconv without NLS --------------------------------
+-------------------------------- Building libffi --------------------------------
 rm -fr ${OBJ_ROOT}/libffi ; mkdir -p ${OBJ_ROOT}/libffi ; cd ${OBJ_ROOT}/libffi
 ${LIBFFI_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --disable-static
 
