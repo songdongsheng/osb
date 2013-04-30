@@ -1,0 +1,10 @@
+/*
+    dot pango.dot -T pdf -o pango.pdf
+    dot pango.dot -T svg -o pango.svg
+ */
+digraph "Dependency Graph" {
+    fontconfig -> pango;
+    freetype -> pango;
+    cairo -> pango;
+    glib -> pango;
+}

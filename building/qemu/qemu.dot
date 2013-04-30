@@ -1,0 +1,17 @@
+/*
+    dot qemu.dot -T pdf -o qemu.pdf
+    dot qemu.dot -T svg -o qemu.svg
+ */
+digraph "Dependency Graph" {
+    glib -> qemu;
+    libpng -> qemu;
+    libjpeg -> qemu;
+    libSDL -> qemu;
+    pixman -> qemu;
+    zlib -> qemu;
+    freetype -> qemu;
+
+    zlib -> freetype;
+    zlib -> libpng;
+    zlib -> libSDL;
+}

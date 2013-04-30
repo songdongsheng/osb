@@ -13,9 +13,9 @@ digraph "Dependency Graph" {
     glib -> rrdtool;
     pango -> rrdtool;
 
-    zlib -> glib;
-    libffi -> glib;
-    libiconv -> glib;
-    libiconv -> libintl -> glib;
-    libintl -> libiconv [color=red, style=dotted];
+    freetype -> fontconfig;
+    zlib -> fontconfig;
+    expat -> fontconfig;
+    zlib -> freetype;
+    zlib -> libpng;
 }

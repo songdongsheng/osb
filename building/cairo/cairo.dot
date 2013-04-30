@@ -1,0 +1,19 @@
+/*
+    dot cairo.dot -T pdf -o cairo.pdf
+    dot cairo.dot -T svg -o cairo.svg
+ */
+digraph "Dependency Graph" {
+    pixman -> cairo;
+    fontconfig -> cairo;
+    freetype -> cairo;
+    libpng -> cairo;
+    zlib -> cairo;
+    expat -> cairo;
+    freetype -> cairo;
+
+    zlib -> freetype;
+    zlib -> libpng;
+    freetype -> fontconfig;
+    zlib -> fontconfig;
+    expat -> fontconfig;
+}
