@@ -8,28 +8,26 @@ export GLIB_SRC_DIR=${HOME}/src/glib-2.36.1
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 
-export OBJ_ROOT=${HOME}/obj/w64
-export BIN_ROOT=${HOME}/w64
-export HOST_TRIPLET=x86_64-w64-mingw32
-
 export OBJ_ROOT=${HOME}/obj/w32
 export BIN_ROOT=${HOME}/w32
 export HOST_TRIPLET=i686-w64-mingw32
 
-export PKG_CONFIG_PATH=${BIN_ROOT}/lib/pkgconfig
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
 
-
-zlib
-libffi
 -------------------------------- Building glib --------------------------------
 rm -fr ${OBJ_ROOT}/glib ; mkdir -p ${OBJ_ROOT}/glib ; cd ${OBJ_ROOT}/glib
+
 CPPFLAGS="-I${BIN_ROOT}/include" LIBS="-L${BIN_ROOT}/lib -lintl" \
-${GLIB_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --disable-static
+${GLIB_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --disable-static \
+    --disable-modular-tests
 
 make -j${NR_JOBS}
+
 make install-strip
 
 -------------------------------- Digital Signing with signtool --------------------------------
-signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll libffi-6.dll
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll *.dll *.exe
 
 ------------------------------------------------------------------------
