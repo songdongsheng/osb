@@ -1,0 +1,31 @@
+-------------------------------- Prepare --------------------------------
+http://sourceforge.net/projects/libpng/files/zlib/1.2.8/zlib-1.2.8.tar.xz/download
+http://sourceforge.net/projects/libpng/files/libpng16/1.6.2/libpng-1.6.2.tar.xz/download
+
+export LIBPNG_SRC_DIR=${HOME}/src/libpng-1.6.2
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+-------------------------------- Building libpng --------------------------------
+rm -fr ${OBJ_ROOT}/libpng ; mkdir -p ${OBJ_ROOT}/libpng ; cd ${OBJ_ROOT}/libpng
+
+CPPFLAGS="-I${BIN_ROOT}/include" LDFLAGS="-L${BIN_ROOT}/lib" \
+${LIBPNG_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --enable-shared --disable-static
+
+make -j${NR_JOBS}
+
+make install-strip
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll libpng16-16.dll
+
+------------------------------------------------------------------------
