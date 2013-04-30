@@ -1,0 +1,31 @@
+-------------------------------- Prepare --------------------------------
+http://cairographics.org/releases/pixman-0.28.2.tar.gz
+
+export PIXMAN_SRC_DIR=${HOME}/src/pixman-0.28.2
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+-------------------------------- Building pixman --------------------------------
+rm -fr ${OBJ_ROOT}/pixman ; mkdir -p ${OBJ_ROOT}/pixman ; cd ${OBJ_ROOT}/pixman
+
+CPPFLAGS="-I${BIN_ROOT}/include" LDFLAGS="-L${BIN_ROOT}/lib" \
+${PIXMAN_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} \
+    --enable-shared --disable-static
+
+make -j${NR_JOBS}
+
+make install-strip
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /fd sha256 /sha1 8DC5E1E411AE78000E98FAD0ADB7E995995813A8 /t http://timestamp.verisign.com/scripts/timstamp.dll libpixman-1-0.dll
+
+------------------------------------------------------------------------
