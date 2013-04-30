@@ -1,0 +1,21 @@
+/*
+    dot rrdtool.dot -T pdf -o rrdtool.pdf
+    dot rrdtool.dot -T svg -o rrdtool.svg
+ */
+digraph "Dependency Graph" {
+    zlib -> rrdtool;
+    libpng -> rrdtool;
+    freetype -> rrdtool;
+    libxml2 -> rrdtool;
+    fontconfig -> rrdtool;
+    pixman -> rrdtool;
+    cairo -> rrdtool;
+    glib -> rrdtool;
+    pango -> rrdtool;
+
+    zlib -> glib;
+    libffi -> glib;
+    libiconv -> glib;
+    libiconv -> libintl -> glib;
+    libintl -> libiconv [color=red, style=dotted];
+}
