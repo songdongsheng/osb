@@ -2,4 +2,5 @@ libffi-6.dll        3.0.13          native          2013-04-28
 libglib-2.0-0.dll   2.36.1          native          2013-04-30
 libiconv-2.dll      1.14            native          2013-04-28
 libintl-8.dll       0.18.2.1        native          2013-04-28
+libturbojpeg.dll    1.2.1           native          2013-04-30
 zlib1.dll           1.2.8           native          2013-04-29
