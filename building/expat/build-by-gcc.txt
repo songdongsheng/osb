@@ -1,0 +1,35 @@
+-------------------------------- Prepare --------------------------------
+http://people.apache.org/~dongsheng/git.cgi?p=expat;a=summary   2012-05-15
+
+export LIBEXPAT_SRC_DIR=${HOME}/vcs/cvs/expat
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+
+-------------------------------- Building expat --------------------------------
+cd ${LIBEXPAT_SRC_DIR}
+
+install -m 0755 -d ${BIN_ROOT}/bin ${BIN_ROOT}/lib ${BIN_ROOT}/include
+install -m 0644 -t ${BIN_ROOT}/bin zlib1.dll
+install -m 0644 -t ${BIN_ROOT}/include zconf.h zlib.h
+install -m 0644 -t ${BIN_ROOT}/lib libz.a
+install -m 0644 -T zlib1.dll ${BIN_ROOT}/lib/libz.dll.a
+
+
+make -j${NR_JOBS}
+
+make install-strip
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll expat-16.dll
+
+------------------------------------------------------------------------
