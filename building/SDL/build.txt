@@ -1,0 +1,29 @@
+-------------------------------- Prepare --------------------------------
+http://www.libsdl.org/release/SDL-1.2.15.tar.gz
+
+export LIBSDL_SRC_DIR=${HOME}/src/SDL-1.2.15
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+-------------------------------- Building SDL --------------------------------
+rm -fr ${OBJ_ROOT}/SDL ; mkdir -p ${OBJ_ROOT}/SDL ; cd ${OBJ_ROOT}/SDL
+
+${LIBSDL_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --enable-shared --disable-static
+
+make -j${NR_JOBS}
+
+make install-strip
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll SDL.dll
+
+------------------------------------------------------------------------

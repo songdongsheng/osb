@@ -5,4 +5,5 @@ libintl-8.dll       0.18.2.1        native          2013-04-28
 libpixman-1-0.dll   0.28.2          native          2013-04-30
 libpng16-16.dll     1.6.2           native          2013-04-30
 libturbojpeg.dll    1.2.1           native          2013-04-30
+SDL.dll             1.2.15          native          2013-05-01
 zlib1.dll           1.2.8           native          2013-04-29
