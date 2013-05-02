@@ -6,13 +6,15 @@ export CAIRO_SRC_DIR=${HOME}/src/cairo-1.12.14
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
 export OBJ_ROOT=${HOME}/obj/w64
 export BIN_ROOT=${HOME}/w64
 export HOST_TRIPLET=x86_64-w64-mingw32
 
-export OBJ_ROOT=${HOME}/obj/w32
-export BIN_ROOT=${HOME}/w32
-export HOST_TRIPLET=i686-w64-mingw32
+export PATH=${BIN_ROOT}/bin:${PATH}
 
 -------------------------------- Building cairo --------------------------------
 rm -fr ${OBJ_ROOT}/cairo ; mkdir -p ${OBJ_ROOT}/cairo ; cd ${OBJ_ROOT}/cairo
@@ -26,6 +28,6 @@ make -j${NR_JOBS}
 make install-strip
 
 -------------------------------- Digital Signing with signtool --------------------------------
-signtool sign /fd sha256 /sha1 8DC5E1E411AE78000E98FAD0ADB7E995995813A8 /t http://timestamp.verisign.com/scripts/timstamp.dll libcairo-2-0.dll
+signtool sign /fd sha256 /sha1 8DC5E1E411AE78000E98FAD0ADB7E995995813A8 /t http://timestamp.verisign.com/scripts/timstamp.dll libcairo-*.dll
 
 ------------------------------------------------------------------------
