@@ -14,22 +14,25 @@ export OBJ_ROOT=${HOME}/obj/w64
 export BIN_ROOT=${HOME}/w64
 export HOST_TRIPLET=x86_64-w64-mingw32
 
+${HOST_TRIPLET}-dlltool -x -c -k --input-def libexpat.def --dllname expat.dll --output-lib libexpat.dll.a
 
 -------------------------------- Building expat --------------------------------
-cd ${LIBEXPAT_SRC_DIR}
+cd ${LIBEXPAT_SRC_DIR}/lib
+
+${HOST_TRIPLET}-windres --define GCC_WINDRES -o expat.rc.o expat.rc
+
+${HOST_TRIPLET}-gcc -DHAVE_MEMMOVE=1 -DXML_ATTR_INFO=1  -O2 -flto -s -shared -o expat.dll -Wl,--out-implib,libexpat.dll.a \
+    libexpat.def expat.rc.o \
+    xmlparse.c xmlrole.c xmltok.c xmltok_impl.c xmltok_ns.c
+
+# ${HOST_TRIPLET}-objdump -p expat.dll | less
 
 install -m 0755 -d ${BIN_ROOT}/bin ${BIN_ROOT}/lib ${BIN_ROOT}/include
-install -m 0644 -t ${BIN_ROOT}/bin zlib1.dll
-install -m 0644 -t ${BIN_ROOT}/include zconf.h zlib.h
-install -m 0644 -t ${BIN_ROOT}/lib libz.a
-install -m 0644 -T zlib1.dll ${BIN_ROOT}/lib/libz.dll.a
-
-
-make -j${NR_JOBS}
-
-make install-strip
+install -m 0644 -t ${BIN_ROOT}/bin expat.dll
+install -m 0644 -t ${BIN_ROOT}/include expat_external.h expat.h
+install -m 0644 -T libexpat.dll.a ${BIN_ROOT}/lib/libexpat.dll.a
 
 -------------------------------- Digital Signing with signtool --------------------------------
-signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll expat-16.dll
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll expat.dll
 
 ------------------------------------------------------------------------

@@ -11,17 +11,10 @@ Date:   Thu Apr 25 15:26:54 2013 +0800
     virtio-net: count VIRTIO_NET_F_MAC when calculating config_len
 
 export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
+export QEMU_SRC_DIR=${HOME}/src/qemu-1.4.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
-
-export OBJ_ROOT=${HOME}/obj/w64
-export BIN_ROOT=${HOME}/w64
-export HOST_TRIPLET=x86_64-w64-mingw32
-
-export OBJ_ROOT=${HOME}/obj/w32
-export BIN_ROOT=${HOME}/w32
-export HOST_TRIPLET=i686-w64-mingw32
 
 -------------------------------- pkg-config cfg (w32) --------------------------------
 cat > ${BIN_ROOT}/bin/i686-w64-mingw32-pkg-config <<EOF
@@ -33,6 +26,10 @@ chmod +x ${BIN_ROOT}/bin/i686-w64-mingw32-pkg-config
 
 export PATH=${BIN_ROOT}/bin:$PATH
 
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
 -------------------------------- pkg-config cfg (w64) --------------------------------
 cat > ${BIN_ROOT}/bin/x86_64-w64-mingw32-pkg-config <<EOF
 #!/bin/sh
@@ -42,6 +39,10 @@ EOF
 chmod +x ${BIN_ROOT}/bin/x86_64-w64-mingw32-pkg-config
 
 export PATH=${BIN_ROOT}/bin:$PATH
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
 
 -------------------------------- Building qemu system --------------------------------
 rm -fr ${OBJ_ROOT}/qemu ; mkdir -p ${OBJ_ROOT}/qemu ; cd ${OBJ_ROOT}/qemu
