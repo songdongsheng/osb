@@ -48,8 +48,6 @@ ${GETTEXT_SRC_DIR}/configure --prefix=${BIN_ROOT} \
 make -j${NR_JOBS}
 make install-strip
 
-    --with-libiconv-prefix=${BIN_ROOT}
-
 -------------------------------- Building libiconv with NLS --------------------------------
 rm -fr ${OBJ_ROOT}/libiconv ; mkdir -p ${OBJ_ROOT}/libiconv ; cd ${OBJ_ROOT}/libiconv
 ${LIBICONV_SRC_DIR}/configure --prefix=${BIN_ROOT} \
