@@ -1,0 +1,823 @@
+//
+// asciidoc -a toc -a toclevels=3 -a numbered bwb.txt
+//
+= Building the Windows Binaries
+
+== Building number and code signing
+=== Building number
+------------------------------------------------------------------------
+from datetime import datetime;
+from decimal import getcontext, Decimal
+
+getcontext().prec = 34
+dt = datetime.utcnow() - datetime(1970, 1, 1, 0, 0, 0, 0, None)
+int (((dt.days * Decimal(24) + dt.seconds / Decimal(3600)) / 8) % 65536)
+------------------------------------------------------------------------
+
+=== Code signing
+------------------------------------------------------------------------
+signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll /sha1 ^
+    8DC5E1E411AE78000E98FAD0ADB7E995995813A8 gendef.exe
+
+signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll /sha1 ^
+    911F6FA55905B3E43DC3AF49714D8723AE7AF9DE /fd SHA512 gendef.exe
+
+signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll test.exe
+signtool sign /t http://timestamp.comodoca.com/authenticode
+signtool sign /t http://tsa.starfieldtech.com
+signtool sign /t http://timestamp.globalsign.com/scripts/timstamp.dll
+
+jarsigner -verbose -digestalg SHA-256 -storetype pkcs12 -keystore dongsheng.p12 ^
+    -tsa http://tsa.starfieldtech.com/ resources.jar "1"
+
+jarsigner -verify -verbose -certs resources.jar
+------------------------------------------------------------------------
+
+== Prerequisites for Building
+
+=== Download address
+------------------------------------------------------------------------
+http://downloads.activestate.com/ActivePerl/releases/5.14.2.1402/ActivePerl-5.14.2.1402-MSWin32-x86-295342.msi
+http://downloads.activestate.com/ActivePython/releases/2.7.2.5/ActivePython-2.7.2.5-win32-x86.msi
+http://www.java.net/download/openjdk/jdk7u6/promoted/b24/openjdk-7u6-fcs-src-b24-09_aug_2012.zip
+http://www.java.net/download/jdk7u6/archive/b24/binaries/jdk-7u6-fcs-bin-b24-windows-i586-09_aug_2012.exe
+http://jdk7.java.net/download.html
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+------------------------------------------------------------------------
+
+=== asciidoc.cmd
+------------------------------------------------------------------------
+@ECHO OFF
+
+@C:\opt\python-2.7\python.exe E:\hg\asciidoc\asciidoc.py %*
+------------------------------------------------------------------------
+
+=== Wine 1.5.10+
+------------------------------------------------------------------------
+sudo apt-get install -y x11vnc xvfb ttf-dejavu fluxbox lxterminal x11-apps \
+    libx11-dev libfreetype6-dev prelink libxrandr-dev libxrender-dev libglu1-mesa-dev \
+    libxml2-dev libxml2 libxslt1-dev xsltproc libjpeg-dev libpng12-dev libasound2-dev \
+    ia32-libs-dev libc6-dev-i386 libxcursor-dev libxi-dev libxxf86vm-dev libxinerama-dev \
+    libosmesa6-dev libncurses5-dev libgnutls-dev libsane-dev libv4l-dev libgphoto2-2-dev \
+    liblcms1-dev libfontconfig1-dev libgsm1-dev libtiff4-dev libmpg123-dev libopenal-dev \
+    libxcomposite-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
+
+rm -fr ${HOME}/obj/wine64; mkdir -p ${HOME}/obj/wine64; cd ${HOME}/obj/wine64
+${HOME}/vcs/git/wine/configure --prefix=${HOME}/wine --disable-win16 --enable-win64
+make -j4; make install
+
+configure: OpenCL development files not found, OpenCL won't be supported.
+configure: libhal development files not found, no legacy dynamic device support.
+configure: libcapi20 development files not found, ISDN won't be supported.
+configure: libcups development files not found, CUPS won't be supported.
+
+rm -fr ${HOME}/obj/wine32; mkdir -p ${HOME}/obj/wine32; cd ${HOME}/obj/wine32
+${HOME}/vcs/git/wine/configure --prefix=${HOME}/wine --disable-win16 --with-wine64=${HOME}/obj/wine64
+make -j4; make install
+
+configure: libOSMesa 32-bit development files not found (or too old), OpenGL rendering in bitmaps won't be supported.
+configure: OpenCL 32-bit development files not found, OpenCL won't be supported.
+configure: libhal 32-bit development files not found, no legacy dynamic device support.
+configure: gstreamer-0.10 base plugins 32-bit development files not found, gstreamer support disabled
+configure: libcapi20 32-bit development files not found, ISDN won't be supported.
+configure: libgsm 32-bit development files not found, gsm 06.10 codec won't be supported.
+
+$ /usr/sbin/update-binfmts --display
+$ cat /var/lib/binfmts/wine
+wine
+magic
+0
+MZ
+
+/home/cauchy/wine/bin/wine
+
+$ cat /proc/sys/fs/binfmt_misc/status
+enabled
+------------------------------------------------------------------------
+
+=== Xvfb and VNC
+------------------------------------------------------------------------
+export DISPLAY=":1"
+/usr/bin/Xvfb :1 -ac -nolisten tcp -screen 0 1920x1080x24+32 &
+/usr/bin/fluxbox &
+/usr/bin/x11vnc -storepasswd password ~/.vnc/passwd
+/usr/bin/x11vnc -no6 -display :1 -bg -rfbauth ~/.vnc/passwd -forever -xkb
+
+/usr/bin/xclock -display :1 &
+/usr/bin/xwininfo -root -tree | grep xclock
+------------------------------------------------------------------------
+
+== Compiler for Building
+
+=== gcc - x86
+------------------------------------------------------------------------
+export PATH=${HOME}/gcc-4.7-w32-linux/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export  CC='i686-w64-mingw32-gcc -march=x86_64 -mtune=generic -mfpmath=sse'
+export CXX='i686-w64-mingw32-g++ -march=x86_64 -mtune=generic -mfpmath=sse'
+export   CFLAGS='-Wall -Wextra -Wformat -pedantic -funroll-loops -ftree-vectorize -O2 -pipe'
+export CXXFLAGS='-Wall -Wextra -Wformat -pedantic -funroll-loops -ftree-vectorize -O2 -pipe'
+export  LDFLAGS='-s'
+# LDFLAGS = -s -Wl,--disable-auto-import,--allow-multiple-definition
+# -fstack-protector -Wformat-security -Wmissing-prototypes
+------------------------------------------------------------------------
+
+=== gcc - x64
+------------------------------------------------------------------------
+export PATH=${HOME}/gcc-4.7-w32-linux/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export  CC='i686-w64-mingw32-gcc -march=x86_64 -mtune=generic'
+export CXX='i686-w64-mingw32-g++ -march=x86_64 -mtune=generic'
+export   CFLAGS='-Wall -Wextra -Wformat -pedantic -funroll-loops -ftree-vectorize -O2 -pipe'
+export CXXFLAGS='-Wall -Wextra -Wformat -pedantic -funroll-loops -ftree-vectorize -O2 -pipe'
+export  LDFLAGS='-s'
+# LDFLAGS = -s -Wl,--disable-auto-import,--allow-multiple-definition
+# -fstack-protector -Wformat-security -Wmissing-prototypes
+------------------------------------------------------------------------
+
+=== msc - x86
+------------------------------------------------------------------------
+SET VS_2010_DIR=E:\usr\vs2010
+SET WIN_SDK_DIR=C:\Program Files\Microsoft SDKs\Windows\v7.1
+
+SET PATH=%SystemRoot%;%SystemRoot%\system32;%SystemRoot%\System32\Wbem;%SystemRoot%\SysWOW64;%SystemRoot%\SysWOW64\Wbem
+SET PATH=%PATH%;%SystemRoot%\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin
+
+SET ADDON_PATH=E:\usr\CMake-2.8\bin;E:\usr\nant-0.91\bin
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\putty;E:\usr\GnuPG\pub
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\svn-1.7\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\TortoiseHg
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\jdk-1.6\bin;E:\usr\jdk-1.6\jre\bin
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\python-2.7;E:\usr\python-2.7\Scripts
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\perl-5.14\site\bin;E:\usr\perl-5.14\bin
+SET ADDON_PATH=%ADDON_PATH%;E:\var\vcs\svn\i18n-zh\trunk\lib\ant\bin
+SET ADDON_PATH=%ADDON_PATH%;E:\var\vcs\svn\i18n-zh\trunk\lib\xep
+
+SET PATH=%PATH%;%VS_2010_DIR%\common7\ide;%VS_2010_DIR%\common7\tools;%VS_2010_DIR%\vc\bin
+SET PATH=%PATH%;%WIN_SDK_DIR%\bin;%ADDON_PATH%
+SET INCLUDE=%VS_2010_DIR%\vc\include;%WIN_SDK_DIR%\include
+SET LIB=%VS_2010_DIR%\vc\lib;%WIN_SDK_DIR%\lib
+SET CFLAGS=/nologo /Wall /analyze:WX- /MD /EHsc /arch:SSE2 /O2 /Oy- /Zi
+SET CFLAGS=%CFLAGS% /D"_WIN32_WINNT=0x0502" /D"WIN32_LEAN_AND_MEAN=1" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS
+SET LDFLAGS=/link /OPT:ICF,REF /MACHINE:X86 /SUBSYSTEM:CONSOLE /RELEASE
+
+SET ADDON_PATH=
+SET WIN_SDK_DIR=
+SET VS_2010_DIR=
+------------------------------------------------------------------------
+
+=== msc - x64
+------------------------------------------------------------------------
+SET VS_2010_DIR=E:\usr\vs2010
+SET WIN_SDK_DIR=C:\Program Files\Microsoft SDKs\Windows\v7.1
+
+SET PATH=%SystemRoot%;%SystemRoot%\system32;%SystemRoot%\System32\Wbem;%SystemRoot%\SysWOW64;%SystemRoot%\SysWOW64\Wbem
+SET PATH=%PATH%;%SystemRoot%\Microsoft.NET\Framework\v4.0.30319;%WIN_SDK_DIR%\Bin
+
+SET ADDON_PATH=E:\usr\CMake-2.8\bin;E:\usr\nant-0.91\bin
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\putty;E:\usr\GnuPG\pub
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\svn-1.7\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\TortoiseHg
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\jdk-1.6\bin;E:\usr\jdk-1.6\jre\bin
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\python-2.7;E:\usr\python-2.7\Scripts
+SET ADDON_PATH=%ADDON_PATH%;E:\usr\perl-5.14\site\bin;E:\usr\perl-5.14\bin
+SET ADDON_PATH=%ADDON_PATH%;E:\var\vcs\svn\i18n-zh\trunk\lib\ant\bin
+SET ADDON_PATH=%ADDON_PATH%;E:\var\vcs\svn\i18n-zh\trunk\lib\xep
+
+SET PATH=%PATH%;%VS_2010_DIR%\common7\ide;%VS_2010_DIR%\common7\tools;%VS_2010_DIR%\vc\bin\x86_amd64;%VS_2010_DIR%\vc\bin
+SET PATH=%PATH%;%WIN_SDK_DIR%\bin;%ADDON_PATH%
+SET INCLUDE=%VS_2010_DIR%\vc\include;%WIN_SDK_DIR%\include
+SET LIB=%VS_2010_DIR%\vc\lib\amd64;%WIN_SDK_DIR%\lib\x64
+SET CFLAGS=/nologo /Wall /analyze:WX- /MD /EHsc /arch:SSE2 /O2 /Oy- /Zi
+SET CFLAGS=%CFLAGS% /D"_WIN32_WINNT=0x0502" /D"WIN32_LEAN_AND_MEAN=1" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS
+SET LDFLAGS=/link /OPT:ICF,REF /MACHINE:X64 /SUBSYSTEM:CONSOLE /RELEASE
+
+SET ADDON_PATH=
+SET WIN_SDK_DIR=
+SET VS_2010_DIR=
+------------------------------------------------------------------------
+
+== Must building with autotools
+=== libmangle and gendef
+------------------------------------------------------------------------
+CC="${CC}" CFLAGS="${CFLAGS}" CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" \
+./configure --prefix=${HOME}/tmp/w32/libmangle --host=i686-w64-mingw32
+
+CC="${CC}" CFLAGS="${CFLAGS}" CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" \
+./configure --prefix=${HOME}/tmp/w32/gendef --host=i686-w64-mingw32 --with-mangle=${HOME}/tmp/w32/libmangle
+------------------------------------------------------------------------
+
+=== libiconv and gettext
+==== Building libiconv without NLS
+------------------------------------------------------------------------
+${HOME}/src/libiconv-1.14/configure --prefix=${HOME}/tmp/w32 --host=i686-w64-mingw32 --disable-nls --disable-static
+
+lib /NOLOGO /VERBOSE /DEF:libiconv-2.def /MACHINE:X86 /OUT:libiconv.lib
+dlltool -x -c -k --input-def libiconv-2.def --dllname libiconv-2.dll --output-lib libiconv.dll.a
+------------------------------------------------------------------------
+
+==== Building gettext
+--------------------------------------------------------------------------------
+${HOME}/src/gettext-0.18.1.1/configure --prefix=${HOME}/tmp/w32 \
+    --host=i686-w64-mingw32 --with-libiconv-prefix=${HOME}/tmp/w32 --disable-static
+
+vi gettext-0.18.1.1/gettext-tools/libgettextpo/Makefile
+
+libgettextpo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+        $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+        $(AM_CFLAGS) $(CFLAGS) $(libgettextpo_la_LDFLAGS) $(LDFLAGS) -lgrt \
+        -o $@
+
+lib /NOLOGO /VERBOSE /DEF:libintl-8.def /MACHINE:X86 /OUT:libintl.lib
+dlltool -x -c -k --input-def libintl-8.def --dllname libintl-8.dll --output-lib libintl.dll.a
+------------------------------------------------------------------------
+
+==== Building libiconv with NLS
+------------------------------------------------------------------------
+${HOME}/src/libiconv-1.14/configure --prefix=${HOME}/tmp/w32 --host=i686-w64-mingw32 --disable-static
+------------------------------------------------------------------------
+
+== Building with common tools
+=== zlib
+==== Building with gcc
+------------------------------------------------------------------------
+gcc %CFLAGS% -c -flto -DNO_VIZ -D_LARGEFILE64_SOURCE=1 ^
+    adler32.c compress.c crc32.c deflate.c gzclose.c gzlib.c gzread.c gzwrite.c infback.c inffast.c ^
+    inflate.c inftrees.c trees.c uncompr.c zutil.c
+
+windres --define GCC_WINDRES -o zlibrc.o win32/zlib1.rc
+
+gcc  %CFLAGS% -flto -s -shared -o zlib1.dll -Wl,--out-implib,libz.dll.a win32/zlib.def zlibrc.o ^
+    adler32.o compress.o crc32.o deflate.o gzclose.o gzlib.o gzread.o gzwrite.o infback.o inffast.o ^
+    inflate.o inftrees.o trees.o uncompr.o zutil.o
+
+ar rcs libz.a adler32.o compress.o crc32.o deflate.o gzclose.o gzlib.o gzread.o gzwrite.o infback.o ^
+    inffast.o inflate.o inftrees.o trees.o uncompr.o zutil.o
+
+ranlib libz.a
+------------------------------------------------------------------------
+
+==== Building with vc2010
+------------------------------------------------------------------------
+@rem nmake -f win32/Makefile.msc LOC="-DASMV -DASMINF" OBJA="inffas32.obj match686.obj" test
+
+rc win32\zlib1.rc
+cl /LD /Fezlib1.dll %CFLAGS% win32\zlib.def win32\zlib1.res ^
+    adler32.c compress.c crc32.c deflate.c gzclose.c gzlib.c gzread.c gzwrite.c infback.c inffast.c ^
+    inflate.c inftrees.c trees.c uncompr.c zutil.c %LDFLAGS% /VERSION:1.2 /IMPLIB:zlib.lib /PDB:zlib.pdb
+------------------------------------------------------------------------
+
+=== bzip2
+==== Building with vc2010
+------------------------------------------------------------------------
+rc libbz2.rc
+rc bzip2.rc
+
+cl /MD /c /Fdbzip2.pdb %CFLAGS% -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 ^
+    blocksort.c huffman.c crctable.c randtable.c compress.c decompress.c bzlib.c bzip2.c
+
+cl /MD /LD /Febzip2.dll /Fdbzip2.pdb %CFLAGS% libbz2.res libbz2.def ^
+    blocksort.obj huffman.obj crctable.obj randtable.obj compress.obj decompress.obj bzlib.obj %LDFLAGS% /VERSION:1.0
+
+cl /MD /Febzip2.exe /Fdbzip2.pdb %CFLAGS% bzip2.res bzip2.obj bzip2.lib %LDFLAGS% /VERSION:1.0
+------------------------------------------------------------------------
+
+=== libarchive
+==== Building with gcc
+------------------------------------------------------------------------
+******************************** zlib ********************************
+export PATH=${HOME}/gcc-4.6-windows-linux/bin:/usr/sbin:/usr/bin:/sbin:/bin
+${HOME}/src/gzip-1.4/configure --prefix=${HOME}/tmp/w32 --host=i686-w64-mingw32
+
+export PATH=${HOME}/gcc-4.6-windows-linux/bin:/usr/sbin:/usr/bin:/sbin:/bin
+${HOME}/src/gzip-1.4/configure --prefix=${HOME}/tmp/w32 --host=x86_64-w64-mingw32
+
+getdtablesize: return 2047
+CFLAGS=-O2 -msse2 -mfpmath=sse -flto -s
+
+******************************** zlib ********************************
+export PATH=${HOME}/gcc-4.6-windows-linux/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+zlib-1.2.5$ PREFIX=i686-w64-mingw32-
+zlib-1.2.5$ make LOC=-DASMV OBJA=match.o -f win32/Makefile.gcc
+zlib-1.2.5$ cp zlib.h zconf.h /tmp/w32/include
+zlib-1.2.5$ cp libz.a /tmp/w32/lib
+
+******************************** bzip2 ********************************
+N:\src\bzip2-1.0.6>windres -o bzip2.rc.o bzip2.rc
+N:\src\bzip2-1.0.6>gcc -c -Wall -Winline -O2 -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 ^
+    blocksort.c huffman.c crctable.c randtable.c compress.c decompress.c bzlib.c bzip2.c
+N:\src\bzip2-1.0.6>ar cq libbz2.a blocksort.o huffman.o crctable.o randtable.o compress.o decompress.o bzlib.o
+N:\src\bzip2-1.0.6>ranlib libbz2.a
+N:\src\bzip2-1.0.6>gcc -Wall -Winline -O2 -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 -s -o bzip2.exe ^
+    bzip2.rc.o bzip2.o -L. -lbz2
+bzip2-1.0.6$ cp bzlib.h /tmp/w32/include
+bzip2-1.0.6$ cp libbz2.a /tmp/w32/lib
+******************************** xz ********************************
+export PATH=${HOME}/gcc-4.6-windows-linux/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+cd ${HOME}/tmp/obj && ls -l
+${HOME}/vcs/git/xz/configure --prefix=/tmp/w32 --host=i686-w64-mingw32 \
+    --disable-nls --disable-shared --enable-static
+
+******************************** libarchive ********************************
+SET GCC_X86_DIR=C:\gcc-4.6-windows
+SET PATH=%SystemRoot%;%SystemRoot%\system32;%SystemRoot%\System32\Wbem;%GCC_X86_DIR%\bin
+
+E:\usr\CMake-2.8\bin\cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=gmake ^
+    -DZLIB_INCLUDE_DIR=C:\third_party\include ^
+    -DZLIB_LIBRARY=C:\third_party\lib ^
+    -DBZIP2_INCLUDE_DIR=C:\third_party\include ^
+    -DBZIP2_LIBRARIES=C:\third_party\lib\libbz2.a ^
+    -DLZMA_INCLUDE_DIR=C:\third_party\include ^
+    -DLZMA_LIBRARY=C:\third_party\lib\liblzma.a ..\libarchive-2.8.4
+
+windres -o bsdtar.rc.o bsdtar.rc
+gcc -O3 -DNDEBUG -DLIBARCHIVE_STATIC -obsdtar.exe -I../../.. -I. -I../../../../libarchive-2.8.4/libarchive ^
+    bsdtar.rc.o bsdtar.c cmdline.c getdate.c read.c subst.c tree.c util.c write.c err.c line_reader.c ^
+    matching.c pathmatch.c bsdtar_windows.c -L. -larchive -lz -lbz2 -llzma
+------------------------------------------------------------------------
+
+=== libxml2
+==== Building with vc2010
+------------------------------------------------------------------------
+cscript configure.js zlib=yes compiler=msvc prefix=C:\xml2 ^
+    include=C:\var\vcs\svn\DRE\trunk\Performance\include ^
+    lib=C:\var\vcs\svn\DRE\trunk\Performance\lib
+
+nanoftp.c & nanohttp.c:
+    -WSAStartup(MAKEWORD(1, 1), &wsaData)
+    +WSAStartup(MAKEWORD(2, 2), &wsaData)
+    -ioctlsocket
+
+CFLAGS += /DDEBUG_HTTP
+CFLAGS += /MD /IC:\var\vcs\svn\DRE\trunk\Performance\include
+LDFLAGS += /OPT:REF,ICF /RELEASE /LIBPATH:C:\var\vcs\svn\DRE\trunk\Performance\lib
+LDFLAGS -= /OPT:NOWIN98
+LIBS -= wsock32.lib
+
+nmake /f Makefile.msvc
+nmake /f Makefile.msvc install
+------------------------------------------------------------------------
+
+=== sqlite3
+==== Building with vc2010
+------------------------------------------------------------------------
+rc libsqlite3.rc
+rc sqlite3.rc
+
+cl /MD /LD /Fesqlite3.dll /Fdsqlite3.pdb %CFLAGS% ^
+    /DSQLITE_ENABLE_COLUMN_METADATA /DSQLITE_ENABLE_RTREE /DSQLITE_ENABLE_LOAD_EXTENSION ^
+    sqlite3.def sqlite3.c libsqlite3.res %LDFLAGS% /VERSION:3.7
+cl /MD /Fesqlite3.exe  %CFLAGS% ^
+    /DSQLITE_ENABLE_COLUMN_METADATA /DSQLITE_ENABLE_RTREE /DSQLITE_ENABLE_LOAD_EXTENSION ^
+    sqlite3.c shell.c sqlite3.res %LDFLAGS% /VERSION:3.7
+------------------------------------------------------------------------
+
+=== expat 1.95
+==== Building with vc2010
+------------------------------------------------------------------------
+rc expat.rc
+cl /MD /LD /Feexpat.dll /Fdexpat.pdb %CFLAGS% /DCOMPILED_FROM_DSP ^
+    libexpat.def expat.res xmlparse.c xmlrole.c xmltok.c %LDFLAGS% /VERSION:1.95
+------------------------------------------------------------------------
+
+=== expat 2.0
+==== Building with vc2010
+------------------------------------------------------------------------
+rc expat.rc
+cl /MD /LD /Feexpat.dll /Fdexpat.pdb %CFLAGS% /DCOMPILED_FROM_DSP ^
+    libexpat.def expat.res xmlparse.c xmlrole.c xmltok.c xmltok_impl.c xmltok_ns.c %LDFLAGS% /VERSION:2.0
+mt -nologo -manifest expat.dll.manifest -outputresource:expat.dll;2
+------------------------------------------------------------------------
+
+=== db 4.8
+==== Building with vc2010
+------------------------------------------------------------------------
+dbinc\win_db.h:
+    #ifndef _WIN32_WINNT
+    #define _WIN32_WINNT 0x0502
+    #endif
+
+# GCC 4 no longer supports the old K&R syntax, so we must borrow libdb48.dll from VC !!!
+lib /NOLOGO /VERBOSE /DEF:libdb48-mini.def /MACHINE:X86 /OUT:libdb48.lib
+dlltool -x -c -k --input-def libdb48-mini.def --dllname libdb48.dll --output-lib libdb48.dll.a
+------------------------------------------------------------------------
+
+=== openssl 1.0.0
+==== Building with vc2010
+------------------------------------------------------------------------
+http://wagner.pp.ru/~vitus/articles/openssl-mingw.html
+perl Configure enable-mdc2 enable-zlib enable-camellia mingw
+make CC=i686-w64-mingw32-gcc RANLIB=i686-w64-mingw32-ranlib
+
+perl Configure enable-mdc2 enable-zlib enable-camellia VC-WIN32 ^
+    --prefix=C:/var/pool/openssl ^
+    -I"E:\var\vcs\hg\draft\bwb\vc2010\zlib\include" ^
+    -L"E:\var\vcs\hg\draft\bwb\vc2010\zlib\lib"
+ms\do_nasm
+
+SET CFLAG=/nologo /W3 /MD /EHsc /arch:SSE2 /O2 /Oy- /Zi ^
+    /D"_WIN32_WINNT=0x0502" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS
+SET  LFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /RELEASE /SUBSYSTEM:CONSOLE
+SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /RELEASE /SUBSYSTEM:CONSOLE /DLL
+
+/Fd"C:\var\pool\openssl.pdb"
+
+nmake -f ms\ntdll.mak
+nmake -f ms\ntdll.mak test
+nmake -f ms\ntdll.mak install
+
+SET OPENSSL_CONF=C:\var\pool\openssl\ssl\openssl.cnf
+
+
+Patch (apps\openssl.c)
+======================
+set OPENSSL_CONF=C:\var\pool\openssl\ssl\openssl.cnf
+
+    char pname[PROG_NAME_SIZE+1], cname[512];
+
+    p=getenv("OPENSSL_CONF");
+    if (p == NULL)
+        p=getenv("SSLEAY_CONF");
+
+    if (p == NULL) {
+        FILE *fp;
+        p=to_free=make_config_name();
+        fp = fopen(p, "rb");
+        if (fp == NULL) {
+            GetModuleFileNameA(NULL, cname, sizeof(cname));
+            *(strrchr(cname, '\\') + 1) = '\0';
+            strcat(cname, "..\\ssl\\openssl.cnf");
+            p = cname;
+        } else {
+            fclose(fp);
+        }
+    }
+------------------------------------------------------------------------
+
+=== libssh2
+==== Building with vc2010
+------------------------------------------------------------------------
+libssh2-1.2.7>nmake -f NMakefile
+------------------------------------------------------------------------
+
+=== cURL
+==== Building with vc2010
+------------------------------------------------------------------------
+cd lib, then src, run
+
+CFLAGS += /I"C:\var\vcs\hg\draft\bwb\vc2010\libssh2\include" /DHAVE_LIBSSH2_H /DUSE_LIBSSH2
+LDFLAGS += /opt:ref,icf
+
+nmake -f Makefile.vc10 CFG=release-dll-ssl-dll-zlib-dll WINDOWS_SSPI=1 ^
+    ZLIB_PATH=C:\var\vcs\hg\draft\bwb\vc2010\zlib ^
+    OPENSSL_PATH=C:\var\vcs\hg\draft\bwb\vc2010\openssl-0.9.8
+------------------------------------------------------------------------
+
+=== neon
+==== Building with vc2010
+------------------------------------------------------------------------
+SET BWB_ROOT=C:\var\vcs\hg\draft\bwb\vc2010
+rc neon.rc
+
+cl /MD /LD /Feneon.dll /Fdneon.pdb %CFLAGS% ^
+    /D NE_HAVE_ZLIB /D NE_HAVE_SSL /D HAVE_OPENSSL /D HAVE_EXPAT /D NE_HAVE_DAV /D NOCRYPT ^
+    /I %BWB_ROOT%\expat-1.95\include /I %BWB_ROOT%\openssl\include /I %BWB_ROOT%\zlib\include ^
+    neon.def neon.res ne_207.c ne_acl3744.c ne_alloc.c ne_auth.c ne_basic.c ne_compress.c ^
+    ne_dates.c ne_i18n.c ne_locks.c ne_md5.c ne_oldacl.c ne_openssl.c ne_pkcs11.c ne_props.c ^
+    ne_redirect.c ne_request.c ne_session.c ne_socket.c ne_socks.c ne_sspi.c ne_string.c ^
+    ne_uri.c ne_utils.c ne_xml.c ne_xmlreq.c ^
+    ws2_32.lib %BWB_ROOT%\openssl\lib\libeay32.lib %BWB_ROOT%\openssl\lib\ssleay32.lib ^
+    %BWB_ROOT%\zlib\lib\zlib1.lib %BWB_ROOT%\expat-1.95\lib\expat.lib %LDFLAGS% /VERSION:0.29
+------------------------------------------------------------------------
+
+=== libmysql
+==== Building with vc2010 and cmake
+------------------------------------------------------------------------
+SET BWB_ROOT=C:\var\vcs\hg\draft\bwb\vc2010
+SET INCLUDE=%INCLUDE%;%BWB_ROOT%\zlib\include;%BWB_ROOT%\openssl-0.9.8\include
+SET LIB=%LIB%;%BWB_ROOT%\zlib\lib;%BWB_ROOT%\openssl-0.9.8\lib
+
+libmysql\libmysql.def:          EXPORTS += my_init my_print_help my_progname handle_options
+libmysql\CMakeLists.txt:        ADD_LIBRARY += libmysql.def libmysql.rc
+
+SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /OPT:ICF,REF /RELEASE /SUBSYSTEM:CONSOLE")
+SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /OPT:ICF,REF /RELEASE /SUBSYSTEM:CONSOLE")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /foobar")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /foobar")
+
+SET BWB_ROOT=C:/var/vcs/hg/draft/bwb/vc2010
+cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DWITH_OPENSSL=1 -DWITH_EXTERNAL_ZLIB=1 ^
+    -DZLIB_INCLUDE_DIR:PATH="%BWB_ROOT%/zlib/include" -DZLIB_LIBRARY:FILEPATH="%BWB_ROOT%/zlib/lib/zlib.lib"
+
+******** FindOpenSSL.cmake is broken !!! ********
+SET(OPENSSL_ROOT_DIR
+  "C:/var/vcs/hg/draft/bwb/vc2010/openssl-0.9.8/"
+  )
+
+SET(OPENSSL_INCLUDE_DIR
+  "C:/var/vcs/hg/draft/bwb/vc2010/openssl-0.9.8/include"
+  )
+
+SET(OPENSSL_LIBRARIES
+  "C:/var/vcs/hg/draft/bwb/vc2010/openssl-0.9.8/lib/libeay32.lib"
+  "C:/var/vcs/hg/draft/bwb/vc2010/openssl-0.9.8/lib/ssleay32.lib"
+  )
+
+set(OPENSSL_FOUND TRUE)
+MARK_AS_ADVANCED(OPENSSL_INCLUDE_DIR OPENSSL_LIBRARIES)
+------------------------------------------------------------------------
+
+=== libpq-8.4
+==== Building with vc2010
+------------------------------------------------------------------------
+SET OPENSSL_ROOT=C:\var\vcs\hg\draft\bwb\vc2010\openssl
+cd postgresql\src\interfaces\libpq
+
+OPT += /Fd"$(OUTDIR)\libpq.pdb" /MD /EHsc /arch:SSE2 /O2 /Oy- /Zi /DUSE_LDAP=1 /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS
+LINK32_FLAGS += /opt:ref,icf /RELEASE /VERSION:8.4
+wsock32.lib => ws2_32.lib wldap32.lib
+
+nmake -f win32.mak USE_KFW=0 USE_SSL=1 SSL_INC="%OPENSSL_ROOT%\include" SSL_LIB_PATH="%OPENSSL_ROOT%\lib"
+------------------------------------------------------------------------
+
+=== libpq-9.1
+==== Building with vc2010
+------------------------------------------------------------------------
+SET OPENSSL_ROOT=C:\var\vcs\hg\draft\bwb\vc2010\openssl
+cd postgresql\src\interfaces\libpq
+
+OPT += /Fd"$(OUTDIR)\libpq.pdb" /MD /EHsc /arch:SSE2 /O2 /Oy- /Zi /DUSE_LDAP=1 /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS
+LINK32_FLAGS += /opt:ref,icf /RELEASE /VERSION:9.1
+wsock32.lib => ws2_32.lib wldap32.lib
+
+nmake -f win32.mak USE_SSL=1 SSL_INC="%OPENSSL_ROOT%\include" SSL_LIB_PATH="%OPENSSL_ROOT%\lib"
+------------------------------------------------------------------------
+
+=== Cyrus SASL 2.1.23-6
+==== Building with vc2010
+------------------------------------------------------------------------
+SET BWB_ROOT=C:\var\vcs\hg\draft\bwb\vc2010
+cd cyrus-sasl-2.1.23
+
+OPT += /Fd"Release\libsasl.pdb" /MD /EHsc /arch:SSE2 /O2 /Oy- /Zi ^
+    /D"_WIN32_WINNT=0x0502" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS
+LINK32_FLAGS += /opt:ref,icf /RELEASE /VERSION:2.1
+wsock32.lib => ws2_32.lib
+
+nmake /f NTMakefile CFG=Release NTLM=1 SRP=1 OPT=1 ^
+    DB_LIB="libdb48.lib" DB_INCLUDE="%BWB_ROOT%\db-4.8\include" DB_LIBPATH="%BWB_ROOT%\db-4.8\lib" ^
+    OPENSSL_INCLUDE="%BWB_ROOT%\openssl-0.9.8\include" OPENSSL_LIBPATH="%BWB_ROOT%\openssl-0.9.8\lib"
+------------------------------------------------------------------------
+
+=== less
+==== Building with vc2010
+------------------------------------------------------------------------
+rc less.rc
+
+cl /MD /Felesskey.exe %CFLAGS% /I. less.res lesskey.c version.c %LDFLAGS% /VERSION:1.0
+
+cl /MD /Feless.exe %CFLAGS% /I. less.res main.c screen.c brac.c ch.c charset.c cmdbuf.c command.c ^
+    cvt.c decode.c edit.c filename.c forwback.c help.c ifile.c input.c jump.c line.c linenum.c ^
+    lsystem.c mark.c optfunc.c option.c opttbl.c os.c output.c pattern.c position.c prompt.c ^
+    search.c signal.c tags.c ttyin.c version.c regexp.c user32.lib %LDFLAGS% /VERSION:1.0
+------------------------------------------------------------------------
+
+=== apr, apr-util, apr-iconv and httpd
+==== Building with vc2010
+------------------------------------------------------------------------
+SET BWB_ROOT=E:\var\vcs\hg\draft\bwb\vc2010
+cd httpd-2.2.21
+
+USESLN=0
+USEMAK=1
+USEDSW=0
+
+@REM SET DBM_LIST="db gdbm"
+@REM SET DBD_LIST="sqlite3 pgsql oracle mysql freetds"
+
+SET DBM_LIST="db"
+SET DBD_LIST="sqlite3 pgsql oracle"
+
+nmake -f Makefile.win INSTDIR=C:\var\pool\httpd _apacher
+nmake -f Makefile.win INSTDIR=C:\var\pool\httpd installr
+
+modules\filters\mod_deflate.mak:
+    srclib\zlib\zlib1.dll
+    srclib\zlib\zdll.lib
+    srclib\zlib\zlib.h
+    srclib\zlib\zconf.h
+    srclib\zlib\README
+
+    nmake -f "mod_deflate.mak" CFG="mod_deflate - Win32 Release"
+
+modules\ssl\mod_ssl.mak:
+    srclib\openssl\inc32\openssl\store.h [dummy]
+    srclib\openssl\out32\libeay32.lib
+    srclib\openssl\out32\ssleay32.lib
+    support\ssleay32.lib
+    support\libeay32.lib
+    srclib\openssl\apps\openssl.cnf
+    srclib\openssl\LICENSE
+    srclib\openssl\NEWS
+    srclib\openssl\README
+    srclib\openssl\out32dll\libeay32.dll
+    srclib\openssl\out32dll\openssl.exe
+    srclib\openssl\out32dll\ssleay32.dll
+    srclib\openssl\out32dll\openssl.pdb
+
+    nmake -f "mod_ssl.mak" CFG="mod_ssl - Win32 Release"
+
+srclib\apr\libapr.mak:
+    nmake -f libapr.mak CFG="libapr - Win32 Release"
+
+srclib\apr-iconv\libapriconv.mak:
+    nmake /f "libapriconv.mak" CFG="libapriconv - Win32 Release"
+
+srclib\apr-iconv\ccs\Makefile.win:
+    nmake -f Makefile.win BUILD_MODE="Release"
+
+srclib\apr-iconv\ces\Makefile.win:
+    nmake -f Makefile.win BUILD_MODE="Release"
+
+srclib\apr-util\libaprutil.mak:
+    nmake -f "libaprutil.mak" CFG="libaprutil - Win32 Release"
+
+srclib\apr-util\dbm\apr_dbm_db.mak:
+    srclib\apr-util\include\db.h
+    srclib\apr-util\dbm\libdb47.lib
+    nmake -f apr_dbm_db.mak CFG="apr_dbm_db - Win32 Release"
+
+srclib\apr-util\dbd\apr_dbd_sqlite3.mak:
+    srclib\apr-util\include\sqlite3.h
+    srclib\apr-util\dbd\sqlite3.lib
+
+    nmake -f apr_dbd_sqlite3.mak CFG="apr_dbd_sqlite3 - Win32 Release"
+
+srclib\apr-util\dbd\apr_dbd_pgsql.mak:
+    srclib\apr-util\include\libpq-fe.h
+    srclib\apr-util\include\postgres_ext.h
+    srclib\apr-util\dbd\libpq.lib
+
+    nmake -f apr_dbd_pgsql.mak CFG="apr_dbd_pgsql - Win32 Release"
+
+srclib\apr-util\dbd\apr_dbd_oracle.mak:
+    srclib\apr-util\include\oci.h
+    srclib\apr-util\include\oratypes.h
+    srclib\apr-util\include\ocidfn.h
+    srclib\apr-util\include\oci1.h
+    srclib\apr-util\include\oro.h
+    srclib\apr-util\include\ori.h
+    srclib\apr-util\include\ort.h
+    srclib\apr-util\include\orl.h
+    srclib\apr-util\include\ociextp.h
+    srclib\apr-util\include\ociapr.h
+    srclib\apr-util\include\ociap.h
+    srclib\apr-util\include\nzt.h
+    srclib\apr-util\include\nzerror.h
+    srclib\apr-util\include\ocixmldb.h
+    srclib\apr-util\include\oci8dp.h
+    srclib\apr-util\include\ocixstream.h
+    srclib\apr-util\dbd\oci.lib
+
+    nmake -f apr_dbd_oracle.mak CFG="apr_dbd_oracle - Win32 Release"
+------------------------------------------------------------------------
+
+=== serf
+==== Building with vc2010
+------------------------------------------------------------------------
+python build\gen_def.py serf.h serf_bucket_types.h serf_bucket_util.h > serf.def
+nmake -f serf.mak OPENSSL_SRC="E:\var\vcs\hg\draft\bwb\vc2010\openssl-0.9.8" ^
+    APR_SRC="E:\var\vcs\hg\draft\bwb\vc2010\apr-1.4" ^
+    APRUTIL_SRC="E:\var\vcs\hg\draft\bwb\vc2010\apr-1.4" ^
+    ZLIB_DLL=1 ZLIB_SRC="E:\var\vcs\hg\draft\bwb\vc2010\zlib"
+------------------------------------------------------------------------
+
+=== httpd
+==== Building with vc2010
+------------------------------------------------------------------------
+http://httpd.apache.org/docs/2.2/platform/win_compiling.html
+Zlib 1.2.5:
+        zdll.lib =>  zlib1.lib
+        nmake -f win32\Makefile.msc LOC="-DASMV -DASMINF" OBJA="inffas32.obj match686.obj"
+        nmake -f win32\Makefile.msc  LOC="-DASMV -DASMINF" OBJA="inffas32.obj match686.obj" test
+
+OpenSSL 0.9.8:
+        perl Configure no-rc5 no-idea enable-mdc2 enable-zlib VC-WIN32 -Ipath/to/srclib/zlib -Lpath/to/srclib/zlib
+
+perl Configure enable-mdc2 enable-zlib enable-camellia VC-WIN32 --prefix=C:/var/pool/openssl ^
+    -IE:\var\vcs\hg\draft\bwb\vc2010\zlib\include -LE:\var\vcs\hg\draft\bwb\vc2010\zlib\lib
+
+        ms\do_masm.bat
+        wsock32.lib => ws2_32.lib
+        zlib1.lib => zlib.lib
+        SET CFLAG=/nologo /Wall /MD /EHsc /arch:SSE2 /O2 /GF /Gy /Oy- /Zi /D"_WIN32_WINNT=0x0502"
+        SET LFLAGS=/link /OPT:ICF,REF /MACHINE:X86 /RELEASE /SUBSYSTEM:CONSOLE
+
+        nmake -f ms\ntdll.mak
+
+HTTPD 2.2.17:
+    Makefile.win :
+        USESLN=0
+        USEMAK=1
+        USEDSW=0
+
+    modules\filters\mod_deflate.mak : zdll.lib
+    modules\ssl\mod_ssl.mak & support\abs.mak : inc32, out32dll
+
+    set DBD_LIST=sqlite3 pgsql oracle mysql
+    set DBM_LIST=db gdbm
+
+    nmake /f Makefile.win _apacher USEMAK=1
+    nmake /f Makefile.win installr INSTDIR=E:\var\vcs\hg\draft\bwb\vc2010\httpd-2.2
+------------------------------------------------------------------------
+
+=== ntp
+------------------------------------------------------------------------
+${HOME}/vcs/svn/apr/apr/trunk/configure --prefix=/tmp/w32 --host=i686-w64-mingw32 \
+    --enable-threads \
+    --with-expat=${HOME}/tmp/w32 \
+    --with-sqlite3=${HOME}/tmp/w32 \
+    --with-pgsql=${HOME}/tmp/w32 \
+    --with-oracle=${HOME}/tmp/w32 \
+    --with-dbm=db48 --with-berkeley-db=${HOME}/tmp/w32 \
+    --with-crypto --with-openssl=${HOME}/tmp/w32
+
+ProjectReference:
+    ntpd        -> libntp
+    ntpdate     -> libntp
+    ntpdc       -> libntp
+    ntp-keygen  -> libntp
+    ntpq        -> libntp
+
+msbuild instsrv.vcxproj /t:Build /p:Configuration=Release /p:Platform=Win32
+msbuild libntp.vcxproj /t:Build /p:Configuration=Release /p:Platform=Win32 ^
+    /p:OPENSSL_INC=C:\var\vcs\hg\draft\bwb\vc2010\openssl\include
+
+msbuild ntpd.vcxproj /t:Build /p:Configuration=Release /p:Platform=Win32 ^
+    /p:OPENSSL_INC=C:\var\vcs\hg\draft\bwb\vc2010\openssl\include ^
+    /p:OPENSSL_LIB=C:\var\vcs\hg\draft\bwb\vc2010\openssl\lib
+
+*) Install ntpd.exe as service
+instsrv.exe remove
+Instsrv.exe C:\opt\ntp\bin\ntpd.exe
+
+*) RegEdit HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\NTP
+ImagePath=C:\opt\ntp\bin\ntpd.exe -U 3 -M -g -c "C:\opt\ntp\etc\ntp.conf" -l "C:\opt\ntp\log\ntp.log" -p "C:\opt\ntp\log\ntp.pid"
+
+*) Add system variables
+RANDFILE=C:\opt\ntp\log\ntp.rnd
+
+*) Start the NTP service
+- Select the computer's response if this service fails.
+- Start Network Time Protocol
+------------------------------------------------------------------------
+
+=== svn
+==== Building with vc2010
+------------------------------------------------------------------------
+ENABLE_NLS
+SVN_HAVE_NEON
+SVN_HAVE_SERF
+SVN_LIBSVN_CLIENT_LINKS_RA_NEON=1
+SVN_LIBSVN_CLIENT_LINKS_RA_SERF=1
+_WIN32_WINNT=0x0502
+alloca=_alloca
+snprintf=_snprintf
+
+cd hg\draft\bwb\vc2010\subversion
+
+SET BWB_ROOT=C:\var\vcs\hg\draft\bwb\vc2010
+
+msbuild svnversion.vcxproj /property:ProjectConfigurations="Release|Win32" ^
+    /property:SolutionDir="E:\var\vcs\svn\subversion\trunk" ^
+    /property:BwbDir="E:\var\vcs\hg\draft\bwb\vc2010"
+
+cd C:\var\vcs\svn\subversion\trunk
+python gen-make.py -t vcproj --vsnet-version=2010 --release --assume-shared-libs ^
+    --with-apr=C:\var\vcs\hg\draft\bwb\vc2010\apr-1.4 ^
+    --with-apr-util=C:\var\vcs\hg\draft\bwb\vc2010\apr-1.4 ^
+    --with-neon=C:\var\vcs\svn\subversion\thirdparty\neon-0.29.5 ^
+    --with-serf=C:\var\vcs\svn\subversion\thirdparty\serf-0.7.0 ^
+    --with-openssl=C:\var\pool\openssl-0.9.8o ^
+    --with-berkeley-db=C:\var\vcs\hg\draft\bwb\vc2010\db-4.8 ^
+    --with-libintl=C:\var\vcs\hg\draft\bwb\gcc\gettext ^
+    --with-zlib=C:\var\vcs\svn\subversion\thirdparty\zlib-1.2.5 ^
+    --with-sqlite=C:\var\vcs\hg\draft\bwb\vc2010\sqlite3 ^
+    --with-sasl=C:\var\vcs\hg\draft\bwb\vc2010\sasl ^
+    --with-swig=C:\var\vcs\svn\subversion\thirdparty\swigwin-1.3.40
+
+source:
+        --with-zlib=C:\var\vcs\svn\subversion\thirdparty\zlib-1.2.5
+        --with-neon=C:\var\vcs\svn\subversion\thirdparty\neon-0.29.5
+        --with-serf=C:\var\vcs\svn\subversion\thirdparty\serf-0.7.0
+
+headers and libs:
+        --with-apr=C:\var\vcs\hg\draft\bwb\vc2010\apr-1.4
+        --with-apr-util=C:\var\vcs\hg\draft\bwb\vc2010\apr-1.4
+        --with-apr=C:\var\vcs\hg\draft\bwb\vc2010\apr-1.4
+        --with-berkeley-db=C:\var\vcs\hg\draft\bwb\vc2010\db-4.8
+        --with-libintl=C:\var\vcs\hg\draft\bwb\gcc\gettext
+        --with-openssl=C:\var\pool\openssl-0.9.8o
+        --with-sqlite=C:\var\vcs\hg\draft\bwb\vc2010\sqlite3
+        --with-sasl=C:\var\vcs\hg\draft\bwb\vc2010\sasl
+
+libsvn_subr\ctype.c svn_ctype_table
+------------------------------------------------------------------------
