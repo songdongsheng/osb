@@ -1,5 +1,7 @@
 TOP = .
 RRD_LIB_NAME=librrd-4
+
+!ifndef USE_64BIT
 CPPFLAGS = /TP /EHsc /O2 /arch:SSE2 /Zi /Fd$(TOP)/win32/$(RRD_LIB_NAME).pdb \
         /I $(TOP)/win32 /I $(TOP)/src \
         /I E:\var\vcs\git\osb\windows-x86-msvcrt\include \
@@ -12,6 +14,20 @@ THIRD_PARTY_LIB = /LIBPATH:E:\var\vcs\git\osb\windows-x86-msvcrt\lib \
         libpng.lib libxml2-2.lib \
         libglib-2.lib libgobject-2.lib \
         libpango-1.lib libpangocairo-1.lib libcairo-2.lib
+!else
+CPPFLAGS = /TP /EHsc /O2 /arch:SSE2 /Zi /Fd$(TOP)/win32/$(RRD_LIB_NAME).pdb \
+        /I $(TOP)/win32 /I $(TOP)/src \
+        /I E:\var\vcs\git\osb\windows-x64-msvcrt\include \
+        /I E:\var\vcs\git\osb\windows-x64-msvcrt\include\cairo \
+        /I E:\var\vcs\git\osb\windows-x64-msvcrt\include\pango-1.0 \
+        /I E:\var\vcs\git\osb\windows-x64-msvcrt\include\glib-2.0 \
+        /I E:\var\vcs\git\osb\windows-x64-msvcrt\include\libxml2
+
+THIRD_PARTY_LIB = /LIBPATH:E:\var\vcs\git\osb\windows-x64-msvcrt\lib \
+        libpng.lib libxml2-2.lib \
+        libglib-2.lib libgobject-2.lib \
+        libpango-1.lib libpangocairo-1.lib libcairo-2.lib
+!endif
 
 RRD_LIB_OBJ_LIST = \
         $(TOP)/src/hash_32.obj \
@@ -79,7 +95,9 @@ $(TOP)/win32/rrdtool.exe: $(TOP)/win32/rrdtool.res $(TOP)/src/rrd_tool.obj \
 $(TOP)/win32/rrdupdate.exe: $(TOP)/win32/rrdupdate.res $(TOP)/src/rrdupdate.obj \
 		$(TOP)/src/plbasename.obj $(TOP)/win32/$(RRD_LIB_NAME).lib
 	cl /nologo /MT /Fe$@ $(TOP)/win32/rrdupdate.res $(TOP)/src/rrdupdate.obj \
-		$(TOP)/src/plbasename.obj $(TOP)/win32/$(RRD_LIB_NAME).lib
+		$(TOP)/src/plbasename.obj $(TOP)/win32/$(RRD_LIB_NAME).lib \
+		 /link /MANIFESTUAC:"level=asInvoker uiAccess=false"
+	@mt -manifest $(TOP)/win32/uac.manifest -outputresource:$(TOP)/win32/rrdupdate.exe;#1
 
 $(TOP)/win32/rrdcgi.exe: $(TOP)/win32/rrdcgi.res $(TOP)/src/rrd_cgi.obj \
 		$(TOP)/src/rrd_getopt.obj $(TOP)/src/rrd_getopt1.obj \
