@@ -1,39 +1,66 @@
--------------------------------- Prepare --------------------------------
-http://oss.oetiker.ch/rrdtool/pub/rrdtool-1.4.7.tar.gz
-ftp://xmlsoft.org/libxml2/libxml2-2.9.1.tar.gz
-http://ftp.gnome.org/pub/GNOME/sources/pango/1.34/pango-1.34.0.tar.xz
-http://cairographics.org/releases/cairo-1.12.14.tar.xz
-http://cairographics.org/releases/pixman-0.28.2.tar.gz
-http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.10.92.tar.gz
-http://download.savannah.gnu.org/releases/freetype/freetype-2.4.11.tar.gz
+lib /NOLOGO /MACHINE:X86 /DEF:librrd-4.def /OUT:librrd-4.lib
 
-export RRDTOOL_SRC_DIR=${HOME}/src/rrdtool-1.4.7
+cl /MT /TP /c /DWIN32
+/I C:\var\vcs\git\osb\windows-x86-msvcrt\include
+/I C:\var\vcs\git\osb\windows-x86-msvcrt\include\cairo
+/I C:\var\vcs\git\osb\windows-x86-msvcrt\include\pango-1.0
+/I C:\var\vcs\git\osb\windows-x86-msvcrt\include\glib-2.0
+/I C:\var\vcs\git\osb\windows-x86-msvcrt\include\glib-2.0\glib
+/I C:\var\vcs\git\osb\windows-x86-msvcrt\include\libxml2 strftime.c
 
-export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
-export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+rc librrd-4.rc
+rc rrdtool.rc
+rc rrdupdate.rc
 
-export OBJ_ROOT=${HOME}/obj/w32/
-export BIN_ROOT=${HOME}/w32/
-export HOST_TRIPLET=i686-w64-mingw32
+cl /MT /LD /Felibrrd-4.dll librrd-4.def *.obj librrd-4.res
+C:\var\vcs\git\osb\windows-x86-msvcrt\lib\libcairo.lib
+C:\var\vcs\git\osb\windows-x86-msvcrt\lib\libglib-2.0.lib
+C:\var\vcs\git\osb\windows-x86-msvcrt\lib\libgobject-2.0.lib
+C:\var\vcs\git\osb\windows-x86-msvcrt\lib\libpango.lib
+C:\var\vcs\git\osb\windows-x86-msvcrt\lib\libpangocairo-1.0.lib
+C:\var\vcs\git\osb\windows-x86-msvcrt\lib\libpng.lib
+C:\var\vcs\git\osb\windows-x86-msvcrt\lib\libxml2.lib
 
-export OBJ_ROOT=${HOME}/obj/w64/
-export BIN_ROOT=${HOME}/w64/
-export HOST_TRIPLET=x86_64-w64-mingw32
+cl /nologo /MT /DWIN32 /Ferrdtool.exe   rrdtool.res     rrd_tool.c  librrd-4.lib /link /MACHINE:X86
+cl /nologo /MT /DWIN32 /Ferrdupdate.exe rrdupdate.res   rrdupdate.c librrd-4.lib plbasename.obj /link /MACHINE:X86
 
--------------------------------- Building rrdtool --------------------------------
-rm -fr ${OBJ_ROOT}/rrdtool ; mkdir -p ${OBJ_ROOT}/rrdtool ; cd ${OBJ_ROOT}/rrdtool
-
-CPPFLAGS="-D_POSIX" \
-${RRDTOOL_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} \
-    --with-libiconv-prefix=${BIN_ROOT} --with-libintl-prefix=${BIN_ROOT} \
-    --enable-shared --disable-static \
-    --disable-mmap
-
-make -j${NR_JOBS}
-
-make install-strip
+            hash_32.c
+            plbasename.c
+            pngsize.c
+            rrd_create.c
+            rrd_diff.c
+            rrd_dump.c
+            rrd_error.c
+            rrd_fetch.c
+            rrd_first.c
+            rrd_flushcached.c
+            rrd_format.c
+            rrd_getopt.c
+            rrd_getopt1.c
+            rrd_gfx.c
+            rrd_graph.c
+            rrd_graph_helper.c
+            rrd_hw.c
+            rrd_hw_math.c
+            rrd_hw_update.c
+            rrd_info.c
+            rrd_last.c
+            rrd_lastupdate.c
+            rrd_nan_inf.c
+            rrd_open.c
+            rrd_parsetime.c
+            rrd_resize.c
+            rrd_restore.c
+            rrd_rpncalc.c
+            rrd_thread_safe_nt.c
+            rrd_tune.c
+            rrd_update.c
+            rrd_utils.c
+            rrd_version.c
+            rrd_xport.c
+            strftime.c
 
 -------------------------------- Digital Signing with signtool --------------------------------
-signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll *.dll *.exe
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll librrd-4.dll rrdtool.exe rrdupdate.exe
 
 ------------------------------------------------------------------------

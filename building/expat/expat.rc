@@ -1,5 +1,4 @@
-#include <verrsrc.h>
-
+#include <winver.h>
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION 2, 1, 0, 0
  PRODUCTVERSION 2, 1, 0, 0
