@@ -1,0 +1,30 @@
+./usr/arm-linux-gnueabihf/lib/libgcc_s.so
+./usr/powerpc64-linux/lib64/libgcc_s.so
+./usr/sparc64-linux/lib64/libgcc_s.so
+./usr/aarch64-linux/lib64/libgcc_s.so
+
+./lib/libgcc_s_seh-1.dll
+./lib32/libgcc_s_sjlj-1.dll
+
+/lib/x86_64-linux-gnu/libgcc_s.so.1
+/lib/i386-linux-gnu/libgcc_s.so.1
+
+http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/index.html
+http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Preset-Output-Variables.html
+http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Autoconf-Macro-Index.html
+http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Particular-Types.html
+http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Particular-Functions.html
+http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Function-Portability.html
+http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/C-Compiler.html
+http://www.gnu.org/savannah-checkouts/gnu/automake/manual/html_node/index.html
+http://www.gnu.org/savannah-checkouts/gnu/automake/manual/html_node/Program-and-Library-Variables.html
+http://www.gnu.org/savannah-checkouts/gnu/automake/manual/html_node/Variable-Index.html
+
+rrd_srcdir=`(cd $srcdir && pwd)`
+rrd_builddir=`pwd`
+CPPFLAGS="-I$rrd_builddir -I$rrd_srcdir/src $CPPFLAGS"
+
+makeinfo --output doc.xml --docbook doc.texi
+makeinfo --output doc.texi.xml --xml doc.texi
+makeinfo --output doc.html --html --no-split --no-headers doc.texi
+makeinfo --output doc.txt --plaintext doc.texi
