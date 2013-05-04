@@ -3,13 +3,15 @@
 #ifndef RRD_CONFIG_H
 #define RRD_CONFIG_H
 
-#define NUMVERS 1.4070
-
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "rrdtool"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.4.7"
+#define PACKAGE_MAJOR       1
+#define PACKAGE_MINOR       4
+#define PACKAGE_REVISION    7
+#define PACKAGE_VERSION     "1.4.7"
+#define NUMVERS             1.4070
 
 #define RRD_DEFAULT_FONT "Courier"
 
