@@ -1,0 +1,32 @@
+-------------------------------- Prepare --------------------------------
+http://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/2.28/gdk-pixbuf-2.28.1.tar.xz
+
+export GDK_PIXBUF_SRC_DIR=${HOME}/src/gdk-pixbuf-2.28.1
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+export PATH=${BIN_ROOT}/bin:${PATH}
+
+-------------------------------- Building gdk-pixbuf --------------------------------
+rm -fr ${OBJ_ROOT}/gdk-pixbuf ; mkdir -p ${OBJ_ROOT}/gdk-pixbuf ; cd ${OBJ_ROOT}/gdk-pixbuf
+
+${GDK_PIXBUF_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --disable-static \
+    --enable-shared
+
+make -j${NR_JOBS}
+
+make install-strip
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll libatk-1.0-0.dll
+
+------------------------------------------------------------------------

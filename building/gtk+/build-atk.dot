@@ -1,0 +1,15 @@
+/*
+    dot build-atk.dot -T pdf -o build-atk.pdf
+    dot build-atk.dot -T svg -o build-atk.svg
+ */
+digraph "atk dependency graph" {
+    libiconv -> libintl [color=red];
+    libintl -> libiconv [color=blue, style=dotted];
+
+    zlib -> glib;
+    libffi -> glib;
+    libintl -> glib;
+
+    libffi -> atk;
+    glib -> atk;
+}

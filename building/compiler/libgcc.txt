@@ -9,16 +9,16 @@
 /lib/x86_64-linux-gnu/libgcc_s.so.1
 /lib/i386-linux-gnu/libgcc_s.so.1
 
-http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/index.html
-http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Preset-Output-Variables.html
-http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Autoconf-Macro-Index.html
-http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Particular-Types.html
-http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Particular-Functions.html
-http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/Function-Portability.html
-http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/html_node/C-Compiler.html
-http://www.gnu.org/savannah-checkouts/gnu/automake/manual/html_node/index.html
-http://www.gnu.org/savannah-checkouts/gnu/automake/manual/html_node/Program-and-Library-Variables.html
-http://www.gnu.org/savannah-checkouts/gnu/automake/manual/html_node/Variable-Index.html
+http://www.gnu.org/software/autoconf/manual/html_node/index.html
+http://www.gnu.org/software/autoconf/manual/html_node/Preset-Output-Variables.html
+http://www.gnu.org/software/autoconf/manual/html_node/Autoconf-Macro-Index.html
+http://www.gnu.org/software/autoconf/manual/html_node/Particular-Types.html
+http://www.gnu.org/software/autoconf/manual/html_node/Particular-Functions.html
+http://www.gnu.org/software/autoconf/manual/html_node/Function-Portability.html
+http://www.gnu.org/software/autoconf/manual/html_node/C-Compiler.html
+http://www.gnu.org/software/automake/manual/html_node/index.html
+http://www.gnu.org/software/automake/manual/html_node/Program-and-Library-Variables.html
+http://www.gnu.org/software/automake/manual/html_node/Variable-Index.html
 
 rrd_srcdir=`(cd $srcdir && pwd)`
 rrd_builddir=`pwd`

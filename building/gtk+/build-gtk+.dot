@@ -1,0 +1,38 @@
+/*
+    dot build-gtk+.dot -T pdf -o build-gtk+.pdf
+    dot build-gtk+.dot -T svg -o build-gtk+.svg
+ */
+digraph "gtk+ dependency graph" {
+    libiconv -> libintl [color=red];
+    libintl -> libiconv [color=blue, style=dotted];
+
+    zlib -> glib;
+    libffi -> glib;
+    libintl -> glib;
+
+    glib -> atk;
+    zlib -> freetype;
+
+    expat -> fontconfig;
+    freetype -> fontconfig;
+
+    glib -> libgdk_pixbuf;
+    libintl -> libgdk_pixbuf;
+
+    fontconfig -> cairo;
+    freetype -> cairo;
+    libpng -> cairo;
+    pixman -> cairo;
+    zlib -> cairo;
+
+    cairo -> pango;
+    libffi -> pango;
+    glib -> pango;
+
+    libgdk_pixbuf -> "gtk+";
+    cairo -> "gtk+";
+    atk -> "gtk+";
+    glib -> "gtk+";
+    libintl -> "gtk+";
+    pango -> "gtk+";
+}
