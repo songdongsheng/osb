@@ -1,0 +1,17 @@
+/*
+    dot build-dot.dot -T pdf -o build-dot.pdf
+    dot build-dot.dot -T svg -o build-dot.svg
+ */
+digraph "dot+ dependency graph" {
+    cdt -> cgraph;
+
+    cgraph -> gvc;
+    cdt -> gvc;
+    pathplan -> gvc;
+    ltdl -> gvc;
+    expat -> gvc;
+    zlib -> gvc;
+
+    cgraph -> dot;
+    gvc -> dot;
+}

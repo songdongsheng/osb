@@ -1,6 +1,6 @@
 /*
-    dot build-gtk+.dot -T pdf -o build-gtk+.pdf
-    dot build-gtk+.dot -T svg -o build-gtk+.svg
+    dot build-gtk.dot -T pdf -o build-gtk.pdf
+    dot build-gtk.dot -T svg -o build-gtk.svg
  */
 digraph "gtk+ dependency graph" {
     libiconv -> libintl [color=red];
