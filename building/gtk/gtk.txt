@@ -3,7 +3,7 @@ http://ftp.gnome.org/pub/gnome/sources/gtk+/3.8/gtk+-3.8.1.tar.xz   [glib-2.0 >=
 http://ftp.gnome.org/pub/gnome/sources/gtk+/3.6/gtk+-3.6.4.tar.xz   [glib-2.0 >= 2.33.1]
 http://ftp.gnome.org/pub/gnome/sources/gtk+/3.4/gtk+-3.4.4.tar.xz   [glib-2.0 >= 2.32.0]
 
-export GTK_SRC_DIR=${HOME}/vcs/git/gtk+
+export GTK_SRC_DIR=${HOME}/src/gtk+-3.8.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -21,16 +21,15 @@ export PKG_CONFIG_FOR_BUILD=${BIN_ROOT}/bin/pkg-config
 export PATH=${BIN_ROOT}/bin:$PATH
 
 -------------------------------- Building gtk+ --------------------------------
+apt-get install libgtk2.0-bin
+
 vi ${GTK_SRC_DIR}/gdk/win32/gdkdnd-win32.c
         #undef INITGUID
 
 rm -fr ${OBJ_ROOT}/gtk ; mkdir -p ${OBJ_ROOT}/gtk ; cd ${OBJ_ROOT}/gtk
 
-CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ \
-CPPFLAGS="-I${BIN_ROOT}/include" LIBS="-L${BIN_ROOT}/lib -lintl" \
-
 ${GTK_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --disable-static \
-    --enable-shared
+    --enable-shared --enable-gtk2-dependency
 
 make -j${NR_JOBS}
 
