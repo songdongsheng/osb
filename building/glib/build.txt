@@ -1,6 +1,5 @@
 -------------------------------- Prepare --------------------------------
 http://ftp.gnome.org/pub/gnome/sources/glib/2.36/glib-2.36.1.tar.xz
-http://sourceforge.net/projects/libjpeg-turbo/files/1.2.1/libjpeg-turbo-1.2.1.tar.gz/download
 
 export GLIB_SRC_DIR=${HOME}/src/glib-2.36.1
 
