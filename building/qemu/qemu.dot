@@ -3,15 +3,20 @@
     dot qemu.dot -T svg -o qemu.svg
  */
 digraph "Dependency Graph" {
+    zlib -> libSDL;
+    zlib -> libpng;
+
+    libiconv -> libintl [color=red];
+    libintl -> libiconv [color=blue, style=dotted];
+
+    zlib -> glib;
+    libffi -> glib;
+    libintl -> glib;
+
     glib -> qemu;
     libpng -> qemu;
     libjpeg -> qemu;
     libSDL -> qemu;
     pixman -> qemu;
     zlib -> qemu;
-    freetype -> qemu;
-
-    zlib -> freetype;
-    zlib -> libpng;
-    zlib -> libSDL;
 }

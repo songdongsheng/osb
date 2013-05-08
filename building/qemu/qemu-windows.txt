@@ -10,8 +10,8 @@ Date:   Thu Apr 25 15:26:54 2013 +0800
 
     virtio-net: count VIRTIO_NET_F_MAC when calculating config_len
 
-export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
 export QEMU_SRC_DIR=${HOME}/src/qemu-1.4.1
+export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -50,11 +50,8 @@ rm -fr ${OBJ_ROOT}/qemu ; mkdir -p ${OBJ_ROOT}/qemu ; cd ${OBJ_ROOT}/qemu
 ${QEMU_SRC_DIR}/configure --prefix=${BIN_ROOT} --cross-prefix=${HOST_TRIPLET}- \
     --extra-cflags="-I${BIN_ROOT}/include" --extra-ldflags="-L${BIN_ROOT}/lib"
 
-x86_64-w64-mingw32-windres -v -o version.o -I . /home/cauchy/vcs/git/qemu/version.rc
-i686-w64-mingw32-windres -v -o version.o -I . /home/cauchy/vcs/git/qemu/version.rc
-
 make -j${NR_JOBS}
-make install-strip
+make install
 
 -------------------------------- Digital Signing with signtool --------------------------------
 signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll qemu.exe
