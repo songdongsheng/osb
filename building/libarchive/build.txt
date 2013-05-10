@@ -1,0 +1,88 @@
+path/to/src/xz/configure --prefix=/tmp/w64 --host=x86_64-w64-mingw32 --disable-nls
+path/to/src/xz/configure --prefix=/tmp/w32 --host=i686-w64-mingw32 --disable-nls
+signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll grep.exe
+
+export PATH=${HOME}/cross/i686-windows/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export HOST_TRIPLET=i686-w64-mingw32
+export BUILDE_ROOT=${HOME}/obj/w32
+export INSTALL_ROOT=${HOME}/w32-bsdtar
+rm -fr ${INSTALL_ROOT}
+
+export PATH=${HOME}/cross/x86_64-windows/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export HOST_TRIPLET=x86_64-w64-mingw32
+export BUILDE_ROOT=${HOME}/obj/w64
+export INSTALL_ROOT=${HOME}/w64-bsdtar
+rm -fr ${INSTALL_ROOT}
+
+*) build zlib
+http://zlib.net/zlib-1.2.8.tar.gz
+cd ${HOME}/src/zlib-1.2.8
+
+vi win32/Makefile.gcc
+    PREFIX = i686-w64-mingw32-
+    PREFIX = x86_64-w64-mingw32-
+    make -f win32/Makefile.gcc
+    make test testdll -f win32/Makefile.gcc
+
+install -d ${INSTALL_ROOT}/bin ${INSTALL_ROOT}/lib ${INSTALL_ROOT}/include
+install -t ${INSTALL_ROOT}/bin -s   zlib1.dll
+install -t ${INSTALL_ROOT}/lib      libz.a
+install -t ${INSTALL_ROOT}/include  zlib.h zconf.h
+
+*) build bzip2
+http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz
+cd ${HOME}/src/bzip2-1.0.6
+
+vi libbz2.rc
+vi bzip2.rc
+
+${HOST_TRIPLET}-windres libbz2.rc libbz2.rc.o
+${HOST_TRIPLET}-windres bzip2.rc bzip2.rc.o
+
+${HOST_TRIPLET}-gcc -O2 -g -c -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 \
+    blocksort.c huffman.c crctable.c randtable.c compress.c decompress.c bzlib.c bzip2.c
+
+${HOST_TRIPLET}-gcc -O2 -g -shared -o bzip2.dll -Wl,--out-implib,libbz2.dll.a libbz2.def libbz2.rc.o \
+    blocksort.o huffman.o crctable.o randtable.o compress.o decompress.o bzlib.o
+
+${HOST_TRIPLET}-ar rcs libbz2.a blocksort.o huffman.o crctable.o randtable.o compress.o decompress.o bzlib.o
+
+${HOST_TRIPLET}-gcc -O2 -g -o bzip2.exe bzip2.rc.o bzip2.o \
+    blocksort.o huffman.o crctable.o randtable.o compress.o decompress.o bzlib.o
+
+install -d ${INSTALL_ROOT}/bin ${INSTALL_ROOT}/lib ${INSTALL_ROOT}/include
+install -t ${INSTALL_ROOT}/bin -s   bzip2.exe bzip2.dll
+install -t ${INSTALL_ROOT}/lib      libbz2.a
+install -t ${INSTALL_ROOT}/include  bzlib.h
+
+*) build gzip2
+http://ftp.gnu.org/gnu/gzip/gzip-1.5.tar.xz
+cd ${HOME}/src/gzip-1.5
+./configure --host=${HOST_TRIPLET} --prefix=${INSTALL_ROOT}
+
+install -d ${INSTALL_ROOT}/bin
+install -t ${INSTALL_ROOT}/bin -s   gzip.exe
+
+*) build xz
+http://tukaani.org/xz/xz-5.0.4.tar.gz
+git archive --format tar.xz --prefix xz-5.0.4-13-ge3c8be1/ -o ~/src/xz-5.0.4-13-ge3c8be1.tar.xz origin/v5.0
+
+rm -fr ${BUILDE_ROOT}/xz; mkdir -p ${BUILDE_ROOT}/xz; cd ${BUILDE_ROOT}/xz
+${HOME}/src/xz-5.0.4-13-ge3c8be1/configure --host=${HOST_TRIPLET} --prefix=${INSTALL_ROOT} \
+    --disable-nls --disable-shared --enable-static
+
+install -d ${INSTALL_ROOT}/bin ${INSTALL_ROOT}/lib ${INSTALL_ROOT}/include/lzma
+install -t ${INSTALL_ROOT}/bin -s   src/xzdec/xzdec.exe src/xz/xz.exe
+install -t ${INSTALL_ROOT}/lib      src/liblzma/.libs/liblzma*.a
+install -t ${INSTALL_ROOT}/include  ${HOME}/src/xz-5.0.4-13-ge3c8be1/src/liblzma/api/lzma.h ${HOME}/src/xz-5.0.4-13-ge3c8be1/src/liblzma/api/lzma/
+install -t ${INSTALL_ROOT}/include/lzma  ${HOME}/src/xz-5.0.4-13-ge3c8be1/src/liblzma/api/lzma/*.h
+
+*) build libarchive
+http://www.libarchive.org/downloads/libarchive-3.1.2.tar.gz
+cd ${HOME}/src/libarchive-3.1.2
+
+CPPFLAGS=-I${INSTALL_ROOT}/include LDFLAGS=-L${INSTALL_ROOT}/lib \
+./configure --host=${HOST_TRIPLET} --prefix=${INSTALL_ROOT} --without-xml2
+
+install -d ${INSTALL_ROOT}/bin
+install -t ${INSTALL_ROOT}/bin -s   bsdtar.exe bsdcpio.exe
