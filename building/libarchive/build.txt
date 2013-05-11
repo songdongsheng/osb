@@ -6,12 +6,14 @@ export PATH=${HOME}/cross/i686-windows/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export HOST_TRIPLET=i686-w64-mingw32
 export BUILDE_ROOT=${HOME}/obj/w32
 export INSTALL_ROOT=${HOME}/w32-bsdtar
+
 rm -fr ${INSTALL_ROOT}
 
 export PATH=${HOME}/cross/x86_64-windows/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export HOST_TRIPLET=x86_64-w64-mingw32
 export BUILDE_ROOT=${HOME}/obj/w64
 export INSTALL_ROOT=${HOME}/w64-bsdtar
+
 rm -fr ${INSTALL_ROOT}
 
 *) build zlib
@@ -28,6 +30,27 @@ install -d ${INSTALL_ROOT}/bin ${INSTALL_ROOT}/lib ${INSTALL_ROOT}/include
 install -t ${INSTALL_ROOT}/bin -s   zlib1.dll
 install -t ${INSTALL_ROOT}/lib      libz.a
 install -t ${INSTALL_ROOT}/include  zlib.h zconf.h
+
+*) build expat
+cd ${HOME}/vcs/cvs/expat/lib
+
+${HOST_TRIPLET}-windres --define GCC_WINDRES -o expat.rc.o expat.rc
+
+${HOST_TRIPLET}-gcc -DHAVE_MEMMOVE=1 -DXML_ATTR_INFO=1  -O2 -flto -s -shared -o expat.dll -Wl,--out-implib,libexpat.dll.a \
+    libexpat.def expat.rc.o \
+    xmlparse.c xmlrole.c xmltok.c xmltok_impl.c xmltok_ns.c
+
+${HOST_TRIPLET}-gcc -DHAVE_MEMMOVE=1 -DXML_ATTR_INFO=1 -O2 -g -c \
+    xmlparse.c xmlrole.c xmltok.c xmltok_impl.c xmltok_ns.c
+
+${HOST_TRIPLET}-ar rcs libexpat.a xmlparse.o xmlrole.o xmltok.o xmltok_impl.o xmltok_ns.o
+
+install -m 0755 -d ${INSTALL_ROOT}/bin ${INSTALL_ROOT}/lib ${INSTALL_ROOT}/include
+install -m 0644 -t ${INSTALL_ROOT}/bin expat.dll
+install -m 0644 -t ${INSTALL_ROOT}/include expat_external.h expat.h
+install -m 0644 -t ${INSTALL_ROOT}/lib libexpat.a
+
+install -m 0644 -T libexpat.dll.a ${INSTALL_ROOT}/lib/libexpat.dll.a
 
 *) build bzip2
 http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz
@@ -57,11 +80,17 @@ install -t ${INSTALL_ROOT}/include  bzlib.h
 
 *) build gzip2
 http://ftp.gnu.org/gnu/gzip/gzip-1.5.tar.xz
-cd ${HOME}/src/gzip-1.5
-./configure --host=${HOST_TRIPLET} --prefix=${INSTALL_ROOT}
 
-install -d ${INSTALL_ROOT}/bin
+rm -fr ${BUILDE_ROOT}/gzip; mkdir -p ${BUILDE_ROOT}/gzip; cd ${BUILDE_ROOT}/gzip
+
+${HOME}/src/gzip-1.5/configure --host=${HOST_TRIPLET} --prefix=${INSTALL_ROOT}
+
+make -j8
+
+install -d ${INSTALL_ROOT}/bin ${INSTALL_ROOT}/lib ${INSTALL_ROOT}/include
 install -t ${INSTALL_ROOT}/bin -s   gzip.exe
+install -t ${INSTALL_ROOT}/lib      lib/libgzip.a libver.a
+install -t ${INSTALL_ROOT}/include  ${HOME}/src/gzip-1.5/gzip.h
 
 *) build xz
 http://tukaani.org/xz/xz-5.0.4.tar.gz
@@ -71,6 +100,8 @@ rm -fr ${BUILDE_ROOT}/xz; mkdir -p ${BUILDE_ROOT}/xz; cd ${BUILDE_ROOT}/xz
 ${HOME}/src/xz-5.0.4-13-ge3c8be1/configure --host=${HOST_TRIPLET} --prefix=${INSTALL_ROOT} \
     --disable-nls --disable-shared --enable-static
 
+make -j8
+
 install -d ${INSTALL_ROOT}/bin ${INSTALL_ROOT}/lib ${INSTALL_ROOT}/include/lzma
 install -t ${INSTALL_ROOT}/bin -s   src/xzdec/xzdec.exe src/xz/xz.exe
 install -t ${INSTALL_ROOT}/lib      src/liblzma/.libs/liblzma*.a
@@ -79,10 +110,18 @@ install -t ${INSTALL_ROOT}/include/lzma  ${HOME}/src/xz-5.0.4-13-ge3c8be1/src/li
 
 *) build libarchive
 http://www.libarchive.org/downloads/libarchive-3.1.2.tar.gz
-cd ${HOME}/src/libarchive-3.1.2
+
+rm -fr ${BUILDE_ROOT}/libarchive; mkdir -p ${BUILDE_ROOT}/libarchive; cd ${BUILDE_ROOT}/libarchive
 
 CPPFLAGS=-I${INSTALL_ROOT}/include LDFLAGS=-L${INSTALL_ROOT}/lib \
-./configure --host=${HOST_TRIPLET} --prefix=${INSTALL_ROOT} --without-xml2
+${HOME}/src/libarchive-3.1.2/configure --host=${HOST_TRIPLET} --prefix=${INSTALL_ROOT} \
+    --disable-shared --without-xml2 --with-expat
 
-install -d ${INSTALL_ROOT}/bin
+make -j8
+
 install -t ${INSTALL_ROOT}/bin -s   bsdtar.exe bsdcpio.exe
+
+*) 7z
+7z a -t7z -mx9 -v64m -ssc -mtc=on -mmt=on -m0=LZMA2 Mac_OSX_10.8.3.7z Mac_OSX_10.8/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 libarchine-3.1.2-win32.7z libarchine-3.1.2-win32/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 libarchine-3.1.2-win64.7z libarchine-3.1.2-win64/
