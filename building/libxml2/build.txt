@@ -2,6 +2,7 @@
 ftp://xmlsoft.org/libxml2/libxml2-2.9.1.tar.gz
 
 export LIBXML2_SRC_DIR=${HOME}/src/libxml2-2.9.1
+export LIBXML2_SRC_DIR=${HOME}/vcs/git/libxml2
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -18,7 +19,8 @@ export HOST_TRIPLET=i686-w64-mingw32
 rm -fr ${OBJ_ROOT}/libxml2 ; mkdir -p ${OBJ_ROOT}/libxml2 ; cd ${OBJ_ROOT}/libxml2
 
 CPPFLAGS="-I${BIN_ROOT}/include" LDFLAGS="-L${BIN_ROOT}/lib" \
-${LIBXML2_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --enable-shared --disable-static --disable-python
+${LIBXML2_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} \
+    --enable-shared --disable-static --with-python=no
 
 make -j${NR_JOBS}
 
