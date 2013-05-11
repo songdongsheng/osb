@@ -27,8 +27,14 @@ ${HOST_TRIPLET}-gcc -DHAVE_MEMMOVE=1 -DXML_ATTR_INFO=1  -O2 -flto -s -shared -o 
 
 # ${HOST_TRIPLET}-objdump -p expat.dll | less
 
+${HOST_TRIPLET}-gcc -DHAVE_MEMMOVE=1 -DXML_ATTR_INFO=1 -O2 -g -c \
+    xmlparse.c xmlrole.c xmltok.c xmltok_impl.c xmltok_ns.c
+
+${HOST_TRIPLET}-ar rcs libexpat.a xmlparse.o xmlrole.o xmltok.o xmltok_impl.o xmltok_ns.o
+
 install -m 0755 -d ${BIN_ROOT}/bin ${BIN_ROOT}/lib ${BIN_ROOT}/include
 install -m 0644 -t ${BIN_ROOT}/bin expat.dll
+install -m 0644 -t ${BIN_ROOT}/lib libexpat.a
 install -m 0644 -t ${BIN_ROOT}/include expat_external.h expat.h
 install -m 0644 -T libexpat.dll.a ${BIN_ROOT}/lib/libexpat.dll.a
 
