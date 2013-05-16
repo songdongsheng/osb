@@ -8,7 +8,7 @@
 
 G_BEGIN_DECLS
 
-/* enumerations from "/home/cauchy/src/glib-2.36.1/gio/gioenums.h" */
+/* enumerations from "/home/cauchy/src/glib-2.36.2/gio/gioenums.h" */
 GLIB_AVAILABLE_IN_ALL GType g_app_info_create_flags_get_type (void) G_GNUC_CONST;
 #define G_TYPE_APP_INFO_CREATE_FLAGS (g_app_info_create_flags_get_type ())
 GLIB_AVAILABLE_IN_ALL GType g_converter_flags_get_type (void) G_GNUC_CONST;
@@ -148,7 +148,7 @@ GLIB_AVAILABLE_IN_ALL GType g_socket_client_event_get_type (void) G_GNUC_CONST;
 GLIB_AVAILABLE_IN_ALL GType g_test_dbus_flags_get_type (void) G_GNUC_CONST;
 #define G_TYPE_TEST_DBUS_FLAGS (g_test_dbus_flags_get_type ())
 
-/* enumerations from "/home/cauchy/src/glib-2.36.1/gio/gsettings.h" */
+/* enumerations from "/home/cauchy/src/glib-2.36.2/gio/gsettings.h" */
 GLIB_AVAILABLE_IN_ALL GType g_settings_bind_flags_get_type (void) G_GNUC_CONST;
 #define G_TYPE_SETTINGS_BIND_FLAGS (g_settings_bind_flags_get_type ())
 G_END_DECLS

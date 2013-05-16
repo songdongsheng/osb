@@ -1,7 +1,7 @@
 -------------------------------- Prepare --------------------------------
-http://ftp.gnome.org/pub/gnome/sources/glib/2.36/glib-2.36.1.tar.xz
+http://ftp.gnome.org/pub/gnome/sources/glib/2.36/glib-2.36.2.tar.xz
 
-export GLIB_SRC_DIR=${HOME}/src/glib-2.36.1
+export GLIB_SRC_DIR=${HOME}/src/glib-2.36.2
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -21,14 +21,11 @@ rm -fr ${OBJ_ROOT}/glib ; mkdir -p ${OBJ_ROOT}/glib ; cd ${OBJ_ROOT}/glib
 
 CPPFLAGS="-I${BIN_ROOT}/include" LIBS="-L${BIN_ROOT}/lib -lintl" \
 ${GLIB_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --disable-static \
-    --disable-modular-tests
+    --disable-modular-tests --disable-gtk-doc
 
 make -j${NR_JOBS}
 
 make install-strip
-
-install -m 0755 -d ${BIN_ROOT}/lib/glib-2.0/include/
-install -m 0644 -t ${BIN_ROOT}/lib/glib-2.0/include/ glib/glibconfig.h
 
 -------------------------------- Digital Signing with signtool --------------------------------
 signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll *.dll *.exe

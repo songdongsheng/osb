@@ -281,8 +281,8 @@ share/aclocal/gsettings.m4
 share/bash-completion/completions/gdbus
 share/bash-completion/completions/gresource
 share/bash-completion/completions/gsettings
-share/gdb/auto-load/libglib-2.0.so.0.3600.1-gdb.py
-share/gdb/auto-load/libgobject-2.0.so.0.3600.1-gdb.py
+share/gdb/auto-load/libglib-2.0.so.0.3600.2-gdb.py
+share/gdb/auto-load/libgobject-2.0.so.0.3600.2-gdb.py
 share/glib-2.0/codegen/codegen_docbook.py
 share/glib-2.0/codegen/codegen_docbook.pyc
 share/glib-2.0/codegen/codegen_docbook.pyo
