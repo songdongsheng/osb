@@ -1,14 +1,16 @@
 -------------------------------- Prepare --------------------------------
 http://wiki.qemu-project.org/download/qemu-1.4.1.tar.bz2
 
-$ git describe
-v1.4.0-1732-ge9016ee
+cauchy@dre-syslog:~/vcs/git/qemu$ git describe
+v1.4.0-1914-gc49fdf1
 cauchy@dre-syslog:~/vcs/git/qemu$ git log -1
-commit e9016ee2bda1b7757072b856b2196f691aee3388
-Author: Jason Wang <jasowang@redhat.com>
-Date:   Thu Apr 25 15:26:54 2013 +0800
+commit c49fdf137f0ff74804e421f157297ab0ded5d012
+Author: Anthony Liguori <aliguori@us.ibm.com>
+Date:   Wed May 15 16:38:35 2013 -0500
 
-    virtio-net: count VIRTIO_NET_F_MAC when calculating config_len
+    Update version for 1.5.0-rc2 release
+
+    Signed-off-by: Anthony Liguori <aliguori@us.ibm.com>
 
 export QEMU_SRC_DIR=${HOME}/src/qemu-1.4.1
 export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
@@ -17,38 +19,38 @@ export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 
 -------------------------------- pkg-config cfg (w32) --------------------------------
-cat > ${BIN_ROOT}/bin/i686-w64-mingw32-pkg-config <<EOF
+cat > ${HOST_ROOT}/bin/i686-w64-mingw32-pkg-config <<EOF
 #!/bin/sh
 export PKG_CONFIG_LIBDIR=/home/cauchy/w32/lib/pkgconfig
 /usr/bin/pkg-config --define-variable=prefix=/home/cauchy/w32 \$@
 EOF
-chmod +x ${BIN_ROOT}/bin/i686-w64-mingw32-pkg-config
+chmod +x ${HOST_ROOT}/bin/i686-w64-mingw32-pkg-config
 
-export PATH=${BIN_ROOT}/bin:$PATH
-
-export OBJ_ROOT=${HOME}/obj/w32
-export BIN_ROOT=${HOME}/w32
+export HOST_OBJ_ROOT=${HOME}/obj/w32
+export HOST_ROOT=${HOME}/w32
 export HOST_TRIPLET=i686-w64-mingw32
 
+export PATH=${HOST_ROOT}/bin:$PATH
+
 -------------------------------- pkg-config cfg (w64) --------------------------------
-cat > ${BIN_ROOT}/bin/x86_64-w64-mingw32-pkg-config <<EOF
+cat > ${HOST_ROOT}/bin/x86_64-w64-mingw32-pkg-config <<EOF
 #!/bin/sh
 export PKG_CONFIG_LIBDIR=/home/cauchy/w64/lib/pkgconfig
 /usr/bin/pkg-config --define-variable=prefix=/home/cauchy/w64 \$@
 EOF
-chmod +x ${BIN_ROOT}/bin/x86_64-w64-mingw32-pkg-config
+chmod +x ${HOST_ROOT}/bin/x86_64-w64-mingw32-pkg-config
 
-export PATH=${BIN_ROOT}/bin:$PATH
-
-export OBJ_ROOT=${HOME}/obj/w64
-export BIN_ROOT=${HOME}/w64
+export HOST_OBJ_ROOT=${HOME}/obj/w64
+export HOST_ROOT=${HOME}/w64
 export HOST_TRIPLET=x86_64-w64-mingw32
 
--------------------------------- Building qemu system --------------------------------
-rm -fr ${OBJ_ROOT}/qemu ; mkdir -p ${OBJ_ROOT}/qemu ; cd ${OBJ_ROOT}/qemu
+export PATH=${HOST_ROOT}/bin:$PATH
 
-${QEMU_SRC_DIR}/configure --prefix=${BIN_ROOT} --cross-prefix=${HOST_TRIPLET}- \
-    --extra-cflags="-I${BIN_ROOT}/include" --extra-ldflags="-L${BIN_ROOT}/lib"
+-------------------------------- Building qemu system --------------------------------
+rm -fr ${HOST_OBJ_ROOT}/qemu ; mkdir -p ${HOST_OBJ_ROOT}/qemu ; cd ${HOST_OBJ_ROOT}/qemu
+
+${QEMU_SRC_DIR}/configure --prefix=${HOST_ROOT} --cross-prefix=${HOST_TRIPLET}- \
+    --extra-cflags="-I${HOST_ROOT}/include" --extra-ldflags="-L${HOST_ROOT}/lib"
 
 make -j${NR_JOBS}
 make install
