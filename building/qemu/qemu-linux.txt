@@ -35,13 +35,13 @@ cd ${HOME}/obj/qemu-user-static-build && \
         ${QEMU_SRC_DIR}/configure \
                 --prefix=/opt/qemu-1.4 \
                 --interp-prefix=/opt/qemu-1.4/binfmt-static/%M \
-                --disable-system
+                --disable-system \
                 --static
 
         make -j${NR_JOBS}
 
         # static user build
-        for target in ${HOME}/obj/user-static-build/*-*-user/qemu-* ; do
+        for target in ${HOME}/obj/qemu-user-static-build/*-*-user/qemu-* ; do
             sudo install -m 755 $target /opt/qemu-1.4/bin/$(basename $target)-static
         done
 
