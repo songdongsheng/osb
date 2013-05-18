@@ -1,7 +1,7 @@
 -------------------------------- Prepare --------------------------------
-http://cairographics.org/releases/pixman-0.28.2.tar.gz
+http://cairographics.org/releases/pixman-0.30.0.tar.gz
 
-export PIXMAN_SRC_DIR=${HOME}/src/pixman-0.28.2
+export PIXMAN_SRC_DIR=${HOME}/src/pixman-0.30.0
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
