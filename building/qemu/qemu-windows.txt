@@ -1,14 +1,15 @@
 -------------------------------- Prepare --------------------------------
 http://wiki.qemu-project.org/download/qemu-1.4.1.tar.bz2
 
-cauchy@dre-syslog:~/vcs/git/qemu$ git describe
-v1.4.0-1914-gc49fdf1
-cauchy@dre-syslog:~/vcs/git/qemu$ git log -1
-commit c49fdf137f0ff74804e421f157297ab0ded5d012
-Author: Anthony Liguori <aliguori@us.ibm.com>
-Date:   Wed May 15 16:38:35 2013 -0500
+$ git describe
+v1.4.0-1923-g489ed4b
 
-    Update version for 1.5.0-rc2 release
+$ git log -1
+commit 91b96cdc5befe56e7d9651189d0cbf06fc3f3902
+Author: Anthony Liguori <aliguori@us.ibm.com>
+Date:   Fri May 17 10:01:00 2013 -0500
+
+    Update version for 1.5.0-rc3 release
 
     Signed-off-by: Anthony Liguori <aliguori@us.ibm.com>
 
