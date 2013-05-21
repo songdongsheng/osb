@@ -1,5 +1,6 @@
 --------------------------------------------------------------
 export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
+export QEMU_SRC_DIR=${HOME}/src/qemu-1.5.0
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 
 --------------------------------------------------------------
@@ -8,10 +9,9 @@ rm -fr ${HOME}/obj/qemu-system-build
 mkdir -p ${HOME}/obj/qemu-system-build
 cd ${HOME}/obj/qemu-system-build && \
         ${QEMU_SRC_DIR}/configure \
-                --prefix=/opt/qemu-1.4 \
-                --interp-prefix=/opt/qemu-1.4/binfmt/%M \
+                --prefix=/opt/qemu-1.5 \
                 --disable-user \
-                --audio-drv-list=alsa,oss,sdl,pa
+                --audio-drv-list=sdl,alsa
 
         make -j${NR_JOBS} && sudo make install
 
@@ -21,9 +21,9 @@ rm -fr ${HOME}/obj/qemu-user-build
 mkdir -p ${HOME}/obj/qemu-user-build
 cd ${HOME}/obj/qemu-user-build && \
         ${QEMU_SRC_DIR}/configure \
-                --prefix=/opt/qemu-1.4 \
-                --interp-prefix=/opt/qemu-1.4/binfmt/%M \
-                --disable-system
+                --prefix=/opt/qemu-1.5 \
+                --disable-system \
+                --interp-prefix=/opt/qemu-1.5/binfmt/%M
 
         make -j${NR_JOBS} && sudo make install
 
@@ -33,16 +33,16 @@ rm -fr ${HOME}/obj/qemu-user-static-build
 mkdir -p ${HOME}/obj/qemu-user-static-build
 cd ${HOME}/obj/qemu-user-static-build && \
         ${QEMU_SRC_DIR}/configure \
-                --prefix=/opt/qemu-1.4 \
-                --interp-prefix=/opt/qemu-1.4/binfmt-static/%M \
+                --prefix=/opt/qemu-1.5 \
                 --disable-system \
+                --interp-prefix=/opt/qemu-1.5/binfmt-static/%M \
                 --static
 
         make -j${NR_JOBS}
 
         # static user build
         for target in ${HOME}/obj/qemu-user-static-build/*-*-user/qemu-* ; do
-            sudo install -m 755 $target /opt/qemu-1.4/bin/$(basename $target)-static
+            sudo install -m 755 $target /opt/qemu-1.5/bin/$(basename $target)-static
         done
 
 --------------------------------------------------------------

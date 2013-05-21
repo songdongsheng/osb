@@ -13,8 +13,8 @@ Date:   Fri May 17 10:01:00 2013 -0500
 
     Signed-off-by: Anthony Liguori <aliguori@us.ibm.com>
 
-export QEMU_SRC_DIR=${HOME}/src/qemu-1.4.1
 export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
+export QEMU_SRC_DIR=${HOME}/src/qemu-1.5.0
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
