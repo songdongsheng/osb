@@ -21,13 +21,13 @@ cd ${LIBEXPAT_SRC_DIR}/lib
 
 ${HOST_TRIPLET}-windres --define GCC_WINDRES -o expat.rc.o expat.rc
 
-${HOST_TRIPLET}-gcc -DHAVE_MEMMOVE=1 -DXML_ATTR_INFO=1  -O2 -flto -s -shared -o expat.dll -Wl,--out-implib,libexpat.dll.a \
+${HOST_TRIPLET}-gcc -DCOMPILED_FROM_DSP -DXML_ATTR_INFO -O2 -flto -s -shared -o expat.dll -Wl,--out-implib,libexpat.dll.a \
     libexpat.def expat.rc.o \
     xmlparse.c xmlrole.c xmltok.c xmltok_impl.c xmltok_ns.c
 
 # ${HOST_TRIPLET}-objdump -p expat.dll | less
 
-${HOST_TRIPLET}-gcc -DHAVE_MEMMOVE=1 -DXML_ATTR_INFO=1 -O2 -g -c \
+${HOST_TRIPLET}-gcc -DCOMPILED_FROM_DSP -DXML_ATTR_INFO -O2 -g -c \
     xmlparse.c xmlrole.c xmltok.c xmltok_impl.c xmltok_ns.c
 
 ${HOST_TRIPLET}-ar rcs libexpat.a xmlparse.o xmlrole.o xmltok.o xmltok_impl.o xmltok_ns.o
