@@ -38,6 +38,7 @@ http://sourceforge.net/projects/flex/files/flex-2.5.37.tar.gz/download
 http://sourceforge.net/projects/freetype/files/freetype2/2.4.12/freetype-2.4.12.tar.gz/download
 http://sourceforge.net/projects/libjpeg-turbo/files/1.2.1/libjpeg-turbo-1.2.1.tar.gz/download
 http://sourceforge.net/projects/libpng/files/libpng16/1.6.2/libpng-1.6.2.tar.xz/download
+http://sourceforge.net/projects/pcre/files/pcre/8.32/pcre-8.32.tar.gz/download
 http://tukaani.org/xz/xz-5.0.4.tar.gz
 http://wiki.qemu-project.org/download/qemu-1.4.1.tar.bz2
 http://www.bastoul.net/cloog/pages/download/cloog-0.18.0.tar.gz

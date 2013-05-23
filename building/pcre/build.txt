@@ -1,0 +1,122 @@
+-------------------------------- Prepare --------------------------------
+export PCRE_SRC_DIR=${HOME}/src/pcre-8.32
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+-------------------------------- Building pcre --------------------------------
+rm -fr ${OBJ_ROOT}/pcre ; mkdir -p ${OBJ_ROOT}/pcre ; cd ${OBJ_ROOT}/pcre
+
+${PCRE_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} \
+    --enable-shared --disable-static --disable-cpp \
+    --enable-unicode-properties --enable-newline-is-any
+
+make -j${NR_JOBS}
+
+make install-strip
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll libpcre-1.dll libpcreposix-0.dll
+
+------------------------------------------------------------------------
+pcre-8.32 configuration summary:
+
+    Install prefix .................. : /home/cauchy/w32
+    C preprocessor .................. : i686-w64-mingw32-gcc -E
+    C compiler ...................... : i686-w64-mingw32-gcc
+    C++ preprocessor ................ : i686-w64-mingw32-g++ -E
+    C++ compiler .................... : i686-w64-mingw32-g++
+    Linker .......................... : /home/cauchy/cross/i686-windows/i686-w64-mingw32/bin/ld
+    C preprocessor flags ............ :
+    C compiler flags ................ : -O2 -fvisibility=hidden
+    C++ compiler flags .............. : -O2 -fvisibility=hidden -fvisibility-inlines-hidden
+    Linker flags .................... :
+    Extra libraries ................. :
+
+    Build 8 bit pcre library ........ : yes
+    Build 16 bit pcre library ....... : no
+    Build 32 bit pcre library ....... : no
+    Build C++ library ............... : no
+    Enable JIT compiling support .... : no
+    Enable UTF-8/16/32 support ...... : yes
+    Unicode properties .............. : yes
+    Newline char/sequence ........... : any
+    \R matches only ANYCRLF ......... : no
+    EBCDIC coding ................... : no
+    EBCDIC code for NL .............. : n/a
+    Rebuild char tables ............. : no
+    Use stack recursion ............. : yes
+    POSIX mem threshold ............. : 10
+    Internal link size .............. : 2
+    Match limit ..................... : 10000000
+    Match limit recursion ........... : MATCH_LIMIT
+    Build shared libs ............... : yes
+    Build static libs ............... : no
+    Use JIT in pcregrep ............. : no
+    Buffer size for pcregrep ........ : 20480
+    Link pcregrep with libz ......... : no
+    Link pcregrep with libbz2 ....... : no
+    Link pcretest with libedit ...... : no
+    Link pcretest with libreadline .. : no
+    Valgrind support ................ : no
+    Code coverage ................... : no
+
+------------------------------------------------------------------------
+${HOST_TRIPLET}-gcc -shared -o libpcreposix-0.dll -Wl,--out-implib,libpcreposix.dll.a \
+    libpcreposix.def                \
+    libpcre_la-pcre_byte_order.o    \
+    libpcre_la-pcre_chartables.o    \
+    libpcre_la-pcre_compile.o       \
+    libpcre_la-pcre_config.o        \
+    libpcre_la-pcre_dfa_exec.o      \
+    libpcre_la-pcre_exec.o          \
+    libpcre_la-pcre_fullinfo.o      \
+    libpcre_la-pcre_get.o           \
+    libpcre_la-pcre_globals.o       \
+    libpcre_la-pcre_jit_compile.o   \
+    libpcre_la-pcre_maketables.o    \
+    libpcre_la-pcre_newline.o       \
+    libpcre_la-pcre_ord2utf8.o      \
+    libpcre_la-pcre_refcount.o      \
+    libpcre_la-pcre_string_utils.o  \
+    libpcre_la-pcre_study.o         \
+    libpcre_la-pcre_tables.o        \
+    libpcre_la-pcre_ucd.o           \
+    libpcre_la-pcre_valid_utf8.o    \
+    libpcre_la-pcre_version.o       \
+    libpcre_la-pcre_xclass.o        \
+    libpcreposix_la-pcreposix.o
+
+${HOST_TRIPLET}-gcc -shared -o libpcre-1.dll -Wl,--out-implib,libpcre.dll.a \
+    libpcre.def                     \
+    libpcre_la-pcre_byte_order.o    \
+    libpcre_la-pcre_chartables.o    \
+    libpcre_la-pcre_compile.o       \
+    libpcre_la-pcre_config.o        \
+    libpcre_la-pcre_dfa_exec.o      \
+    libpcre_la-pcre_exec.o          \
+    libpcre_la-pcre_fullinfo.o      \
+    libpcre_la-pcre_get.o           \
+    libpcre_la-pcre_globals.o       \
+    libpcre_la-pcre_jit_compile.o   \
+    libpcre_la-pcre_maketables.o    \
+    libpcre_la-pcre_newline.o       \
+    libpcre_la-pcre_ord2utf8.o      \
+    libpcre_la-pcre_refcount.o      \
+    libpcre_la-pcre_string_utils.o  \
+    libpcre_la-pcre_study.o         \
+    libpcre_la-pcre_tables.o        \
+    libpcre_la-pcre_ucd.o           \
+    libpcre_la-pcre_valid_utf8.o    \
+    libpcre_la-pcre_version.o       \
+    libpcre_la-pcre_xclass.o
+
+------------------------------------------------------------------------

@@ -10,6 +10,7 @@ libgtk-3-0.dll          3.8.2           native          2013-05-16
 libiconv-2.dll          1.14            native          2013-05-02
 libintl-8.dll           0.18.2.1        native          2013-05-02
 libpango-1.0-0.dll      1.34.1          native          2013-05-16
+libpcre-1.dll           8.32            native          2013-05-23
 libpixman-1-0.dll       0.30.0          native          2013-05-18
 libpng16-16.dll         1.6.2           native          2013-04-30
 librrd-4.dll            1.4.7.38        native          2013-05-04
