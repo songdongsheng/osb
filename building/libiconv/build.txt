@@ -62,3 +62,10 @@ signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll libintl-8.dl
 signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll *.dll *.exe
 
 ------------------------------------------------------------------------
+lib /NOLOGO /DEF:libintl-8.def   /OUT:libintl-8.lib  /MACHINE:X86
+lib /NOLOGO /DEF:libiconv-2.def  /OUT:libiconv-2.lib /MACHINE:X86
+del *.exp
+
+lib /NOLOGO /DEF:libintl-8.def   /OUT:libintl-8.lib  /MACHINE:X64
+lib /NOLOGO /DEF:libiconv-2.def  /OUT:libiconv-2.lib /MACHINE:X64
+del *.exp

@@ -1,0 +1,48 @@
+LIBRARY "libintl-8.dll"
+EXPORTS
+    libintl_version DATA
+
+    gettext
+    dgettext
+    dcgettext
+    ngettext
+    dngettext
+    dcngettext
+    textdomain
+    bindtextdomain
+    bind_textdomain_codeset
+
+    libintl_gettext
+    libintl_dgettext
+    libintl_dcgettext
+    libintl_ngettext
+    libintl_dngettext
+    libintl_dcngettext
+    libintl_textdomain
+    libintl_bindtextdomain
+    libintl_bind_textdomain_codeset
+
+    libintl_fprintf
+    libintl_vfprintf
+    __printf__
+    libintl_vprintf
+    libintl_sprintf
+    libintl_vsprintf
+    libintl_snprintf
+    libintl_vsnprintf
+    libintl_asprintf
+    libintl_vasprintf
+
+    libintl_setlocale
+    libintl_set_relocation_prefix
+
+    ; The following symbols not in the libintl.h header file !!!
+    libintl_fwprintf
+    libintl_vfwprintf
+    libintl_wprintf
+    libintl_vwprintf
+    libintl_swprintf
+    libintl_vswprintf
+
+    libintl_vasnprintf
+    libintl_vasnwprintf

@@ -1,0 +1,13 @@
+LIBRARY "libiconv-2.dll"
+EXPORTS
+    _libiconv_version DATA
+
+    libiconv_open
+    libiconv
+    libiconv_close
+
+    libiconv_open_into
+    libiconvctl
+    libiconvlist
+    iconv_canonicalize
+    libiconv_set_relocation_prefix
