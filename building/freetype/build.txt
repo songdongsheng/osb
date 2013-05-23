@@ -1,8 +1,8 @@
 -------------------------------- Prepare --------------------------------
-http://download.savannah.gnu.org/releases/freetype/freetype-2.4.11.tar.gz
-http://sourceforge.net/projects/freetype/files/freetype2/2.4.11/freetype-2.4.11.tar.gz/download
+http://download.savannah.gnu.org/releases/freetype/freetype-2.4.12.tar.gz
+http://sourceforge.net/projects/freetype/files/freetype2/2.4.12/freetype-2.4.12.tar.gz/download
 
-export FREETYPE_SRC_DIR=${HOME}/src/freetype-2.4.11
+export FREETYPE_SRC_DIR=${HOME}/src/freetype-2.4.12
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -23,7 +23,7 @@ ${FREETYPE_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --enab
 
 make -j${NR_JOBS}
 
-make install-strip
+make install
 
 -------------------------------- Digital Signing with signtool --------------------------------
 signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll libfreetype-6.dll

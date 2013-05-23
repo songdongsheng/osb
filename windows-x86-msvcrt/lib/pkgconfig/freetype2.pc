@@ -1,11 +1,11 @@
-prefix=/home/cauchy/w32
-exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
-includedir=${prefix}/include
+prefix="/home/cauchy/w32"
+exec_prefix="/home/cauchy/w32"
+libdir="/home/cauchy/w32/lib"
+includedir="/home/cauchy/w32/include"
 
 Name: FreeType 2
 Description: A free, high-quality, and portable font engine.
-Version: 16.0.10
+Version: 16.1.10
 Requires:
 Libs: -L${libdir} -lfreetype
 Libs.private: -lz  
