@@ -30,5 +30,8 @@ msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;Plat
 msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=Win32;PlatformToolset="Intel C++ Compiler XE 13.0"
 msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;PlatformToolset="Intel C++ Compiler XE 13.0"
 
+*) sign
+signtool sign /fd sha256 /sha1 8DC5E1E411AE78000E98FAD0ADB7E995995813A8 /t http://timestamp.verisign.com/scripts/timstamp.dll libpng16-16.dll
+
 *) msiexec
 msiexec /a PathToMSIFile /qb TARGETDIR=FullPathOfDirectoryToExtractTo

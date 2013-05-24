@@ -48,6 +48,10 @@ ${GETTEXT_SRC_DIR}/configure --prefix=${BIN_ROOT} \
 make -j${NR_JOBS}
 make install-strip
 
+cd ${OBJ_ROOT}/gettext/gettext-runtime/intl
+
+${HOST_TRIPLET}-gcc -shared -O2 -s -fvisibility=hidden libintl-8.def .libs/bindtextdom.o .libs/dcgettext.o .libs/dgettext.o .libs/gettext.o .libs/finddomain.o .libs/hash-string.o .libs/loadmsgcat.o .libs/localealias.o .libs/textdomain.o .libs/l10nflist.o .libs/explodename.o .libs/dcigettext.o .libs/dcngettext.o .libs/dngettext.o .libs/ngettext.o .libs/plural.o .libs/plural-exp.o .libs/localcharset.o .libs/threadlib.o .libs/lock.o .libs/relocatable.o .libs/langprefs.o .libs/localename.o .libs/log.o .libs/printf.o .libs/setlocale.o .libs/version.o .libs/xsize.o .libs/osdep.o .libs/intl-compat.o .libs/libintl.res.o ${BIN_ROOT}/lib/libiconv.dll.a  -o .libs/libintl-8.dll -Wl,--enable-auto-image-base -Xlinker --out-implib -Xlinker .libs/libintl.dll.a
+
 -------------------------------- Building libiconv with NLS --------------------------------
 rm -fr ${OBJ_ROOT}/libiconv ; mkdir -p ${OBJ_ROOT}/libiconv ; cd ${OBJ_ROOT}/libiconv
 ${LIBICONV_SRC_DIR}/configure --prefix=${BIN_ROOT} \
@@ -56,6 +60,10 @@ ${LIBICONV_SRC_DIR}/configure --prefix=${BIN_ROOT} \
 
 make -j${NR_JOBS}
 make install-strip
+
+cd ${OBJ_ROOT}/libiconv/lib
+
+${HOST_TRIPLET}-gcc -shared -O2 -s -fvisibility=hidden libiconv-2.def .libs/iconv.o .libs/localcharset.o .libs/relocatable.o .libs/iconv-exports.o .libs/libiconv.res.o -o .libs/libiconv-2.dll -Wl,--enable-auto-image-base -Xlinker --out-implib -Xlinker .libs/libiconv.dll.a
 
 -------------------------------- Digital Signing with signtool --------------------------------
 signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll libintl-8.dll

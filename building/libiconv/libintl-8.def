@@ -25,6 +25,7 @@ EXPORTS
     libintl_fprintf
     libintl_vfprintf
     __printf__
+    libintl_printf=__printf__
     libintl_vprintf
     libintl_sprintf
     libintl_vsprintf

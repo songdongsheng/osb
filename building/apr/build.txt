@@ -1,0 +1,20 @@
+*) apr
+    nmake -f libapr.mak CFG="libapr - Win32 Release"
+
+    nmake -f libapr.mak CFG="libapr - x64 Release"
+
+*) apr-util
+    vi include\apu.hw
+        #define APU_HAVE_APR_ICONV      1
+        #define APU_HAVE_ICONV          0
+      =>
+        #define APU_HAVE_APR_ICONV      0
+        #define APU_HAVE_ICONV          1
+
+    vi libaprutil.mak
+        apr-iconv\Release\libapriconv-1.lib     => libiconv-2.lib
+        apr-iconv\x64\Release\libapriconv-1.lib => libiconv-2.lib
+
+    nmake -f libapr.mak CFG="libaprutil - Win32 Release"
+
+    nmake -f libapr.mak CFG="libaprutil - x64 Release"
