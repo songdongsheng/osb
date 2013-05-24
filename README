@@ -2,8 +2,8 @@
 
 This repository include binary files compiled by:
     *) GNU Compiler Collection 4.8 (msvcrt)
-    *) Microsoft (R) C/C++ Optimizing Compiler 16 (VS 2010, msvcr100) and 17 (VS 2012, msvcr110)
-    *) Intel C++ Compiler XE 2011 (msvcr100) and 2013 (msvcr110)
+    *) Microsoft Visual Studio 2012 (VS 2012, msvcr110, _MSC_VER=1700)
+    *) Intel C++ Compiler XE 2013 (msvcr110)
 
 These files distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY.
