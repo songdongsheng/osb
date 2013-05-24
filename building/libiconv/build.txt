@@ -83,3 +83,15 @@ i686-w64-mingw32-dlltool -x -c -k -m i386 --input-def libiconv-2.def --dllname l
 
 i686-w64-mingw32-dlltool -x -c -k -m i386:x86-64 --input-def libintl-8.def  --dllname libintl-8.dll  --output-lib libintl-8.dll.a
 i686-w64-mingw32-dlltool -x -c -k -m i386:x86-64 --input-def libiconv-2.def --dllname libiconv-2.dll --output-lib libiconv-2.dll.a
+
+------------------------------------------------------------------------
+-DPACKAGE_VERSION_STRING="1.14" -DPACKAGE_VERSION_MAJOR=1 -DPACKAGE_VERSION_MINOR=14 -DPACKAGE_VERSION_SUBMINOR=0
+
+msbuild libiconv-2.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=Win32
+msbuild libiconv-2.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=x64
+
+msbuild iconv.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=Win32
+msbuild iconv.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=x64
+
+msbuild libintl-8.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=Win32
+msbuild libintl-8.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=x64

@@ -88,11 +88,12 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;_DEBUG;_WINDOWS;_USRDLL;COMPILED_FROM_DSP;XML_ATTR_INFO;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;_DEBUG;_WINDOWS;_USRDLL;BUILDING_DLL;inline=__inline;HAVE_ICONV;ICONV_CONST="";IN_LIBINTL;LOCALE_ALIAS_PATH="";LOCALEDIR="";_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <Version>2.1</Version>
+      <Version>0.18</Version>
       <MinimumRequiredVersion>5.2</MinimumRequiredVersion>
       <SetChecksum>false</SetChecksum>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -106,11 +107,12 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;_DEBUG;_WINDOWS;_USRDLL;COMPILED_FROM_DSP;XML_ATTR_INFO;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;_DEBUG;_WINDOWS;_USRDLL;BUILDING_DLL;inline=__inline;HAVE_ICONV;ICONV_CONST="";IN_LIBINTL;LOCALE_ALIAS_PATH="";LOCALEDIR="";_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <Version>2.1</Version>
+      <Version>0.18</Version>
       <MinimumRequiredVersion>5.2</MinimumRequiredVersion>
       <SetChecksum>false</SetChecksum>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -126,11 +128,12 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;NDEBUG;_WINDOWS;_USRDLL;COMPILED_FROM_DSP;XML_ATTR_INFO;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;NDEBUG;_WINDOWS;_USRDLL;BUILDING_DLL;inline=__inline;HAVE_ICONV;ICONV_CONST="";IN_LIBINTL;LOCALE_ALIAS_PATH="";LOCALEDIR="";_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <Version>2.1</Version>
+      <Version>0.18</Version>
       <MinimumRequiredVersion>5.2</MinimumRequiredVersion>
       <SetChecksum>true</SetChecksum>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -148,11 +151,12 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;NDEBUG;_WINDOWS;_USRDLL;COMPILED_FROM_DSP;XML_ATTR_INFO;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;NDEBUG;_WINDOWS;_USRDLL;BUILDING_DLL;inline=__inline;HAVE_ICONV;ICONV_CONST="";IN_LIBINTL;LOCALE_ALIAS_PATH="";LOCALEDIR="";_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <Version>2.1</Version>
+      <Version>0.18</Version>
       <MinimumRequiredVersion>5.2</MinimumRequiredVersion>
       <SetChecksum>true</SetChecksum>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -163,14 +167,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ResourceCompile Include="lib\libintl-8.rc" />
+    <ResourceCompile Include="libintl.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lib\xmlparse.c" />
-    <ClCompile Include="lib\xmlrole.c" />
-    <ClCompile Include="lib\xmltok.c" />
-    <ClCompile Include="lib\xmltok_impl.c" />
-    <ClCompile Include="lib\xmltok_ns.c" />
+    <ClCompile Include="bindtextdom.c" />
+    <ClCompile Include="dcgettext.c" />
+    <ClCompile Include="dcigettext.c" />
+    <ClCompile Include="dcngettext.c" />
+    <ClCompile Include="dgettext.c" />
+    <ClCompile Include="dngettext.c" />
+    <ClCompile Include="explodename.c" />
+    <ClCompile Include="finddomain.c" />
+    <ClCompile Include="gettext.c" />
+    <ClCompile Include="hash-string.c" />
+    <ClCompile Include="intl-compat.c" />
+    <ClCompile Include="l10nflist.c" />
+    <ClCompile Include="langprefs.c" />
+    <ClCompile Include="loadmsgcat.c" />
+    <ClCompile Include="localcharset.c" />
+    <ClCompile Include="localealias.c" />
+    <ClCompile Include="localename.c" />
+    <ClCompile Include="lock.c" />
+    <ClCompile Include="log.c" />
+    <ClCompile Include="ngettext.c" />
+    <ClCompile Include="osdep.c" />
+    <ClCompile Include="plural.c" />
+    <ClCompile Include="plural-exp.c" />
+    <ClCompile Include="printf.c" />
+    <ClCompile Include="relocatable.c" />
+    <ClCompile Include="setlocale.c" />
+    <ClCompile Include="textdomain.c" />
+    <ClCompile Include="threadlib.c" />
+    <ClCompile Include="version.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
