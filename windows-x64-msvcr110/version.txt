@@ -1,3 +1,4 @@
-msvcr110.dll    11.0.51106.1    native          2012-11-06
-msvcp110.dll    11.0.51106.1    msvcr110.dll    2012-11-06
-sqlite3.exe     3.7.15.1        msvcr110.dll    2012-12-19
+libsqlite3.dll          3.7.17.0            2013-05-24
+msvcp110.dll            11.0.51106.1        2012-11-06
+msvcr110.dll            11.0.51106.1        2012-11-06
+zlib.dll                1.2.8               2013-05-24
