@@ -1,20 +1,9 @@
 -------------------------------- Prepare --------------------------------
-http://wiki.qemu-project.org/download/qemu-1.4.1.tar.bz2
-
-$ git describe
-v1.4.0-1923-g489ed4b
-
-$ git log -1
-commit 91b96cdc5befe56e7d9651189d0cbf06fc3f3902
-Author: Anthony Liguori <aliguori@us.ibm.com>
-Date:   Fri May 17 10:01:00 2013 -0500
-
-    Update version for 1.5.0-rc3 release
-
-    Signed-off-by: Anthony Liguori <aliguori@us.ibm.com>
+http://wiki.qemu-project.org/download/qemu-1.4.2.tar.bz2
+http://wiki.qemu-project.org/download/qemu-1.5.0.tar.bz2
 
 export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
-export QEMU_SRC_DIR=${HOME}/src/qemu-1.5.0
+export QEMU_SRC_DIR=${HOME}/src/qemu-1.4.2
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -60,3 +49,21 @@ make install
 signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll qemu.exe
 
 ------------------------------------------------------------------------
+*) generate *.exe.debug
+for i in *.exe */*.exe; do
+        ${HOST_TRIPLET}-objcopy --only-keep-debug $i `basename $i`.debug
+        echo `basename $i`.debug
+        echo
+done
+
+*) sign *.exe.debug
+
+*) strip *.exe and add debuglink to *.exe.debug
+
+for i in *.exe; do
+        ${HOST_TRIPLET}-objcopy --strip-debug --strip-unneeded $i
+        ${HOST_TRIPLET}-objcopy --add-gnu-debuglink=$i.debug $i
+        echo
+done
+
+*) sign *.exe
