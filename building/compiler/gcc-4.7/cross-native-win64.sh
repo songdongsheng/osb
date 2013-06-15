@@ -4,7 +4,7 @@
 # lib32_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 # lib64_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 #
-# sudo apt-get install texinfo libgmp-dev libmpfr-dev libmpc-dev
+# sudo apt-get install texinfo libgmp-dev libmpfr-dev libmpc-dev libexpat1-dev zlib1g-dev
 #
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_7-branch
@@ -207,7 +207,7 @@ ${GCC_SRC_ROOT}/configure \
     --prefix=${SYS_ROOT} \
     --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --enable-targets=all --disable-nls \
+    --enable-targets=all --disable-nls --disable-win32-registry \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --with-arch=x86-64 --with-tune=generic --with-fpmath=sse \
     --with-gmp=${SYS_3RD_ROOT} --with-mpfr=${SYS_3RD_ROOT} --with-mpc=${SYS_3RD_ROOT}
@@ -222,7 +222,7 @@ logger -t ${LOGGER_TAG} -s "Build gcc success"
 logger -t ${LOGGER_TAG} -s "Build finished"
 
 ################ package ################
-install -m 0644 ${SYS_3RD_ROOT}/bin/*.dll ${SYS_ROOT}/bin/
+install -m 0755 ${SYS_3RD_ROOT}/bin/*.dll ${SYS_ROOT}/bin/
 
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/gmake.exe
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/mingw32-make.exe
@@ -246,7 +246,7 @@ rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.ex
 ${TARGET_TRIPLET}-strip \
     ${SYS_ROOT}/bin/*.exe \
     ${SYS_ROOT}/bin/*.dll \
-    ${SYS_ROOT}/bin/64/*.dll \
+    ${SYS_ROOT}/bin/32/*.dll \
     ${SYS_ROOT}/${TARGET_TRIPLET}/bin/*.exe \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.exe \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.dll

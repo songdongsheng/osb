@@ -13,14 +13,7 @@
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/trunk
-export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
-
-export GDB_SRC_ROOT=${HOME}/vcs/git/gdb
-export MAKE_SRC_ROOT=${HOME}/src/make-3.82
-export GMP_SRC_ROOT=${HOME}/src/gmp-5.1.1
-export MPFR_SRC_ROOT=${HOME}/src/mpfr-3.1.2
-export MPC_SRC_ROOT=${HOME}/src/mpc-1.0.1
-export CLOOG_SRC_ROOT=${HOME}/src/cloog-0.18.0
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.23.2
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`

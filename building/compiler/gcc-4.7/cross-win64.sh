@@ -4,12 +4,12 @@
 # lib32_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 # lib64_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 #
-# sudo apt-get install texinfo libgmp-dev libmpfr-dev libmpc-dev
+# sudo apt-get install texinfo libgmp-dev libmpfr-dev libmpc-dev libexpat1-dev zlib1g-dev
 #
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_7-branch
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/stable/v2.x
-export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.23.2
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
