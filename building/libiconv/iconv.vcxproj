@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="srclib\uniwidth\width.c" />
+    <ClCompile Include="srclib\progname.c" />
     <ClCompile Include="src\iconv_no_i18n.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

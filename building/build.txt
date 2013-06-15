@@ -35,3 +35,47 @@ signtool sign /fd sha256 /sha1 8DC5E1E411AE78000E98FAD0ADB7E995995813A8 /t http:
 
 *) msiexec
 msiexec /a PathToMSIFile /qb TARGETDIR=FullPathOfDirectoryToExtractTo
+
+*) msbuild cfg
+<PlatformToolset>v110_xp</PlatformToolset>
+<PlatformToolset>v110</PlatformToolset>
+<PlatformToolset>WindowsKernelModeDriver8.0</PlatformToolset>
+<PlatformToolset>WindowsApplicationForDrivers8.0</PlatformToolset>
+<PlatformToolset>WindowsUserModeDriver8.0</PlatformToolset>
+
+<UseOfMfc>Static</UseOfMfc>
+<UseOfMfc>Dynamic</UseOfMfc>
+<UseOfMfc>false</UseOfMfc>
+
+<UseOfAtl>Static</UseOfAtl>
+<UseOfAtl>Dynamic</UseOfAtl>
+<UseOfAtl>false</UseOfAtl>
+
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<ConfigurationType>StaticLibrary</ConfigurationType>
+<ConfigurationType>Utility</ConfigurationType>
+<ConfigurationType>Makefile</ConfigurationType>
+
+<RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+<RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+
+<BufferSecurityCheck>false</BufferSecurityCheck>
+<BufferSecurityCheck>true</BufferSecurityCheck>
+
+<EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+<EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+<EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
+<EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+
+<CharacterSet>Unicode</CharacterSet>
+<PrecompiledHeader>NotUsing</PrecompiledHeader>
+<SDLCheck>true</SDLCheck>
+<SubSystem>Console</SubSystem>
+<SetChecksum>true</SetChecksum>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<WholeProgramOptimization>true</WholeProgramOptimization>
+<WarningLevel>Level3</WarningLevel>
+<Version>1.0</Version>
+<MinimumRequiredVersion>5.2</MinimumRequiredVersion>

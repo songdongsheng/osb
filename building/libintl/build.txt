@@ -1,0 +1,104 @@
+-------------------------------- Prepare --------------------------------
+# i686-w64-mingw32-gcc -march=x86-64 -mtune=generic -dM -E -  < /dev/null | sort
+# x86_64-w64-mingw32-gcc -march=x86-64 -mtune=generic -dM -E -  < /dev/null | sort
+# CFLAGS='-march=x86-64 -O2 -flto -pipe' CXXFLAGS='-march=x86-64 -O2 -flto -pipe' LDFLAGS='-s' \
+# path/to/src/xz/configure --prefix=/tmp/w32 --host=i686-w64-mingw32 --disable-nls
+# path/to/src/xz/configure --prefix=/tmp/w64 --host=x86_64-w64-mingw32 --disable-nls
+
+LIBGCC_S_SJLJ-1.DLL
+    __udivdi3
+    __umoddi3
+
+$ x86_64-w64-mingw32-objdump -x libiconv-2.dll | grep "DLL Name"
+$ i686-w64-mingw32-objdump -x libiconv-2.dll | grep "DLL Name"
+        DLL Name: libgcc_s_sjlj-1.dll
+        DLL Name: KERNEL32.dll
+        DLL Name: msvcrt.dll
+
+http://ftp.gnu.org/gnu/libiconv/
+http://ftp.gnu.org/gnu/gettext/
+
+export LIBICONV_SRC_DIR=${HOME}/src/libiconv-1.14
+export GETTEXT_SRC_DIR=${HOME}/src/gettext-0.18.2.1
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+-------------------------------- Building libiconv without NLS --------------------------------
+rm -fr ${OBJ_ROOT}/libiconv ; mkdir -p ${OBJ_ROOT}/libiconv ; cd ${OBJ_ROOT}/libiconv
+${LIBICONV_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET} --disable-static
+
+make -j${NR_JOBS}
+make install-strip
+
+-------------------------------- Building gettext --------------------------------
+rm -fr ${OBJ_ROOT}/gettext ; mkdir -p ${OBJ_ROOT}/gettext ; cd ${OBJ_ROOT}/gettext
+${GETTEXT_SRC_DIR}/configure --prefix=${BIN_ROOT} \
+    --host=${HOST_TRIPLET} --disable-static \
+    --with-libiconv-prefix=${BIN_ROOT}
+
+make -j${NR_JOBS}
+make install-strip
+
+cd ${OBJ_ROOT}/gettext/gettext-runtime/intl
+
+${HOST_TRIPLET}-gcc -shared -O2 -s -fvisibility=hidden libintl-8.def .libs/bindtextdom.o .libs/dcgettext.o .libs/dgettext.o .libs/gettext.o .libs/finddomain.o .libs/hash-string.o .libs/loadmsgcat.o .libs/localealias.o .libs/textdomain.o .libs/l10nflist.o .libs/explodename.o .libs/dcigettext.o .libs/dcngettext.o .libs/dngettext.o .libs/ngettext.o .libs/plural.o .libs/plural-exp.o .libs/localcharset.o .libs/threadlib.o .libs/lock.o .libs/relocatable.o .libs/langprefs.o .libs/localename.o .libs/log.o .libs/printf.o .libs/setlocale.o .libs/version.o .libs/xsize.o .libs/osdep.o .libs/intl-compat.o .libs/libintl.res.o ${BIN_ROOT}/lib/libiconv.dll.a  -o .libs/libintl-8.dll -Wl,--enable-auto-image-base -Xlinker --out-implib -Xlinker .libs/libintl.dll.a
+
+-------------------------------- Building libiconv with NLS --------------------------------
+rm -fr ${OBJ_ROOT}/libiconv ; mkdir -p ${OBJ_ROOT}/libiconv ; cd ${OBJ_ROOT}/libiconv
+${LIBICONV_SRC_DIR}/configure --prefix=${BIN_ROOT} \
+    --host=${HOST_TRIPLET} --disable-static \
+    --with-libintl-prefix=${BIN_ROOT}
+
+make -j${NR_JOBS}
+make install-strip
+
+cd ${OBJ_ROOT}/libiconv/lib
+
+${HOST_TRIPLET}-gcc -shared -O2 -s -fvisibility=hidden libiconv-2.def .libs/iconv.o .libs/localcharset.o .libs/relocatable.o .libs/iconv-exports.o .libs/libiconv.res.o -o .libs/libiconv-2.dll -Wl,--enable-auto-image-base -Xlinker --out-implib -Xlinker .libs/libiconv.dll.a
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll libintl-8.dll
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll *.dll *.exe
+
+------------------------------------------------------------------------
+lib /NOLOGO /DEF:libintl-8.def   /OUT:libintl-8.lib  /MACHINE:X86
+lib /NOLOGO /DEF:libiconv-2.def  /OUT:libiconv-2.lib /MACHINE:X86
+del *.exp
+
+lib /NOLOGO /DEF:libintl-8.def   /OUT:libintl-8.lib  /MACHINE:X64
+lib /NOLOGO /DEF:libiconv-2.def  /OUT:libiconv-2.lib /MACHINE:X64
+del *.exp
+
+i686-w64-mingw32-dlltool -x -c -k -m i386 --input-def libintl-8.def  --dllname libintl-8.dll  --output-lib libintl-8.dll.a
+i686-w64-mingw32-dlltool -x -c -k -m i386 --input-def libiconv-2.def --dllname libiconv-2.dll --output-lib libiconv-2.dll.a
+
+i686-w64-mingw32-dlltool -x -c -k -m i386:x86-64 --input-def libintl-8.def  --dllname libintl-8.dll  --output-lib libintl-8.dll.a
+i686-w64-mingw32-dlltool -x -c -k -m i386:x86-64 --input-def libiconv-2.def --dllname libiconv-2.dll --output-lib libiconv-2.dll.a
+
+------------------------------------------------------------------------
+-DPACKAGE_VERSION_STRING="1.14" -DPACKAGE_VERSION_MAJOR=1 -DPACKAGE_VERSION_MINOR=14 -DPACKAGE_VERSION_SUBMINOR=0
+
+msbuild libiconv-2.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=Win32
+msbuild libiconv-2.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=x64
+
+msbuild iconv.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=Win32
+msbuild iconv.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=x64
+
+msbuild libintl-8.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=Win32
+msbuild libintl-8.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=x64
+
+#ifdef _MSC_VER
+#define alignof(TYPE) __alignof(TYPE)
+#else
+# define alignof(TYPE) \
+    ((int) &((struct { char dummy1; TYPE dummy2; } *) 0)->dummy2)
+#endif
