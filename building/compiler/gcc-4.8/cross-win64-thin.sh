@@ -17,9 +17,9 @@ export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.23.2
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
-export TARGET_TRIPLET=i686-w64-mingw32
-export LOGGER_TAG=cross-win32-gcc48
-export SYS_ROOT=${HOME}/cross/i686-windows-gcc48
+export TARGET_TRIPLET=x86_64-w64-mingw32
+export LOGGER_TAG=cross-win64-gcc48
+export SYS_ROOT=${HOME}/cross/x86_64-windows-gcc48
 export OBJ_ROOT=${HOME}/obj/${TARGET_TRIPLET}-gcc48
 export PATH=${SYS_ROOT}/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
