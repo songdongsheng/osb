@@ -36,7 +36,7 @@ mkdir -p ${OBJ_ROOT}/binutils
 cd  ${OBJ_ROOT}/binutils
 
 ${BINUTILS_SRC_ROOT}/configure --prefix=${SYS_ROOT} --with-sysroot=${SYS_ROOT} \
-    --host=${BUILD_TRIPLET} --build=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} \
+    --build=${BUILD_TRIPLET} --host=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} \
     --enable-targets=x86_64-w64-mingw32,i686-w64-mingw32 --disable-nls
 
 make -j${NR_JOBS} ; make install-strip
@@ -83,7 +83,7 @@ mkdir -p ${OBJ_ROOT}/mingw-w64-crt
 cd  ${OBJ_ROOT}/mingw-w64-crt
 
 ${MINGW_W64_SRC_ROOT}/mingw-w64-crt/configure --prefix=${SYS_ROOT}/${TARGET_TRIPLET} \
-    --host=${TARGET_TRIPLET} --enable-wildcard
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --enable-wildcard
 
 make -j${NR_JOBS}; make install
 if [ $? -ne 0 ]; then

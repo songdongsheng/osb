@@ -1,7 +1,7 @@
 *) gcc-4_7-branch
 $ svn log -r COMMITTED gcc/branches/gcc-4_7-branch
 ------------------------------------------------------------------------
-r194923 | gccadmin | 2013-01-05 08:17:20 +0800 (Sat, 05 Jan 2013) | 1 line
+r200142 | gccadmin | 2013-06-17 08:16:24 +0800 (Mon, 17 Jun 2013) | 1 line
 
 Daily bump.
 ------------------------------------------------------------------------
@@ -9,44 +9,34 @@ Daily bump.
 *) mingw-w64/stable/v2.x
 $ svn log -r COMMITTED mingw-w64/stable/v2.x/
 ------------------------------------------------------------------------
-r5519 | ktietz70 | 2012-12-24 18:16:48 +0800 (Mon, 24 Dec 2012) | 2 lines
+r5746 | sezero | 2013-04-10 03:51:57 +0800 (Wed, 10 Apr 2013) | 7 lines
 
-Use x87 as default
+Merge from trunk revs. 5735, 5740, 5744:
+add "memory" to Offset in inline asm for _bittest, _bittestandcomplement,
+_bittestandset, _bittestandreset, _interlockedbittestandset,
+_interlockedbittestandreset, _bittest64, _bittestandcomplement64,
+_bittestandset64, _bittestandreset64, _interlockedbittestandset64,
+_interlockedbittestandreset64, InterlockedBitTestAndSet,
+InterlockedBitTestAndReset and InterlockedBitTestAndComplement.
 ------------------------------------------------------------------------
 
-*) binutils master
-    cvs -z 9 -d :pserver:anoncvs@sourceware.org:/cvs/src co -P binutils
-    git://sources.redhat.com/git/binutils.git
+*) binutils 2.23.2
+http://ftp.gnu.org/gnu/binutils/binutils-2.23.2.tar.gz
 
-    diff -urN -x CVS -x .git git/binutils cvs/binutils | diffstat
+*) gdb 7.6
+http://ftp.gnu.org/gnu/gdb/gdb-7.6.tar.bz2
 
-    commit bb4c4c58d410f2b43f77bb7d3d393f77c83ab405
-    Author: Alan Modra <amodra@bigpond.net.au>
-    Date:   Fri Jan 4 23:00:07 2013 +0000
-    Log: daily update
-
-*) gdb master
-    cvs -z 9 -d :pserver:anoncvs@sourceware.org:/cvs/src co -P gdb
-    git://sourceware.org/git/gdb.git
-
-    diff -urN -x CVS -x .git git/gdb cvs/gdb | diffstat
-
-    commit 42dbab03cc4e3c697430efba7936cc65b99c20f9
-    Author: Alan Modra <amodra@bigpond.net.au>
-    Date:   Fri Jan 4 23:00:07 2013 +0000
-    Log: daily update
-
-*) make-3.8.2
+*) make 3.8.2
 http://ftp.gnu.org/gnu/make/make-3.82.tar.gz
 
-*) gmp-5.0.5
-http://ftp.gnu.org/gnu/gmp/gmp-5.0.5.tar.xz
-ftp://ftp.gmplib.org/pub/gmp-5.0.5/gmp-5.0.5.tar.xz
+*) gmp 5.1.2
+ftp://ftp.gmplib.org/pub/gmp-5.1.2/gmp-5.1.2.tar.xz
+http://ftp.gnu.org/gnu/gmp/gmp-5.1.2.tar.xz
 
-*) mpfr-3.1.1
-http://www.mpfr.org/mpfr-3.1.1/mpfr-3.1.1.tar.xz
+*) mpfr 3.1.2
+http://www.mpfr.org/mpfr-current/mpfr-3.1.2.tar.xz
 
-*) mpc-1.0.1
+*) mpc 1.0.1
 http://www.multiprecision.org/mpc/download/mpc-1.0.1.tar.gz
 
 *) cloog (CLOOG_VERSION_MAJOR == 0 && CLOOG_VERSION_MINOR == 16 && CLOOG_VERSION_REVISION >= 1)

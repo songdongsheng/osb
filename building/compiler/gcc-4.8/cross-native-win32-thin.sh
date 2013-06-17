@@ -7,8 +7,8 @@
 # sudo apt-get install texinfo libgmp-dev libmpfr-dev libmpc-dev libexpat1-dev zlib1g-dev
 #
 
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_7-branch
-export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/stable/v2.x
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
+export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/trunk
 
 export GCC_DATE_STR=`cat ${GCC_SRC_ROOT}/gcc/DATESTAMP`
 export GCC_BASE_VER=`cat ${GCC_SRC_ROOT}/gcc/BASE-VER`
@@ -50,6 +50,8 @@ install -m 0755 -t ${SYS_ROOT}/bin zlib1.dll
 install -m 0644 -t ${SYS_3RD_ROOT}/include zconf.h zlib.h
 install -m 0644 -T zlib1.dll ${SYS_3RD_ROOT}/lib/libz.dll.a
 
+logger -t ${LOGGER_TAG} -s "Build zlib success"
+
 ################ expat ################
 cd  ${EXPAT_SRC_ROOT}/lib
 
@@ -65,6 +67,8 @@ ${TARGET_TRIPLET}-gcc -DCOMPILED_FROM_DSP -DXML_ATTR_INFO -O2 -flto -s -shared -
 install -m 0755 -t ${SYS_ROOT}/bin expat.dll
 install -m 0644 -t ${SYS_3RD_ROOT}/include expat_external.h expat.h
 install -m 0644 -T expat.dll ${SYS_3RD_ROOT}/lib/libexpat.dll.a
+
+logger -t ${LOGGER_TAG} -s "Build expat success"
 
 ################ gmp ################
 rm -fr ${OBJ_ROOT}/gmp
@@ -123,7 +127,7 @@ mkdir -p ${OBJ_ROOT}/make
 cd  ${OBJ_ROOT}/make
 
 ${MAKE_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
-    --host=${TARGET_TRIPLET} --build=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
     --disable-nls
 
 make -j${NR_JOBS} ; make install-strip
@@ -141,7 +145,7 @@ cd  ${OBJ_ROOT}/gdb
 CFLAGS="-I${SYS_3RD_ROOT}/include" \
 LDFLAGS="-L${SYS_3RD_ROOT}/lib" \
 ${GDB_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
-    --host=${TARGET_TRIPLET} --build=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
     --disable-nls
 
 make -j${NR_JOBS} ; make install
@@ -188,8 +192,7 @@ mkdir -p ${OBJ_ROOT}/mingw-w64-crt
 cd  ${OBJ_ROOT}/mingw-w64-crt
 
 ${MINGW_W64_SRC_ROOT}/mingw-w64-crt/configure --prefix=${SYS_ROOT} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --enable-lib32 --enable-lib64 \
-    --enable-wildcard
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --enable-wildcard
 
 make -j${NR_JOBS}; make install
 if [ $? -ne 0 ]; then
@@ -207,7 +210,7 @@ ${GCC_SRC_ROOT}/configure \
     --prefix=${SYS_ROOT} \
     --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --enable-targets=all --disable-nls --disable-win32-registry \
+    --disable-multilib --disable-nls --disable-win32-registry \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --with-arch=x86-64 --with-tune=generic --with-fpmath=sse \
     --with-gmp=${SYS_3RD_ROOT} --with-mpfr=${SYS_3RD_ROOT} --with-mpc=${SYS_3RD_ROOT}

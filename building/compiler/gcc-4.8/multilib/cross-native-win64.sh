@@ -127,7 +127,7 @@ mkdir -p ${OBJ_ROOT}/make
 cd  ${OBJ_ROOT}/make
 
 ${MAKE_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
-    --host=${TARGET_TRIPLET} --build=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
     --disable-nls
 
 make -j${NR_JOBS} ; make install-strip
@@ -145,7 +145,7 @@ cd  ${OBJ_ROOT}/gdb
 CFLAGS="-I${SYS_3RD_ROOT}/include" \
 LDFLAGS="-L${SYS_3RD_ROOT}/lib" \
 ${GDB_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
-    --host=${TARGET_TRIPLET} --build=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
     --disable-nls
 
 make -j${NR_JOBS} ; make install
