@@ -7,8 +7,8 @@
 # sudo apt-get install texinfo libgmp-dev libmpfr-dev libmpc-dev libexpat1-dev zlib1g-dev
 #
 
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_7-branch
-export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/stable/v2.x
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
+export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/trunk
 
 export GCC_DATE_STR=`cat ${GCC_SRC_ROOT}/gcc/DATESTAMP`
 export GCC_BASE_VER=`cat ${GCC_SRC_ROOT}/gcc/BASE-VER`
@@ -50,6 +50,8 @@ install -m 0755 -t ${SYS_ROOT}/bin zlib1.dll
 install -m 0644 -t ${SYS_3RD_ROOT}/include zconf.h zlib.h
 install -m 0644 -T zlib1.dll ${SYS_3RD_ROOT}/lib/libz.dll.a
 
+logger -t ${LOGGER_TAG} -s "Build zlib success"
+
 ################ expat ################
 cd  ${EXPAT_SRC_ROOT}/lib
 
@@ -65,6 +67,8 @@ ${TARGET_TRIPLET}-gcc -DCOMPILED_FROM_DSP -DXML_ATTR_INFO -O2 -flto -s -shared -
 install -m 0755 -t ${SYS_ROOT}/bin expat.dll
 install -m 0644 -t ${SYS_3RD_ROOT}/include expat_external.h expat.h
 install -m 0644 -T expat.dll ${SYS_3RD_ROOT}/lib/libexpat.dll.a
+
+logger -t ${LOGGER_TAG} -s "Build expat success"
 
 ################ gmp ################
 rm -fr ${OBJ_ROOT}/gmp
