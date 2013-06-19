@@ -64,12 +64,12 @@ export GMP_SOURCE_DIR=${HOME}/src/gmp-5.0.5
 export MPFR_SOURCE_DIR=${HOME}/src/mpfr-3.1.1
 export MPC_SOURCE_DIR=${HOME}/src/mpc-1.0.1
 
-# GCC 4.7 –Ë“™ ClooG 0.16.1+ (CLOOG_VERSION_MAJOR == 0 &&  CLOOG_VERSION_MINOR == 16 && CLOOG_VERSION_REVISION >= 1)
-# GCC 4.7 –Ë“™ ppl 0.11+ (PPL_VERSION_MAJOR == 0 &&  PPL_VERSION_MINOR >= 11)
+# GCC 4.7 ÈúÄË¶Å ClooG 0.16.1+ (CLOOG_VERSION_MAJOR == 0 &&  CLOOG_VERSION_MINOR == 16 && CLOOG_VERSION_REVISION >= 1)
+# GCC 4.7 ÈúÄË¶Å ppl 0.11+ (PPL_VERSION_MAJOR == 0 &&  PPL_VERSION_MINOR >= 11)
 
 
-# GCC 4.8 –Ë“™ ClooG 0.17.0+ (CLOOG_VERSION_MAJOR == 0 &&  CLOOG_VERSION_MINOR == 17 && CLOOG_VERSION_REVISION >= 0)
-# GCC 4.8 –Ë“™ ISL 0.10.0+ (#include <isl/version.h>; strncmp (isl_version (), "isl-0.10", strlen ("isl-0.10")) == 0)
+# GCC 4.8 ÈúÄË¶Å ClooG 0.17.0+ (CLOOG_VERSION_MAJOR == 0 &&  CLOOG_VERSION_MINOR == 17 && CLOOG_VERSION_REVISION >= 0)
+# GCC 4.8 ÈúÄË¶Å ISL 0.10.0+ (#include <isl/version.h>; strncmp (isl_version (), "isl-0.10", strlen ("isl-0.10")) == 0)
 export PPL_SOURCE_DIR=${HOME}/src/ppl-0.12.1
 export CLOOG_SOURCE_DIR=${HOME}/src/cloog-0.16.3
 
@@ -136,7 +136,7 @@ cd ${CROSS_OBJ_ROOT}/gcc
 
 ${GCC_SOURCE_DIR}/configure --prefix=${CROSS_PREFIX} --with-sysroot=${CROSS_PREFIX} \
     --build=${BUILD_TRIPLET} --host=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} --enable-targets=all \
-    --with-arch=x86-64 --with-tune=generic --with-fpmath=sse \
+    --with-fpmath=sse \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --with-ppl=${HOME}/gcc-preq/ppl-0.12 --with-cloog=${HOME}/gcc-preq/cloog-0.16 --enable-cloog-backend=isl
 
@@ -285,7 +285,7 @@ cd ${NATIVE_OBJ_ROOT}/gcc
 
 ${GCC_SOURCE_DIR}/configure --prefix=${NATIVE_PREFIX} --with-sysroot=${NATIVE_PREFIX} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} --enable-targets=all \
-    --with-arch=x86-64 --with-tune=generic --with-fpmath=sse \
+    --with-fpmath=sse \
     --enable-checking=release --enable-languages=c,c++,fortran --disable-win32-registry \
     --with-gmp=${HOME}/gcc-preq-w64/gmp-5.0 --with-mpfr=${HOME}/gcc-preq-w64/mpfr-3.1 --with-mpc=${HOME}/gcc-preq-w64/mpc-1.0 \
     --with-ppl=${HOME}/gcc-preq-w64/ppl-0.12 --with-cloog=${HOME}/gcc-preq-w64/cloog-0.16 \

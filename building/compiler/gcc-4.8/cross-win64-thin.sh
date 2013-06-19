@@ -37,7 +37,7 @@ cd  ${OBJ_ROOT}/binutils
 
 ${BINUTILS_SRC_ROOT}/configure --prefix=${SYS_ROOT} --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} \
-    --enable-targets=x86_64-w64-mingw32,i686-w64-mingw32 --disable-nls
+    --disable-multilib --disable-nls
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then
@@ -68,7 +68,7 @@ ${GCC_SRC_ROOT}/configure \
     --build=${BUILD_TRIPLET} --host=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} \
     --disable-multilib --disable-nls \
     --enable-checking=release --enable-languages=c,c++,fortran \
-    --with-arch=x86-64 --with-tune=generic --with-fpmath=sse
+    --with-fpmath=sse
 
 make -j${NR_JOBS} all-gcc; make install-gcc
 if [ $? -ne 0 ]; then
@@ -83,7 +83,7 @@ mkdir -p ${OBJ_ROOT}/mingw-w64-crt
 cd  ${OBJ_ROOT}/mingw-w64-crt
 
 ${MINGW_W64_SRC_ROOT}/mingw-w64-crt/configure --prefix=${SYS_ROOT}/${TARGET_TRIPLET} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --enable-wildcard
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --disable-lib32 --enable-wildcard
 
 make -j${NR_JOBS}; make install
 if [ $? -ne 0 ]; then

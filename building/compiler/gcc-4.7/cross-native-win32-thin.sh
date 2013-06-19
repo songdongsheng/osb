@@ -192,7 +192,7 @@ mkdir -p ${OBJ_ROOT}/mingw-w64-crt
 cd  ${OBJ_ROOT}/mingw-w64-crt
 
 ${MINGW_W64_SRC_ROOT}/mingw-w64-crt/configure --prefix=${SYS_ROOT} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --enable-wildcard
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --disable-lib64 --enable-wildcard
 
 make -j${NR_JOBS}; make install
 if [ $? -ne 0 ]; then
@@ -210,7 +210,7 @@ ${GCC_SRC_ROOT}/configure \
     --prefix=${SYS_ROOT} \
     --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --disable-nls --disable-win32-registry \
+    --disable-multilib --disable-nls --disable-win32-registry \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --with-fpmath=sse \
     --with-gmp=${SYS_3RD_ROOT} --with-mpfr=${SYS_3RD_ROOT} --with-mpc=${SYS_3RD_ROOT}
