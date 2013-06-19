@@ -4,7 +4,7 @@
 # lib32_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 # lib64_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 #
-# sudo apt-get install texinfo libgmp-dev libmpfr-dev libmpc-dev libexpat1-dev zlib1g-dev
+# sudo apt-get install texinfo libgmp-dev libmpfr-dev libmpc-dev libexpat1-dev zlib1g-dev libcloog-isl-dev
 #
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
@@ -225,7 +225,7 @@ logger -t ${LOGGER_TAG} -s "Build gcc success"
 logger -t ${LOGGER_TAG} -s "Build finished"
 
 ################ package ################
-install -m 0644 ${SYS_3RD_ROOT}/bin/*.dll ${SYS_ROOT}/bin/
+install -m 0755 ${SYS_3RD_ROOT}/bin/*.dll ${SYS_ROOT}/bin/
 
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/gmake.exe
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/mingw32-make.exe

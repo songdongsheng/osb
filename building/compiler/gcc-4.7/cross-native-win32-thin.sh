@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# <prefix>-dlltool moldname-msvcrt.def -U --dllname msvcr90.dll
+# <prefix>-dlltool moldname-msvcrt.def -U --dllname msvcr100.dll
 # lib32_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 # lib64_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 #
@@ -24,18 +24,18 @@ export MAKE_SRC_ROOT=${HOME}/src/make-3.82
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
-export TARGET_TRIPLET=x86_64-w64-mingw32
-export LOGGER_TAG=native-win64-gcc47
-export SYS_ROOT=${HOME}/native/gcc-4.7-win64
-export SYS_3RD_ROOT=${HOME}/native/gcc-4.7-win64-3rd
-export OBJ_ROOT=${HOME}/obj/native/gcc-4.7-win64
-export PATH=${HOME}/cross/x86_64-windows-gcc47/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export TARGET_TRIPLET=i686-w64-mingw32
+export LOGGER_TAG=native-win32-gcc47
+export SYS_ROOT=${HOME}/native/gcc-4.7-win32
+export SYS_3RD_ROOT=${HOME}/native/gcc-4.7-win32-3rd
+export OBJ_ROOT=${HOME}/obj/native/gcc-4.7-win32
+export PATH=${HOME}/cross/i686-windows-gcc47/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 ################ cleanup ################
 rm -fr ${SYS_ROOT} ${OBJ_ROOT} ${SYS_3RD_ROOT}
 
-mkdir -p ${SYS_ROOT}/bin/32 ${SYS_ROOT}/${TARGET_TRIPLET} ${SYS_3RD_ROOT}/lib ${SYS_3RD_ROOT}/include
+mkdir -p ${SYS_ROOT}/bin ${SYS_ROOT}/${TARGET_TRIPLET} ${SYS_3RD_ROOT}/lib ${SYS_3RD_ROOT}/include
 cd ${SYS_ROOT} ; ln -s ${TARGET_TRIPLET} mingw
 
 ################ zlib ################
@@ -166,7 +166,7 @@ CFLAGS="-I${SYS_3RD_ROOT}/include" \
 LDFLAGS="-L${SYS_3RD_ROOT}/lib" \
 ${BINUTILS_SRC_ROOT}/configure --prefix=${SYS_ROOT} --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --enable-targets=x86_64-w64-mingw32,i686-w64-mingw32 --disable-nls
+    --disable-multilib --disable-nls
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then
@@ -192,8 +192,7 @@ mkdir -p ${OBJ_ROOT}/mingw-w64-crt
 cd  ${OBJ_ROOT}/mingw-w64-crt
 
 ${MINGW_W64_SRC_ROOT}/mingw-w64-crt/configure --prefix=${SYS_ROOT} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --enable-lib32 --enable-lib64 \
-    --enable-wildcard
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --enable-wildcard
 
 make -j${NR_JOBS}; make install
 if [ $? -ne 0 ]; then
@@ -211,9 +210,9 @@ ${GCC_SRC_ROOT}/configure \
     --prefix=${SYS_ROOT} \
     --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --enable-targets=all --disable-nls --disable-win32-registry \
+    --disable-nls --disable-win32-registry \
     --enable-checking=release --enable-languages=c,c++,fortran \
-    --with-arch=x86-64 --with-tune=generic --with-fpmath=sse \
+    --with-fpmath=sse \
     --with-gmp=${SYS_3RD_ROOT} --with-mpfr=${SYS_3RD_ROOT} --with-mpc=${SYS_3RD_ROOT}
 
 make -j${NR_JOBS} ; make install-strip
@@ -231,14 +230,7 @@ install -m 0755 ${SYS_3RD_ROOT}/bin/*.dll ${SYS_ROOT}/bin/
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/gmake.exe
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/mingw32-make.exe
 
-rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.exe ${SYS_ROOT}/lib/libgcc_s_sjlj-1.dll ${SYS_ROOT}/lib32/libgcc_s_sjlj-1.dll
-
-/bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libgcc/32/shlib/libgcc_s_sjlj-1.dll      \
-        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libgfortran/.libs/libgfortran-3.dll      \
-        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libquadmath/.libs/libquadmath-0.dll      \
-        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libssp/.libs/libssp-0.dll                \
-        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libstdc++-v3/src/.libs/libstdc++-6.dll   ${SYS_ROOT}/bin/32/
-#       ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libgomp/.libs/libgomp-1.dll              ${SYS_ROOT}/bin/32/
+rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.exe ${SYS_ROOT}/lib/libgcc_s_sjlj-1.dll
 
 /bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgcc/shlib/libgcc_s_sjlj-1.dll            \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgfortran/.libs/libgfortran-3.dll         \
@@ -250,7 +242,6 @@ rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.ex
 ${TARGET_TRIPLET}-strip \
     ${SYS_ROOT}/bin/*.exe \
     ${SYS_ROOT}/bin/*.dll \
-    ${SYS_ROOT}/bin/32/*.dll \
     ${SYS_ROOT}/${TARGET_TRIPLET}/bin/*.exe \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.exe \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.dll
