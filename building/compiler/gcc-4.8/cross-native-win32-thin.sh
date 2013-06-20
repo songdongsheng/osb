@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# <prefix>-dlltool moldname-msvcrt.def -U --dllname msvcr90.dll
+# <prefix>-dlltool moldname-msvcrt.def -U --dllname msvcr100.dll
 # lib32_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 # lib64_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 #
@@ -35,7 +35,7 @@ logger -t ${LOGGER_TAG} -s "Build started"
 ################ cleanup ################
 rm -fr ${SYS_ROOT} ${OBJ_ROOT} ${SYS_3RD_ROOT}
 
-mkdir -p ${SYS_ROOT}/bin/ ${SYS_ROOT}/${TARGET_TRIPLET} ${SYS_3RD_ROOT}/lib ${SYS_3RD_ROOT}/include
+mkdir -p ${SYS_ROOT}/bin ${SYS_ROOT}/${TARGET_TRIPLET} ${SYS_3RD_ROOT}/lib ${SYS_3RD_ROOT}/include
 cd ${SYS_ROOT} ; ln -s ${TARGET_TRIPLET} mingw
 
 ################ zlib ################
