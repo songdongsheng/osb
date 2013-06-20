@@ -15,9 +15,6 @@ export GCC_BASE_VER=`cat ${GCC_SRC_ROOT}/gcc/BASE-VER`
 
 export ZLIB_SRC_ROOT=${HOME}/src/zlib-1.2.8
 export EXPAT_SRC_ROOT=${HOME}/src/expat-2.1.0
-export GMP_SRC_ROOT=${HOME}/src/gmp-5.1.2
-export MPFR_SRC_ROOT=${HOME}/src/mpfr-3.1.2
-export MPC_SRC_ROOT=${HOME}/src/mpc-1.0.1
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.23.2
 export GDB_SRC_ROOT=${HOME}/src/gdb-7.6
 export MAKE_SRC_ROOT=${HOME}/src/make-3.82
@@ -69,57 +66,6 @@ install -m 0644 -t ${SYS_3RD_ROOT}/include expat_external.h expat.h
 install -m 0644 -T expat.dll ${SYS_3RD_ROOT}/lib/libexpat.dll.a
 
 logger -t ${LOGGER_TAG} -s "Build expat success"
-
-################ gmp ################
-rm -fr ${OBJ_ROOT}/gmp
-mkdir -p ${OBJ_ROOT}/gmp
-cd  ${OBJ_ROOT}/gmp
-
-${GMP_SRC_ROOT}/configure --prefix=${SYS_3RD_ROOT} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
-    --enable-cxx --disable-static --enable-shared
-
-make -j${NR_JOBS} ; make install-strip
-if [ $? -ne 0 ]; then
-    logger -t ${LOGGER_TAG} -s "Build gmp failed"
-    exit 1
-fi
-logger -t ${LOGGER_TAG} -s "Build gmp success"
-
-################ mpfr ################
-rm -fr ${OBJ_ROOT}/mpfr
-mkdir -p ${OBJ_ROOT}/mpfr
-cd  ${OBJ_ROOT}/mpfr
-
-${MPFR_SRC_ROOT}/configure --prefix=${SYS_3RD_ROOT} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
-    --disable-static --enable-shared \
-    --with-gmp=${SYS_3RD_ROOT}
-
-make -j${NR_JOBS} ; make install-strip
-if [ $? -ne 0 ]; then
-    logger -t ${LOGGER_TAG} -s "Build mpfr failed"
-    exit 1
-fi
-logger -t ${LOGGER_TAG} -s "Build mpfr success"
-
-################ mpc ################
-rm -fr ${OBJ_ROOT}/mpc
-mkdir -p ${OBJ_ROOT}/mpc
-cd  ${OBJ_ROOT}/mpc
-
-${MPC_SRC_ROOT}/configure --prefix=${SYS_3RD_ROOT} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
-    --disable-static --enable-shared \
-    --with-gmp=${SYS_3RD_ROOT} \
-    --with-mpfr=${SYS_3RD_ROOT}
-
-make -j${NR_JOBS} ; make install-strip
-if [ $? -ne 0 ]; then
-    logger -t ${LOGGER_TAG} -s "Build mpc failed"
-    exit 1
-fi
-logger -t ${LOGGER_TAG} -s "Build mpc success"
 
 ################ make ################
 rm -fr ${OBJ_ROOT}/make
@@ -212,8 +158,7 @@ ${GCC_SRC_ROOT}/configure \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
     --disable-multilib --disable-nls --disable-win32-registry \
     --enable-checking=release --enable-languages=c,c++,fortran \
-    --with-arch=core2 --with-tune=generic \
-    --with-gmp=${SYS_3RD_ROOT} --with-mpfr=${SYS_3RD_ROOT} --with-mpc=${SYS_3RD_ROOT}
+    --with-arch=core2 --with-tune=generic
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then
@@ -230,9 +175,9 @@ install -m 0755 ${SYS_3RD_ROOT}/bin/*.dll ${SYS_ROOT}/bin/
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/gmake.exe
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/mingw32-make.exe
 
-rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.exe ${SYS_ROOT}/lib/libgcc_s_sjlj-1.dll
+rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.exe ${SYS_ROOT}/lib/libgcc_s_seh-1.dll
 
-/bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgcc/shlib/libgcc_s_sjlj-1.dll            \
+/bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgcc/shlib/libgcc_s_seh-1.dll             \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgfortran/.libs/libgfortran-3.dll         \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libquadmath/.libs/libquadmath-0.dll         \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libssp/.libs/libssp-0.dll                   \
