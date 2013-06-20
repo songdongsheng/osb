@@ -180,7 +180,7 @@ rm -fr ${OBJ_ROOT}/mingw-w64-header
 mkdir -p ${OBJ_ROOT}/mingw-w64-header
 cd  ${OBJ_ROOT}/mingw-w64-header
 
-${MINGW_W64_SRC_ROOT}/mingw-w64-headers/configure --prefix=${SYS_ROOT} \
+${MINGW_W64_SRC_ROOT}/mingw-w64-headers/configure --prefix=${SYS_ROOT}/${TARGET_TRIPLET} \
     --host=${TARGET_TRIPLET} --enable-sdk=all
 
 make install
@@ -191,7 +191,7 @@ rm -fr ${OBJ_ROOT}/mingw-w64-crt
 mkdir -p ${OBJ_ROOT}/mingw-w64-crt
 cd  ${OBJ_ROOT}/mingw-w64-crt
 
-${MINGW_W64_SRC_ROOT}/mingw-w64-crt/configure --prefix=${SYS_ROOT} \
+${MINGW_W64_SRC_ROOT}/mingw-w64-crt/configure --prefix=${SYS_ROOT}/${TARGET_TRIPLET} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --enable-lib32 --enable-lib64 \
     --enable-wildcard
 
