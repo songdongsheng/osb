@@ -136,7 +136,7 @@ cd ${CROSS_OBJ_ROOT}/gcc
 
 ${GCC_SOURCE_DIR}/configure --prefix=${CROSS_PREFIX} --with-sysroot=${CROSS_PREFIX} \
     --build=${BUILD_TRIPLET} --host=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} --enable-targets=all \
-    --with-fpmath=sse \
+    --with-arch-64=core2 --with-arch-32=i686 --with-tune=generic \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --with-ppl=${HOME}/gcc-preq/ppl-0.12 --with-cloog=${HOME}/gcc-preq/cloog-0.16 --enable-cloog-backend=isl
 
@@ -286,7 +286,7 @@ cd ${NATIVE_OBJ_ROOT}/gcc
 
 ${GCC_SOURCE_DIR}/configure --prefix=${NATIVE_PREFIX} --with-sysroot=${NATIVE_PREFIX} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} --enable-targets=all \
-    --with-fpmath=sse \
+    --with-arch-64=core2 --with-arch-32=i686 --with-tune=generic \
     --enable-checking=release --enable-languages=c,c++,fortran --disable-win32-registry \
     --with-gmp=${HOME}/gcc-preq-w32/gmp-5.0 --with-mpfr=${HOME}/gcc-preq-w32/mpfr-3.1 --with-mpc=${HOME}/gcc-preq-w32/mpc-1.0 \
     --with-ppl=${HOME}/gcc-preq-w32/ppl-0.12 --with-cloog=${HOME}/gcc-preq-w32/cloog-0.16 \

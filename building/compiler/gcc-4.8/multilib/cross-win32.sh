@@ -67,7 +67,7 @@ ${GCC_SRC_ROOT}/configure \
     --build=${BUILD_TRIPLET} --host=${BUILD_TRIPLET} --target=${TARGET_TRIPLET} \
     --enable-targets=all --disable-nls \
     --enable-checking=release --enable-languages=c,c++,fortran \
-    --with-fpmath=sse
+    --with-arch-64=core2 --with-arch-32=i686 --with-tune=generic
 
 make -j${NR_JOBS} all-gcc; make install-gcc
 if [ $? -ne 0 ]; then
