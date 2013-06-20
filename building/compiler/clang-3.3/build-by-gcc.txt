@@ -19,22 +19,21 @@ COMPILER_RT_SRC_DIR=$LLVM_SRC_DIR/projects/compiler-rt
 LLDB_SRC_DIR=$LLVM_SRC_DIR/tools/lldb
 POLLY_SRC_DIR=$LLVM_SRC_DIR/tools/polly
 
-SET PATH=C:\opt\python-2.7;C:\opt\cmake-2.8-win32\bin;C:\opt\gcc-4.7-win32\bin;C:\var\gnuwin32\bin;C:\opt\shell.w32-ix86
-SET PATH=C:\opt\python-2.7;C:\opt\cmake-2.8-win32\bin;C:\opt\gcc-4.7-win64\bin;C:\var\gnuwin32\bin;C:\opt\shell.w32-ix86
+SET PATH=C:\opt\python-2.7;C:\opt\cmake-2.8-win32\bin;C:\opt\gcc-4.8-win32\bin;C:\var\gnuwin32\bin
+
+SET PATH=C:\opt\python-2.7;C:\opt\cmake-2.8-win32\bin;C:\opt\gcc-4.8-win64\bin;C:\var\gnuwin32\bin
+
 SET LIT_USE_INTERNAL_SHELL=1
 
 *) mingw32-make.exe
 cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="ARM;CppBackend;PowerPC;Sparc;X86" -DCMAKE_PREFIX_PATH=${INSTALL_ROOT_3RD} -DCMAKE_INSTALL_PREFIX=E:/var/tmp ..\llvm-3.3
 
+cd C:\var\building\clang_3.3-gcc_4.8-win32
+
+cd C:\var\building\clang_3.3-gcc_4.8-win64
+
+cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD=X86 ..\llvm-3.3
 mingw32-make VERBOSE=1 ENABLE_OPTIMIZED=1 DISABLE_ASSERTIONS=1 -j4
 
 cpack -G ZIP
-
-*) check-all
-SET PATH=C:\opt\python-2.7;C:\opt\cmake-2.8-win32\bin;C:\opt\gcc-4.7-win32\bin;C:\var\gnuwin32\bin;C:\opt\shell.w32-ix86
-cd C:\var\building\llvm-3.3-win32-gcc47
-mingw32-make -j4 check-all 2>&1 | tee check-all.log
-
-SET PATH=C:\opt\python-2.7;C:\opt\cmake-2.8-win32\bin;C:\opt\gcc-4.7-win64\bin;C:\var\gnuwin32\bin;C:\opt\shell.w32-ix86
-cd C:\var\building\llvm-3.3-win64-gcc47
 mingw32-make -j4 check-all 2>&1 | tee check-all.log
