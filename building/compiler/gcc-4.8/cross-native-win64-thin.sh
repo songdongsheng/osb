@@ -170,8 +170,6 @@ logger -t ${LOGGER_TAG} -s "Build gcc success"
 logger -t ${LOGGER_TAG} -s "Build finished"
 
 ################ package ################
-install -m 0755 ${SYS_3RD_ROOT}/bin/*.dll ${SYS_ROOT}/bin/
-
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/gmake.exe
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/mingw32-make.exe
 
