@@ -1,7 +1,8 @@
 #!/bin/sh
 #
 # aarch64-linux-gcc -dM -E -  < /dev/null
-# path/to/src/configure --prefix=/tmp/aarch64-linux --host=aarch64-linux --disable-nls
+# aarch64-linux-gcc -Werror -fstack-protector -xc /dev/null -S -o /dev/null
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=aarch64-linux --prefix=/tmp/aarch64-linux --disable-nls
 #
 
 export KERNEL_SRC_ROOT=${HOME}/vcs/git/linux

@@ -2,7 +2,7 @@
 #
 # powerpc64-linux-gcc -dM -E -  < /dev/null
 # powerpc64-linux-gcc -Werror -fstack-protector -xc /dev/null -S -o /dev/null
-# path/to/src/configure --prefix=/tmp/powerpc64-linux --host=powerpc64-linux --disable-nls
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=powerpc64-linux --prefix=/tmp/powerpc64-linux --disable-nls
 #
 
 export KERNEL_SRC_ROOT=${HOME}/vcs/git/linux

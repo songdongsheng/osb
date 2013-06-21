@@ -2,7 +2,7 @@
 #
 # sparc64-linux-gcc -dM -E -  < /dev/null
 # sparc64-linux-gcc  -Werror -fstack-protector -xc /dev/null -S -o /dev/null
-# path/to/src/configure --prefix=/tmp/sparc64-linux --host=sparc64-linux --disable-nls
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=sparc64-linux --prefix=/tmp/sparc64-linux --disable-nls
 #
 
 export KERNEL_SRC_ROOT=${HOME}/vcs/git/linux

@@ -3,6 +3,10 @@
 # gcc -mfloat-abi=hard      -march=armv7-a      -mfpu=neon           -mthumb
 #    --with-float=hard --with-arch=armv7-a --with-fpu=neon --with-mode=thumb
 #
+# arm-linux-gnueabihf-gcc -dM -E -  < /dev/null
+# arm-linux-gnueabihf-gcc -Werror -fstack-protector -xc /dev/null -S -o /dev/null
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=arm-linux-gnueabihf --prefix=/tmp/arm-linux-gnueabihf --disable-nls
+#
 
 export KERNEL_SRC_ROOT=${HOME}/vcs/git/linux
 export EGLIBC_SRC_ROOT=${HOME}/vcs/svn/eglibc-2.17

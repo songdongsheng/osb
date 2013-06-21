@@ -1,10 +1,16 @@
 #!/bin/sh
 #
-# <prefix>-dlltool moldname-msvcrt.def -U --dllname msvcr90.dll
+# <prefix>-dlltool moldname-msvcrt.def -U --dllname msvcr100.dll
 # lib32_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 # lib64_libmoldname_a_AR = $(DTDEF32) $(top_srcdir)/lib32/moldname-msvcrt.def -U --dllname msvcrt.dll && $(AR) $(ARFLAGS)
 #
-# sudo apt-get install texinfo libgmp-dev libmpfr-dev libmpc-dev libexpat1-dev zlib1g-dev libcloog-isl-dev
+# sudo apt-get install texinfo libexpat1-dev zlib1g-dev
+#
+# x86_64-w64-mingw32-gcc     -dM -E -  < /dev/null
+# x86_64-w64-mingw32-gcc     -x c -shared -s -o t-w64.dll - < /dev/null
+# x86_64-w64-mingw32-objdump -x t-w64.dll | grep -A 25 "The Export Tables"
+#
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/x86_64-w64-mingw32 --disable-nls
 #
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
