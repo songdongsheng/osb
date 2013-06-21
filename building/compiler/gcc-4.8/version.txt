@@ -1,9 +1,9 @@
 *) gcc-4_8-branch
 $ svn log -r COMMITTED gcc/branches/gcc-4_8-branch
 ------------------------------------------------------------------------
-r200143 | gccadmin | 2013-06-17 08:16:36 +0800 (Mon, 17 Jun 2013) | 1 line
+r200281 | ian | 2013-06-21 08:30:05 +0800 (Fri, 21 Jun 2013) | 2 lines
 
-Daily bump.
+compiler: Really only make descriptors when needed.
 ------------------------------------------------------------------------
 
 *) mingw-w64/trunk
@@ -38,3 +38,6 @@ http://www.bastoul.net/cloog/pages/download/cloog-0.18.0.tar.gz
 
 * isl (strncmp (isl_version (), "isl-0.11", strlen ("isl-0.11")) == 0)
 ftp://ftp.linux.student.kuleuven.be/pub/people/skimo/isl/isl-0.11.2.tar.bz2
+
+$ grep ^host_libs gcc-4_8-branch/configure
+host_libs="intl libiberty opcodes bfd readline tcl tk itcl libgui zlib libbacktrace libcpp libdecnumber gmp mpfr mpc isl cloog libelf libiconv"
