@@ -1,0 +1,14 @@
+$ svn diff eglibc-2_17/libc/configure
+Index: eglibc-2_17/libc/configure
+===================================================================
+--- eglibc-2_17/libc/configure  (revision 23342)
++++ eglibc-2_17/libc/configure  (working copy)
+@@ -6753,7 +6753,7 @@
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; }; then :
+-  libc_cv_ssp=yes
++  libc_cv_ssp=no
+ else
+   libc_cv_ssp=no
+ fi
