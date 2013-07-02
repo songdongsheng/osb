@@ -1,0 +1,19 @@
+/*
+    dot build-gnupg.dot -T pdf -o build-gnupg.pdf
+    dot build-gnupg.dot -T svg -o build-gnupg.svg
+ */
+digraph "gnupg dependency graph" {
+    zlib -> gnupg;
+    bzip2 -> gnupg;
+    curl -> gnupg;
+
+    libgcrypt -> gnupg;
+    libassuan -> gnupg;
+    libpth -> gnupg;
+    libksba -> gnupg;
+    "libgpg-error" -> gnupg;
+
+    "libgpg-error" -> libgcrypt;
+    "libgpg-error" -> libassuan;
+    "libgpg-error" -> libksba;
+}
