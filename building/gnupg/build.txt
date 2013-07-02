@@ -1,0 +1,15 @@
+git clone git://git.gnupg.org/gnupg.git
+
+gpg --debug 15 --expert --gen-key
+gpg --list-keys
+
+gpg -a -o EAEA5E38-sec.asc --export-secret-key EAEA5E38
+gpg -a -o EAEA5E38-rev.asc --gen-revoke EAEA5E38
+gpg -a -o EAEA5E38-rev.asc --export EAEA5E38
+
+ssh-keygen -t ecdsa -b 521 -C ssh57-key-ecc-521bit -f id_ecdsa
+ssh-keygen -t rsa -b 4096 -C cauchy-ssh-key-rsa-4096bit -f id_rsa
+
+RHEL-6      5.3p1
+Debian-6    5.5p1
+Debian-7    6.0p1
