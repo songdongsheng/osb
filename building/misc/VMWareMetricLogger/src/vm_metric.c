@@ -65,11 +65,9 @@ static void get_isotime(char *buffer)
         st.wHour, st.wMinute, st.wSecond, st.wMilliseconds, -tzi.Bias / 60);
 }
 
-static int read_metric_record(metric_record *record, int number)
+static int read_metric_record(VMGuestLibHandle vmHandle, metric_record *record, int number)
 {
     VMGuestLibError vmError;
-    VMGuestLibHandle vmHandle;
-    VMSessionId vmSessionId;
     unsigned __int32 cpuShares = 0;
     unsigned __int64 elapsedMs = 0;
     unsigned __int64 cpuUsedMs = 0;
@@ -80,29 +78,6 @@ static int read_metric_record(metric_record *record, int number)
 
     if (number != METRIC_NUMBER)
         return -1;
-
-    vmError = VMGuestLib_OpenHandle(&vmHandle);
-    if (vmError != VMGUESTLIB_ERROR_SUCCESS) {
-        log_message(LOG_ERR, 0, 0, "VMGuestLib_OpenHandle failed: %s", VMGuestLib_GetErrorText(vmError));
-        return -1;
-    }
-
-    vmError = VMGuestLib_UpdateInfo(vmHandle);
-    if (vmError != VMGUESTLIB_ERROR_SUCCESS) {
-        log_message(LOG_ERR, 0, 0, "VMGuestLib_UpdateInfo failed: %s", VMGuestLib_GetErrorText(vmError));
-        return -1;
-    }
-
-    vmError = VMGuestLib_GetSessionId(vmHandle, &vmSessionId);
-    if (vmError != VMGUESTLIB_ERROR_SUCCESS) {
-        log_message(LOG_ERR, 0, 0, "VMGuestLib_GetSessionId failed: %s", VMGuestLib_GetErrorText(vmError));
-        return -1;
-    }
-
-    if (vmSessionId == 0) {
-        printf("Error: Got zero sessionId from GuestLib\n");
-        return -1;
-    }
 
     /* cpuShares */
     vmError = VMGuestLib_GetCpuShares(vmHandle, &cpuShares);
@@ -336,7 +311,7 @@ int vmware_metric_fetch_and_save(metric_contex *ctx)
     }
 
     init_metric_record(ctx->curr_record, METRIC_NUMBER, ctx->domain, ctx->host);
-    rc = read_metric_record(ctx->curr_record, METRIC_NUMBER);
+    rc = read_metric_record(ctx->vmHandle, ctx->curr_record, METRIC_NUMBER);
     if (rc != 0 || strlen(ctx->prev_record[0].metric) < 1) {
         xchg_metric_record(&ctx->prev_record, &ctx->curr_record);
         return rc;
