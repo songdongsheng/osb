@@ -1,8 +1,8 @@
-#include <verrsrc.h>
+#include <winver.h>
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,5
- PRODUCTVERSION 1,0,0,5
+ FILEVERSION 1,0,0,6
+ PRODUCTVERSION 1,0,0,6
  FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
 #ifdef _DEBUG
  FILEFLAGS VS_FF_DEBUG
@@ -21,8 +21,8 @@ BEGIN
             VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "ProductName", "VMWare Metric Logger"
             VALUE "FileDescription", "VMWare Metric Logger"
-            VALUE "ProductVersion", "1.0.0.5"
-            VALUE "FileVersion", "1.0.0.5"
+            VALUE "ProductVersion", "1.0.0.6"
+            VALUE "FileVersion", "1.0.0.6"
             VALUE "InternalName", "VMWareMetricLogger.exe"
             VALUE "OriginalFilename", "VMWareMetricLogger.exe"
         END

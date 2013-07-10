@@ -93,6 +93,12 @@ I13U1       78KB        86KB
 signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll VMWareMetricLogger.exe
 signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll /td SHA256 VMWareMetricLogger.exe
 
+========================================================================
+windres -o VMWareMetricLogger.rc.o VMWareMetricLogger.rc
+
+gcc -s -O2 -Wall -Wextra -Wformat=2 -o VMWareMetricLogger.exe -I ..\GuestSDK\include bootstrap.c vm_metric.c target_udp.c VMWareMetricLogger.rc.o  -lws2_32 -lrpcrt4 ..\GuestSDK\lib\win32\vmGuestLib.dll
+
+========================================================================
 msbuild VMWareMetricLogger.sln /t:Rebuild /p:Configuration=Release;Platform=Win32;PlatformToolset="Intel C++ Compiler XE 13.0"
 msbuild VMWareMetricLogger.sln /t:Rebuild /p:Configuration=Release;Platform=x64;PlatformToolset="v100"
 msbuild VMWareMetricLogger.sln /t:Rebuild /p:Configuration=Release;OCIPrefix="E:\opt\oracle\product\11.2\master\OCI";PlatformToolset="Intel C++ Compiler XE 12.1"
@@ -102,6 +108,7 @@ msbuild VMWareMetricLogger.sln /t:Rebuild /p:Configuration=Release;OCIPrefix="E:
 msbuild VMWareMetricLogger.sln /t:Rebuild /p:Configuration=Release;OCIPrefix="E:\opt\oracle\product\11.2\master\OCI";PlatformToolset="Intel C++ Compiler XE 12.1"
 msbuild VMWareMetricLogger.sln /t:Rebuild /p:Configuration=Release;OCIPrefix="E:\opt\oracle\product\11.2\master\OCI";PlatformToolset="WindowsApplicationForDrivers8.0"
 
+========================================================================
 @ECHO OFF
 SETLOCAL EnableDelayedExpansion
 FOR /L %%i IN (22,1,25) DO (

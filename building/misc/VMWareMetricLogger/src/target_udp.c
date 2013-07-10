@@ -9,8 +9,8 @@ static struct {
     char *host;
     char *port;
 } udp_target_list [] = {
- /* {"192.168.30.211", "514"}, */
- /* {"192.168.30.233", "514"}, */
+    {"192.168.30.211", "514"},
+    {"192.168.30.233", "514"},
  /* {"192.168.18.37", "514"}, */
  /* {"192.168.18.38", "514"}, */
     {"192.168.18.74", "514"},
@@ -80,7 +80,7 @@ int udp_target_init(struct target_contex **contex)
         return -1;
     }
 
-    for(i = 0, optlen = 0; i < sizeof(udp_target_list)/sizeof(udp_target_list[0]); i++) {
+    for(i = 0, optlen = 0; i < (int) (sizeof(udp_target_list)/sizeof(udp_target_list[0])); i++) {
         if ((ctx->socket[i] = setup_logger_socket(udp_target_list[i].host, udp_target_list[i].port)) != INVALID_SOCKET) {
             optlen += 1;
             s = ctx->socket[i];

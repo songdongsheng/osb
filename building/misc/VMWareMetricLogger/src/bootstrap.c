@@ -24,7 +24,7 @@ static struct {
 
 HANDLE _log_event_source = NULL;
 
-void setup_event_source();
+static void setup_event_source();
 
 VOID WINAPI SvcCtrlHandler(DWORD);
 VOID WINAPI SvcMain(DWORD, LPSTR *);
@@ -194,7 +194,7 @@ VOID WINAPI SvcMain(DWORD dwArgc, LPSTR *lpszArgv)
         return;
     }
 
-    while(1)
+    for(;;)
     {
         unsigned int t = get_remain_time_as_ms(METRIC_PERIOD);
         /* log_message(LOG_DEBUG, 0, 0, "WaitForSingleObjectEx with %d ms", t); */

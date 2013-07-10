@@ -16,15 +16,16 @@ static void create_uuid(char *buffer)
     UuidCreate(&uuid);
 
     /* f5e1881c-1837-11e2-9254-d3c51bac2aed */
-    sprintf(buffer, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x", uuid.Data1, uuid.Data2, uuid.Data3,
-        uuid.Data4[0], uuid.Data4[1], uuid.Data4[2], uuid.Data4[3], uuid.Data4[4], uuid.Data4[5],
-        uuid.Data4[6], uuid.Data4[7]);
+    sprintf(buffer, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
+        (unsigned int) uuid.Data1, uuid.Data2, uuid.Data3,
+        uuid.Data4[0], uuid.Data4[1], uuid.Data4[2], uuid.Data4[3],
+        uuid.Data4[4], uuid.Data4[5], uuid.Data4[6], uuid.Data4[7]);
 }
 
 /* Number of 100ns-seconds between the beginning of the Windows epoch
 * (Jan. 1, 1601) and the Unix epoch (Jan. 1, 1970)
 */
-#define DELTA_EPOCH_IN_100NS    116444736000000000i64
+#define DELTA_EPOCH_IN_100NS    116444736000000000LL
 #define POW10_7                 10000000
 
 static double get_unixtime()
@@ -62,7 +63,7 @@ static void get_isotime(char *buffer)
     GetLocalTime(&st);
 
     sprintf(buffer, "%04d-%02d-%02dT%02d:%02d:%02d.%03d%+03d00", st.wYear, st.wMonth, st.wDay,
-        st.wHour, st.wMinute, st.wSecond, st.wMilliseconds, -tzi.Bias / 60);
+        st.wHour, st.wMinute, st.wSecond, st.wMilliseconds, (int) (-tzi.Bias / 60));
 }
 
 static int read_metric_record(VMGuestLibHandle vmHandle, metric_record *record, int number)
@@ -202,7 +203,7 @@ static target_action action[] = {
         {"udp", udp_target_init, udp_target_save, udp_target_fini, NULL, 0 },
      /* {"oci", oci_target_init, oci_target_save, oci_target_fini, NULL, 0 }, */
      /* {"odbc", odbc_target_init, odbc_target_save, odbc_target_fini, NULL, 0 }, */
-        {NULL, NULL, NULL, NULL, 0}
+        {NULL, NULL, NULL, NULL, NULL, 0}
 };
 
 int vmware_metric_init(metric_contex **contex, char *domain)
@@ -353,25 +354,25 @@ int vmware_metric_fini(metric_contex **ctx)
     return 0;
 }
 
-
 void log_message(int level, int error, int lasterror, char *format, ...)
 {
     int n, len;
     char buf[512];
-    const char *errarg[] = { buf };
-    const char *errsmall = "!!!-!!! log_message: buffer too small";
+    char *errarg[1];
+    char *errsmall = "!!!-!!! log_message: buffer too small";
     va_list ap;
     WORD wType;
     DWORD dwEventId;
     SYSTEMTIME st;
     TIME_ZONE_INFORMATION tzi;
 
+    errarg[0] = buf;
     GetTimeZoneInformation(&tzi);
     GetLocalTime(&st);
 
     len = _snprintf(buf, sizeof(buf), "[%04d-%02d-%02dT%02d:%02d:%02d.%03d%+03d00]",
         st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, st.wMilliseconds, -tzi.Bias / 60);
-    if (len < 0 || len >= sizeof(buf))
+    if (len < 0 || len >= (int) sizeof(buf))
         goto buffer_small;
 
     if (error == 0 && lasterror == 0) {
@@ -395,7 +396,7 @@ void log_message(int level, int error, int lasterror, char *format, ...)
             n = FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM, NULL, lasterror, 0, buf + len, sizeof(buf) - len, NULL);
             if (n < 1 || n >= (int) sizeof(buf) - len)
                 goto buffer_small;
-            while(1) {
+            for(;;) {
                 char c = buf[len + n - 1];
                 if (c == '\n' || c == '\r')
                     n -= 1;
@@ -443,17 +444,15 @@ report_event:
         dwEventId = MSG_ONE_FMT_ERR;
     }
 
-    ReportEventA(_log_event_source, wType, 0, dwEventId, NULL, 1, 0, errarg, NULL);
+    ReportEventA(_log_event_source, wType, 0, dwEventId, NULL, 1, 0, (const char **) errarg, NULL);
     return;
 
 buffer_small:
-    do {
-        n = strlen(errsmall) + 1;
-        if (n >= sizeof(buf))
-            errarg[0] = errsmall;
-        else
-            memcpy(buf + (sizeof(buf) - n), errsmall, n);
+    n = strlen(errsmall) + 1;
+    if (n >= (int) sizeof(buf))
+        errarg[0] = errsmall;
+    else
+        memcpy(buf + (sizeof(buf) - n), errsmall, n);
 
-        goto report_event;
-    } while(0);
+    goto report_event;
 }
