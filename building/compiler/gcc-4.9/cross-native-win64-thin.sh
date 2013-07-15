@@ -195,4 +195,6 @@ ${TARGET_TRIPLET}-strip \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.exe \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.dll
 
+BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
+source $BASE_DIR/version.sh
 cd ${SYS_ROOT}/.. && bsdtar -c --format 7zip -f `basename ${SYS_ROOT}`_${GCC_BASE_VER}-$GCC_DATE_STR.7z `basename ${SYS_ROOT}`
