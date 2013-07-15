@@ -1,0 +1,6 @@
+gcc-4_8-branch/libgcc/config.host
+    i[34567]86-*-mingw*)
+        tmake_eh_file="i386/t-sjlj-eh"
+
+    x86_64-*-mingw*)
+        tmake_eh_file="i386/t-seh-eh"

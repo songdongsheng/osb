@@ -1,10 +1,20 @@
-/home/cauchy/cross-win32-thin.sh
-/home/cauchy/cross-win64-thin.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.8/cross-win32-thin.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.8/cross-win64-thin.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.8/cross-native-win32-thin.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.8/cross-native-win64-thin.sh
 
-/home/cauchy/cross-arm64.sh
-/home/cauchy/cross-armhf.sh
-/home/cauchy/cross-powerpc64.sh
-/home/cauchy/cross-sparc64.sh
+#/bin/cp ${HOME}/native/gcc-4.8-win32/bin/*.dll ${HOME}/sync/building/binary/windows-x86-gcc-4.8/bin/
+#/bin/cp ${HOME}/native/gcc-4.8-win64/bin/*.dll ${HOME}/sync/building/binary/windows-x64-gcc-4.8/bin/
 
-/home/cauchy/gcc-4.7.x-w32-multilib.sh
-/home/cauchy/gcc-4.7.x-w64-multilib.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.7/cross-win32.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.7/cross-win64.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.7/cross-native-win32-thin.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.7/cross-native-win64-thin.sh
+
+#/bin/cp ${HOME}/native/gcc-4.7-win32/bin/*.dll ${HOME}/sync/building/binary/windows-x86-gcc-4.7/bin/
+#/bin/cp ${HOME}/native/gcc-4.7-win64/bin/*.dll ${HOME}/sync/building/binary/windows-x64-gcc-4.7/bin/
+
+/home/cauchy/sync/building/project/00_compiler/gcc-4.8/cross-arm64.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.8/cross-armhf.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.8/cross-powerpc64.sh
+/home/cauchy/sync/building/project/00_compiler/gcc-4.8/cross-sparc64.sh
