@@ -13,6 +13,7 @@
 # path/to/src/configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/x86_64-w64-mingw32 --disable-nls
 #
 
+export BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/trunk
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/trunk
 
@@ -195,6 +196,5 @@ ${TARGET_TRIPLET}-strip \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.exe \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.dll
 
-BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
-source $BASE_DIR/version.sh "${SYS_ROOT}"
+$BASE_DIR/version.sh "${SYS_ROOT}" "${GCC_SRC_ROOT}" "${MINGW_W64_SRC_ROOT}"
 cd ${SYS_ROOT}/.. && bsdtar -c --format 7zip -f `basename ${SYS_ROOT}`_${GCC_BASE_VER}-$GCC_DATE_STR.7z `basename ${SYS_ROOT}`

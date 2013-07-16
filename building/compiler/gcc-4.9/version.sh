@@ -1,8 +1,8 @@
 #!/bin/sh
 
 export SYS_ROOT=$1
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/trunk
-export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/trunk
+export GCC_SRC_ROOT=$2
+export MINGW_W64_SRC_ROOT=$3
 
 cat << EOF > $SYS_ROOT/version.txt
 WARNING:
