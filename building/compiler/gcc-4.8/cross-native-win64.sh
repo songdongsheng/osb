@@ -6,13 +6,14 @@
 #
 # sudo apt-get install texinfo libexpat1-dev zlib1g-dev
 #
-# i686-w64-mingw32-gcc     -dM -E -  < /dev/null
-# i686-w64-mingw32-gcc     -x c -shared -s -o t-w32.dll - < /dev/null
-# i686-w64-mingw32-objdump -x t-w32.dll | grep -A 25 "The Export Tables"
+# x86_64-w64-mingw32-gcc     -dM -E -  < /dev/null
+# x86_64-w64-mingw32-gcc     -x c -shared -s -o t-w64.dll - < /dev/null
+# x86_64-w64-mingw32-objdump -x t-w64.dll | grep -A 25 "The Export Tables"
 #
-# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=i686-w64-mingw32 --prefix=/tmp/i686-w64-mingw32 --disable-nls
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/x86_64-w64-mingw32 --disable-nls
 #
 
+export BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/trunk
 
@@ -27,18 +28,18 @@ export MAKE_SRC_ROOT=${HOME}/src/make-3.82
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
-export TARGET_TRIPLET=i686-w64-mingw32
-export LOGGER_TAG=native-win32-gcc48
-export SYS_ROOT=${HOME}/native/gcc-4.8-win32
-export SYS_3RD_ROOT=${HOME}/native/gcc-4.8-win32-3rd
-export OBJ_ROOT=${HOME}/obj/native/gcc-4.8-win32
-export PATH=${HOME}/cross/i686-windows-gcc48/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export TARGET_TRIPLET=x86_64-w64-mingw32
+export LOGGER_TAG=native-win64-gcc48
+export SYS_ROOT=${HOME}/native/gcc-4.8-win64
+export SYS_3RD_ROOT=${HOME}/native/gcc-4.8-win64-3rd
+export OBJ_ROOT=${HOME}/obj/native/gcc-4.8-win64
+export PATH=${HOME}/cross/x86_64-windows-gcc48/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 ################ cleanup ################
 rm -fr ${SYS_ROOT} ${OBJ_ROOT} ${SYS_3RD_ROOT}
 
-mkdir -p ${SYS_ROOT}/bin/64 ${SYS_ROOT}/${TARGET_TRIPLET} ${SYS_3RD_ROOT}/lib ${SYS_3RD_ROOT}/include
+mkdir -p ${SYS_ROOT}/bin/32 ${SYS_ROOT}/${TARGET_TRIPLET} ${SYS_3RD_ROOT}/lib ${SYS_3RD_ROOT}/include
 cd ${SYS_ROOT} ; ln -s ${TARGET_TRIPLET} mingw
 
 ################ zlib ################
@@ -180,16 +181,16 @@ logger -t ${LOGGER_TAG} -s "Build finished"
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/gmake.exe
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/mingw32-make.exe
 
-rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.exe ${SYS_ROOT}/lib/libgcc_s_sjlj-1.dll ${SYS_ROOT}/lib64/libgcc_s_sjlj-1.dll
+rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.exe ${SYS_ROOT}/lib/libgcc_s_seh-1.dll ${SYS_ROOT}/lib32/libgcc_s_sjlj-1.dll
 
-/bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/64/libgcc/64/shlib/libgcc_s_sjlj-1.dll      \
-        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/64/libgfortran/.libs/libgfortran-3.dll      \
-        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/64/libquadmath/.libs/libquadmath-0.dll      \
-        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/64/libssp/.libs/libssp-0.dll                \
-        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/64/libstdc++-v3/src/.libs/libstdc++-6.dll   ${SYS_ROOT}/bin/64/
-#       ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/64/libgomp/.libs/libgomp-1.dll              ${SYS_ROOT}/bin/64/
+/bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libgcc/32/shlib/libgcc_s_sjlj-1.dll      \
+        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libgfortran/.libs/libgfortran-3.dll      \
+        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libquadmath/.libs/libquadmath-0.dll      \
+        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libssp/.libs/libssp-0.dll                \
+        ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libstdc++-v3/src/.libs/libstdc++-6.dll   ${SYS_ROOT}/bin/32/
+#       ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/32/libgomp/.libs/libgomp-1.dll              ${SYS_ROOT}/bin/32/
 
-/bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgcc/shlib/libgcc_s_sjlj-1.dll            \
+/bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgcc/shlib/libgcc_s_seh-1.dll             \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgfortran/.libs/libgfortran-3.dll         \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libquadmath/.libs/libquadmath-0.dll         \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libssp/.libs/libssp-0.dll                   \
@@ -199,9 +200,10 @@ rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.ex
 ${TARGET_TRIPLET}-strip \
     ${SYS_ROOT}/bin/*.exe \
     ${SYS_ROOT}/bin/*.dll \
-    ${SYS_ROOT}/bin/64/*.dll \
+    ${SYS_ROOT}/bin/32/*.dll \
     ${SYS_ROOT}/${TARGET_TRIPLET}/bin/*.exe \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.exe \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.dll
 
+$BASE_DIR/version.sh "${SYS_ROOT}" "${GCC_SRC_ROOT}" "${MINGW_W64_SRC_ROOT}"
 cd ${SYS_ROOT}/.. && bsdtar -c --format 7zip -f `basename ${SYS_ROOT}`_${GCC_BASE_VER}-$GCC_DATE_STR.7z `basename ${SYS_ROOT}`
