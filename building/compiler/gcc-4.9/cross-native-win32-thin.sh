@@ -165,7 +165,7 @@ ${GCC_SRC_ROOT}/configure \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
     --disable-multilib --disable-nls --disable-win32-registry \
     --enable-checking=release --enable-languages=c,c++,fortran \
-    --with-arch=corei7 --with-tune=generic
+    --with-arch=i686 --with-tune=generic
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then

@@ -29,7 +29,7 @@ export MAKE_SRC_ROOT=${HOME}/src/make-3.82
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 export TARGET_TRIPLET=x86_64-w64-mingw32
-export LOGGER_TAG=native-win64-gcc49
+export LOGGER_TAG=native-win64-gcc49-by48
 export SYS_ROOT=${HOME}/native/gcc-4.9-win64
 export SYS_3RD_ROOT=${HOME}/native/gcc-4.9-win64-3rd
 export OBJ_ROOT=${HOME}/obj/native/gcc-4.9-win64
@@ -165,7 +165,7 @@ ${GCC_SRC_ROOT}/configure \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
     --disable-multilib --disable-nls --disable-win32-registry \
     --enable-checking=release --enable-languages=c,c++,fortran \
-    --with-arch=corei7 --with-tune=generic
+    --with-arch=core2 --with-tune=generic
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then
@@ -196,5 +196,5 @@ ${TARGET_TRIPLET}-strip \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.exe \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.dll
 
-$BASE_DIR/version.sh "${SYS_ROOT}" "${GCC_SRC_ROOT}" "${MINGW_W64_SRC_ROOT}"
-cd ${SYS_ROOT}/.. && bsdtar -c --format 7zip -f `basename ${SYS_ROOT}`_${GCC_BASE_VER}-$GCC_DATE_STR.7z `basename ${SYS_ROOT}`
+$BASE_DIR/version-by48.sh "${SYS_ROOT}" "${GCC_SRC_ROOT}" "${MINGW_W64_SRC_ROOT}"
+cd ${SYS_ROOT}/.. && bsdtar -c --format 7zip -f `basename ${SYS_ROOT}`_${GCC_BASE_VER}-$GCC_DATE_STR-by48.7z `basename ${SYS_ROOT}`

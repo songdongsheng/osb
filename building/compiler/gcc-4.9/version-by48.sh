@@ -6,7 +6,10 @@ export MINGW_W64_SRC_ROOT=$3
 
 cat << EOF > $SYS_ROOT/version.txt
 WARNING:
-    For 64-bit gcc, your host computer must have SSSE3 instruction set support.
+  For 64-bit gcc, your host computer must have SSSE3 instruction set support.
+
+  Due to PR57848 (http://gcc.gnu.org/bugzilla/show_bug.cgi?id=57848), this gcc
+  package build with gcc 4.8 on x86_64-unknown-linux-gnu.
 
 *) binutils 2.23.2
 http://ftp.gnu.org/gnu/binutils/binutils-2.23.2.tar.gz
