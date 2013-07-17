@@ -36,6 +36,20 @@ export OBJ_ROOT=${HOME}/obj/native/gcc-4.9-win64
 export PATH=${HOME}/cross/x86_64-windows-gcc49/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
+cat << EOF | ${TARGET_TRIPLET}-g++ -s -o2 -o /dev/null -x c++ - >/dev/null 2>&1
+#include <iostream>
+int main()
+{
+    std::cout << "Hello, world !" << std::endl;
+    return 0;
+}
+EOF
+
+if [ $? -ne 0 ]; then
+    logger -t ${LOGGER_TAG} -s "Build failed (${TARGET_TRIPLET}-g++ is not available)"
+    exit 1
+fi
+
 ################ cleanup ################
 rm -fr ${SYS_ROOT} ${OBJ_ROOT} ${SYS_3RD_ROOT}
 
