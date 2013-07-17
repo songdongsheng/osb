@@ -36,7 +36,8 @@ export OBJ_ROOT=${HOME}/obj/native/gcc-4.9-win32
 export PATH=${HOME}/cross/i686-windows-gcc48/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
-cat << EOF | ${TARGET_TRIPLET}-g++ -s -o2 -o /dev/null -x c++ - >/dev/null 2>&1
+TMP_FILE=`mktemp`
+cat << EOF | ${TARGET_TRIPLET}-g++ -s -O2 -o ${TMP_FILE} -x c++ - >/dev/null 2>&1
 #include <iostream>
 int main()
 {
