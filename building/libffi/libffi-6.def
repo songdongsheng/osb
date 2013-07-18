@@ -1,16 +1,12 @@
 LIBRARY "libffi-6.dll"
 EXPORTS
-ffi_assert
-ffi_call
 ffi_closure_alloc
-ffi_closure_free
-ffi_prep_cif
-ffi_prep_cif_machdep
-ffi_prep_cif_var
 ffi_prep_closure
 ffi_prep_closure_loc
-ffi_stop_here
-ffi_type_test
+ffi_closure_free
+ffi_prep_cif
+ffi_prep_cif_var
+ffi_call
 
 ffi_type_void       DATA
 ffi_type_pointer    DATA
