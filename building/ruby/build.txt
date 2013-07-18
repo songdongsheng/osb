@@ -1,6 +1,6 @@
 *) 64 bit
-    win32\configure.bat --prefix=E:\opt\ruby-1.9-win64 --target=x64-mswin64 --with-baseruby=E:\opt\ruby-1.9-win64\bin\ruby.exe
-    win32\configure.bat --prefix=E:\opt\ruby-2.0-win64 --target=x64-mswin64 --with-baseruby=E:\opt\ruby-2.0-win64\bin\ruby.exe
+    win32\configure.bat --prefix=C:\opt\ruby-1.9-win64 --target=x64-mswin64 --with-baseruby=C:\opt\ruby\bin\ruby.exe
+    win32\configure.bat --prefix=C:\opt\ruby-2.0-win64 --target=x64-mswin64 --with-baseruby=C:\opt\ruby\bin\ruby.exe
 
     nmake
     nmake check
@@ -13,8 +13,8 @@ E:\opt\ruby-2.0-win64\bin>ruby -v
 ruby 2.0.0p270 (2013-07-14 revision 41958) [x64-mswin64_110]
 
 *) 32 bit
-    win32\configure.bat --prefix=E:\opt\ruby-1.9-win32 --target=i386-mswin32 --with-baseruby=E:\opt\ruby-1.9-win32\bin\ruby.exe
-    win32\configure.bat --prefix=E:\opt\ruby-2.0-win32 --target=i386-mswin32 --with-baseruby=E:\opt\ruby-2.0-win32\bin\ruby.exe
+    win32\configure.bat --prefix=E:\opt\ruby-1.9-win32 --target=i386-mswin32 --with-baseruby=C:\opt\ruby\bin\ruby.exe
+    win32\configure.bat --prefix=E:\opt\ruby-2.0-win32 --target=i386-mswin32 --with-baseruby=C:\opt\ruby\bin\ruby.exe
 
     nmake
     nmake check
@@ -25,3 +25,7 @@ ruby 1.9.3p455 (2013-07-17) [i386-mswin32_110]
 
 E:\opt\ruby-2.0-win32\bin>ruby -v
 ruby 2.0.0p270 (2013-07-14 revision 41958) [i386-mswin32_110]
+
+psych
+zlib
+ffi
