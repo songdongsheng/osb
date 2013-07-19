@@ -3,9 +3,7 @@
 This repository include binary files compiled by:
     *) GNU Compiler Collection 4.7 (msvcrt)
     *) GNU Compiler Collection 4.8 (msvcrt)
-    *) Microsoft Visual Studio 2010 (msvcr100, _MSC_VER=1600)
     *) Microsoft Visual Studio 2012 (msvcr110, _MSC_VER=1700)
-    *) Intel C++ Compiler XE 2013
 
 These files distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY.
