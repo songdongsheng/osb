@@ -4,28 +4,22 @@
  * LD 的 --retain-symbols-file 控制静态库符号表，--version-script 对应共享库符号表
  */
 
-#if defined _WIN32 || defined __CYGWIN__
-  #define API_LOCAL
-
-  #ifdef BUILDING_DLL
-    #ifdef __GNUC__
-      #define API_PUBLIC __attribute__ ((dllexport))
-    #else
-      #define API_PUBLIC __declspec(dllexport) /* Note: actually gcc seems to also supports this syntax. */
-    #endif
+#if defined(_WIN32) || defined(__CYGWIN__)
+  #if defined(XXX_DECLARE_STATIC)
+    #define XXX_PUBLIC
+  #elif defined(XXX_DECLARE_EXPORT)
+    #define XXX_PUBLIC __declspec(dllexport)
   #else
-    #ifdef __GNUC__
-      #define API_PUBLIC __attribute__ ((dllimport))
-    #else
-      #define API_PUBLIC __declspec(dllimport) /* Note: actually gcc seems to also supports this syntax. */
-    #endif
+    #define XXX_PUBLIC __declspec(dllimport)
   #endif
+
+  #define XXX_LOCAL
 #else
   #if __GNUC__ >= 4
-    #define API_LOCAL  __attribute__ ((visibility ("hidden")))
-    #define API_PUBLIC __attribute__ ((visibility ("default")))
+    #define XXX_PUBLIC __attribute__ ((visibility ("default")))
+    #define XXX_LOCAL  __attribute__ ((visibility ("hidden")))
   #else
-    #define API_LOCAL
-    #define API_PUBLIC
+    #define XXX_PUBLIC
+    #define XXX_LOCAL
   #endif
 #endif
