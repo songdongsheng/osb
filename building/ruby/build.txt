@@ -1,4 +1,22 @@
+*) cleanup
+    cd /cygdrive/e/var/vcs/svn/ruby/branches/
+    svn st --no-ignore | awk '{print $2}' | xargs rm -fr
+
+    cd E:\var\vcs\svn\ruby\branches\ruby_2_0_0
+
+    cd E:\var\tmp\ruby-2.0.0-p247
+
+code converter not found (ASCII-8BIT to UTF-8)
+Failed to configure digest/sha1. It will not be installed.
+Failed to configure digest/sha2. It will not be installed.
+Failed to configure fiddle. It will not be installed.
+Failed to configure openssl. It will not be installed.
+Failed to configure ripper. It will not be installed.
+
 *) 64 bit
+    set LIB=%LIB%;E:\var\vcs\git\osb\windows-x64-msvcr110\lib
+    set INCLUDE=%INCLUDE%;E:\var\vcs\git\osb\windows-x64-msvcr110\include
+
     win32\configure.bat --prefix=C:\opt\ruby-1.9-win64 --target=x64-mswin64 --with-baseruby=C:\opt\ruby\bin\ruby.exe
     win32\configure.bat --prefix=C:\opt\ruby-2.0-win64 --target=x64-mswin64 --with-baseruby=C:\opt\ruby\bin\ruby.exe
 
@@ -13,6 +31,9 @@ E:\opt\ruby-2.0-win64\bin>ruby -v
 ruby 2.0.0p270 (2013-07-14 revision 41958) [x64-mswin64_110]
 
 *) 32 bit
+    set LIB=%LIB%;E:\var\vcs\git\osb\windows-x86-msvcr110\lib
+    set INCLUDE=%INCLUDE%;E:\var\vcs\git\osb\windows-x86-msvcr110\include
+
     win32\configure.bat --prefix=E:\opt\ruby-1.9-win32 --target=i386-mswin32 --with-baseruby=C:\opt\ruby\bin\ruby.exe
     win32\configure.bat --prefix=E:\opt\ruby-2.0-win32 --target=i386-mswin32 --with-baseruby=C:\opt\ruby\bin\ruby.exe
 
