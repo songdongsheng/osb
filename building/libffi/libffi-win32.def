@@ -20,3 +20,17 @@ ffi_type_uint32     DATA
 ffi_type_uint64     DATA
 ffi_type_float      DATA
 ffi_type_double     DATA
+
+ffi_java_ptrarray_to_raw
+ffi_java_raw_size
+ffi_java_raw_to_ptrarray
+ffi_prep_raw_closure
+ffi_prep_raw_closure_loc
+ffi_ptrarray_to_raw
+ffi_raw_call
+ffi_raw_size
+ffi_raw_to_ptrarray
+
+;ffi_java_raw_call
+;ffi_prep_java_raw_closure
+;ffi_prep_java_raw_closure_loc

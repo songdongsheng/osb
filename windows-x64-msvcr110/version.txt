@@ -6,3 +6,8 @@ libsqlite3.dll          3.7.17.0            2013-07-19
 openssl.exe             1.0.1e              2013-07-19
 yaml.dll                0.1.4               2013-07-27
 zlib.dll                1.2.8               2013-07-19
+
+libapr-1.dll            1.4.6               2013-05-24
+libaprutil-1.dll        1.5.2               2013-05-24
+libiconv-2.dll          1.14
+libintl-8.dll           0.18.2.1

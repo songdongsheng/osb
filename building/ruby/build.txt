@@ -28,7 +28,7 @@ E:\opt\ruby-1.9-win64\bin>ruby -v
 ruby 1.9.3p455 (2013-07-17) [x64-mswin64_110]
 
 E:\opt\ruby-2.0-win64\bin>ruby -v
-ruby 2.0.0p270 (2013-07-14 revision 41958) [x64-mswin64_110]
+ruby 2.0.0p280 (2013-07-26 revision 42170) [x64-mswin64_110]
 
 *) 32 bit
     set LIB=%LIB%;E:\var\vcs\git\osb\windows-x86-msvcr110\lib
@@ -47,6 +47,22 @@ ruby 1.9.3p455 (2013-07-17) [i386-mswin32_110]
 E:\opt\ruby-2.0-win32\bin>ruby -v
 ruby 2.0.0p270 (2013-07-14 revision 41958) [i386-mswin32_110]
 
-psych
-zlib
-ffi
+*) 8 packages not installed
+Failed to configure curses. It will not be installed.
+Failed to configure dbm. It will not be installed.
+Failed to configure gdbm. It will not be installed.
+Failed to configure pty. It will not be installed.
+Failed to configure readline. It will not be installed.
+Failed to configure syslog. It will not be installed.
+Failed to configure tk. It will not be installed.
+Failed to configure tk/tkutil. It will not be installed.
+
+*) LOCAL GEMS
+bigdecimal (1.2.0)
+io-console (0.4.2)
+json (1.7.7)
+minitest (4.3.2)
+psych (2.0.0)
+rake (0.9.6)
+rdoc (4.0.0)
+test-unit (2.0.0.0)

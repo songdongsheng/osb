@@ -109,8 +109,8 @@ $(STATICLIB): $(WORKDIR) $(FFI_HEADERS) $(HEADERS) $(ASMSRCS) $(OBJECTS)
 	$(OBJECTS)
 <<
 
-$(SHARELIB): $(WORKDIR) $(FFI_HEADERS) $(HEADERS) $(ASMSRCS) $(OBJECTS) libffi.res libffi-6.def
-	cl /MD /LD /Fe$(SHARELIB) /Fd$(BUILDPDB) libffi.res libffi-6.def $(OBJECTS) /link /MACHINE:X64
+$(SHARELIB): $(WORKDIR) $(FFI_HEADERS) $(HEADERS) $(ASMSRCS) $(OBJECTS) libffi.res libffi-win64.def
+	cl /MD /LD /Fe$(SHARELIB) /Fd$(BUILDPDB) libffi.res libffi-win64.def $(OBJECTS) /link /MACHINE:X64
 
 !IF !DEFINED(PREFIX) || "$(PREFIX)" == ""
 
