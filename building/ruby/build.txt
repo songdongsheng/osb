@@ -66,3 +66,19 @@ psych (2.0.0)
 rake (0.9.6)
 rdoc (4.0.0)
 test-unit (2.0.0.0)
+
+*) gem
+gem install tiny_tds
+gem install --platform x64-mswin64 ruby-oci8
+gem install --platform i386-mswin32 ruby-oci8
+
+ruby-oci8       2.1.5       2013-03-09
+tiny_tds        0.6.1       2013-07-10
+ruby-odbc       0.99995     2013-05-13
+
+ftp://ftp.unixodbc.org/pub/unixODBC/unixODBC-2.3.1.tar.gz
+http://www.ch-werner.de/rubyodbc/ruby-odbc-0.99995.gem
+http://www.ch-werner.de/rubyodbc/ruby-odbc-0.99995.tar.gz
+
+http://rubyforge.org/frs/download.php/76830/ruby-oci8-2.1.5.gem
+http://rubyforge.org/frs/download.php/76831/ruby-oci8-2.1.5.tar.gz

@@ -85,6 +85,28 @@ i686-w64-mingw32-dlltool -x -c -k -m i386:x86-64 --input-def libintl-8.def  --dl
 i686-w64-mingw32-dlltool -x -c -k -m i386:x86-64 --input-def libiconv-2.def --dllname libiconv-2.dll --output-lib libiconv-2.dll.a
 
 ------------------------------------------------------------------------
+cd libcharset\include
+    libcharset.h.in     -> libcharset.h
+    localcharset.h.in   -> localcharset.h
+cd include
+    iconv.h.in  ->  iconv.h
+
+cd lib
+    cl /MD /Fegenflags.exe lib\genflags.c
+    genflags > lib\flags.h
+
+    lib\genflags.c(30) : error C2016: C requires that a struct or union has at least one member
+    lib\genflags.c(31) : error C2016: C requires that a struct or union has at least one member
+    lib\genflags.c(32) : error C2016: C requires that a struct or union has at least one member
+
+    cl /MD lib/genaliases.c
+    genaliases lib\aliases.gperf canonical.sh canonical_local.sh
+    gperf -m 10 lib/aliases.gperf > tmp.h
+    copy tmp.h lib\aliases.h
+
+    sh canonical.sh > lib/canonical.h
+    sh canonical_local.sh > lib/canonical_local.h
+
 -DPACKAGE_VERSION_STRING="1.14" -DPACKAGE_VERSION_MAJOR=1 -DPACKAGE_VERSION_MINOR=14 -DPACKAGE_VERSION_SUBMINOR=0
 
 msbuild libiconv-2.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=Win32

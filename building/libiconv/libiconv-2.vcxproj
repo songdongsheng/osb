@@ -88,7 +88,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;libcharset\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;include;libcharset\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;_DEBUG;_WINDOWS;_USRDLL;LIBDIR="..\lib";BUILDING_DLL;DLL_EXPORT;PIC;set_relocation_prefix=libiconv_set_relocation_prefix;BUILDING_LIBICONV;ENABLE_RELOCATABLE;IN_LIBRARY;NO_XMALLOC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -107,7 +107,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;libcharset\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;include;libcharset\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;_DEBUG;_WINDOWS;_USRDLL;LIBDIR="..\lib";BUILDING_DLL;DLL_EXPORT;PIC;set_relocation_prefix=libiconv_set_relocation_prefix;BUILDING_LIBICONV;ENABLE_RELOCATABLE;IN_LIBRARY;NO_XMALLOC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -128,7 +128,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>.;libcharset\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;include;libcharset\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;NDEBUG;_WINDOWS;_USRDLL;LIBDIR="..\lib";BUILDING_DLL;DLL_EXPORT;PIC;set_relocation_prefix=libiconv_set_relocation_prefix;BUILDING_LIBICONV;ENABLE_RELOCATABLE;IN_LIBRARY;NO_XMALLOC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -151,7 +151,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>.;libcharset\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;include;libcharset\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;NDEBUG;_WINDOWS;_USRDLL;LIBDIR="..\lib";BUILDING_DLL;DLL_EXPORT;PIC;set_relocation_prefix=libiconv_set_relocation_prefix;BUILDING_LIBICONV;ENABLE_RELOCATABLE;IN_LIBRARY;NO_XMALLOC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
