@@ -2,6 +2,7 @@
 ftp://sourceware.org/pub/libffi/libffi-3.0.13.tar.gz
 
 export LIBFFI_SRC_DIR=${HOME}/src/libffi-3.0.13
+export LIBFFI_SRC_DIR=${HOME}/vcs/git/libffi
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
