@@ -19,7 +19,7 @@ http://ftp.gnu.org/gnu/libiconv/
 http://ftp.gnu.org/gnu/gettext/
 
 export LIBICONV_SRC_DIR=${HOME}/src/libiconv-1.14
-export GETTEXT_SRC_DIR=${HOME}/src/gettext-0.18.2.1
+export GETTEXT_SRC_DIR=${HOME}/src/gettext-0.18.3
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`

@@ -1,0 +1,8 @@
+bin/iconv.exe
+bin/libcharset-1.dll
+bin/libiconv-2.dll
+include/iconv.h
+include/libcharset.h
+include/localcharset.h
+lib/libcharset.dll.a
+lib/libiconv.dll.a
