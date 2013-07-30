@@ -11,3 +11,8 @@ EXPORTS
     libiconvlist
     iconv_canonicalize
     libiconv_set_relocation_prefix
+
+    ;iconv_open=libiconv_open
+    ;iconvctl=libiconvctl
+    ;iconv=libiconv
+    ;iconv_close=libiconv_close

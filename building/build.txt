@@ -70,6 +70,7 @@ msiexec /a PathToMSIFile /qb TARGETDIR=FullPathOfDirectoryToExtractTo
 <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
 
 <CharacterSet>Unicode</CharacterSet>
+<CharacterSet>Multibyte</CharacterSet>
 <PrecompiledHeader>NotUsing</PrecompiledHeader>
 <SDLCheck>true</SDLCheck>
 <SubSystem>Console</SubSystem>

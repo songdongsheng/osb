@@ -18,9 +18,6 @@
 #define _LIBINTL_H 1
 
 #include <locale.h>
-#if (defined __APPLE__ && defined __MACH__) && 0
-# include <xlocale.h>
-#endif
 
 /* The LC_MESSAGES locale category is the category used by the functions
    gettext() and dgettext().  It is specified in POSIX, but not in ANSI C.
@@ -54,7 +51,7 @@ extern "C" {
 
 
 /* Version number: (major<<16) + (minor<<8) + subminor */
-#define LIBINTL_VERSION 0x001202
+#define LIBINTL_VERSION 0x001203
 extern int libintl_version;
 
 
@@ -244,6 +241,7 @@ extern char *dcngettext (const char *__domainname,
 #endif
 
 
+#ifndef IN_LIBGLOCALE
 
 /* Set the current default message catalog to DOMAINNAME.
    If DOMAINNAME is null, return the current default.
@@ -299,6 +297,7 @@ extern char *bind_textdomain_codeset (const char *__domainname,
        _INTL_ASM (libintl_bind_textdomain_codeset);
 #endif
 
+#endif /* IN_LIBGLOCALE */
 
 
 /* Support for format strings with positions in *printf(), following the
@@ -309,7 +308,7 @@ extern char *bind_textdomain_codeset (const char *__domainname,
    or gettext() but for which the format string could be the return value
    of _() or gettext() need to add this #include.  Oh well.  */
 
-#if !0
+#if 1
 
 #include <stdio.h>
 #include <stddef.h>
@@ -431,14 +430,6 @@ extern int vswprintf (wchar_t *, size_t, const wchar_t *, va_list);
 #undef setlocale
 #define setlocale libintl_setlocale
 extern char *setlocale (int, const char *);
-#endif
-
-#if 0
-
-#undef newlocale
-#define newlocale libintl_newlocale
-extern locale_t newlocale (int, const char *, locale_t);
-
 #endif
 
 #endif

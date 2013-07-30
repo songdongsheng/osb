@@ -3,6 +3,7 @@ msvcr110.dll            11.0.51106.1        2012-11-06
 
 libffi-6.dll            3.0.13.22           2013-07-27
 libiconv-2.dll          1.14.26             2013-07-27
+libintl-8.dll           0.18.3              2013-07-30
 libsqlite3.dll          3.7.17.0            2013-07-19
 openssl.exe             1.0.1e              2013-07-19
 yaml.dll                0.1.4               2013-07-27
@@ -10,4 +11,3 @@ zlib.dll                1.2.8               2013-07-19
 
 libapr-1.dll            1.4.6               2013-05-24
 libaprutil-1.dll        1.5.2               2013-05-24
-libintl-8.dll           0.18.3
