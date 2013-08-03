@@ -1,0 +1,7 @@
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll libevent20.dll
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll libevent20.dll
+
+------------------------------------------------------------------------
+msbuild libevent20.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=Win32
+msbuild libevent20.vcxproj /t:Rebuild /p:PlatformToolset=v110;Configuration=Release;Platform=x64

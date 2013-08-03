@@ -61,6 +61,10 @@ msiexec /a PathToMSIFile /qb TARGETDIR=FullPathOfDirectoryToExtractTo
 <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
 <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 
+<AdditionalIncludeDirectories>%(PKG_DIR)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+<AdditionalLibraryDirectories>$(PKG_DIR)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+<AdditionalDependencies>libevent20.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+
 <BufferSecurityCheck>false</BufferSecurityCheck>
 <BufferSecurityCheck>true</BufferSecurityCheck>
 
