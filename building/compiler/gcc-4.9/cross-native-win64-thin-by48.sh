@@ -212,4 +212,4 @@ ${TARGET_TRIPLET}-strip \
     ${SYS_ROOT}/libexec/gcc/${TARGET_TRIPLET}/${GCC_BASE_VER}/*.dll
 
 $BASE_DIR/version-by48.sh "${SYS_ROOT}" "${GCC_SRC_ROOT}" "${MINGW_W64_SRC_ROOT}"
-cd ${SYS_ROOT}/.. && bsdtar -c --format 7zip -f `basename ${SYS_ROOT}`_${GCC_BASE_VER}-$GCC_DATE_STR-by48.7z `basename ${SYS_ROOT}`
+cd ${SYS_ROOT}/.. && bsdtar -c --format 7zip -f `basename ${SYS_ROOT}`_${GCC_BASE_VER}-${GCC_DATE_STR}_by48.7z `basename ${SYS_ROOT}`
