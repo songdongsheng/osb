@@ -86,7 +86,7 @@ ${GMP_SOURCE_DIR}/configure --prefix=${HOME}/gcc-preq-w64/gmp-5.0 \
 
 make ${MAKE_FLAGS} && make install
 
-make -k check 
+make -k check
 
 # ================================ native mpfr ================================
 rm -fr ${HOME}/obj/mpfr; mkdir -p ${HOME}/obj/mpfr; cd ${HOME}/obj/mpfr
@@ -97,7 +97,7 @@ ${MPFR_SOURCE_DIR}/configure --prefix=${HOME}/gcc-preq-w64/mpfr-3.1 \
 
 make ${MAKE_FLAGS} && make install
 
-make -k check 
+make -k check
 
 # ================================ native mpc ================================
 rm -fr ${HOME}/obj/mpc; mkdir -p ${HOME}/obj/mpc; cd ${HOME}/obj/mpc
