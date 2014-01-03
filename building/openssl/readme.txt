@@ -50,3 +50,9 @@ SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X64 /RELEASE /SUBSYSTEM:CONSOLE /DLL
 nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak test
 nmake -f ms\ntdll.mak install
+
+
+-------------------------------- mingw-w64 --------------------------------
+./Configure shared zlib --prefix=/tmp/w32 --cross-compile-prefix=i686-w64-mingw32- mingw
+
+./Configure shared zlib --prefix=/tmp/w64 --cross-compile-prefix=x86_64-w64-mingw32- mingw64
