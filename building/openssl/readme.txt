@@ -14,9 +14,9 @@ make CC=i686-w64-mingw32-gcc RANLIB=i686-w64-mingw32-ranlib
 
 ------------------------------------------------------------------------
 perl Configure enable-zlib VC-WIN32 ^
-    --prefix=C:/var/pool/openssl-win32 ^
-    -I"C:\var\vcs\git\osb\windows-x86-msvcr110\include" ^
-    -L"C:\var\vcs\git\osb\windows-x86-msvcr110\lib"
+    --prefix=E:/var/pool/openssl-win32 ^
+    -I"E:\var\vcs\git\osb\windows-x86-msvcr110\include" ^
+    -L"E:\var\vcs\git\osb\windows-x86-msvcr110\lib"
 
 ms\do_nasm
 
@@ -25,7 +25,8 @@ SET CFLAG=/nologo /W3 /MD /EHsc /O2 /Zi ^
 SET  LFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /RELEASE /SUBSYSTEM:CONSOLE
 SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /RELEASE /SUBSYSTEM:CONSOLE /DLL
 
-/Fd"C:\var\pool\openssl-win32\openssl.pdb"
+/Fd"E:\var\pool\openssl-win32\openssl-app.pdb"
+/Fd"E:\var\pool\openssl-win32\openssl-lib.pdb"
 
 nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak test
@@ -34,9 +35,9 @@ nmake -f ms\ntdll.mak install
 
 ------------------------------------Win64/x64------------------------------------
 perl Configure enable-zlib VC-WIN64A ^
-    --prefix=C:/var/pool/openssl-win64 ^
-    -I"C:\var\vcs\git\osb\windows-x64-msvcr110\include" ^
-    -L"C:\var\vcs\git\osb\windows-x64-msvcr110\lib"
+    --prefix=E:/var/pool/openssl-win64 ^
+    -I"E:\var\vcs\git\osb\windows-x64-msvcr110\include" ^
+    -L"E:\var\vcs\git\osb\windows-x64-msvcr110\lib"
 
 ms\do_win64a
 
@@ -45,7 +46,8 @@ SET CFLAG=/nologo /W3 /MD /EHsc /O2 /Zi ^
 SET  LFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X64 /RELEASE /SUBSYSTEM:CONSOLE
 SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X64 /RELEASE /SUBSYSTEM:CONSOLE /DLL
 
-/Fd"C:\var\pool\openssl-win64\openssl.pdb"
+/Fd"E:\var\pool\openssl-win64\openssl-app.pdb"
+/Fd"E:\var\pool\openssl-win64\openssl-lib.pdb"
 
 nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak test
