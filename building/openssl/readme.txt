@@ -1,9 +1,22 @@
 ------------------------------------------------------------------------
 SET OPENSSL_CONF=C:\var\pool\openssl\ssl\openssl.cnf
 
+
 Patch (apps\openssl.c)
 ======================
 BIO_printf(bio_err, "WARNING: can't open config file: %s\n",p);
+
+
+------------------------------------------------------------------------
+$(LIB_D)\openssl.dll: $(CRYPTOOBJ) $(SSLOBJ)
+	$(LINK) $(MLFLAGS) /out:$(LIB_D)\openssl.dll /PDB:$(LIB_D)\openssl.pdb /def:ms/openssl.def @<<
+  $(SHLIB_EX_OBJ) $(CRYPTOOBJ)  $(SSLOBJ) zlib.lib $(EX_LIBS)
+<<
+	IF EXIST $@.manifest mt -nologo -manifest $@.manifest -outputresource:$@;2
+
+$(ENG_D)\gost.dll: $(GOSTOBJ)
+
+nmake -f ms\ntdll.mak out32dll\openssl.dll
 
 
 ------------------------------------------------------------------------
@@ -22,8 +35,8 @@ ms\do_nasm
 
 SET CFLAG=/nologo /W3 /MD /EHsc /O2 /Zi ^
     /D"_WIN32_WINNT=0x0502" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS
-SET  LFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /RELEASE /SUBSYSTEM:CONSOLE
-SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /RELEASE /SUBSYSTEM:CONSOLE /DLL
+SET  LFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /DEBUG /RELEASE /SUBSYSTEM:CONSOLE,5.1 /VERSION:1.2
+SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /DEBUG /RELEASE /SUBSYSTEM:CONSOLE,5.1 /VERSION:1.2 /DLL
 
 /Fd"E:\var\pool\openssl-win32\openssl-app.pdb"
 /Fd"E:\var\pool\openssl-win32\openssl-lib.pdb"
@@ -43,8 +56,8 @@ ms\do_win64a
 
 SET CFLAG=/nologo /W3 /MD /EHsc /O2 /Zi ^
     /D"_WIN32_WINNT=0x0502" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS
-SET  LFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X64 /RELEASE /SUBSYSTEM:CONSOLE
-SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X64 /RELEASE /SUBSYSTEM:CONSOLE /DLL
+SET  LFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X64 /DEBUG /RELEASE /SUBSYSTEM:CONSOLE,5.2 /VERSION:1.2
+SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X64 /DEBUG /RELEASE /SUBSYSTEM:CONSOLE,5.2 /VERSION:1.2 /DLL
 
 /Fd"E:\var\pool\openssl-win64\openssl-app.pdb"
 /Fd"E:\var\pool\openssl-win64\openssl-lib.pdb"
