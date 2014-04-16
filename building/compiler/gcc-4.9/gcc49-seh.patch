@@ -1,0 +1,26 @@
+Index: gcc/configure
+===================================================================
+--- gcc/configure	(revision 205723)
++++ gcc/configure	(working copy)
+@@ -6537,7 +6537,7 @@
+ # Disable exceptions and RTTI if building with g++
+ noexception_flags=
+ save_CFLAGS="$CFLAGS"
+-for real_option in -fno-exceptions -fno-rtti -fasynchronous-unwind-tables; do
++for real_option in -fno-exceptions -fno-rtti; do
+   # Do the check with the no- prefix removed since gcc silently
+   # accepts any -Wno-* option on purpose
+   case $real_option in
+Index: gcc/configure.ac
+===================================================================
+--- gcc/configure.ac	(revision 205723)
++++ gcc/configure.ac	(working copy)
+@@ -360,7 +360,7 @@
+ 
+ # Disable exceptions and RTTI if building with g++
+ ACX_PROG_CC_WARNING_OPTS(
+-	m4_quote(m4_do([-fno-exceptions -fno-rtti -fasynchronous-unwind-tables])),
++	m4_quote(m4_do([-fno-exceptions -fno-rtti])),
+ 		       [noexception_flags])
+ 	
+ # Enable expensive internal checks
