@@ -15,14 +15,14 @@
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_7-branch
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/stable/v2.x
-export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.23.2
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 export TARGET_TRIPLET=i686-w64-mingw32
-export LOGGER_TAG=cross-win32-gcc47
-export SYS_ROOT=${HOME}/cross/i686-windows-gcc47
-export OBJ_ROOT=${HOME}/obj/${TARGET_TRIPLET}-gcc47
+export LOGGER_TAG=cross-win32-gcc-4.7
+export SYS_ROOT=${HOME}/cross/i686-windows-gcc-4.7
+export OBJ_ROOT=${HOME}/obj/${TARGET_TRIPLET}-gcc-4.7
 export PATH=${SYS_ROOT}/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"

@@ -1,0 +1,8 @@
+*       -text
+*.c     encoding=UTF-8 eol=lf
+*.cpp   encoding=UTF-8 eol=lf
+*.h     encoding=UTF-8 eol=lf
+*.cs    encoding=UTF-8 eol=lf
+*.rb    encoding=UTF-8 eol=lf
+*.py    encoding=UTF-8 eol=lf
+*.java  encoding=UTF-8 eol=lf
