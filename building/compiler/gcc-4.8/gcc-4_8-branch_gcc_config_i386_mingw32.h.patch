@@ -1,0 +1,16 @@
+Index: gcc-4_8-branch/gcc/config/i386/mingw32.h
+===================================================================
+--- gcc-4_8-branch/gcc/config/i386/mingw32.h	(revision 205948)
++++ gcc-4_8-branch/gcc/config/i386/mingw32.h	(working copy)
+@@ -126,9 +126,9 @@
+    %{!static-libgcc: \
+      %{!shared: \
+        %{!shared-libgcc:-lgcc -lgcc_eh} \
+-       %{shared-libgcc:-lgcc_s -lgcc} \
++       %{shared-libgcc:-lgcc -lgcc_eh} \
+       } \
+-     %{shared:-lgcc_s -lgcc} \
++     %{shared:-lgcc -lgcc_eh} \
+     } \
+   } "
+ #else

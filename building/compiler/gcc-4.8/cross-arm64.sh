@@ -6,7 +6,7 @@
 #
 
 export KERNEL_SRC_ROOT=${HOME}/vcs/git/linux
-export EGLIBC_SRC_ROOT=${HOME}/vcs/svn/eglibc-2.17
+export EGLIBC_SRC_ROOT=${HOME}/vcs/svn/eglibc-2.18
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
 export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
 
