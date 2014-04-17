@@ -1,0 +1,10 @@
+M       gcc/branches/gcc-4_7-branch/gcc/incpath.c
+
+M       gcc/branches/gcc-4_8-branch/gcc/incpath.c
+M       gcc/branches/gcc-4_8-branch/gcc/config/i386/mingw32.h
+
+M       gcc/branches/gcc-4_9-branch/gcc/config/i386/mingw32.h
+M       gcc/branches/gcc-4_9-branch/gcc/incpath.c
+
+M       gcc/trunk/gcc/incpath.c
+M       gcc/trunk/gcc/config/i386/mingw32.h
