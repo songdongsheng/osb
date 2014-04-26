@@ -59,6 +59,7 @@ ${GCC_SRC_ROOT}/configure \
     --with-cpu=power6 -with-tune=power8 \
     --enable-checking=release \
     --enable-languages=c,c++,fortran \
+    --enable-fully-dynamic-string \
     --disable-multilib --disable-libssp
 
 make -j${NR_JOBS} all-gcc ;

@@ -93,7 +93,8 @@ ${GCC_SRC_ROOT}/configure \
     --with-sysroot=${SYS_ROOT} \
     --target=${TARGET_TRIPLET} \
     --enable-checking=release \
-    --enable-languages=c,c++
+    --enable-languages=c,c++ \
+    --enable-fully-dynamic-string
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then

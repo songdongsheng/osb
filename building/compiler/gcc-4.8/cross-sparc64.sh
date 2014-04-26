@@ -69,6 +69,7 @@ ${GCC_SRC_ROOT}/configure \
     --with-cpu=niagara2 -with-tune=niagara4 \
     --enable-checking=release \
     --enable-languages=c,c++,fortran \
+    --enable-fully-dynamic-string \
     --disable-multilib --disable-libssp
 
 make -j${NR_JOBS} all-gcc ;

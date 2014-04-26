@@ -97,7 +97,7 @@ ${GCC_SRC_ROOT}/configure \
     --with-sysroot=${SYS_ROOT} \
     --target=${TARGET_TRIPLET} \
     --enable-checking=release \
-    --enable-languages=c,c++ \
+    --enable-languages=c,c++ --enable-fully-dynamic-string \
     --with-float=hard --with-arch=armv7-a --with-fpu=neon --with-mode=thumb
 
 make -j${NR_JOBS} ; make install-strip
