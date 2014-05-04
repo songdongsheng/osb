@@ -1,5 +1,7 @@
 #!/bin/sh
 
+find /home/cauchy/sync/building/project/00_compiler -type f -name "*.sh" | xargs chmod 0755
+
 /home/cauchy/sync/building/project/00_compiler/gcc-4.7/cross-win32.sh
 /home/cauchy/sync/building/project/00_compiler/gcc-4.7/cross-win64.sh
 /home/cauchy/sync/building/project/00_compiler/gcc-4.7/cross-native-win32.sh
