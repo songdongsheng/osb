@@ -15,7 +15,7 @@
 
 export BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
-export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/stable/v3.x
+export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-v3.x
 
 export GCC_DATE_STR=`cat ${GCC_SRC_ROOT}/gcc/DATESTAMP`
 export GCC_BASE_VER=`cat ${GCC_SRC_ROOT}/gcc/BASE-VER`
@@ -24,7 +24,7 @@ export ZLIB_SRC_ROOT=${HOME}/src/zlib-1.2.8
 export EXPAT_SRC_ROOT=${HOME}/src/expat-2.1.0
 export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
-export GDB_SRC_ROOT=${HOME}/src/gdb-7.7
+export GDB_SRC_ROOT=${HOME}/src/gdb-7.7.1
 export MAKE_SRC_ROOT=${HOME}/src/make-4.0
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`

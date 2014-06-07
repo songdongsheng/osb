@@ -14,7 +14,7 @@
 #
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
-export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/stable/v3.x
+export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-v3.x
 export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 

@@ -14,7 +14,7 @@
 #
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_9-branch
-export MINGW_W64_SRC_ROOT=${HOME}/vcs/svn/mingw-w64/trunk
+export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`

@@ -8,8 +8,8 @@ cat << EOF > $SYS_ROOT/version.txt
 *) binutils 2.24
 http://ftp.gnu.org/gnu/binutils/binutils-2.24.tar.gz
 
-*) gdb 7.7
-http://ftp.gnu.org/gnu/gdb/gdb-7.7.tar.bz2
+*) gdb 7.7.1
+http://ftp.gnu.org/gnu/gdb/gdb-7.7.1.tar.bz2
 
 *) make 4.0
 http://ftp.gnu.org/gnu/make/make-4.0.tar.bz2
@@ -29,8 +29,7 @@ http://ftp.gnu.org/gnu/mpc/mpc-1.0.2.tar.gz
 *) mingw-w64
 EOF
 
-svn info $MINGW_W64_SRC_ROOT >> $SYS_ROOT/version.txt
-svn log -r COMMITTED $MINGW_W64_SRC_ROOT >> $SYS_ROOT/version.txt
+GIT_DIR=$MINGW_W64_SRC_ROOT/.git git log -1 >> $SYS_ROOT/version.txt
 echo >> $SYS_ROOT/version.txt
 
 echo "*) gcc" >> $SYS_ROOT/version.txt

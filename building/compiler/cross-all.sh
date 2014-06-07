@@ -1,4 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+
+cd /home/cauchy/vcs/svn && svn up gcc
+
+cd /home/cauchy/vcs/git/mingw-w64-v2.x && git pull -v
+cd /home/cauchy/vcs/git/mingw-w64-v3.x && git pull -v
+cd /home/cauchy/vcs/git/mingw-w64-master && git pull -v
 
 find /home/cauchy/sync/building/project/00_compiler -type f -name "*.sh" | xargs chmod 0755
 

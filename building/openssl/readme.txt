@@ -68,6 +68,16 @@ nmake -f ms\ntdll.mak install
 
 
 -------------------------------- mingw-w64 --------------------------------
-./Configure shared zlib --prefix=/tmp/w32 --cross-compile-prefix=i686-w64-mingw32- mingw
+--with-zlib-lib=/home/cauchy/w32/lib --with-zlib-include=/home/cauchy/w32/include
 
-./Configure shared zlib --prefix=/tmp/w64 --cross-compile-prefix=x86_64-w64-mingw32- mingw64
+./Configure shared zlib --prefix=/home/cauchy/w32 --cross-compile-prefix=i686-w64-mingw32- mingw
+
+./Configure shared zlib --prefix=/home/cauchy/w64 --cross-compile-prefix=x86_64-w64-mingw32- mingw64
+
+LDFLAGS=-L/home/cauchy/w32/lib CPPFLAGS=-I/home/cauchy/w32/include
+
+#define IN6_ARE_ADDR_EQUAL(a, b) \
+    (((const uint32_t *)(a))[0] == ((const uint32_t *)(b))[0] \
+    && ((const uint32_t *)(a))[1] == ((const uint32_t *)(b))[1] \
+    && ((const uint32_t *)(a))[2] == ((const uint32_t *)(b))[2] \
+    && ((const uint32_t *)(a))[3] == ((const uint32_t *)(b))[3])
