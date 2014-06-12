@@ -1,0 +1,56 @@
+-------------------------------- Prepare --------------------------------
+http://ftp.postgresql.org/pub/source/v9.3.4/postgresql-9.3.4.tar.bz2
+
+export PGSQL_SRC_DIR=${HOME}/src/postgresql-9.3.4
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+-------------------------------- Building PGSQL --------------------------------
+cd ${OBJ_ROOT}/PGSQL_SRC_DIR
+
+CFLAGS="-I${BIN_ROOT}/include -L${BIN_ROOT}/lib" CPPFLAGS="-I${BIN_ROOT}/include" LDFLAGS="-L${BIN_ROOT}/lib" \
+${PGSQL_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET}
+
+make -j${NR_JOBS}
+
+make install-strip
+
+-------------------------------- Digital Signing with signtool --------------------------------
+signtool sign /fd sha256 /t http://timestamp.verisign.com/scripts/timstamp.dll *.dll *.exe
+
+------------------------------------------------------------------------
+postmaster -F -d 3 -D "E:\opt\pgsql-9.3\data"
+
+pg_ctl init -D "E:\opt\pgsql-9.3\data"
+
+pg_ctl register -N "PostgreSQL server" -D "E:\opt\pgsql-9.3\data" -U "Dongsheng-x64\Dongsheng"
+
+pg_ctl start
+------------------------------------------------------------------------
+-- DROP ROLE pcc;
+CREATE ROLE pcc LOGIN PASSWORD 'pcc'
+     SUPERUSER INHERIT CREATEDB CREATEROLE REPLICATION;
+
+-- DROP DATABASE "PCC";
+CREATE DATABASE "PCC"
+  WITH OWNER = pcc
+       ENCODING = 'UTF8';
+
+------------------------------------------------------------------------
+pgbench -i -s 20 pgbench
+pgbench -c 6 -t 10000 pgbench
+
+------------------------------------------------------------------------
+select * from pg_settings order by category, name
+
+\timing
+EXPLAIN ANALYZE  SELECT * FROM PCRF_SESSION WHERE SUBSCRIPTION_E164 = '966582682624';
