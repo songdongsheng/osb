@@ -1,0 +1,82 @@
+*) unpack postgresql-9.3.4-win64.7z
+------------------------------------------------------------------------
+SET PATH=D:\opt\PostgreSQL-9.3\bin;%PATH%
+
+*) init
+------------------------------------------------------------------------
+pg_ctl init -D D:\opt\PostgreSQL-9.3\data
+
+pg_ctl register -w -D D:\opt\PostgreSQL-9.3\data -N "PostgreSQL 9.3" -U .\dongsheng -P pwd
+
+*) pg_hba.conf
+D:\opt\PostgreSQL-9.3\data\pg_hba.conf
+------------------------------------------------------------------------
+host    all             all             127.0.0.1/32            trust
+host    all             all             ::1/128                 trust
+
+host    all             all             10.0.0.0/8              md5
+host    all             all             192.168.0.0/16          md5
+
+*) postgresql.conf
+D:\opt\PostgreSQL-9.3\data\postgresql.conf
+------------------------------------------------------------------------
+    listen_addresses = '*'
+
+    effective_cache_size = 2GB
+    shared_buffers = 512MB
+    temp_buffers = 64MB
+    work_mem = 8MB
+    checkpoint_segments = 64
+    checkpoint_completion_target = 0.75
+    #wal_buffers = 8MB
+
+    synchronous_commit = off    # synchronization level;
+    wal_writer_delay = 333ms   # 1-10000 milliseconds
+
+    track_functions = pl
+    track_io_timing = on
+    log_checkpoints = on
+    #log_min_duration_statement = 100
+    #log_executor_stats = on
+
+    log_destination = 'stderr, eventlog'
+
+*) management
+------------------------------------------------------------------------
+pg_ctl start -D D:\opt\PostgreSQL-9.3\data
+pg_ctl stop -m fast -D D:\opt\PostgreSQL-9.3\data
+pg_ctl restart -m fast -D D:\opt\PostgreSQL-9.3\data
+pg_ctl reload -D D:\opt\PostgreSQL-9.3\data
+pg_ctl status -D D:\opt\PostgreSQL-9.3\data
+
+*) user and database
+------------------------------------------------------------------------
+D:\opt\PostgreSQL-9.3>psql postgres
+psql (9.3.4)
+Type "help" for help.
+
+-- DROP ROLE pcc;
+CREATE ROLE pcc LOGIN PASSWORD 'pcc'
+     SUPERUSER INHERIT CREATEDB CREATEROLE REPLICATION;
+
+-- DROP DATABASE "PCC";
+CREATE DATABASE "PCC"
+  WITH OWNER = pcc
+       ENCODING = 'UTF8';
+
+*) pgbench
+------------------------------------------------------------------------
+-- DROP DATABASE pgbench;
+CREATE DATABASE pgbench
+  WITH OWNER = pcc
+       ENCODING = 'UTF8';
+
+pgbench -s 200 -i pgbench
+pgbench -c 4 -t 10000 pgbench
+
+*) check setting and timing
+------------------------------------------------------------------------
+select * from pg_settings order by category, name
+
+\timing
+EXPLAIN ANALYZE  SELECT * FROM PCRF_SESSION WHERE SUBSCRIPTION_E164 = '966582682624';

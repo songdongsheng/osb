@@ -1,0 +1,72 @@
+export PATH=/opt/pgsql-9.3/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+pg_ctl -D /opt/pgsql-9.3/data init
+
+------------------------------------------------------------------------
+/opt/pgsql-9.3/data/pg_hba.conf
+local   all             all                                     trust
+host    all             all             127.0.0.1/32            trust
+host    all             all             ::1/128                 trust
+
+host    all             all             10.0.0.0/8              md5
+host    all             all             192.168.0.0/16          md5
+
+------------------------------------------------------------------------
+/opt/pgsql-9.3/data/postgresql.conf
+    listen_addresses = '*'
+
+    effective_cache_size = 2GB
+    shared_buffers = 512MB
+    temp_buffers = 64MB
+    work_mem = 8MB
+    checkpoint_segments = 64
+    checkpoint_completion_target = 0.75
+    #wal_buffers = 8MB
+
+    synchronous_commit = off    # synchronization level;
+    wal_writer_delay = 333ms   # 1-10000 milliseconds
+
+    track_functions = pl
+    track_io_timing = on
+    log_checkpoints = on
+    #log_min_duration_statement = 100
+    #log_executor_stats = on
+
+    log_destination = 'stderr, eventlog'
+
+    log_destination = 'syslog'
+    syslog_facility = 'LOCAL0'
+    syslog_ident = 'pgsql'
+
+    radiusserver = ''
+    radiussecret = ''
+    radiusport = 1812
+    radiusidentifier = 'postgresql'
+
+------------------------------------------------------------------------
+pg_ctl -D /opt/pgsql-9.3/data start
+pg_ctl -D /opt/pgsql-9.3/data stop -m fast
+pg_ctl -D /opt/pgsql-9.3/data restart -m fast
+pg_ctl -D /opt/pgsql-9.3/data reload
+pg_ctl -D /opt/pgsql-9.3/data status
+
+------------------------------------------------------------------------
+-- DROP ROLE pcc;
+CREATE ROLE pcc LOGIN PASSWORD 'pcc'
+     SUPERUSER INHERIT CREATEDB CREATEROLE REPLICATION;
+
+------------------------------------------------------------------------
+-- DROP DATABASE "PCC";
+CREATE DATABASE "PCC"
+  WITH OWNER = pcc
+       ENCODING = 'UTF8';
+
+------------------------------------------------------------------------
+pgbench -s 200 -i pgbench
+pgbench -c 6 -t 10000 pgbench
+
+------------------------------------------------------------------------
+select * from pg_settings order by category, name
+
+\timing
+EXPLAIN ANALYZE  SELECT * FROM PCRF_SESSION WHERE SUBSCRIPTION_E164 = '966582682624';
