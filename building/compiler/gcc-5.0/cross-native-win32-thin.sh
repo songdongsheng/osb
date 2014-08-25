@@ -23,17 +23,17 @@ export GCC_BASE_VER=`cat ${GCC_SRC_ROOT}/gcc/BASE-VER`
 export ZLIB_SRC_ROOT=${HOME}/src/zlib-1.2.8
 export EXPAT_SRC_ROOT=${HOME}/src/expat-2.1.0
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
-export GDB_SRC_ROOT=${HOME}/src/gdb-7.7.1
+export GDB_SRC_ROOT=${HOME}/src/gdb-7.8
 export MAKE_SRC_ROOT=${HOME}/src/make-4.0
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 export TARGET_TRIPLET=i686-w64-mingw32
-export LOGGER_TAG=native-win32-gcc-4.10
-export SYS_ROOT=${HOME}/native/gcc-4.10-win32
-export SYS_3RD_ROOT=${HOME}/native/gcc-4.10-win32-3rd
-export OBJ_ROOT=${HOME}/obj/native/gcc-4.10-win32
-export PATH=${HOME}/cross/i686-windows-gcc-4.10/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export LOGGER_TAG=native-win32-gcc-5.0
+export SYS_ROOT=${HOME}/native/gcc-5.0-win32
+export SYS_3RD_ROOT=${HOME}/native/gcc-5.0-win32-3rd
+export OBJ_ROOT=${HOME}/obj/native/gcc-5.0-win32
+export PATH=${HOME}/cross/i686-windows-gcc-5.0/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 TMP_FILE=`mktemp`
@@ -178,7 +178,7 @@ ${GCC_SRC_ROOT}/configure \
     --prefix=${SYS_ROOT} \
     --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --disable-multilib --disable-nls --disable-win32-registry \
+    --disable-multilib --disable-nls --disable-win32-registry --disable-gcov-tool \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string --with-arch=core2 --with-tune=generic
 

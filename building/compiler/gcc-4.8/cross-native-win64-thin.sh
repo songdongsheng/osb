@@ -24,7 +24,7 @@ export ZLIB_SRC_ROOT=${HOME}/src/zlib-1.2.8
 export EXPAT_SRC_ROOT=${HOME}/src/expat-2.1.0
 export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
-export GDB_SRC_ROOT=${HOME}/src/gdb-7.7.1
+export GDB_SRC_ROOT=${HOME}/src/gdb-7.8
 export MAKE_SRC_ROOT=${HOME}/src/make-4.0
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`

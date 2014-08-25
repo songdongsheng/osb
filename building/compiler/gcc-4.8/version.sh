@@ -8,8 +8,8 @@ cat << EOF > $SYS_ROOT/version.txt
 *) binutils 2.24
 http://ftp.gnu.org/gnu/binutils/binutils-2.24.tar.gz
 
-*) gdb 7.7.1
-http://ftp.gnu.org/gnu/gdb/gdb-7.7.1.tar.bz2
+*) gdb 7.8
+http://ftp.gnu.org/gnu/gdb/gdb-7.8.tar.bz2
 
 *) make 4.0
 http://ftp.gnu.org/gnu/make/make-4.0.tar.bz2
@@ -17,7 +17,7 @@ http://ftp.gnu.org/gnu/make/make-4.0.tar.bz2
 *) gmp 5.1.3
 http://ftp.gnu.org/gnu/gmp/gmp-5.1.3.tar.xz
 
-*) mpfr 3.1.2-p8
+*) mpfr 3.1.2-p10
 http://www.mpfr.org/mpfr-3.1.2/mpfr-3.1.2.tar.xz
 http://www.mpfr.org/mpfr-3.1.2/allpatches
 wget -q -O - http://www.mpfr.org/mpfr-3.1.2/allpatches | patch -p1
@@ -31,7 +31,7 @@ http://www.bastoul.net/cloog/pages/download/cloog-0.18.2.tar.gz
 *) isl (strncmp (isl_version (), "isl-0.12", strlen ("isl-0.12")) != 0)
 http://isl.gforge.inria.fr/isl-0.12.2.tar.bz2
 
-*) mingw-w64
+*) mingw-w64 v3.x
 EOF
 
 GIT_DIR=$MINGW_W64_SRC_ROOT/.git git log -1 >> $SYS_ROOT/version.txt
