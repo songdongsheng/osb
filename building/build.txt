@@ -7,11 +7,13 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 
 *) PlatformToolset
-Visual Studio 2010 (v100)
 Visual Studio 2012 (v110)
 Visual Studio 2012 - Windows XP (v110_xp)
-Intel C++ Compiler XE 12.1 (v100)
-Intel C++ Compiler XE 13.0
+
+Visual Studio 2013 (v120)
+Visual Studio 2013 - Windows XP (v120_xp)
+
+Intel C++ Compiler XE 15.0
 
 *) msbuild
 TargetName=sqlite3
