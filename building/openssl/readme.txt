@@ -9,10 +9,10 @@ BIO_printf(bio_err, "WARNING: can't open config file: %s\n",p);
 
 ------------------------------------------------------------------------
 $(LIB_D)\openssl.dll: $(CRYPTOOBJ) $(SSLOBJ)
-	$(LINK) $(MLFLAGS) /out:$(LIB_D)\openssl.dll /PDB:$(LIB_D)\openssl.pdb /def:ms/openssl.def @<<
+    $(LINK) $(MLFLAGS) /out:$(LIB_D)\openssl.dll /PDB:$(LIB_D)\openssl.pdb /def:ms/openssl.def @<<
   $(SHLIB_EX_OBJ) $(CRYPTOOBJ)  $(SSLOBJ) zlib.lib $(EX_LIBS)
 <<
-	IF EXIST $@.manifest mt -nologo -manifest $@.manifest -outputresource:$@;2
+    IF EXIST $@.manifest mt -nologo -manifest $@.manifest -outputresource:$@;2
 
 $(ENG_D)\gost.dll: $(GOSTOBJ)
 
@@ -27,9 +27,9 @@ make CC=i686-w64-mingw32-gcc RANLIB=i686-w64-mingw32-ranlib
 
 ------------------------------------------------------------------------
 perl Configure enable-zlib VC-WIN32 ^
-    --prefix=E:/var/pool/openssl-win32 ^
-    -I"E:\var\vcs\git\osb\windows-x86-msvcr110\include" ^
-    -L"E:\var\vcs\git\osb\windows-x86-msvcr110\lib"
+    --prefix=D:/var/pool/openssl-win32 ^
+    -I"D:\var\vcs\git\osb\windows-x86-msvcr120\include" ^
+    -L"D:\var\vcs\git\osb\windows-x86-msvcr120\lib"
 
 ms\do_nasm
 
@@ -38,8 +38,8 @@ SET CFLAG=/nologo /W3 /MD /EHsc /O2 /Zi ^
 SET  LFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /DEBUG /RELEASE /SUBSYSTEM:CONSOLE,5.1 /VERSION:1.2
 SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X86 /DEBUG /RELEASE /SUBSYSTEM:CONSOLE,5.1 /VERSION:1.2 /DLL
 
-/Fd"E:\var\pool\openssl-win32\openssl-app.pdb"
-/Fd"E:\var\pool\openssl-win32\openssl-lib.pdb"
+/Fd"D:\var\pool\openssl-win32\openssl-app.pdb"
+/Fd"D:\var\pool\openssl-win32\openssl-lib.pdb"
 
 nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak test
@@ -48,9 +48,9 @@ nmake -f ms\ntdll.mak install
 
 ------------------------------------Win64/x64------------------------------------
 perl Configure enable-zlib VC-WIN64A ^
-    --prefix=E:/var/pool/openssl-win64 ^
-    -I"E:\var\vcs\git\osb\windows-x64-msvcr110\include" ^
-    -L"E:\var\vcs\git\osb\windows-x64-msvcr110\lib"
+    --prefix=D:/var/pool/openssl-win64 ^
+    -I"D:\var\vcs\git\osb\windows-x64-msvcr120\include" ^
+    -L"D:\var\vcs\git\osb\windows-x64-msvcr120\lib"
 
 ms\do_win64a
 
@@ -59,8 +59,8 @@ SET CFLAG=/nologo /W3 /MD /EHsc /O2 /Zi ^
 SET  LFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X64 /DEBUG /RELEASE /SUBSYSTEM:CONSOLE,5.2 /VERSION:1.2
 SET MLFLAGS=/NOLOGO /OPT:ICF,REF /MACHINE:X64 /DEBUG /RELEASE /SUBSYSTEM:CONSOLE,5.2 /VERSION:1.2 /DLL
 
-/Fd"E:\var\pool\openssl-win64\openssl-app.pdb"
-/Fd"E:\var\pool\openssl-win64\openssl-lib.pdb"
+/Fd"D:\var\pool\openssl-win64\openssl-app.pdb"
+/Fd"D:\var\pool\openssl-win64\openssl-lib.pdb"
 
 nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak test
