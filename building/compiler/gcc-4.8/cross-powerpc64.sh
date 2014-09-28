@@ -60,6 +60,7 @@ ${GCC_SRC_ROOT}/configure \
     --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string \
     --enable-libstdcxx-time=yes \
+    --disable-multilib \
     --with-cpu=power8 -with-tune=power8
 
 make -j${NR_JOBS} all-gcc ;

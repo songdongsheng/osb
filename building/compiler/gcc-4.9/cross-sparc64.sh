@@ -6,8 +6,8 @@
 #
 
 export KERNEL_SRC_ROOT=${HOME}/vcs/git/linux
-export GLIBC_SRC_ROOT=${HOME}/vcs/git/glibc
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_9-branch
+export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.20
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
