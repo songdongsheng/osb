@@ -18,7 +18,7 @@ export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 export TARGET_TRIPLET=arm-linux-gnueabihf
-export LOGGER_TAG=cross-armhf
+export LOGGER_TAG=cross-armhf-gcc-4.9
 export SYS_ROOT=${HOME}/cross/${TARGET_TRIPLET}
 export PATH=${SYS_ROOT}/usr/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
