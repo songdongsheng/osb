@@ -1,7 +1,9 @@
 #!/bin/sh
 #
-# gcc -mfloat-abi=hard      -march=armv7-a      -mfpu=neon           -mthumb
-#    --with-float=hard --with-arch=armv7-a --with-fpu=neon --with-mode=thumb
+# http://en.wikipedia.org/wiki/Comparison_of_ARMv7-A_cores
+#
+# gcc -mfloat-abi=hard      -mcpu=cortex-a7      -mfpu=vfpv4      -mtune=cortex-a15.cortex-a7
+#    --with-float=hard --with-cpu=cortex-a7 --with-fpu=vfpv4 --with-tune=cortex-a15.cortex-a7
 #
 # arm-linux-gnueabihf-gcc -dM -E -  < /dev/null
 # arm-linux-gnueabihf-gcc -Werror -fstack-protector -xc /dev/null -S -o /dev/null
@@ -9,9 +11,9 @@
 #
 
 export KERNEL_SRC_ROOT=${HOME}/vcs/git/linux
-export EGLIBC_SRC_ROOT=${HOME}/vcs/svn/eglibc-2.18
+export GLIBC_SRC_ROOT=${HOME}/vcs/git/glibc
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
-export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -61,7 +63,8 @@ ${GCC_SRC_ROOT}/configure \
     --enable-languages=c --with-newlib --without-headers \
     --disable-multilib --disable-shared --disable-threads --disable-libssp --disable-libgomp \
     --disable-libmudflap --disable-libquadmath --disable-libatomic \
-    --with-arch=armv7-a --with-float=hard --with-fpu=neon --with-mode=thumb
+    --with-cpu=cortex-a7 --with-tune=cortex-a15 \
+    --with-float=hard --with-fpu=vfpv4-d16
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then
@@ -75,7 +78,7 @@ rm -fr ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 mkdir -p ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 cd  ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 
-${EGLIBC_SRC_ROOT}/libc/configure --prefix=/usr --enable-kernel=2.6.32 \
+${GLIBC_SRC_ROOT}/configure --prefix=/usr --enable-kernel=3.2.0 \
     --host=${TARGET_TRIPLET} --with-headers=${SYS_ROOT}/usr/include
 
 fakeroot make install_root=${SYS_ROOT} install-headers install-bootstrap-headers=yes
@@ -97,8 +100,11 @@ ${GCC_SRC_ROOT}/configure \
     --with-sysroot=${SYS_ROOT} \
     --target=${TARGET_TRIPLET} \
     --enable-checking=release \
-    --enable-languages=c,c++ --enable-fully-dynamic-string \
-    --with-float=hard --with-arch=armv7-a --with-fpu=neon --with-mode=thumb
+    --enable-languages=c,c++,fortran \
+    --enable-fully-dynamic-string \
+    --enable-libstdcxx-time=yes \
+    --with-cpu=cortex-a7 --with-tune=cortex-a15 \
+    --with-float=hard --with-fpu=vfpv4-d16
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then

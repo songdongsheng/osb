@@ -6,9 +6,9 @@
 #
 
 export KERNEL_SRC_ROOT=${HOME}/vcs/git/linux
-export EGLIBC_SRC_ROOT=${HOME}/vcs/svn/eglibc-2.18
+export GLIBC_SRC_ROOT=${HOME}/vcs/git/glibc
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
-export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -66,11 +66,11 @@ ${GCC_SRC_ROOT}/configure \
     --prefix=${SYS_ROOT}/usr \
     --with-sysroot=${SYS_ROOT} \
     --target=${TARGET_TRIPLET} \
-    --with-cpu=niagara2 -with-tune=niagara4 \
     --enable-checking=release \
     --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string \
-    --disable-multilib --disable-libssp
+    --enable-libstdcxx-time=yes \
+    --with-cpu=niagara4 -with-tune=niagara4
 
 make -j${NR_JOBS} all-gcc ;
 make install-strip-gcc
@@ -86,13 +86,16 @@ mkdir -p ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 cd  ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 
 install -m 0755 -d ${SYS_ROOT}/usr/include
-install -m 0644 -t ${SYS_ROOT}/usr/include ${EGLIBC_SRC_ROOT}/libc/sysdeps/generic/unwind.h
+install -m 0644 -t ${SYS_ROOT}/usr/include ${GLIBC_SRC_ROOT}/sysdeps/generic/unwind.h
 
-${EGLIBC_SRC_ROOT}/libc/configure --prefix=/usr --enable-kernel=2.6.32 \
+${GLIBC_SRC_ROOT}/configure --prefix=/usr --enable-kernel=2.6.32 \
     --host=${TARGET_TRIPLET} --with-headers=${SYS_ROOT}/usr/include
 
 /bin/rm -f ${SYS_ROOT}/usr/include/unwind.h
 fakeroot make install_root=${SYS_ROOT} install-headers install-bootstrap-headers=yes
+
+install -m 0755 -d ${SYS_ROOT}/usr/include/gnu
+install -m 0644 -t ${SYS_ROOT}/usr/include/gnu ${GLIBC_SRC_ROOT}/include/gnu/stubs.h
 
 make csu/subdir_lib
 install -m 0755 -d ${SYS_ROOT}/usr/lib
