@@ -1,0 +1,35 @@
+$ aarch64-linux-g++ -v
+Using built-in specs.
+COLLECT_GCC=aarch64-linux-g++
+COLLECT_LTO_WRAPPER=/home/cauchy/cross/aarch64-linux/usr/libexec/gcc/aarch64-linux/4.8.4/lto-wrapper
+Target: aarch64-linux
+Configured with: /home/cauchy/vcs/svn/gcc/branches/gcc-4_8-branch/configure --prefix=/home/cauchy/cross/aarch64-linux/usr --with-sysroot=/home/cauchy/cross/aarch64-linux --target=aarch64-linux --enable-checking=release --enable-languages=c,c++,fortran --enable-fully-dynamic-string --enable-libstdcxx-time=yes
+Thread model: posix
+gcc version 4.8.4 20140928 (prerelease) (GCC)
+
+$ arm-linux-gnueabihf-g++ -v
+Using built-in specs.
+COLLECT_GCC=arm-linux-gnueabihf-g++
+COLLECT_LTO_WRAPPER=/home/cauchy/cross/arm-linux-gnueabihf/usr/libexec/gcc/arm-linux-gnueabihf/4.8.4/lto-wrapper
+Target: arm-linux-gnueabihf
+Configured with: /home/cauchy/vcs/svn/gcc/branches/gcc-4_8-branch/configure --prefix=/home/cauchy/cross/arm-linux-gnueabihf/usr --with-sysroot=/home/cauchy/cross/arm-linux-gnueabihf --target=arm-linux-gnueabihf --enable-checking=release --enable-languages=c,c++,fortran --enable-fully-dynamic-string --enable-libstdcxx-time=yes --with-cpu=cortex-a7 --with-tune=cortex-a15 --with-float=hard --with-fpu=vfpv4-d16
+Thread model: posix
+gcc version 4.8.4 20140928 (prerelease) (GCC)
+
+$ powerpc64-linux-g++ -v
+Using built-in specs.
+COLLECT_GCC=powerpc64-linux-g++
+COLLECT_LTO_WRAPPER=/home/cauchy/cross/powerpc64-linux/usr/libexec/gcc/powerpc64-linux/4.8.4/lto-wrapper
+Target: powerpc64-linux
+Configured with: /home/cauchy/vcs/svn/gcc/branches/gcc-4_8-branch/configure --prefix=/home/cauchy/cross/powerpc64-linux/usr --with-sysroot=/home/cauchy/cross/powerpc64-linux --target=powerpc64-linux --enable-checking=release --enable-languages=c,c++,fortran --enable-fully-dynamic-string --enable-libstdcxx-time=yes --disable-multilib --with-cpu=power8 -with-tune=power8
+Thread model: posix
+gcc version 4.8.4 20140928 (prerelease) (GCC)
+
+~$ sparc64-linux-g++ -v
+Using built-in specs.
+COLLECT_GCC=sparc64-linux-g++
+COLLECT_LTO_WRAPPER=/home/cauchy/cross/sparc64-linux/usr/libexec/gcc/sparc64-linux/4.8.4/lto-wrapper
+Target: sparc64-linux
+Configured with: /home/cauchy/vcs/svn/gcc/branches/gcc-4_8-branch/configure --prefix=/home/cauchy/cross/sparc64-linux/usr --with-sysroot=/home/cauchy/cross/sparc64-linux --target=sparc64-linux --enable-checking=release --enable-languages=c,c++,fortran --enable-fully-dynamic-string --enable-libstdcxx-time=yes --disable-multilib --with-cpu=niagara4 -with-tune=niagara4
+Thread model: posix
+gcc version 4.8.4 20140928 (prerelease) (GCC)
