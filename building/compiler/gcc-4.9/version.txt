@@ -33,3 +33,12 @@ Target: sparc64-linux
 Configured with: /home/cauchy/vcs/svn/gcc/branches/gcc-4_9-branch/configure --prefix=/home/cauchy/cross/sparc64-linux/usr --with-sysroot=/home/cauchy/cross/sparc64-linux --target=sparc64-linux --enable-checking=release --enable-languages=c,c++,fortran --enable-fully-dynamic-string --enable-libstdcxx-time=yes --disable-multilib --disable-libsanitizer --with-cpu=niagara4 -with-tune=niagara4
 Thread model: posix
 gcc version 4.9.2 20140928 (prerelease) (GCC)
+
+$ s390x-linux-g++ -v
+Using built-in specs.
+COLLECT_GCC=s390x-linux-g++
+COLLECT_LTO_WRAPPER=/home/cauchy/cross/s390x-linux/usr/libexec/gcc/s390x-linux/4.9.2/lto-wrapper
+Target: s390x-linux
+Configured with: /home/cauchy/vcs/svn/gcc/branches/gcc-4_9-branch/configure --prefix=/home/cauchy/cross/s390x-linux/usr --with-sysroot=/home/cauchy/cross/s390x-linux --target=s390x-linux --enable-checking=release --enable-languages=c,c++,fortran --enable-fully-dynamic-string --enable-libstdcxx-time=yes --disable-multilib --with-arch=z10
+Thread model: posix
+gcc version 4.9.2 20140928 (prerelease) (GCC)

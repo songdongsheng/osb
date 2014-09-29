@@ -1,6 +1,6 @@
 --------------------------------------------------------------
 export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
-export QEMU_SRC_DIR=${HOME}/src/qemu-1.5.0
+export QEMU_SRC_DIR=${HOME}/src/qemu-2.1.2
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 
 --------------------------------------------------------------
@@ -9,9 +9,9 @@ rm -fr ${HOME}/obj/qemu-system-build
 mkdir -p ${HOME}/obj/qemu-system-build
 cd ${HOME}/obj/qemu-system-build && \
         ${QEMU_SRC_DIR}/configure \
-                --prefix=/opt/qemu-1.5 \
+                --prefix=/opt/qemu-2.1 \
                 --disable-user \
-                --audio-drv-list=sdl,alsa
+                --audio-drv-list=alsa
 
         make -j${NR_JOBS} && sudo make install
 
@@ -21,9 +21,9 @@ rm -fr ${HOME}/obj/qemu-user-build
 mkdir -p ${HOME}/obj/qemu-user-build
 cd ${HOME}/obj/qemu-user-build && \
         ${QEMU_SRC_DIR}/configure \
-                --prefix=/opt/qemu-1.5 \
+                --prefix=/opt/qemu-2.1 \
                 --disable-system \
-                --interp-prefix=/opt/qemu-1.5/binfmt/%M
+                --interp-prefix=/opt/qemu-2.1/binfmt/%M
 
         make -j${NR_JOBS} && sudo make install
 
@@ -33,16 +33,20 @@ rm -fr ${HOME}/obj/qemu-user-static-build
 mkdir -p ${HOME}/obj/qemu-user-static-build
 cd ${HOME}/obj/qemu-user-static-build && \
         ${QEMU_SRC_DIR}/configure \
-                --prefix=/opt/qemu-1.5 \
+                --prefix=/opt/qemu-2.1 \
                 --disable-system \
-                --interp-prefix=/opt/qemu-1.5/binfmt-static/%M \
+                --interp-prefix=/opt/qemu-2.1/binfmt-static/%M \
                 --static
 
         make -j${NR_JOBS}
 
+        for target in ${HOME}/obj/qemu-user-static-build/*-*-user/; do
+            make -j${NR_JOBS}
+        done
+
         # static user build
         for target in ${HOME}/obj/qemu-user-static-build/*-*-user/qemu-* ; do
-            sudo install -m 755 $target /opt/qemu-1.5/bin/$(basename $target)-static
+            sudo install -m 755 $target /opt/qemu-2.1/bin/$(basename $target)-static
         done
 
 --------------------------------------------------------------
