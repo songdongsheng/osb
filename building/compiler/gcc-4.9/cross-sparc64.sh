@@ -71,6 +71,7 @@ ${GCC_SRC_ROOT}/configure \
     --enable-fully-dynamic-string \
     --enable-libstdcxx-time=yes \
     --disable-multilib \
+    --disable-libsanitizer \
     --with-cpu=niagara4 -with-tune=niagara4
 
 make -j${NR_JOBS} all-gcc ;
