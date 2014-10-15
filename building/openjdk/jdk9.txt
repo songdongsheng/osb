@@ -16,21 +16,21 @@ for i in ${HOME}/vcs/hg/jdk9/ ${HOME}/vcs/hg/jdk9/*; do
 done
 
 cat << EOF | sort
-2014-08-30 02:56:35 +0800
-2014-08-30 02:59:34 +0800
-2014-08-30 02:57:22 +0800
-2014-08-30 02:56:46 +0800
-2014-08-30 02:30:46 +0800
-2014-08-30 02:58:43 +0800
-2014-08-30 02:57:50 +0800
-2014-08-30 02:58:19 +0800
+2014-10-10 02:23:51 +0800
+2014-10-10 02:23:53 +0800
+2014-10-10 02:24:04 +0800
+2014-10-10 02:24:08 +0800
+2014-10-10 02:24:13 +0800
+2014-10-10 02:24:15 +0800
+2014-10-10 02:24:21 +0800
+2014-10-10 02:24:22 +0800
 EOF
 
 TZ=PRC /bin/date --rfc-3339=seconds
 
-TZ=UTC /bin/date --rfc-3339=seconds -d "2014-08-30 02:59:34 +0800"
-TZ=UTC /bin/date -d "2014-08-30 02:59:34 +0800" +%V
-TZ=UTC /bin/date -d "2014-08-30 02:59:34 +0800" +hg_%Y%m%d_%H%M%S
+TZ=UTC /bin/date --rfc-3339=seconds -d "2014-10-10 02:24:22 +0800"
+TZ=UTC /bin/date -d "2014-10-10 02:24:22 +0800" +%V
+TZ=UTC /bin/date -d "2014-10-10 02:24:22 +0800" +hg_%Y%m%d_%H%M%S
 
 ====================================================
 unset LANG LC_ALL
@@ -39,30 +39,26 @@ export SHELL=/bin/bash
 # export CC=gcc-4.8
 # export CXX=g++-4.8
 
-export JAVA8_SRC_DATE=20140903
-export JAVA9_SRC_DATE=20140829
+export JAVA8_SRC_DATE=20141014
+export JAVA9_SRC_DATE=20141009
 
 export JAVA_HOME=/opt/openjdk-1.8-`uname -s`-`uname -m`-${JAVA8_SRC_DATE}
 
 export PATH=${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ====================================================
+cd ${HOME}/vcs/hg/jdk9/
 bash configure \
     --prefix=/opt/openjdk-1.9-`uname -s`-`uname -m`-${JAVA9_SRC_DATE} \
     --enable-unlimited-crypto \
     --disable-debug-symbols \
-    --with-user-release-suffix=hg_20140829_185934 \
-    --with-build-number=b35
+    --with-user-release-suffix=hg_20141009_182422 \
+    --with-build-number=b41
 
-$ /opt/openjdk-1.8-Linux-x86_64-20140903/bin/java -version
-openjdk version "1.8.0-internal"
-OpenJDK Runtime Environment (build 1.8.0-internal-hg_20140903_202005-b36)
-OpenJDK 64-Bit Server VM (build 25.40-b08, mixed mode)
-
-$ /opt/openjdk-1.9-Linux-x86_64-20140829/bin/java -version
+$ /opt/openjdk-1.9-Linux-x86_64-20141009/bin/java -version
 openjdk version "1.9.0-internal"
-OpenJDK Runtime Environment (build 1.9.0-internal-hg_20140829_185934-b35)
-OpenJDK 64-Bit Server VM (build 1.9.0-internal-hg_20140829_185934-b35, mixed mode)
+OpenJDK Runtime Environment (build 1.9.0-internal-hg_20141009_182422-b41)
+OpenJDK 64-Bit Server VM (build 1.9.0-internal-hg_20141009_182422-b41, mixed mode)
 
 ====================================================
 Configuration summary:
@@ -73,7 +69,7 @@ Configuration summary:
 * OpenJDK target: OS: linux, CPU architecture: x86, address length: 64
 
 Tools summary:
-* Boot JDK:       openjdk version "1.8.0-internal" OpenJDK Runtime Environment (build 1.8.0-internal-hg_20140903_202005-b36) OpenJDK 64-Bit Server VM (build 25.40-b08, mixed mode)  (at /opt/openjdk-1.8-Linux-x86_64-20140903)
+* Boot JDK:       openjdk version "1.8.0-internal" OpenJDK Runtime Environment (build 1.8.0-internal-hg_20141014_172221-b42) OpenJDK 64-Bit Server VM (build 25.40-b14, mixed mode)  (at /opt/openjdk-1.8-Linux-x86_64-20141014)
 * Toolchain:      gcc (GNU Compiler Collection)
 * C Compiler:     Version 4.9.1 (at /usr/bin/gcc)
 * C++ Compiler:   Version 4.9.1 (at /usr/bin/g++)

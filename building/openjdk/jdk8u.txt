@@ -16,21 +16,21 @@ for i in ${HOME}/vcs/hg/jdk8u/ ${HOME}/vcs/hg/jdk8u/*; do
 done
 
 cat << EOF | sort
-2014-09-04 04:19:50 +0800
-2014-09-04 04:19:52 +0800
-2014-09-04 04:19:59 +0800
-2014-09-04 04:20:00 +0800
-2014-09-04 04:20:02 +0800
-2014-09-04 04:20:03 +0800
-2014-09-04 04:20:04 +0800
-2014-09-04 04:20:05 +0800
+2014-10-09 05:12:08 +0800
+2014-10-09 05:12:19 +0800
+2014-10-15 01:20:59 +0800
+2014-10-15 01:21:20 +0800
+2014-10-15 01:21:06 +0800
+2014-10-15 01:22:21 +0800
+2014-10-15 01:20:41 +0800
+2014-10-15 01:20:24 +0800
 EOF
 
 TZ=PRC /bin/date --rfc-3339=seconds
 
-TZ=UTC /bin/date --rfc-3339=seconds -d "2014-09-04 04:20:05 +0800"
-TZ=UTC /bin/date -d "2014-09-04 04:20:05 +0800" +%V
-TZ=UTC /bin/date -d "2014-09-04 04:20:05 +0800" +hg_%Y%m%d_%H%M%S
+TZ=UTC /bin/date --rfc-3339=seconds -d "2014-10-15 01:22:21 +0800"
+TZ=UTC /bin/date -d "2014-10-15 01:22:21 +0800" +%V
+TZ=UTC /bin/date -d "2014-10-15 01:22:21 +0800" +hg_%Y%m%d_%H%M%S
 
 ====================================================
 unset LANG LC_ALL
@@ -40,29 +40,30 @@ export SHELL=/bin/bash
 # export CXX=g++-4.8
 
 export OLD_JAVA8_SRC_DATE=20140903
-export NEW_JAVA8_SRC_DATE=20140903
+export NEW_JAVA8_SRC_DATE=20141014
 
 export JAVA_HOME=/opt/openjdk-1.8-`uname -s`-`uname -m`-${OLD_JAVA8_SRC_DATE}
 
 export PATH=${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ====================================================
+cd ${HOME}/vcs/hg/jdk8u/
 bash configure \
     --prefix=/opt/openjdk-1.8-`uname -s`-`uname -m`-${NEW_JAVA8_SRC_DATE} \
     --enable-unlimited-crypto \
     --disable-debug-symbols \
-    --with-user-release-suffix=hg_20140903_202005 \
-    --with-build-number=b36
+    --with-user-release-suffix=hg_20141014_172221 \
+    --with-build-number=b42
 
 $ /opt/openjdk-1.8-Linux-x86_64-20140725/bin/java -version
 openjdk version "1.8.0_85-internal"
 OpenJDK Runtime Environment (build 1.8.0_85-internal-b32)
 OpenJDK 64-Bit Server VM (build 25.40-b02, mixed mode)
 
-$ /opt/openjdk-1.8-Linux-x86_64-20140903/bin/java -version
+$ /opt/openjdk-1.8-Linux-x86_64-20141014/bin/java -version
 openjdk version "1.8.0-internal"
-OpenJDK Runtime Environment (build 1.8.0-internal-hg_20140903_202005-b36)
-OpenJDK 64-Bit Server VM (build 25.40-b08, mixed mode)
+OpenJDK Runtime Environment (build 1.8.0-internal-hg_20141014_172221-b42)
+OpenJDK 64-Bit Server VM (build 25.40-b14, mixed mode)
 
 ====================================================
 Configuration summary:
@@ -73,8 +74,8 @@ Configuration summary:
 
 Tools summary:
 * Boot JDK:       openjdk version "1.8.0-internal" OpenJDK Runtime Environment (build 1.8.0-internal-hg_20140903_202005-b36) OpenJDK 64-Bit Server VM (build 25.40-b08, mixed mode)  (at /opt/openjdk-1.8-Linux-x86_64-20140903)
-* C Compiler:     gcc-4.9 (Debian 4.9.1-4) version 4.9.1 (at /usr/bin/gcc-4.9)
-* C++ Compiler:   g++-4.9 (Debian 4.9.1-4) version 4.9.1 (at /usr/bin/g++-4.9)
+* C Compiler:     gcc-4.9 (Debian 4.9.1-16) version 4.9.1 (at /usr/bin/gcc-4.9)
+* C++ Compiler:   g++-4.9 (Debian 4.9.1-16) version 4.9.1 (at /usr/bin/g++-4.9)
 
 ====================================================
 make; make install; sudo make install
