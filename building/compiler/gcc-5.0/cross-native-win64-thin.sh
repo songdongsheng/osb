@@ -23,8 +23,8 @@ export GCC_BASE_VER=`cat ${GCC_SRC_ROOT}/gcc/BASE-VER`
 export ZLIB_SRC_ROOT=${HOME}/src/zlib-1.2.8
 export EXPAT_SRC_ROOT=${HOME}/src/expat-2.1.0
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
-export GDB_SRC_ROOT=${HOME}/src/gdb-7.8
-export MAKE_SRC_ROOT=${HOME}/src/make-4.0
+export GDB_SRC_ROOT=${HOME}/src/gdb-7.8.1
+export MAKE_SRC_ROOT=${HOME}/src/make-4.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -178,7 +178,7 @@ ${GCC_SRC_ROOT}/configure \
     --prefix=${SYS_ROOT} \
     --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --disable-multilib --disable-nls --disable-win32-registry --disable-gcov-tool \
+    --disable-gcov-tool --disable-multilib --disable-nls --disable-win32-registry \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string --with-arch=core2 --with-tune=generic
 

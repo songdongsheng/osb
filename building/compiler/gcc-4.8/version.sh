@@ -8,11 +8,11 @@ cat << EOF > $SYS_ROOT/version.txt
 *) binutils 2.24
 http://ftp.gnu.org/gnu/binutils/binutils-2.24.tar.gz
 
-*) gdb 7.8
-http://ftp.gnu.org/gnu/gdb/gdb-7.8.tar.bz2
+*) gdb 7.8.1
+http://ftp.gnu.org/gnu/gdb/gdb-7.8.1.tar.xz
 
-*) make 4.0
-http://ftp.gnu.org/gnu/make/make-4.0.tar.bz2
+*) make 4.1
+http://ftp.gnu.org/gnu/make/make-4.1.tar.bz2
 
 *) gmp 5.1.3
 http://ftp.gnu.org/gnu/gmp/gmp-5.1.3.tar.xz
