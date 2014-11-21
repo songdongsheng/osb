@@ -1,0 +1,50 @@
+http://llvm.org/docs/GettingStarted.html
+http://clang.llvm.org/docs/UsersManual.html
+
+vi $LLVM_SRC_DIR/tools/clang/lib/Frontend/InitHeaderSearch.cpp
+  case llvm::Triple::Win32:
+    case llvm::Triple::GNU:
+      // mingw-w64 C++ include paths (i686-w64-mingw32 and x86_64-w64-mingw32)
+      AddMinGW64CXXPaths(HSOpts.ResourceDir, "4.8.2");
+      AddMinGW64CXXPaths(HSOpts.ResourceDir, "4.8.3");
+      AddMinGW64CXXPaths(HSOpts.ResourceDir, "4.8.4");
+      AddMinGW64CXXPaths(HSOpts.ResourceDir, "4.9.2");
+      AddMinGW64CXXPaths(HSOpts.ResourceDir, "4.9.3");
+
+$LLVM_SRC_DIR/projects/compiler-rt
+$LLVM_SRC_DIR/projects/dragonegg    [XX]
+$LLVM_SRC_DIR/projects/libcxx       [XX]
+$LLVM_SRC_DIR/projects/libcxxabi    [XX]
+
+$LLVM_SRC_DIR/tools/polly
+$LLVM_SRC_DIR/tools/clang
+$LLVM_SRC_DIR/tools/clang/tools/extra
+$LLVM_SRC_DIR/tools/lld
+$LLVM_SRC_DIR/tools/lldb
+add_llvm_implicit_external_projects()
+
+SET PATH=D:\opt\python-2.7;D:\opt\cmake-3.0\bin;D:\opt\gcc-4.9-win32\bin;C:\var\gnuwin32\bin
+
+SET PATH=D:\opt\python-2.7;D:\opt\cmake-3.0\bin;D:\opt\gcc-4.9-win64\bin;C:\var\gnuwin32\bin
+
+SET LIT_USE_INTERNAL_SHELL=1
+
+*) mingw32-make.exe
+cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="AArch64;ARM;CppBackend;PowerPC;Sparc;SystemZ;X86" -DCMAKE_PREFIX_PATH=${INSTALL_ROOT_3RD} -DCMAKE_INSTALL_PREFIX=D:\var\tmp ..\llvm-3.5.0.src.gcc
+
+cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release ..\llvm-3.5.0.src.gcc
+mingw32-make VERBOSE=1 ENABLE_OPTIMIZED=1 DISABLE_ASSERTIONS=1 -j2
+
+mingw32-make -j4 check-all 2>&1 | tee check-all.log
+
+cpack -G ZIP
+
+*) libcxx and libcxxabi
+build libcxx without libcxxabi:
+cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=D:\var\w64 -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..\libcxx-3.5.0.src
+
+Build libcxxabi with libcxx:
+cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=D:\var\w64 -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_FLAGS="-std=c++11" -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include
+
+build libcxx with libcxxabi:
+cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=D:\var\w64 -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLIBCXX_CXX_ABI=libcxxabi -DLIBCXX_LIBCXXABI_INCLUDE_PATHS=../../libcxxabi/include ..

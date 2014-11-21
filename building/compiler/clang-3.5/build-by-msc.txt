@@ -1,0 +1,23 @@
+http://llvm.org/docs/GettingStarted.html
+http://clang.llvm.org/docs/UsersManual.html
+
+$LLVM_SRC_DIR/projects/compiler-rt
+$LLVM_SRC_DIR/projects/dragonegg    [XX]
+$LLVM_SRC_DIR/projects/libcxx       [XX]
+$LLVM_SRC_DIR/projects/libcxxabi    [XX]
+
+$LLVM_SRC_DIR/tools/polly
+$LLVM_SRC_DIR/tools/clang
+$LLVM_SRC_DIR/tools/clang/tools/extra
+$LLVM_SRC_DIR/tools/lld
+$LLVM_SRC_DIR/tools/lldb
+add_llvm_implicit_external_projects()
+
+*) nmake.exe
+cmake -G "NMake Makefiles" -DCMAKE_PREFIX_PATH=${INSTALL_ROOT_3RD} -DCMAKE_INSTALL_PREFIX=E:\var\tmp -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="ARM;X86" ..\llvm-3.5.0.src.msc
+
+nmake /K VERBOSE=1 ENABLE_OPTIMIZED=1 DISABLE_ASSERTIONS=1
+
+cpack -G ZIP
+
+clang -D_HAS_EXCEPTIONS=0 x.cpp

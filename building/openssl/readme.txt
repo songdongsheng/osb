@@ -26,10 +26,10 @@ make CC=i686-w64-mingw32-gcc RANLIB=i686-w64-mingw32-ranlib
 
 
 ------------------------------------------------------------------------
-perl Configure enable-zlib VC-WIN32 ^
+perl Configure ^
+    no-comp no-dso no-idea no-ssl2 no-ssl3 no-psk no-srp ^
     --prefix=D:/var/pool/openssl-win32 ^
-    -I"D:\var\vcs\git\osb\windows-x86-msvcr120\include" ^
-    -L"D:\var\vcs\git\osb\windows-x86-msvcr120\lib"
+    VC-WIN32
 
 ms\do_nasm
 
@@ -47,10 +47,9 @@ nmake -f ms\ntdll.mak install
 
 
 ------------------------------------Win64/x64------------------------------------
-perl Configure enable-zlib VC-WIN64A ^
+perl Configure ^
     --prefix=D:/var/pool/openssl-win64 ^
-    -I"D:\var\vcs\git\osb\windows-x64-msvcr120\include" ^
-    -L"D:\var\vcs\git\osb\windows-x64-msvcr120\lib"
+    VC-WIN64A
 
 ms\do_win64a
 
