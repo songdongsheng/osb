@@ -7,7 +7,7 @@
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_9-branch
 export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.20
-export KERNEL_SRC_ROOT=${HOME}/src/linux-3.17.2
+export KERNEL_SRC_ROOT=${HOME}/src/linux-3.17.6
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
@@ -74,8 +74,7 @@ ${GCC_SRC_ROOT}/configure \
     --disable-libsanitizer \
     --with-cpu=niagara4 -with-tune=niagara4
 
-make -j${NR_JOBS} all-gcc ;
-make install-strip-gcc
+make -j${NR_JOBS} all-gcc; make install-strip-gcc
 if [ $? -ne 0 ]; then
     logger -t ${LOGGER_TAG} -s "Build gcc (core) failed"
     exit 1

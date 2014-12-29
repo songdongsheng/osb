@@ -34,7 +34,7 @@ http://isl.gforge.inria.fr/isl-0.12.2.tar.bz2
 *) mingw-w64 master
 EOF
 
-GIT_DIR=$MINGW_W64_SRC_ROOT/.git git log -1 >> $SYS_ROOT/version.txt
+GIT_DIR=$MINGW_W64_SRC_ROOT/.git git log -1 origin >> $SYS_ROOT/version.txt
 echo >> $SYS_ROOT/version.txt
 
 echo "*) gcc" >> $SYS_ROOT/version.txt

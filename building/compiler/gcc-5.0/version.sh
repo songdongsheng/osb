@@ -25,16 +25,13 @@ wget -q -O - http://www.mpfr.org/mpfr-3.1.2/allpatches | patch -p1
 *) mpc 1.0.2
 http://ftp.gnu.org/gnu/mpc/mpc-1.0.2.tar.gz
 
-*) cloog (CLOOG_VERSION_MAJOR == 0 && CLOOG_VERSION_MINOR == 18 && CLOOG_VERSION_REVISION >= 0)
-http://www.bastoul.net/cloog/pages/download/cloog-0.18.2.tar.gz
-
 *) isl (strncmp (isl_version (), "isl-0.12", strlen ("isl-0.12")) != 0)
 http://isl.gforge.inria.fr/isl-0.12.2.tar.bz2
 
 *) mingw-w64 master
 EOF
 
-GIT_DIR=$MINGW_W64_SRC_ROOT/.git git log -1 >> $SYS_ROOT/version.txt
+GIT_DIR=$MINGW_W64_SRC_ROOT/.git git log -1 origin >> $SYS_ROOT/version.txt
 echo >> $SYS_ROOT/version.txt
 
 echo "*) gcc" >> $SYS_ROOT/version.txt

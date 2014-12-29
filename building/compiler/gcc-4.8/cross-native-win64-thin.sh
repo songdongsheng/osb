@@ -16,6 +16,7 @@
 export BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-v3.x
+export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
 
 export GCC_DATE_STR=`cat ${GCC_SRC_ROOT}/gcc/DATESTAMP`
 export GCC_BASE_VER=`cat ${GCC_SRC_ROOT}/gcc/BASE-VER`
@@ -34,7 +35,7 @@ export LOGGER_TAG=native-win64-gcc-4.8
 export SYS_ROOT=${HOME}/native/gcc-4.8-win64
 export SYS_3RD_ROOT=${HOME}/native/gcc-4.8-win64-3rd
 export OBJ_ROOT=${HOME}/obj/native/gcc-4.8-win64
-export PATH=${HOME}/cross/x86_64-windows-gcc-4.8/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=${HOME}/cross/x86_64-windows-gcc-4.8/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 TMP_FILE=`mktemp`

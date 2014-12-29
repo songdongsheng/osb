@@ -72,7 +72,7 @@ ${GCC_SRC_ROOT}/configure \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string --with-arch=core2 --with-tune=generic
 
-make -j${NR_JOBS} all-gcc; make install-gcc
+make -j${NR_JOBS} all-gcc; make install-strip-gcc
 if [ $? -ne 0 ]; then
     logger -t ${LOGGER_TAG} -s "Build gcc (core) failed"
     exit 1

@@ -12,7 +12,7 @@
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
 export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.20
-export KERNEL_SRC_ROOT=${HOME}/src/linux-3.17.2
+export KERNEL_SRC_ROOT=${HOME}/src/linux-3.17.6
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`

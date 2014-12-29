@@ -33,7 +33,7 @@ export LOGGER_TAG=native-win64-gcc-5.0
 export SYS_ROOT=${HOME}/native/gcc-5.0-win64
 export SYS_3RD_ROOT=${HOME}/native/gcc-5.0-win64-3rd
 export OBJ_ROOT=${HOME}/obj/native/gcc-5.0-win64
-export PATH=${HOME}/cross/x86_64-windows-gcc-5.0/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=${HOME}/cross/x86_64-windows-gcc-5.0/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 TMP_FILE=`mktemp`
@@ -182,7 +182,7 @@ ${GCC_SRC_ROOT}/configure \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string --with-arch=core2 --with-tune=generic
 
-make -j${NR_JOBS} ; make install-strip
+make -j${NR_JOBS}; make install-strip
 if [ $? -ne 0 ]; then
     logger -t ${LOGGER_TAG} -s "Build gcc failed"
     exit 1

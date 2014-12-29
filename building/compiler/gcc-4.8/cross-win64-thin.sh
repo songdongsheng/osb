@@ -15,6 +15,8 @@
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-v3.x
+export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
+
 export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
 
@@ -73,7 +75,7 @@ ${GCC_SRC_ROOT}/configure \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string --with-arch=core2 --with-tune=generic
 
-make -j${NR_JOBS} all-gcc; make install-gcc
+make -j${NR_JOBS} all-gcc; make install-strip-gcc
 if [ $? -ne 0 ]; then
     logger -t ${LOGGER_TAG} -s "Build gcc (core) failed"
     exit 1

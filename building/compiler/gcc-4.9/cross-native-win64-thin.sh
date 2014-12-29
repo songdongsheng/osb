@@ -33,7 +33,7 @@ export LOGGER_TAG=native-win64-gcc-4.9
 export SYS_ROOT=${HOME}/native/gcc-4.9-win64
 export SYS_3RD_ROOT=${HOME}/native/gcc-4.9-win64-3rd
 export OBJ_ROOT=${HOME}/obj/native/gcc-4.9-win64
-export PATH=${HOME}/cross/x86_64-windows-gcc-4.9/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=${HOME}/cross/x86_64-windows-gcc-4.9/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 TMP_FILE=`mktemp`
