@@ -5,8 +5,8 @@ export GCC_SRC_ROOT=$2
 export MINGW_W64_SRC_ROOT=$3
 
 cat << EOF > $SYS_ROOT/version.txt
-*) binutils 2.24
-http://ftp.gnu.org/gnu/binutils/binutils-2.24.tar.gz
+*) binutils 2.25
+http://ftp.gnu.org/gnu/binutils/binutils-2.25.tar.gz
 
 *) gdb 7.8.1
 http://ftp.gnu.org/gnu/gdb/gdb-7.8.1.tar.xz
@@ -17,7 +17,7 @@ http://ftp.gnu.org/gnu/make/make-4.1.tar.bz2
 *) gmp 5.1.3
 http://ftp.gnu.org/gnu/gmp/gmp-5.1.3.tar.xz
 
-*) mpfr 3.1.2-p10
+*) mpfr 3.1.2-p11
 http://www.mpfr.org/mpfr-3.1.2/mpfr-3.1.2.tar.xz
 http://www.mpfr.org/mpfr-3.1.2/allpatches
 wget -q -O - http://www.mpfr.org/mpfr-3.1.2/allpatches | patch -p1

@@ -14,11 +14,10 @@
 #
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
-export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-v3.x
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
 
 export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
-export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.24
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.25
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
