@@ -45,9 +45,13 @@ nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak test
 nmake -f ms\ntdll.mak install
 
+nmake -f ms\nt.mak
+nmake -f ms\nt.mak test
+nmake -f ms\nt.mak install
 
 ------------------------------------Win64/x64------------------------------------
 perl Configure ^
+    no-comp no-dso no-idea no-ssl2 no-ssl3 no-psk no-srp ^
     --prefix=D:/var/pool/openssl-win64 ^
     VC-WIN64A
 
@@ -65,6 +69,9 @@ nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak test
 nmake -f ms\ntdll.mak install
 
+nmake -f ms\nt.mak
+nmake -f ms\nt.mak test
+nmake -f ms\nt.mak install
 
 -------------------------------- mingw-w64 --------------------------------
 --with-zlib-lib=/home/cauchy/w32/lib --with-zlib-include=/home/cauchy/w32/include
