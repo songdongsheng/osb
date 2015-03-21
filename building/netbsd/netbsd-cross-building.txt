@@ -1,0 +1,78 @@
+*) http://netbsd.org/docs/guide/en/
+
+*)
+http://releng.netbsd.org/cgi-bin/builds.cgi
+http://nyftp.netbsd.org/pub/NetBSD-daily/netbsd-6-1/
+
+*)
+vnconfig -c vnd0 ~/mycd.iso
+mount -t cd9660 /dev/vnd0a /mnt
+umount /mnt
+vnconfig -u vnd0
+
+*)
+export PKG_PATH="http://ftp.NetBSD.org/pub/pkgsrc/packages/$(uname -s)/$(uname -m)/$(uname -r|cut -f '1 2' -d.)/All/"
+http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/6.1/All/
+http://ftp.netbsd.org/pub/pkgsrc/current/pkgsrc/README.html
+
+*)
+http://mail-index.netbsd.org/source-changes/index.html
+export CVS_RSH=ssh
+cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot checkout -r netbsd-6-1 -P src
+cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot checkout -r netbsd-6-1 -P xsrc
+cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot checkout pkgsrc
+
+cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -r netbsd-6-1 -dPA
+cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -dPA
+
+*) sysbuild
+[netbsd-6-1] Thu Mar 19 16:47:41 UTC 2015
+
+# rm -fr destdir objdir releasedir
+
+mkdir destdir objdir releasedir tooldir
+
+# BUILD ID: -B `TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC`
+
+time ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir \
+    -U -x -u -j8 -m amd64 release iso-image live-image
+===> build.sh started:    Fri Mar 20 21:32:30 CST 2015
+===> NetBSD version:      6.1.5_PATCH
+===> MACHINE:             amd64
+===> MACHINE_ARCH:        x86_64
+===> Build platform:      Linux 3.17.0-1-amd64 x86_64
+===> HOST_SH:             /bin/sh
+...
+
+make iso-image started at:  Fri Mar 20 21:53:59 CST 2015
+make iso-image finished at: Fri Mar 20 21:54:01 CST 2015
+===> Successful make iso-image
+...
+make live-image started at:  Fri Mar 20 21:54:01 CST 2015
+make live-image finished at: Fri Mar 20 22:00:27 CST 2015
+===> Successful make live-image
+===> build.sh ended:      Fri Mar 20 22:00:27 CST 2015
+===> Summary of results:
+         build.sh command:    ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir -U -x -u -j8 -m amd64 release iso-image live-image
+         build.sh started:    Fri Mar 20 21:32:30 CST 2015
+         NetBSD version:      6.1.5_PATCH
+         MACHINE:             amd64
+         MACHINE_ARCH:        x86_64
+         Build platform:      Linux 3.17.0-1-amd64 x86_64
+         HOST_SH:             /bin/sh
+         No $TOOLDIR/bin/nbmake, needs building.
+         Bootstrapping nbmake
+         TOOLDIR path:        /home/cauchy/vcs/netbsd/src/../tooldir
+         DESTDIR path:        /home/cauchy/vcs/netbsd/src/../destdir
+         RELEASEDIR path:     /home/cauchy/vcs/netbsd/src/../releasedir
+         Created /home/cauchy/vcs/netbsd/src/../tooldir/bin/nbmake
+         Updated makewrapper: /home/cauchy/vcs/netbsd/src/../tooldir/bin/nbmake-amd64
+         Successful make release
+         Successful make iso-image
+         Successful make live-image
+         build.sh ended:      Fri Mar 20 22:00:27 CST 2015
+===> .
+
+real    27m58.361s
+user    110m50.560s
+sys     8m51.892s
