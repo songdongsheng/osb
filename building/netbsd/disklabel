@@ -1,0 +1,26 @@
+# disklabel /dev/rsd0d
+# /dev/rsd0d:
+type: unknown
+disk: Virtual disk
+label:
+flags:
+bytes/sector: 512
+sectors/track: 63
+tracks/cylinder: 255
+sectors/cylinder: 16065
+cylinders: 2088
+total sectors: 33554432
+rpm: 3600
+interleave: 1
+trackskew: 0
+cylinderskew: 0
+headswitch: 0       # microseconds
+track-to-track seek: 0  # microseconds
+drivedata: 0
+
+16 partitions:
+#        size    offset     fstype [fsize bsize cpg/sgs]
+ a:  31439205        63     4.2BSD   2048 16384     0  # (Cyl.      0*-   1957*)
+ b:   2115164  31439268       swap                     # (Cyl.   1957*-   2088*)
+ c:  33554369        63     unused      0     0        # (Cyl.      0*-   2088*)
+ d:  33554432         0     unused      0     0        # (Cyl.      0 -   2088*)

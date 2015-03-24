@@ -1,0 +1,7 @@
+# /etc/fstab
+/dev/sd0a   /           ffs     rw,log      1 1
+/dev/sd0b   none        swap    sw,dp       0 0
+kernfs      /kern       kernfs  rw
+ptyfs       /dev/pts    ptyfs   rw
+procfs      /proc       procfs  rw
+/dev/cd0a   /cdrom      cd9660  ro,noauto

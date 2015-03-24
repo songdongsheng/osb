@@ -1,0 +1,245 @@
+Copyright (c) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005,
+    2006, 2007, 2008, 2009, 2010, 2011, 2012
+    The NetBSD Foundation, Inc.  All rights reserved.
+Copyright (c) 1982, 1986, 1989, 1991, 1993
+    The Regents of the University of California.  All rights reserved.
+
+NetBSD 6.1.5_PATCH (GENERIC) #0: Fri Mar 20 23:02:00 CST 2015
+	cauchy@CRM-SYSLOG:/home/cauchy/vcs/netbsd/objdir/sys/arch/amd64/compile/GENERIC
+total memory = 1023 MB
+avail memory = 978 MB
+timecounter: Timecounters tick every 10.000 msec
+timecounter: Timecounter "i8254" frequency 1193182 Hz quality 100
+VMware, Inc. VMware Virtual Platform (None)
+mainbus0 (root)
+cpu0 at mainbus0 apid 0: Intel(R) Xeon(R) CPU E5-2640 v3 @ 2.60GHz, id 0x306f2
+cpu1 at mainbus0 apid 1: Intel(R) Xeon(R) CPU E5-2640 v3 @ 2.60GHz, id 0x306f2
+cpu2 at mainbus0 apid 2: Intel(R) Xeon(R) CPU E5-2640 v3 @ 2.60GHz, id 0x306f2
+cpu3 at mainbus0 apid 3: Intel(R) Xeon(R) CPU E5-2640 v3 @ 2.60GHz, id 0x306f2
+ioapic0 at mainbus0 apid 4: pa 0xfec00000, version 11, 24 pins
+acpi0 at mainbus0: Intel ACPICA 20110623
+acpi0: X/RSDT: OemId <INTEL ,440BX   ,06040000>, AslId <VMW ,01324272>
+acpi0: SCI interrupting at int 9
+timecounter: Timecounter "ACPI-Safe" frequency 3579545 Hz quality 900
+hpet0 at acpi0: high precision event timer (mem 0xfed00000-0xfed00400)
+timecounter: Timecounter "hpet0" frequency 14318180 Hz quality 2000
+MBRD (PNP0C02) at acpi0 not configured
+PIC (PNP0001) at acpi0 not configured
+attimer1 at acpi0 (TIME, PNP0100): io 0x40-0x43 irq 0
+pcppi1 at acpi0 (SPKR, PNP0800): io 0x61
+midi0 at pcppi1: PC speaker
+sysbeep0 at pcppi1
+pckbc1 at acpi0 (KBC, PNP0303) (kbd port): io 0x60,0x64 irq 1
+pckbc2 at acpi0 (MOUS, PNP0F13) (aux port): irq 12
+LPT (PNP0400) at acpi0 not configured
+COMA (PNP0501) at acpi0 not configured
+COMB (PNP0501) at acpi0 not configured
+FDC (PNP0700) at acpi0 not configured
+EXPL (PNP0C02) at acpi0 not configured
+acpiacad0 at acpi0 (ACAD, ACPI0003-1): ACPI AC Adapter
+attimer1: attached to pcppi1
+pckbd0 at pckbc1 (kbd slot)
+pckbc1: using irq 1 for kbd slot
+wskbd0 at pckbd0: console keyboard
+pms0 at pckbc1 (aux slot)
+pckbc1: using irq 12 for aux slot
+wsmouse0 at pms0 mux 0
+pci0 at mainbus0 bus 0: configuration mode 1
+pci0: i/o space, memory space enabled, rd/line, rd/mult, wr/inv ok
+pchb0 at pci0 dev 0 function 0: vendor 0x8086 product 0x7190 (rev. 0x01)
+ppb0 at pci0 dev 1 function 0: vendor 0x8086 product 0x7191 (rev. 0x01)
+pci1 at ppb0 bus 1
+pci1: i/o space, memory space enabled
+pcib0 at pci0 dev 7 function 0: vendor 0x8086 product 0x7110 (rev. 0x08)
+piixide0 at pci0 dev 7 function 1: Intel 82371AB IDE controller (PIIX4) (rev. 0x01)
+piixide0: bus-master DMA support present
+piixide0: primary channel configured to compatibility mode
+piixide0: primary channel interrupting at ioapic0 pin 14
+atabus0 at piixide0 channel 0
+piixide0: secondary channel configured to compatibility mode
+piixide0: secondary channel interrupting at ioapic0 pin 15
+atabus1 at piixide0 channel 1
+piixpm0 at pci0 dev 7 function 3: vendor 0x8086 product 0x7113 (rev. 0x08)
+timecounter: Timecounter "piixpm0" frequency 3579545 Hz quality 1000
+piixpm0: 24-bit timer
+piixpm0: SMBus disabled
+vendor 0x15ad product 0x0740 (miscellaneous system, revision 0x10) at pci0 dev 7 function 7 not configured
+vga0 at pci0 dev 15 function 0: vendor 0x15ad product 0x0405 (rev. 0x00)
+wsdisplay0 at vga0 kbdmux 1: console (80x25, vt100 emulation), using wskbd0
+wsmux1: connecting to wsdisplay0
+drm at vga0 not configured
+mpt0 at pci0 dev 16 function 0: vendor 0x1000 product 0x0030 (rev. 0x01)
+mpt0: applying 1030 quirk
+mpt0: interrupting at ioapic0 pin 17
+scsibus0 at mpt0: 16 targets, 8 luns per target
+ppb1 at pci0 dev 17 function 0: vendor 0x15ad product 0x0790 (rev. 0x02)
+pci2 at ppb1 bus 2
+pci2: i/o space, memory space enabled, rd/line, wr/inv ok
+wm0 at pci2 dev 0 function 0: Intel i82545EM 1000BASE-T Ethernet (rev. 0x01)
+wm0: interrupting at ioapic0 pin 18
+wm0: 32-bit 66MHz PCI bus
+wm0: 256 word (8 address bits) MicroWire EEPROM
+wm0: Ethernet address 00:50:56:b0:1f:dc
+makphy0 at wm0 phy 1: Marvell 88E1011 Gigabit PHY, rev. 3
+makphy0: 10baseT, 10baseT-FDX, 100baseTX, 100baseTX-FDX, 1000baseT, 1000baseT-FDX, auto
+ppb2 at pci0 dev 21 function 0: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb2: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci3 at ppb2 bus 3
+pci3: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb3 at pci0 dev 21 function 1: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb3: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci4 at ppb3 bus 4
+pci4: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb4 at pci0 dev 21 function 2: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb4: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci5 at ppb4 bus 5
+pci5: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb5 at pci0 dev 21 function 3: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb5: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci6 at ppb5 bus 6
+pci6: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb6 at pci0 dev 21 function 4: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb6: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci7 at ppb6 bus 7
+pci7: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb7 at pci0 dev 21 function 5: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb7: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci8 at ppb7 bus 8
+pci8: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb8 at pci0 dev 21 function 6: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb8: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci9 at ppb8 bus 9
+pci9: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb9 at pci0 dev 21 function 7: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb9: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci10 at ppb9 bus 10
+pci10: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb10 at pci0 dev 22 function 0: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb10: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci11 at ppb10 bus 11
+pci11: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb11 at pci0 dev 22 function 1: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb11: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci12 at ppb11 bus 12
+pci12: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb12 at pci0 dev 22 function 2: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb12: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci13 at ppb12 bus 13
+pci13: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb13 at pci0 dev 22 function 3: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb13: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci14 at ppb13 bus 14
+pci14: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb14 at pci0 dev 22 function 4: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb14: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci15 at ppb14 bus 15
+pci15: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb15 at pci0 dev 22 function 5: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb15: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci16 at ppb15 bus 16
+pci16: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb16 at pci0 dev 22 function 6: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb16: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci17 at ppb16 bus 17
+pci17: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb17 at pci0 dev 22 function 7: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb17: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci18 at ppb17 bus 18
+pci18: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb18 at pci0 dev 23 function 0: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb18: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci19 at ppb18 bus 19
+pci19: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb19 at pci0 dev 23 function 1: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb19: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci20 at ppb19 bus 20
+pci20: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb20 at pci0 dev 23 function 2: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb20: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci21 at ppb20 bus 21
+pci21: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb21 at pci0 dev 23 function 3: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb21: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci22 at ppb21 bus 22
+pci22: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb22 at pci0 dev 23 function 4: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb22: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci23 at ppb22 bus 23
+pci23: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb23 at pci0 dev 23 function 5: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb23: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci24 at ppb23 bus 24
+pci24: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb24 at pci0 dev 23 function 6: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb24: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci25 at ppb24 bus 25
+pci25: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb25 at pci0 dev 23 function 7: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb25: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci26 at ppb25 bus 26
+pci26: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb26 at pci0 dev 24 function 0: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb26: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci27 at ppb26 bus 27
+pci27: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb27 at pci0 dev 24 function 1: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb27: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci28 at ppb27 bus 28
+pci28: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb28 at pci0 dev 24 function 2: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb28: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci29 at ppb28 bus 29
+pci29: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb29 at pci0 dev 24 function 3: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb29: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci30 at ppb29 bus 30
+pci30: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb30 at pci0 dev 24 function 4: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb30: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci31 at ppb30 bus 31
+pci31: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb31 at pci0 dev 24 function 5: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb31: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci32 at ppb31 bus 32
+pci32: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb32 at pci0 dev 24 function 6: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb32: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci33 at ppb32 bus 33
+pci33: i/o space, memory space enabled, rd/line, wr/inv ok
+ppb33 at pci0 dev 24 function 7: vendor 0x15ad product 0x07a0 (rev. 0x01)
+ppb33: PCI Express 2.0 <Root Port of PCI-E Root Complex>
+pci34 at ppb33 bus 34
+pci34: i/o space, memory space enabled, rd/line, wr/inv ok
+isa0 at pcib0
+lpt0 at isa0 port 0x378-0x37b irq 7
+com0 at isa0 port 0x3f8-0x3ff irq 4: ns16550a, working fifo
+com1 at isa0 port 0x2f8-0x2ff irq 3: ns16550a, working fifo
+fdc0 at isa0 port 0x3f0-0x3f7 irq 6 drq 2
+acpicpu0 at cpu0: ACPI CPU
+acpicpu0: C1: HLT, lat   0 us, pow     0 mW
+acpicpu1 at cpu1: ACPI CPU
+acpicpu2 at cpu2: ACPI CPU
+acpicpu3 at cpu3: ACPI CPU
+timecounter: Timecounter "clockinterrupt" frequency 100 Hz quality 0
+timecounter: Timecounter "TSC" frequency 2599964470 Hz quality 3000
+acpiacad0: AC adapter online.
+scsibus0: waiting 2 seconds for devices to settle...
+atapibus0 at atabus1: 2 targets
+cd0 at atapibus0 drive 0: <VMware Virtual IDE CDROM Drive, 1000000000000000000, 0000000> cdrom removable
+cd0: 32-bit data port
+cd0: drive supports PIO mode 4, DMA mode 2, Ultra-DMA mode 2 (Ultra/33)
+cd0(piixide0:1:0): using PIO mode 4, Ultra-DMA mode 2 (Ultra/33) (using DMA)
+sd0 at scsibus0 target 0 lun 0: <VMware, Virtual disk, 1.0> disk fixed
+sd0: 16384 MB, 2088 cyl, 255 head, 63 sec, 512 bytes/sect x 33554432 sectors
+sd0: sync (6.25ns offset 127), 16-bit (320.000MB/s) transfers, tagged queueing
+Kernelized RAIDframe activated
+pad0: outputs: 44100Hz, 16-bit, stereo
+audio0 at pad0: half duplex, playback, capture
+boot device: sd0
+root on sd0a dumps on sd0b
+root file system type: ffs
+cprng sysctl: WARNING pseudorandom rekeying.
+wsdisplay0: screen 1 added (80x25, vt100 emulation)
+wsdisplay0: screen 2 added (80x25, vt100 emulation)
+wsdisplay0: screen 3 added (80x25, vt100 emulation)
+wsdisplay0: screen 4 added (80x25, vt100 emulation)
