@@ -14,7 +14,7 @@
 #
 
 export BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_8-branch
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-5-branch
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
 
 export GCC_DATE_STR=`cat ${GCC_SRC_ROOT}/gcc/DATESTAMP`
@@ -22,7 +22,6 @@ export GCC_BASE_VER=`cat ${GCC_SRC_ROOT}/gcc/BASE-VER`
 
 export ZLIB_SRC_ROOT=${HOME}/src/zlib-1.2.8
 export EXPAT_SRC_ROOT=${HOME}/src/expat-2.1.0
-export BINUTILS_SRC_ROOT=${HOME}/vcs/git/binutils
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.25
 export GDB_SRC_ROOT=${HOME}/src/gdb-7.9
 export MAKE_SRC_ROOT=${HOME}/src/make-4.1
@@ -30,11 +29,11 @@ export MAKE_SRC_ROOT=${HOME}/src/make-4.1
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 export TARGET_TRIPLET=x86_64-w64-mingw32
-export LOGGER_TAG=native-win64-gcc-4.8
-export SYS_ROOT=${HOME}/native/gcc-4.8-win64
-export SYS_3RD_ROOT=${HOME}/native/gcc-4.8-win64-3rd
-export OBJ_ROOT=${HOME}/obj/native/gcc-4.8-win64
-export PATH=${HOME}/cross/x86_64-windows-gcc-4.8/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export LOGGER_TAG=native-win64-gcc-5
+export SYS_ROOT=${HOME}/native/gcc-5-win64
+export SYS_3RD_ROOT=${HOME}/native/gcc-5-win64-3rd
+export OBJ_ROOT=${HOME}/obj/native/gcc-5-win64
+export PATH=${HOME}/cross/x86_64-windows-gcc-5/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 TMP_FILE=`mktemp`
@@ -115,7 +114,7 @@ CFLAGS="-I${SYS_3RD_ROOT}/include" \
 LDFLAGS="-L${SYS_3RD_ROOT}/lib" \
 ${GDB_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
-    --disable-nls
+    --disable-nls --disable-werror
 
 make -j${NR_JOBS} ; make install
 if [ $? -ne 0 ]; then
@@ -135,7 +134,7 @@ CFLAGS="-I${SYS_3RD_ROOT}/include" \
 LDFLAGS="-L${SYS_3RD_ROOT}/lib" \
 ${BINUTILS_SRC_ROOT}/configure --prefix=${SYS_ROOT} --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --disable-multilib --disable-nls
+    --disable-multilib --disable-nls --disable-werror
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then
@@ -179,11 +178,11 @@ ${GCC_SRC_ROOT}/configure \
     --prefix=${SYS_ROOT} \
     --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --disable-multilib --disable-nls --disable-win32-registry \
+    --disable-gcov-tool --disable-multilib --disable-nls --disable-win32-registry \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string --with-arch=core2 --with-tune=generic
 
-make -j${NR_JOBS} ; make install-strip
+make -j${NR_JOBS}; make install-strip
 if [ $? -ne 0 ]; then
     logger -t ${LOGGER_TAG} -s "Build gcc failed"
     exit 1

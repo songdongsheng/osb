@@ -1,7 +1,13 @@
-GCC 5.0 (experimental)
+GCC 6 (experimental)
 =======================
-* `gcc-5.0-win32 <http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/dongsheng-daily/5.0/>`_
-* `gcc-5.0-win64 <http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/dongsheng-daily/5.0/>`_
+* `gcc-6-win32 <http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/dongsheng-daily/6.x/>`_
+* `gcc-6-win64 <http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/dongsheng-daily/6.x/>`_
+
+
+GCC 5
+=======================
+* `gcc-5-win32 <http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/dongsheng-daily/5.x/>`_
+* `gcc-5-win64 <http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/dongsheng-daily/5.x/>`_
 
 
 GCC 4.9

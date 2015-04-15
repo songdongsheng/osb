@@ -23,17 +23,17 @@ export GCC_BASE_VER=`cat ${GCC_SRC_ROOT}/gcc/BASE-VER`
 export ZLIB_SRC_ROOT=${HOME}/src/zlib-1.2.8
 export EXPAT_SRC_ROOT=${HOME}/src/expat-2.1.0
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.25
-export GDB_SRC_ROOT=${HOME}/src/gdb-7.8.1
+export GDB_SRC_ROOT=${HOME}/src/gdb-7.9
 export MAKE_SRC_ROOT=${HOME}/src/make-4.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 export TARGET_TRIPLET=x86_64-w64-mingw32
-export LOGGER_TAG=native-win64-gcc-5.0
-export SYS_ROOT=${HOME}/native/gcc-5.0-win64
-export SYS_3RD_ROOT=${HOME}/native/gcc-5.0-win64-3rd
-export OBJ_ROOT=${HOME}/obj/native/gcc-5.0-win64
-export PATH=${HOME}/cross/x86_64-windows-gcc-5.0/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export LOGGER_TAG=native-win64-gcc-6
+export SYS_ROOT=${HOME}/native/gcc-6-win64
+export SYS_3RD_ROOT=${HOME}/native/gcc-6-win64-3rd
+export OBJ_ROOT=${HOME}/obj/native/gcc-6-win64
+export PATH=${HOME}/cross/x86_64-windows-gcc-6/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 TMP_FILE=`mktemp`

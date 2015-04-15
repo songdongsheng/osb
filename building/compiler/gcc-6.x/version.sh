@@ -25,10 +25,7 @@ wget -q -O - http://www.mpfr.org/mpfr-3.1.2/allpatches | patch -p1
 *) mpc 1.0.3
 http://ftp.gnu.org/gnu/mpc/mpc-1.0.3.tar.gz
 
-*) cloog (CLOOG_VERSION_MAJOR == 0 && CLOOG_VERSION_MINOR == 18 && CLOOG_VERSION_REVISION >= 0)
-http://www.bastoul.net/cloog/pages/download/cloog-0.18.3.tar.gz
-
-*) isl 0.14.1 (ISL_VERSION_MAJOR == 0 && ISL_VERSION_MINOR == 14)
+*) isl 0.14.1
 http://isl.gforge.inria.fr/isl-0.14.1.tar.xz
 
 *) mingw-w64 master

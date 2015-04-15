@@ -8,8 +8,8 @@ cat << EOF > $SYS_ROOT/version.txt
 *) binutils 2.25
 http://ftp.gnu.org/gnu/binutils/binutils-2.25.tar.gz
 
-*) gdb 7.8.1
-http://ftp.gnu.org/gnu/gdb/gdb-7.8.1.tar.xz
+*) gdb 7.9
+http://ftp.gnu.org/gnu/gdb/gdb-7.9.tar.xz
 
 *) make 4.1
 http://ftp.gnu.org/gnu/make/make-4.1.tar.bz2
@@ -22,11 +22,11 @@ http://www.mpfr.org/mpfr-3.1.2/mpfr-3.1.2.tar.xz
 http://www.mpfr.org/mpfr-3.1.2/allpatches
 wget -q -O - http://www.mpfr.org/mpfr-3.1.2/allpatches | patch -p1
 
-*) mpc 1.0.2
-http://ftp.gnu.org/gnu/mpc/mpc-1.0.2.tar.gz
+*) mpc 1.0.3
+http://ftp.gnu.org/gnu/mpc/mpc-1.0.3.tar.gz
 
-*) isl (strncmp (isl_version (), "isl-0.12", strlen ("isl-0.12")) != 0)
-http://isl.gforge.inria.fr/isl-0.12.2.tar.bz2
+*) isl 0.14.1
+http://isl.gforge.inria.fr/isl-0.14.1.tar.xz
 
 *) mingw-w64 master
 EOF

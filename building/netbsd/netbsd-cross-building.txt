@@ -18,15 +18,18 @@ http://ftp.netbsd.org/pub/pkgsrc/current/pkgsrc/README.html
 *)
 http://mail-index.netbsd.org/source-changes/index.html
 export CVS_RSH=ssh
+export CVSROOT=anoncvs@anoncvs.netbsd.org:/cvsroot
+
 cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot checkout -r netbsd-6-1 -P src
 cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot checkout -r netbsd-6-1 -P xsrc
 cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot checkout pkgsrc
 
 cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -r netbsd-6-1 -dPA
-cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -dPA
+cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -dP
+cvs -z9 -q update -dP
 
 *) sysbuild
-[netbsd-6-1] Thu Mar 19 16:47:41 UTC 2015
+[netbsd-6-1] Thu Apr  2 18:07:21 UTC 2015
 
 # rm -fr destdir objdir releasedir
 
