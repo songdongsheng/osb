@@ -38,11 +38,17 @@ ${HOME}/native/ssh-rsa-2048.rsync
 
 # exit 0
 
-${HOME}/daily/gcc-4.9/cross-arm64.sh
-${HOME}/daily/gcc-4.9/cross-armhf.sh
-${HOME}/daily/gcc-4.9/cross-powerpc64.sh
-${HOME}/daily/gcc-4.9/cross-s390x.sh
-${HOME}/daily/gcc-4.9/cross-sparc64.sh
+${HOME}/daily/glibc-2.21/cross-arm64.sh
+${HOME}/daily/glibc-2.21/cross-armhf.sh
+${HOME}/daily/glibc-2.21/cross-powerpc64.sh
+${HOME}/daily/glibc-2.21/cross-s390x.sh
+${HOME}/daily/glibc-2.21/cross-sparc64.sh
+
+#${HOME}/daily/gcc-4.9/cross-arm64.sh
+#${HOME}/daily/gcc-4.9/cross-armhf.sh
+#${HOME}/daily/gcc-4.9/cross-powerpc64.sh
+#${HOME}/daily/gcc-4.9/cross-s390x.sh
+#${HOME}/daily/gcc-4.9/cross-sparc64.sh
 
 #${HOME}/daily/gcc-4.8/cross-arm64.sh
 #${HOME}/daily/gcc-4.8/cross-armhf.sh
