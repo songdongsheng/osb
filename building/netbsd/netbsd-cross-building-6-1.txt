@@ -11,7 +11,7 @@ umount /mnt
 vnconfig -u vnd0
 
 *)
-export PKG_PATH="http://ftp.NetBSD.org/pub/pkgsrc/packages/$(uname -s)/$(uname -m)/$(uname -r|cut -f '1 2' -d.)/All/"
+export PKG_PATH="http://ftp.NetBSD.org/pub/pkgsrc/packages/$(uname -s)/$(uname -m)/$(uname -r|sed -e 's/[-_].*//'|cut -f '1 2' -d.)/All/"
 http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/6.1/All/
 http://ftp.netbsd.org/pub/pkgsrc/current/pkgsrc/README.html
 
@@ -29,7 +29,9 @@ cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -dP
 cvs -z9 -q update -dP
 
 *) sysbuild
-[netbsd-6-1] Thu Apr  2 18:07:21 UTC 2015
+[netbsd-6-1] Sun Apr 19 05:59:12 UTC 2015
+/bin/date --rfc-3339=seconds -d "Sun Apr 19 05:59:12 UTC 2015"
+2015-04-19 13:59:12+08:00
 
 # rm -fr destdir objdir releasedir
 
