@@ -1,0 +1,20 @@
+defaults
+tls on
+tls_certcheck off
+#tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account gmail
+    host smtp.gmail.com
+    port 587
+    auth on
+    user  sx.y@e.c
+    password pwd
+
+account outlook
+    host smtp-mail.outlook.com
+    port 587
+    auth on
+    user sx.y@e.c
+    password pwd
+
+account default: gmail

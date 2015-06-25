@@ -23,32 +23,90 @@ i686-w64-mingw32-objdump -x t-w32.dll | grep -A 25 "The Export Tables"
 
 -------------------------------- gnupg --------------------------------
 GnuPG 2.1 depends on the following packages:
-  npth         (ftp://ftp.gnupg.org/gcrypt/npth/)           0.91+
-  libgpg-error (ftp://ftp.gnupg.org/gcrypt/libgpg-error/)   1.11+
-  libgcrypt    (ftp://ftp.gnupg.org/gcrypt/libgcrypt/)      1.5.0+
-  libksba      (ftp://ftp.gnupg.org/gcrypt/libksba/)        1.2.0+
-  libassuan    (ftp://ftp.gnupg.org/gcrypt/libassuan/)      2.1.0+
 
-ftp://ftp.gnupg.org/GnuPG/libgpg-error/libgpg-error-1.12.tar.bz2
-ftp://ftp.gnupg.org/GnuPG/npth/npth-0.91.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.5.2.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.0.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.1.1.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.8.3.tar.bz2
+ftp://ftp.gnupg.org/GnuPG/libgpg-error/libgpg-error-1.19.tar.bz2
+ftp://ftp.gnupg.org/GnuPG/npth/npth-1.2.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.3.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.3.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.2.1.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.9.4.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.5.tar.bz2
 
 -------------------------------- prepare --------------------------------
-export PATH=/usr/sbin:/usr/bin:/sbin:/bin
-export PATH=${HOME}/cross/i686-windows-gcc47/bin:${PATH}
-export PATH=${HOME}/cross/x86_64-windows-gcc47/bin:${PATH}
-
-export TARGET_TRIPLET=i686-w64-mingw32
-export SYS_ROOT=${HOME}/native/win32
-export OBJ_ROOT=${HOME}/obj/linux/
-
+export TARGET_TRIPLET=x86_64-w64-mingw32
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+export SYS_ROOT=${HOME}/native/x86_64-w64-mingw32/gnupg-2.1
+export OBJ_ROOT=${HOME}/obj/x86_64-w64-mingw32/gnupg-2.1
+
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=${HOME}/cross/i686-windows-gcc48/bin:${PATH}
+export PATH=${HOME}/cross/x86_64-windows-gcc-4.8/bin:${PATH}
+export PATH=${SYS_ROOT}/bin:${PATH}
+
+-------------------------------- x86_64-w64-mingw32-pkg-config --------------------------------
+mkdir -p ${SYS_ROOT}/bin && cat > ${SYS_ROOT}/bin/x86_64-w64-mingw32-pkg-config <<EOF
+#!/bin/sh
+export PKG_CONFIG_LIBDIR=${SYS_ROOT}/lib/pkgconfig
+/usr/bin/pkg-config --define-variable=prefix=/home/cauchy/w64 \$@
+EOF
+chmod +x ${SYS_ROOT}/bin/x86_64-w64-mingw32-pkg-config
+
+
+-------------------------------- zlib --------------------------------
+cd $HOME/src && rm -fr zlib-1.2.8 && tar -xzf ~/sync/building/src/zlib-1.2.8.tar.gz && cd zlib-1.2.8
+
+vi win32/Makefile.gcc
+    PREFIX = i686-w64-mingw32-
+    PREFIX = x86_64-w64-mingw32-
+
+make -f win32/Makefile.gcc
+
+install -m 0755 -d ${SYS_ROOT}/bin ${SYS_ROOT}/lib ${SYS_ROOT}/include
+install -m 0644 -t ${SYS_ROOT}/bin zlib1.dll
+install -m 0644 -t ${SYS_ROOT}/include zconf.h zlib.h
+install -m 0644 -t ${SYS_ROOT}/lib libz.a
+install -m 0644 -T zlib1.dll ${SYS_ROOT}/lib/libz.dll.a
+
+-------------------------------- pcre --------------------------------
+export PCRF_SRC_ROOT=$HOME/src/pcre-8.37
+rm -fr $PCRF_SRC_ROOT ${OBJ_ROOT}/pcre
+cd $HOME/src && tar -xjf ~/sync/building/src/pcre-8.37.tar.bz2
+
+rm -fr ${OBJ_ROOT}/pcre
+mkdir -p ${OBJ_ROOT}/pcre
+cd  ${OBJ_ROOT}/pcre
+
+${PCRF_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
+    --disable-cpp --enable-utf
+
+make -j8; make install-strip
+
+cd ${SYS_ROOT}/include && ln -s pcreposix.h regex.h
+
+rm -fr ${SYS_ROOT}/lib/regex ; mkdir ${SYS_ROOT}/lib/regex ; cd ${SYS_ROOT}/lib/regex
+x86_64-w64-mingw32-ar x ../libpcre.a
+x86_64-w64-mingw32-ar x ../libpcreposix.a
+x86_64-w64-mingw32-ar q ../libregex.a *.o
+rm -fr ${SYS_ROOT}/lib/regex
+
+-------------------------------- libiconv --------------------------------
+cd $HOME/src && tar -xzf ~/sync/building/src/libiconv-1.14.tar.gz
+export LIBICONV_SRC_ROOT=$HOME/src/libiconv-1.14
+
+rm -fr ${OBJ_ROOT}/libiconv
+mkdir -p ${OBJ_ROOT}/libiconv
+cd  ${OBJ_ROOT}/libiconv
+
+${LIBICONV_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET}
+
+make install-strip
 
 -------------------------------- pinentry --------------------------------
-export PINENTRY_SRC_ROOT=$HOME/src/pinentry-0.8.3
+export PINENTRY_SRC_ROOT=$HOME/src/pinentry-0.9.4
+rm -fr $PINENTRY_SRC_ROOT
+cd $HOME/src && tar -xjf ~/sync/building/src/pinentry-0.9.4.tar.bz2
 
 rm -fr ${OBJ_ROOT}/pinentry
 mkdir -p ${OBJ_ROOT}/pinentry
@@ -56,6 +114,92 @@ cd  ${OBJ_ROOT}/pinentry
 
 ${PINENTRY_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
-    --enable-pinentry-w32
+    --disable-ncurses --disable-pinentry-tty
 
-make -j${NR_JOBS} ; make install-strip
+make install-strip
+
+-------------------------------- libgpg-error --------------------------------
+export LIBGPG_ERROR_SRC_ROOT=$HOME/src/libgpg-error-1.19
+rm -fr $LIBGPG_ERROR_SRC_ROOT
+cd $HOME/src && tar -xjf ~/sync/building/src/libgpg-error-1.19.tar.bz2
+
+rm -fr ${OBJ_ROOT}/libgpg-error
+mkdir -p ${OBJ_ROOT}/libgpg-error
+cd  ${OBJ_ROOT}/libgpg-error
+
+${LIBGPG_ERROR_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET}
+
+make install-strip
+
+-------------------------------- npth --------------------------------
+cd $HOME/src && tar -xjf ~/sync/building/src/npth-1.2.tar.bz2
+export NPTH_SRC_ROOT=$HOME/src/npth-1.2
+
+rm -fr ${OBJ_ROOT}/npth
+mkdir -p ${OBJ_ROOT}/npth
+cd  ${OBJ_ROOT}/npth
+
+${NPTH_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET}
+
+make install-strip
+
+-------------------------------- libgcrypt --------------------------------
+export LIBGCRYPT_SRC_ROOT=$HOME/src/libgcrypt-1.6.3
+rm -fr $LIBGCRYPT_SRC_ROOT
+cd $HOME/src && tar -xjf ~/sync/building/src/libgcrypt-1.6.3.tar.bz2
+
+rm -fr ${OBJ_ROOT}/libgcrypt
+mkdir -p ${OBJ_ROOT}/libgcrypt
+cd  ${OBJ_ROOT}/libgcrypt
+
+${LIBGCRYPT_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
+    --disable-asm --disable-padlock-support
+
+make -j8; make install-strip
+
+-------------------------------- libksba --------------------------------
+export LIBKSBA_SRC_ROOT=$HOME/src/libksba-1.3.3
+rm -fr $LIBKSBA_SRC_ROOT ${OBJ_ROOT}/libksba
+cd $HOME/src && tar -xjf ~/sync/building/src/libksba-1.3.3.tar.bz2
+
+rm -fr ${OBJ_ROOT}/libksba
+mkdir -p ${OBJ_ROOT}/libksba
+cd  ${OBJ_ROOT}/libksba
+
+${LIBKSBA_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET}
+
+make -j8; make install-strip
+
+-------------------------------- libassuan --------------------------------
+export LIBASSUAN_SRC_ROOT=$HOME/src/libassuan-2.2.1
+rm -fr $LIBASSUAN_SRC_ROOT ${OBJ_ROOT}/libassuan
+cd $HOME/src && tar -xjf ~/sync/building/src/libassuan-2.2.1.tar.bz2
+
+rm -fr ${OBJ_ROOT}/libassuan
+mkdir -p ${OBJ_ROOT}/libassuan
+cd  ${OBJ_ROOT}/libassuan
+
+${LIBASSUAN_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET}
+
+make -j8; make install-strip
+
+-------------------------------- gnupg --------------------------------
+export GNUPG_SRC_ROOT=$HOME/src/gnupg-2.1.5
+rm -fr $GNUPG_SRC_ROOT ${OBJ_ROOT}/gnupg
+cd $HOME/src && tar -xjf ~/sync/building/src/gnupg-2.1.5.tar.bz2
+
+rm -fr ${OBJ_ROOT}/gnupg
+mkdir -p ${OBJ_ROOT}/gnupg
+cd  ${OBJ_ROOT}/gnupg
+
+${GNUPG_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
+    --disable-card-support --disable-ccid-driver --disable-scdaemon \
+    --disable-g13 --with-zlib=${SYS_ROOT} --with-regex=${SYS_ROOT}
+
+make -j8; make install-strip
