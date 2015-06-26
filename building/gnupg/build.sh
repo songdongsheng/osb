@@ -163,27 +163,29 @@ make -j8; make install-strip
 ${TARGET_TRIPLET}-strip ${SYS_ROOT}/bin/*.dll ${SYS_ROOT}/bin/*.exe ${SYS_ROOT}/libexec/*.exe
 
 : '
-gnupg-2.1/bin/libassuan6-0.dll
+gnupg-2.1/bin/libassuan6-0.dll          libassuan-0.dll
 gnupg-2.1/bin/libgcrypt-20.dll
-gnupg-2.1/bin/libgpg-error6-0.dll
+gnupg-2.1/bin/libgpg-error6-0.dll       libgpg-error-0.dll
 gnupg-2.1/bin/libiconv-2.dll
 gnupg-2.1/bin/libksba-8.dll
-gnupg-2.1/bin/libnpth6-0.dll
+gnupg-2.1/bin/libnpth6-0.dll            libnpth-0.dll
 gnupg-2.1/bin/zlib1.dll
+
 gnupg-2.1/bin/dirmngr.exe
 gnupg-2.1/bin/dirmngr-client.exe
-gnupg-2.1/bin/gpg2.exe
+gnupg-2.1/bin/gpg2.exe                  gpg.exe
 gnupg-2.1/bin/gpg-agent.exe
 gnupg-2.1/bin/gpgconf.exe
 gnupg-2.1/bin/gpg-connect-agent.exe
-gpg-error.exe
+gnupg-2.1/bin/gpg-error.exe
 gnupg-2.1/bin/gpgkey2ssh.exe
 gnupg-2.1/bin/gpgsm.exe
-gnupg-2.1/bin/gpgv2.exe
-hmac256.exe
-iconv.exe
+gnupg-2.1/bin/gpgv2.exe                 gpgv.exe
+gnupg-2.1/bin/hmac256.exe
+gnupg-2.1/bin/iconv.exe
 gnupg-2.1/bin/kbxutil.exe
-gnupg-2.1/bin/pinentry-w32.exe
+gnupg-2.1/bin/pinentry-w32.exe          pinentry.exe
+
 gnupg-2.1/libexec/gpg-check-pattern.exe
 gnupg-2.1/libexec/gpg-preset-passphrase.exe
 gnupg-2.1/libexec/gpg-protect-tool.exe
