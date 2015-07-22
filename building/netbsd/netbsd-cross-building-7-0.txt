@@ -29,12 +29,12 @@ cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -dP
 cvs -z9 -q update -dP
 
 *) sysbuild
-[netbsd-7] Fri Jun 19 02:56:03 UTC 2015
-/bin/date --rfc-3339=seconds -d "Fri Jun 19 02:56:03 UTC 2015"
-2015-06-19 10:56:03+08:00
+[netbsd-7] Mon Jul 20 06:13:53 UTC 2015
+/bin/date --rfc-3339=seconds -d "Mon Jul 20 06:13:53 UTC 2015"
+2015-07-20 14:13:53+08:00
 
-TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC -d "Fri Jun 19 02:56:03 UTC 2015"
-20150619_025603_UTC
+TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC -d "Mon Jul 20 06:13:53 UTC 2015"
+20150720_061353_UTC
 
 # rm -fr destdir objdir releasedir
 
@@ -43,49 +43,19 @@ mkdir destdir objdir releasedir tooldir
 # BUILD ID: -B `TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC`
 
 time ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir \
-    -B 20150619_025603_UTC \
+    -B 20150720_061353_UTC \
     -U -x -u -j8 -m amd64 release iso-image live-image
-===> build.sh started:    Mon Jun 22 11:18:11 CST 2015
-===> NetBSD version:      7.0_RC1
-===> MACHINE:             amd64
-===> MACHINE_ARCH:        x86_64
-===> Build platform:      Linux 3.17.0-1-amd64 x86_64
-===> HOST_SH:             /bin/sh
-===> BUILDID:             20150619_025603_UTC
-===> No $TOOLDIR/bin/nbmake, needs building.
-===> Bootstrapping nbmake
-...
-===> build.sh ended:      Mon Jun 22 12:16:47 CST 2015
-===> Summary of results:
-         build.sh command:    ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir -B 20150619_025603_UTC -U -x -u -j8 -m amd64 release iso-image live-image
-         build.sh started:    Mon Jun 22 11:56:03 CST 2015
-         NetBSD version:      7.0_RC1
-         MACHINE:             amd64
-         MACHINE_ARCH:        x86_64
-         Build platform:      Linux 3.17.0-1-amd64 x86_64
-         HOST_SH:             /bin/sh
-         BUILDID:             20150619_025603_UTC
-         MAKECONF file:       /etc/mk.conf (File not found)
-         TOOLDIR path:        /home/cauchy/vcs/netbsd/netbsd-7/src/../tooldir
-         DESTDIR path:        /home/cauchy/vcs/netbsd/netbsd-7/src/../destdir
-         RELEASEDIR path:     /home/cauchy/vcs/netbsd/netbsd-7/src/../releasedir
-         Updated makewrapper: /home/cauchy/vcs/netbsd/netbsd-7/src/../tooldir/bin/nbmake-amd64-20150619_025603_UTC
-         Successful make release
-         Successful make iso-image
-         Successful make live-image
-         build.sh ended:      Mon Jun 22 12:16:47 CST 2015
-===> .
 
 umount /dev/vnd0c
 /sbin/vnconfig -u vnd0
 
-/sbin/vnconfig vnd0 /root/OpenBSD-snapshots-amd64-20150419164006-install57.iso
-/sbin/mount -t cd9660 /dev/vnd0c /root/iso
+/usr/sbin/vnconfig vnd0 /root/NetBSD-7.0_RC1-amd64-20150720_061353_UTC.iso
+/sbin/mount -t cd9660 /dev/vnd0a /root/iso
 
-cd /root/iso/5.7/amd64/
+cp /rescue/reboot /root/reboot
+file /root/reboot
 
-cp /sbin/reboot /root/reboot
-ldd /root/reboot
+cd /root/iso/amd64/binary/sets
 
 tar -C / -xzpf kern-GENERIC.tgz -> /netbsd
 tar -C / -xzpf modules.tgz -> /stand/amd64/7.0/modules | /stand/amd64-xen/7.0/modules
