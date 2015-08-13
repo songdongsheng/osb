@@ -29,12 +29,12 @@ cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -dP
 cvs -z9 -q update -dP
 
 *) sysbuild
-[netbsd-7] Mon Jul 20 06:13:53 UTC 2015
-/bin/date --rfc-3339=seconds -d "Mon Jul 20 06:13:53 UTC 2015"
-2015-07-20 14:13:53+08:00
+[netbsd-7] Tue Aug 11 05:37:41 UTC 2015
+/bin/date --rfc-3339=seconds -d "Tue Aug 11 05:37:41 UTC 2015"
+2015-08-11 13:37:41+08:0
 
-TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC -d "Mon Jul 20 06:13:53 UTC 2015"
-20150720_061353_UTC
+TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC -d "Tue Aug 11 05:37:41 UTC 2015"
+20150811_053741_UTC
 
 # rm -fr destdir objdir releasedir
 
@@ -43,13 +43,39 @@ mkdir destdir objdir releasedir tooldir
 # BUILD ID: -B `TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC`
 
 time ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir \
-    -B 20150720_061353_UTC \
+    -B 20150811_053741_UTC \
     -U -x -u -j8 -m amd64 release iso-image live-image
+...
+===> Summary of results:
+         build.sh command:    ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir -B 20150811_053741_UTC -U -x -u -j8 -m amd64 release iso-image
+         build.sh started:    Tue Aug 11 22:04:51 CST 2015
+         NetBSD version:      7.0_RC3
+         MACHINE:             amd64
+         MACHINE_ARCH:        x86_64
+         Build platform:      Linux 3.17.0-1-amd64 x86_64
+         HOST_SH:             /bin/sh
+         BUILDID:             20150811_053741_UTC
+         No $TOOLDIR/bin/nbmake, needs building.
+         Bootstrapping nbmake
+         MAKECONF file:       /etc/mk.conf (File not found)
+         TOOLDIR path:        /home/cauchy/vcs/netbsd/netbsd-7/src/../tooldir
+         DESTDIR path:        /home/cauchy/vcs/netbsd/netbsd-7/src/../destdir
+         RELEASEDIR path:     /home/cauchy/vcs/netbsd/netbsd-7/src/../releasedir
+         Created /home/cauchy/vcs/netbsd/netbsd-7/src/../tooldir/bin/nbmake
+         Updated makewrapper: /home/cauchy/vcs/netbsd/netbsd-7/src/../tooldir/bin/nbmake-amd64-20150811_053741_UTC
+         Successful make release
+         Successful make iso-image
+         build.sh ended:      Tue Aug 11 22:38:26 CST 2015
+===> .
 
-umount /dev/vnd0c
-/sbin/vnconfig -u vnd0
+real    33m36.114s
+user    133m9.240s
+sys     11m34.488s
 
-/usr/sbin/vnconfig vnd0 /root/NetBSD-7.0_RC1-amd64-20150720_061353_UTC.iso
+umount /dev/vnd0a
+/usr/sbin/vnconfig -u vnd0
+
+/usr/sbin/vnconfig vnd0 /root/NetBSD-7.0_RC3-amd64-20150811_053741_UTC.iso
 /sbin/mount -t cd9660 /dev/vnd0a /root/iso
 
 cp /rescue/reboot /root/reboot
@@ -58,7 +84,7 @@ file /root/reboot
 cd /root/iso/amd64/binary/sets
 
 tar -C / -xzpf kern-GENERIC.tgz -> /netbsd
-tar -C / -xzpf modules.tgz -> /stand/amd64/7.0/modules | /stand/amd64-xen/7.0/modules
+tar -C / -xzpf modules.tgz -> /stand/amd64/7.0/modules/ | /stand/amd64-xen/7.0/modules/
 tar -C / -xzpf man.tgz
 tar -C / -xzpf text.tgz
 tar -C / -xzpf xbase.tgz

@@ -29,12 +29,12 @@ cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -dP
 cvs -z9 -q update -dP
 
 *) sysbuild
-[netbsd-6-1] Sun Jul 12 19:01:07 UTC 2015
-/bin/date --rfc-3339=seconds -d "Sun Jul 12 19:01:07 UTC 2015"
-2015-07-13 03:01:07+08:00
+[netbsd-6-1] Sun Aug 2 12:53:39 UTC 2015
+/bin/date --rfc-3339=seconds -d "Sun Aug 2 12:53:39 UTC 2015"
+2015-08-02 20:53:39+08:00
 
-TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC -d "Sun Jul 12 19:01:07 UTC 2015"
-20150712_190107_UTC
+TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC -d "Sun Aug 2 12:53:39 UTC 2015"
+20150802_125339_UTC
 
 # rm -fr destdir objdir releasedir
 
@@ -43,22 +43,48 @@ mkdir destdir objdir releasedir tooldir
 # BUILD ID: -B `TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC`
 
 time ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir \
-    -B 20150720_061353_UTC \
+    -B 20150802_125339_UTC \
     -U -x -u -j8 -m amd64 release iso-image live-image
+...
+===> Summary of results:
+         build.sh command:    ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir -U -x -u -j8 -m amd64 release iso-image live-image
+         build.sh started:    Tue Aug 11 21:36:09 CST 2015
+         NetBSD version:      6.1.5_PATCH
+         MACHINE:             amd64
+         MACHINE_ARCH:        x86_64
+         Build platform:      Linux 3.17.0-1-amd64 x86_64
+         HOST_SH:             /bin/sh
+         BUILDID:             20150802_125339_UTC
+         No $TOOLDIR/bin/nbmake, needs building.
+         Bootstrapping nbmake
+         TOOLDIR path:        /home/cauchy/vcs/netbsd/netbsd-6-1/src/../tooldir
+         DESTDIR path:        /home/cauchy/vcs/netbsd/netbsd-6-1/src/../destdir
+         RELEASEDIR path:     /home/cauchy/vcs/netbsd/netbsd-6-1/src/../releasedir
+         Created /home/cauchy/vcs/netbsd/netbsd-6-1/src/../tooldir/bin/nbmake
+         Updated makewrapper: /home/cauchy/vcs/netbsd/netbsd-6-1/src/../tooldir/bin/nbmake-amd64
+         Successful make release
+         Successful make iso-image
+         Successful make live-image
+         build.sh ended:      Tue Aug 11 22:06:12 CST 2015
+===> .
 
-umount /dev/vnd0c
-/sbin/vnconfig -u vnd0
+real    30m2.652s
+user    111m59.576s
+sys     9m43.536s
 
-/usr/sbin/vnconfig vnd0 /root/NetBSD-6.1.5_PATCH-amd64-20150712_190107_UTC.iso
+umount /dev/vnd0a
+/usr/sbin/vnconfig -u vnd0
+
+/usr/sbin/vnconfig vnd0 /root/NetBSD-6.1.5_PATCH-amd64-20150802_125339_UTC.iso
 /sbin/mount -t cd9660 /dev/vnd0a /root/iso
-
-cd /root/iso/amd64/binary/sets
 
 cp /rescue/reboot /root/reboot
 file /root/reboot
 
+cd /root/iso/amd64/binary/sets
+
 tar -C / -xzpf kern-GENERIC.tgz -> /netbsd
-tar -C / -xzpf modules.tgz -> /stand/amd64/7.0/modules | /stand/amd64-xen/7.0/modules
+tar -C / -xzpf modules.tgz -> /stand/amd64/6.1/modules/
 tar -C / -xzpf man.tgz
 tar -C / -xzpf text.tgz
 tar -C / -xzpf xbase.tgz
