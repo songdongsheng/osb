@@ -1,0 +1,10 @@
+# (csh) limit -h
+cputime         unlimited
+filesize        unlimited
+datasize        33554432 kbytes
+stacksize       32768 kbytes
+coredumpsize    unlimited
+memoryuse       unlimited
+memorylocked    unlimited
+maxproc         1310
+openfiles       7030

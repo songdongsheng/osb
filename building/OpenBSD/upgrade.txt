@@ -5,7 +5,7 @@ http://ftp.openbsd.org/pub/OpenBSD/snapshots/ports.tar.gz
 umount /dev/vnd0c
 /sbin/vnconfig -u vnd0
 
-/sbin/vnconfig vnd0 /root/OpenBSD-snapshots-amd64-20150622174514-install58.iso
+/sbin/vnconfig vnd0 /root/OpenBSD-snapshots-amd64-20150618073747-install58.iso
 /sbin/mount -t cd9660 /dev/vnd0c /root/iso
 
 cd /root/iso/5.8/amd64/
@@ -37,26 +37,3 @@ cvs -q -d anoncvs@anoncvs.au.openbsd.org:/cvs up -Pd
 
 cd /usr/ports
 cvs -q -d anoncvs@anoncvs.au.openbsd.org:/cvs up -Pd
-
-root@openbsd-01:/usr/ports/lang/ruby/2.2# env FLAVOR=no_x11 make
-root@openbsd-01:/usr/ports/lang/ruby/2.2# env FLAVOR=no_x11 make package BULK=Yes
-
-bash
-cmake
-cvsps
-g++
-g95
-gcc
-gdb
-git
-gmake
-gnutls
-jdk
-libarchive
-libtalloc
-libtasn1
-mercurial
-nasm
-rsync
-wget
-xz
