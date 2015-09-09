@@ -3,25 +3,37 @@
 # Tell Git not to attempt any end-of-line conversion upon checkin or checkout.
 *               -text
 
+*.aes           binary
+*.elf           binary
+*.exe           binary
 *.ico           binary
+*.jar           binary
 *.jpg           binary
+*.p12           binary
+*.pdb           binary
+*.pgp           binary
 *.png           binary
 *.ps            binary
+*.sig           binary
 *.svg           binary
 
 *.bat           text eol=crlf
 *.cmd           text eol=crlf
-*.config        text eol=crlf
-*.cs            text eol=crlf
 *.csproj        text eol=crlf
 *.rc            text eol=crlf
 *.reg           text eol=crlf
 *.sln           text eol=crlf
-*.sql           text eol=crlf
 *.vcxproj       text eol=crlf
 
+.*              text eol=lf
+*.asc           text eol=lf
 *.c             text eol=lf
+*.cer           text eol=lf
+*.conf          text eol=lf
+*.config        text eol=lf
 *.cpp           text eol=lf
+*.crl           text eol=lf
+*.cs            text eol=lf
 *.css           text eol=lf
 *.cxx           text eol=lf
 *.h             text eol=lf
@@ -29,9 +41,17 @@
 *.properties    text eol=lf
 *.py            text eol=lf
 *.sh            text eol=lf
+*.sql           text eol=lf
 *.txt           text eol=lf
 *.wsdl          text eol=lf
 *.xml           text eol=lf
 *.xsl           text eol=lf
 
 #*.crypt     filter=crypt diff=crypt
+
+# vim .gitattributes
+# rm .git/index     # Remove the index to force Git to
+# git reset         # re-scan the working directory
+# git status        # Show files that will be normalized
+# git add -u
+# git commit -m "Introduce end-of-line normalization"
