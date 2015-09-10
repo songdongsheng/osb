@@ -3,23 +3,30 @@
 # Tell Git not to attempt any end-of-line conversion upon checkin or checkout.
 *               -text
 
+*.a             binary
 *.aes           binary
+*.debug         binary
+*.dll           binary
 *.elf           binary
 *.exe           binary
 *.ico           binary
 *.jar           binary
 *.jpg           binary
+*.lib           binary
 *.p12           binary
+*.pdb           binary
 *.pdb           binary
 *.pgp           binary
 *.png           binary
 *.ps            binary
 *.sig           binary
+*.so            binary
 *.svg           binary
 
 *.bat           text eol=crlf
 *.cmd           text eol=crlf
 *.csproj        text eol=crlf
+*.ps1           text eol=crlf
 *.rc            text eol=crlf
 *.reg           text eol=crlf
 *.sln           text eol=crlf
@@ -40,6 +47,7 @@
 *.java          text eol=lf
 *.properties    text eol=lf
 *.py            text eol=lf
+*.rb            text eol=lf
 *.sh            text eol=lf
 *.sql           text eol=lf
 *.txt           text eol=lf
