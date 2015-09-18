@@ -19,32 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5DF84FC9-FCA0-435F-9552-2AF372788AC4}</ProjectGuid>
+    <ProjectGuid>{3152DE97-5FE0-4EA7-8621-D3C89B3E0F5D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>bzip2</RootNamespace>
+    <RootNamespace>bzip2-static</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
@@ -100,8 +100,6 @@
       <MinimumRequiredVersion>5.2</MinimumRequiredVersion>
       <SetChecksum>false</SetChecksum>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>libbz2.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,8 +116,6 @@
       <MinimumRequiredVersion>5.2</MinimumRequiredVersion>
       <SetChecksum>false</SetChecksum>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>libbz2.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,8 +136,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>libbz2.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,13 +156,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>libbz2.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ResourceCompile Include="libbz2.rc" />
-  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="blocksort.c" />
     <ClCompile Include="bzlib.c" />
