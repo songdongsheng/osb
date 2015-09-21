@@ -2,12 +2,11 @@
 : '
 GnuPG 2.1 depends on the following packages:
 
-ftp://ftp.gnupg.org/gcrypt/dirmngr/dirmngr-1.1.1.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.7.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.8.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.3.0.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.3.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.4.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.3.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.9.4.tar.bz2          [XXX 0.9.5 broken !]
+ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.9.6.tar.bz2
 ftp://ftp.gnupg.org/GnuPG/libgpg-error/libgpg-error-1.20.tar.bz2
 ftp://ftp.gnupg.org/GnuPG/npth/npth-1.2.tar.bz2
 
@@ -26,36 +25,36 @@ export SYS_ROOT=${HOME}/native/${TARGET_TRIPLET}/gnupg-2.1
 export OBJ_ROOT=${HOME}/obj/${TARGET_TRIPLET}/gnupg-2.1
 
 export PATH=/usr/sbin:/usr/bin:/sbin:/bin
-export PATH=${HOME}/cross/i686-windows-gcc-4.9/bin:${PATH}
-export PATH=${HOME}/cross/x86_64-windows-gcc-4.9/bin:${PATH}
+export PATH=${HOME}/cross/i686-windows-gcc-5/bin:${PATH}
+export PATH=${HOME}/cross/x86_64-windows-gcc-5/bin:${PATH}
 export PATH=${SYS_ROOT}/bin:${PATH}
 
-export GNUPG_SRC_ROOT=${OBJ_ROOT}/gnupg-2.1.7
+export GNUPG_SRC_ROOT=${OBJ_ROOT}/gnupg-2.1.8
 export LIBASSUAN_SRC_ROOT=${OBJ_ROOT}/libassuan-2.3.0
-export LIBGCRYPT_SRC_ROOT=${OBJ_ROOT}/libgcrypt-1.6.3
+export LIBGCRYPT_SRC_ROOT=${OBJ_ROOT}/libgcrypt-1.6.4
 export LIBGCRYPT_SRC_ROOT=/home/cauchy/vcs/git/libgcrypt
 export LIBGPG_ERROR_SRC_ROOT=${OBJ_ROOT}/libgpg-error-1.20
 export LIBICONV_SRC_ROOT=${OBJ_ROOT}/libiconv-1.14
 export LIBKSBA_SRC_ROOT=${OBJ_ROOT}/libksba-1.3.3
 export NPTH_SRC_ROOT=${OBJ_ROOT}/npth-1.2
 export PCRF_SRC_ROOT=${OBJ_ROOT}/pcre-8.37
-export PINENTRY_SRC_ROOT=${OBJ_ROOT}/pinentry-0.9.4
-export PINENTRY_SRC_ROOT=/home/cauchy/vcs/git/pinentry
+export PINENTRY_SRC_ROOT=${OBJ_ROOT}/pinentry-0.9.6
+#export PINENTRY_SRC_ROOT=/home/cauchy/vcs/git/pinentry
 export ZLIB_SRC_ROOT=${OBJ_ROOT}/zlib-1.2.8
 
 rm -fr ${SYS_ROOT} ${OBJ_ROOT}
 
 mkdir -p ${OBJ_ROOT} ; cd ${OBJ_ROOT}
 
-tar -xjf ~/sync/building/src/gnupg-2.1.7.tar.bz2
+tar -xjf ~/sync/building/src/gnupg-2.1.8.tar.bz2
 tar -xjf ~/sync/building/src/libassuan-2.3.0.tar.bz2
-tar -xjf ~/sync/building/src/libgcrypt-1.6.3.tar.bz2
+tar -xjf ~/sync/building/src/libgcrypt-1.6.4.tar.bz2
 tar -xjf ~/sync/building/src/libgpg-error-1.20.tar.bz2
 tar -xzf ~/sync/building/src/libiconv-1.14.tar.gz
 tar -xjf ~/sync/building/src/libksba-1.3.3.tar.bz2
 tar -xjf ~/sync/building/src/npth-1.2.tar.bz2
 tar -xjf ~/sync/building/src/pcre-8.37.tar.bz2
-tar -xjf ~/sync/building/src/pinentry-0.9.4.tar.bz2
+tar -xjf ~/sync/building/src/pinentry-0.9.6.tar.bz2
 tar -xzf ~/sync/building/src/zlib-1.2.8.tar.gz
 
 #-------------------------------- x86_64-w64-mingw32-pkg-config --------------------------------
@@ -122,14 +121,6 @@ cd ${LIBICONV_SRC_ROOT} && ${LIBICONV_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
 
 make -j8; make install
 
-#-------------------------------- pinentry --------------------------------
-cd ${PINENTRY_SRC_ROOT} && ${PINENTRY_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --disable-pinentry-tty
-
-# m4_define([mym4_revision], [1532bf3])
-
-make clean; make -j8; make install
-
 #-------------------------------- npth --------------------------------
 cd ${NPTH_SRC_ROOT} && ${NPTH_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET}
@@ -145,7 +136,9 @@ make -j8; make install
 #-------------------------------- libgcrypt --------------------------------
 cd ${LIBGCRYPT_SRC_ROOT} && ${LIBGCRYPT_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
-    --disable-asm --disable-padlock-support
+    --disable-asm --disable-padlock-support --disable-doc
+
+# SUBDIRS
 
 make clean; make -j8; make install
 
@@ -160,6 +153,14 @@ cd ${LIBASSUAN_SRC_ROOT} && ${LIBASSUAN_SRC_ROOT}/configure --prefix=${SYS_ROOT}
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET}
 
 make -j8; make install
+
+#-------------------------------- pinentry --------------------------------
+cd ${PINENTRY_SRC_ROOT} && ${PINENTRY_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET}
+
+# m4_define([mym4_revision], [1532bf3])
+
+make clean; make -j8; make install
 
 #-------------------------------- gnupg --------------------------------
 cd ${GNUPG_SRC_ROOT} && ${GNUPG_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
@@ -197,19 +198,18 @@ make -j8; make install
 cp  libassuan*.dll libgcrypt*.dll libgpg-error*.dll \
     libiconv*.dll libksba*.dll libnpth*.dll zlib1.dll \
     dirmngr.exe dirmngr-client.exe gpg-agent.exe gpgconf.exe \
-    gpg-connect-agent.exe gpg-error.exe gpg2.exe gpgsm.exe \
+    gpg-connect-agent.exe gpg-error.exe gpg2.exe gpgv2.exe gpgsm.exe \
     hmac256.exe iconv.exe kbxutil.exe pinentry-w32.exe xxx/
 
-${TARGET_TRIPLET}-strip *.exe *.dll
+${TARGET_TRIPLET}-strip *.exe *.dll ; cp gpg2.exe gpg.exe; cp gpgv2.exe gpgv.exe
 
 $ cat > version.txt <<EOF
-gnupg-2.1.7
+gnupg-2.1.8
 
-libgcrypt-1.6.0-256-gfb3cb47
-pinentry-0.9.5-17-g13e0980
+libgcrypt-1.7.0-g3a3d541
+pinentry-0.9.6
 
-dirmngr-1.1.1
-libassuan-2.2.1
+libassuan-2.3.0
 libgpg-error-1.19
 libiconv-1.14
 libksba-1.3.3
@@ -218,13 +218,18 @@ pcre-8.37
 zlib-1.2.8
 EOF
 
-7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.7-w32-v2.7z gnupg-2.1.7-w32/
-7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.7-w64-v2.7z gnupg-2.1.7-w64/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.8-w32.7z gnupg-2.1.8-w32/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.8-w64.7z gnupg-2.1.8-w64/
 
 cd %USERPROFILE%\AppData\Roaming\gnupg
 echo Exit Code is %errorlevel%
+HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\Autorun to @chcp 65001>nul
 
-SET PATH=D:\opt\gnupg-2.1.7-w32
+gpg --delete-secret-and-public-keys
+
+$env:Path = "D:\opt\gnupg-2.1.8-w32;" + $env:Path
+
+SET PATH=D:\opt\gnupg-2.1.8-w32
 
 gpg-agent --debug-level expert --daemon
 
