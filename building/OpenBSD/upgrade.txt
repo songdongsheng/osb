@@ -2,10 +2,12 @@ export PKG_PATH=http://ftp.openbsd.org/pub/OpenBSD/snapshots/packages/`machine -
 
 http://ftp.openbsd.org/pub/OpenBSD/snapshots/ports.tar.gz
 
+/sbin/vnconfig  -l
+
 umount /dev/vnd0c
 /sbin/vnconfig -u vnd0
 
-/sbin/vnconfig vnd0 /root/OpenBSD-snapshots-amd64-20150618073747-install58.iso
+/sbin/vnconfig vnd0 /root/OpenBSD-snapshots-amd64-20150923022850-install58.iso
 /sbin/mount -t cd9660 /dev/vnd0c /root/iso
 
 cd /root/iso/5.8/amd64/
@@ -18,6 +20,7 @@ cd /root/iso/5.8/amd64/
 
 cp /sbin/reboot /root/reboot
 ldd /root/reboot
+file /root/reboot
 
 tar -C / -xzpf man58.tgz
 tar -C / -xzpf xshare58.tgz
