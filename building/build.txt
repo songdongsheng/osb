@@ -6,6 +6,15 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 
+*) _WIN32_WINNT
+https://msdn.microsoft.com/en-us/library/windows/desktop/aa383745(v=vs.85).aspx
+0x0502          Windows Server 2003 with SP1, Windows XP with SP2
+0x0600          Windows Server 2008
+0x0601          Windows Server 2008 R2, Windows 7
+0x0602          Windows Server 2012, Windows 8
+0x0602          Windows Server 2012 R2, Windows 8.1
+0x0A00          Windows 10
+
 *) PlatformToolset
 Visual Studio 2012 (v110)
 Visual Studio 2012 - Windows XP (v110_xp)
