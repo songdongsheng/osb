@@ -1,0 +1,28 @@
+./configure --enable-parallel-mark --with-large-heap=yes --prefix=/opt/mono-4.0
+./configure --enable-parallel-mark --with-large-heap=yes --prefix=/opt/mono-4.2
+
+config.status: executing default commands
+
+        mcs source:    mcs
+
+   Engine:
+        Host:          x86_64-unknown-linux-gnu
+        Target:        x86_64-unknown-linux-gnu
+        GC:            sgen and Included Boehm GC with typed GC and parallel mark
+        TLS:           __thread
+        SIGALTSTACK:   yes
+        Engine:        Building and using the JIT
+        oprofile:      no
+        BigArrays:     no
+        DTrace:        no
+        LLVM Back End: no (dynamically loaded: no)
+
+   Libraries:
+        .NET 4.5:        yes
+        MonoDroid:       no
+        Xamarin.iOS:     no
+        Xamarin.WatchOS: no
+        Xamarin.Mac:     no
+        JNI support:     IKVM Native
+        libgdiplus:      assumed to be installed
+        zlib:            system zlib
