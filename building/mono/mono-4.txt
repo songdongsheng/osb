@@ -1,6 +1,35 @@
+*) mono 4.0
 ./configure --enable-parallel-mark --with-large-heap=yes --prefix=/opt/mono-4.0
+
+$ /opt/mono-4.0/bin/mono --version
+Mono JIT compiler version 4.0.4 (Stable 4.0.4.1/5ab4c0d Wed Oct 21 14:49:25 CST 2015)
+Copyright (C) 2002-2014 Novell, Inc, Xamarin Inc and Contributors. www.mono-project.com
+        TLS:           __thread
+        SIGSEGV:       altstack
+        Notifications: epoll
+        Architecture:  amd64
+        Disabled:      none
+        Misc:          softdebug
+        LLVM:          supported, not enabled.
+        GC:            sgen
+
+*) mono 4.2
 ./configure --enable-parallel-mark --with-large-heap=yes --prefix=/opt/mono-4.2
 
+$ /opt/mono-4.2/bin/mono --version
+Mono JIT compiler version 4.2.1 (Stable 4.2.1.60/804ddbc Thu Oct 22 13:26:07 CST 2015)
+Copyright (C) 2002-2014 Novell, Inc, Xamarin Inc and Contributors. www.mono-project.com
+        TLS:           __thread
+        SIGSEGV:       altstack
+        Notifications: epoll
+        Architecture:  amd64
+        Disabled:      none
+        Misc:          softdebug
+        LLVM:          supported, not enabled.
+        GC:            sgen
+
+*) configure.log
+...
 config.status: executing default commands
 
         mcs source:    mcs
