@@ -33,7 +33,13 @@ msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=Win32;Pl
 msbuild libsqlite3.vcxproj /t:Rebuild /p:Configuration=Release;Platform=x64;PlatformToolset="Intel C++ Compiler XE 13.0"
 
 *) sign
-signtool sign /fd sha256 /sha1 8DC5E1E411AE78000E98FAD0ADB7E995995813A8 /t http://timestamp.verisign.com/scripts/timstamp.dll libpng16-16.dll
+"C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool.exe"
+"C:\Program Files (x86)\Windows Kits\10\bin\x86\signtool.exe"
+
+signtool sign /f %APPDATA%\songdongsheng-ecc.p12 /p %EV_PWD% /fd sha512 /tr http://timestamp.comodoca.com/rfc3161 /td sha512 openssl.exe
+signtool sign /as /f %APPDATA%\songdongsheng-rsa.p12 /p %EV_PWD% /fd sha256 /tr http://timestamp.geotrust.com/tsa /td sha256 openssl.exe
+signtool sign /as /f %APPDATA%\songdongsheng-ecc.p12 /p %EV_PWD% /fd sha512 /tr http://tsa.starfieldtech.com /td sha512 openssl.exe
+signtool sign /as /f %APPDATA%\songdongsheng-rsa.p12 /p %EV_PWD% /fd sha256 /tr http://timestamp.globalsign.com/scripts/timstamp.dll /td sha256 openssl.exe
 
 *) msiexec
 msiexec /a PathToMSIFile /qb TARGETDIR=FullPathOfDirectoryToExtractTo
