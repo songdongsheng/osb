@@ -29,12 +29,12 @@ cvs -z9 -d anoncvs@anoncvs.netbsd.org:/cvsroot update -dP
 cvs -z9 -q update -dP
 
 *) sysbuild
-[netbsd-7] Thu Sep 10 03:03:57 UTC 2015
-/bin/date --rfc-3339=seconds -d "Thu Sep 10 03:03:57 UTC 2015"
-2015-09-10 11:03:57+08:00
+[netbsd-7] Sun Oct 18 09:06:04 UTC 2015
+/bin/date --rfc-3339=seconds -d "Sun Oct 18 09:06:04 UTC 2015"
+2015-10-18 17:06:04+08:00
 
-TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC -d "Thu Sep 10 03:03:57 UTC 2015"
-20150910_030357_UTC
+TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC -d "Sun Oct 18 09:06:04 UTC 2015"
+20151018_090604_UTC
 
 # rm -fr destdir objdir releasedir
 
@@ -43,18 +43,18 @@ mkdir destdir objdir releasedir tooldir
 # BUILD ID: -B `TZ=UTC /bin/date +%Y%m%d_%H%M%S_UTC`
 
 time ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir \
-    -B 20150910_030357_UTC \
+    -B 20151018_090604_UTC \
     -U -x -u -j8 -m amd64 release iso-image live-image
 ...
 ===> Summary of results:
-         build.sh command:    ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir -B 20150910_030357_UTC -U -x -u -j8 -m amd64 release iso-image live-image
-         build.sh started:    Wed Sep 23 11:04:20 CST 2015
-         NetBSD version:      7.0_RC3
+         build.sh command:    ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../destdir -B 20151018_090604_UTC -U -x -u -j8 -m amd64 release iso-image
+         build.sh started:    Wed Oct 28 22:52:01 CST 2015
+         NetBSD version:      7.0.0_PATCH
          MACHINE:             amd64
          MACHINE_ARCH:        x86_64
          Build platform:      Linux 3.17.0-1-amd64 x86_64
          HOST_SH:             /bin/sh
-         BUILDID:             20150910_030357_UTC
+         BUILDID:             20151018_090604_UTC
          No $TOOLDIR/bin/nbmake, needs building.
          Bootstrapping nbmake
          MAKECONF file:       /etc/mk.conf (File not found)
@@ -62,23 +62,22 @@ time ./build.sh -X ../xsrc -O ../objdir -T ../tooldir -R ../releasedir -D ../des
          DESTDIR path:        /home/cauchy/vcs/netbsd/netbsd-7/src/../destdir
          RELEASEDIR path:     /home/cauchy/vcs/netbsd/netbsd-7/src/../releasedir
          Created /home/cauchy/vcs/netbsd/netbsd-7/src/../tooldir/bin/nbmake
-         Updated makewrapper: /home/cauchy/vcs/netbsd/netbsd-7/src/../tooldir/bin/nbmake-amd64-20150910_030357_UTC
+         Updated makewrapper: /home/cauchy/vcs/netbsd/netbsd-7/src/../tooldir/bin/nbmake-amd64-20151018_090604_UTC
          Successful make release
          Successful make iso-image
-         Successful make live-image
-         build.sh ended:      Wed Sep 23 11:47:18 CST 2015
+         build.sh ended:      Wed Oct 28 23:23:31 CST 2015
 ===> .
 
-real    42m57.915s
-user    139m13.108s
-sys     12m6.424s
+real    31m30.134s
+user    134m9.124s
+sys     11m59.932s
 
 /usr/sbin/vnconfig -l
 
 umount /dev/vnd0a
 /usr/sbin/vnconfig -u vnd0
 
-/usr/sbin/vnconfig vnd0 /root/NetBSD-7.0_RC3-amd64-20150910_030357_UTC.iso
+/usr/sbin/vnconfig vnd0 /root/NetBSD-7.0.0_PATCH-amd64-20151018_090604_UTC.iso
 /sbin/mount -t cd9660 /dev/vnd0a /root/iso
 
 cp /rescue/reboot /root/reboot
