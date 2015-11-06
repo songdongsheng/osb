@@ -1,9 +1,18 @@
-export PATH=/opt/pgsql-9.3/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-pg_ctl -D /opt/pgsql-9.3/data init
-
+*) Install postgresql 9.4
 ------------------------------------------------------------------------
-/opt/pgsql-9.3/data/pg_hba.conf
+./configure --prefix=/opt/pgsql-9.4 --with-libxml --with-openssl --with-gssapi --with-uuid=ossp
+
+export PATH=/opt/pgsql-9.4/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+*) init
+------------------------------------------------------------------------
+# pg_ctl -D /opt/pgsql-9.4/data init
+
+initdb -D /opt/pgsql-9.4/data --encoding=UTF-8 --locale=en_US.UTF-8 --pwprompt
+
+*) pg_hba.conf
+------------------------------------------------------------------------
+/opt/pgsql-9.4/data/pg_hba.conf
 local   all             all                                     trust
 host    all             all             127.0.0.1/32            trust
 host    all             all             ::1/128                 trust
@@ -11,9 +20,13 @@ host    all             all             ::1/128                 trust
 host    all             all             10.0.0.0/8              md5
 host    all             all             192.168.0.0/16          md5
 
+*) postgresql.conf
 ------------------------------------------------------------------------
-/opt/pgsql-9.3/data/postgresql.conf
+/opt/pgsql-9.4/data/postgresql.conf
     listen_addresses = '*'
+
+    timezone = 'Asia/Shanghai'
+    update_process_title = off
 
     effective_cache_size = 2GB
     shared_buffers = 512MB
@@ -43,30 +56,45 @@ host    all             all             192.168.0.0/16          md5
     radiusport = 1812
     radiusidentifier = 'postgresql'
 
+*) management
 ------------------------------------------------------------------------
-pg_ctl -D /opt/pgsql-9.3/data start
-pg_ctl -D /opt/pgsql-9.3/data stop -m fast
-pg_ctl -D /opt/pgsql-9.3/data restart -m fast
-pg_ctl -D /opt/pgsql-9.3/data reload
-pg_ctl -D /opt/pgsql-9.3/data status
+pg_ctl -D /opt/pgsql-9.4/data start
+pg_ctl -D /opt/pgsql-9.4/data stop -m fast
+pg_ctl -D /opt/pgsql-9.4/data restart -m fast
+pg_ctl -D /opt/pgsql-9.4/data reload
+pg_ctl -D /opt/pgsql-9.4/data status
 
+*) user and database
 ------------------------------------------------------------------------
+$ psql postgres
+psql (9.4.2)
+Type "help" for help.
+
+SHOW TIMEZONE;
+SELECT PG_RELOAD_CONF();
+
 -- DROP ROLE pcc;
 CREATE ROLE pcc LOGIN PASSWORD 'pcc'
      SUPERUSER INHERIT CREATEDB CREATEROLE REPLICATION;
 
-------------------------------------------------------------------------
 -- DROP DATABASE "PCC";
 CREATE DATABASE "PCC"
   WITH OWNER = pcc
-       ENCODING = 'UTF8';
+       ENCODING = 'UTF-8';
 
+*) pgbench
 ------------------------------------------------------------------------
+-- DROP DATABASE pgbench;
+CREATE DATABASE pgbench
+  WITH OWNER = pcc
+       ENCODING = 'UTF-8';
+
 pgbench -s 200 -i pgbench
-pgbench -c 6 -t 10000 pgbench
+pgbench -c 4 -t 10000 pgbench
 
+*) check setting and timing
 ------------------------------------------------------------------------
-select * from pg_settings order by category, name
+select * from pg_settings order by category, name;
 
 \timing
 EXPLAIN ANALYZE  SELECT * FROM PCRF_SESSION WHERE SUBSCRIPTION_E164 = '966582682624';

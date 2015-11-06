@@ -1,15 +1,47 @@
-*) unpack postgresql-9.3.4-win64.7z
+*) prepare
 ------------------------------------------------------------------------
-SET PATH=D:\opt\PostgreSQL-9.3\bin;%PATH%
+http://ftp.postgresql.org/pub/source/v9.4.5/postgresql-9.4.5.tar.bz2
+
+export PGSQL_SRC_DIR=${HOME}/src/postgresql-9.4.5
+
+export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
+export BUILD_TRIPLET=`/usr/share/misc/config.guess`
+
+export OBJ_ROOT=${HOME}/obj/w32
+export BIN_ROOT=${HOME}/w32
+export HOST_TRIPLET=i686-w64-mingw32
+
+export OBJ_ROOT=${HOME}/obj/w64
+export BIN_ROOT=${HOME}/w64
+export HOST_TRIPLET=x86_64-w64-mingw32
+
+*) Building PgSql
+------------------------------------------------------------------------
+cd ${OBJ_ROOT}/${PGSQL_SRC_DIR}
+
+CFLAGS="-I${BIN_ROOT}/include -L${BIN_ROOT}/lib" CPPFLAGS="-I${BIN_ROOT}/include" LDFLAGS="-L${BIN_ROOT}/lib" \
+${PGSQL_SRC_DIR}/configure --prefix=${BIN_ROOT} --host=${HOST_TRIPLET}
+
+make -j${NR_JOBS}
+
+make install-strip
+
+*) unpack postgresql-9.4.5-win64.7z
+------------------------------------------------------------------------
+SET PATH=D:\opt\PostgreSQL-9.4\bin;%PATH%
 
 *) init
 ------------------------------------------------------------------------
-pg_ctl init -D D:\opt\PostgreSQL-9.3\data
+pg_ctl init -D D:\opt\PostgreSQL-9.4\data
 
-pg_ctl register -w -D D:\opt\PostgreSQL-9.3\data -N "PostgreSQL 9.3" -U .\dongsheng -P pwd
+pg_ctl register -w -D D:\opt\PostgreSQL-9.4\data -N "PostgreSQL 9.4" -U .\dongsheng -P pwd
+
+pg_ctl start
+
+postmaster -F -d 3 -D "D:\opt\PostgreSQL-9.4\data"
 
 *) pg_hba.conf
-D:\opt\PostgreSQL-9.3\data\pg_hba.conf
+D:\opt\PostgreSQL-9.4\data\pg_hba.conf
 ------------------------------------------------------------------------
 host    all             all             127.0.0.1/32            trust
 host    all             all             ::1/128                 trust
@@ -18,9 +50,12 @@ host    all             all             10.0.0.0/8              md5
 host    all             all             192.168.0.0/16          md5
 
 *) postgresql.conf
-D:\opt\PostgreSQL-9.3\data\postgresql.conf
+D:\opt\PostgreSQL-9.4\data\postgresql.conf
 ------------------------------------------------------------------------
     listen_addresses = '*'
+
+    timezone = 'Asia/Shanghai'
+    update_process_title = off
 
     effective_cache_size = 2GB
     shared_buffers = 512MB
@@ -43,17 +78,20 @@ D:\opt\PostgreSQL-9.3\data\postgresql.conf
 
 *) management
 ------------------------------------------------------------------------
-pg_ctl start -D D:\opt\PostgreSQL-9.3\data
-pg_ctl stop -m fast -D D:\opt\PostgreSQL-9.3\data
-pg_ctl restart -m fast -D D:\opt\PostgreSQL-9.3\data
-pg_ctl reload -D D:\opt\PostgreSQL-9.3\data
-pg_ctl status -D D:\opt\PostgreSQL-9.3\data
+pg_ctl start -D D:\opt\PostgreSQL-9.4\data
+pg_ctl stop -m fast -D D:\opt\PostgreSQL-9.4\data
+pg_ctl restart -m fast -D D:\opt\PostgreSQL-9.4\data
+pg_ctl reload -D D:\opt\PostgreSQL-9.4\data
+pg_ctl status -D D:\opt\PostgreSQL-9.4\data
 
 *) user and database
 ------------------------------------------------------------------------
-D:\opt\PostgreSQL-9.3>psql postgres
-psql (9.3.4)
+D:\opt\PostgreSQL-9.4>psql postgres
+psql (9.4.5)
 Type "help" for help.
+
+SHOW TIMEZONE;
+SELECT PG_RELOAD_CONF();
 
 -- DROP ROLE pcc;
 CREATE ROLE pcc LOGIN PASSWORD 'pcc'
@@ -62,21 +100,21 @@ CREATE ROLE pcc LOGIN PASSWORD 'pcc'
 -- DROP DATABASE "PCC";
 CREATE DATABASE "PCC"
   WITH OWNER = pcc
-       ENCODING = 'UTF8';
+       ENCODING = 'UTF-8';
 
 *) pgbench
 ------------------------------------------------------------------------
 -- DROP DATABASE pgbench;
 CREATE DATABASE pgbench
   WITH OWNER = pcc
-       ENCODING = 'UTF8';
+       ENCODING = 'UTF-8';
 
 pgbench -s 200 -i pgbench
 pgbench -c 4 -t 10000 pgbench
 
 *) check setting and timing
 ------------------------------------------------------------------------
-select * from pg_settings order by category, name
+select * from pg_settings order by category, name;
 
 \timing
 EXPLAIN ANALYZE  SELECT * FROM PCRF_SESSION WHERE SUBSCRIPTION_E164 = '966582682624';
