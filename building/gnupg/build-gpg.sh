@@ -2,16 +2,16 @@
 : '
 GnuPG 2.1 depends on the following packages:
 
-ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.8.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.3.0.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.10.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.4.2.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.4.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.3.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.9.6.tar.bz2
-ftp://ftp.gnupg.org/GnuPG/libgpg-error/libgpg-error-1.20.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.9.7.tar.bz2
+ftp://ftp.gnupg.org/GnuPG/libgpg-error/libgpg-error-1.21.tar.bz2
 ftp://ftp.gnupg.org/GnuPG/npth/npth-1.2.tar.bz2
 
 http://zlib.net/zlib-1.2.8.tar.gz
-http://ftp.gnu.org/gnu/libiconv/libiconv-1.14.tar.gz
+https://ftp.gnu.org/gnu/libiconv/libiconv-1.14.tar.gz
 
 http://download.sourceforge.net/pcre/pcre-8.37.tar.bz2
 http://download.sourceforge.net/pcre/pcre2-10.20.tar.bz2
@@ -29,16 +29,17 @@ export PATH=${HOME}/cross/i686-windows-gcc-5/bin:${PATH}
 export PATH=${HOME}/cross/x86_64-windows-gcc-5/bin:${PATH}
 export PATH=${SYS_ROOT}/bin:${PATH}
 
-export GNUPG_SRC_ROOT=${OBJ_ROOT}/gnupg-2.1.8
-export LIBASSUAN_SRC_ROOT=${OBJ_ROOT}/libassuan-2.3.0
+export GNUPG_SRC_ROOT=${OBJ_ROOT}/gnupg-2.1.10
+#export GNUPG_SRC_ROOT=${HOME}/vcs/git/gnupg
+export LIBASSUAN_SRC_ROOT=${OBJ_ROOT}/libassuan-2.4.2
 export LIBGCRYPT_SRC_ROOT=${OBJ_ROOT}/libgcrypt-1.6.4
-export LIBGCRYPT_SRC_ROOT=/home/cauchy/vcs/git/libgcrypt
-export LIBGPG_ERROR_SRC_ROOT=${OBJ_ROOT}/libgpg-error-1.20
+export LIBGCRYPT_SRC_ROOT=${HOME}/vcs/git/libgcrypt
+export LIBGPG_ERROR_SRC_ROOT=${OBJ_ROOT}/libgpg-error-1.21
 export LIBICONV_SRC_ROOT=${OBJ_ROOT}/libiconv-1.14
 export LIBKSBA_SRC_ROOT=${OBJ_ROOT}/libksba-1.3.3
 export NPTH_SRC_ROOT=${OBJ_ROOT}/npth-1.2
 export PCRF_SRC_ROOT=${OBJ_ROOT}/pcre-8.37
-export PINENTRY_SRC_ROOT=${OBJ_ROOT}/pinentry-0.9.6
+export PINENTRY_SRC_ROOT=${OBJ_ROOT}/pinentry-0.9.7
 #export PINENTRY_SRC_ROOT=/home/cauchy/vcs/git/pinentry
 export ZLIB_SRC_ROOT=${OBJ_ROOT}/zlib-1.2.8
 
@@ -46,15 +47,16 @@ rm -fr ${SYS_ROOT} ${OBJ_ROOT}
 
 mkdir -p ${OBJ_ROOT} ; cd ${OBJ_ROOT}
 
-tar -xjf ~/sync/building/src/gnupg-2.1.8.tar.bz2
-tar -xjf ~/sync/building/src/libassuan-2.3.0.tar.bz2
+tar -xzf ~/sync/building/src/adns-1.3.tar.gz
+tar -xjf ~/sync/building/src/gnupg-2.1.10.tar.bz2
+tar -xjf ~/sync/building/src/libassuan-2.4.2.tar.bz2
 tar -xjf ~/sync/building/src/libgcrypt-1.6.4.tar.bz2
-tar -xjf ~/sync/building/src/libgpg-error-1.20.tar.bz2
+tar -xjf ~/sync/building/src/libgpg-error-1.21.tar.bz2
 tar -xzf ~/sync/building/src/libiconv-1.14.tar.gz
 tar -xjf ~/sync/building/src/libksba-1.3.3.tar.bz2
 tar -xjf ~/sync/building/src/npth-1.2.tar.bz2
 tar -xjf ~/sync/building/src/pcre-8.37.tar.bz2
-tar -xjf ~/sync/building/src/pinentry-0.9.6.tar.bz2
+tar -xjf ~/sync/building/src/pinentry-0.9.7.tar.bz2
 tar -xzf ~/sync/building/src/zlib-1.2.8.tar.gz
 
 #-------------------------------- x86_64-w64-mingw32-pkg-config --------------------------------
@@ -166,7 +168,7 @@ make clean; make -j8; make install
 cd ${GNUPG_SRC_ROOT} && ${GNUPG_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
     --disable-card-support --disable-ccid-driver --disable-scdaemon \
-    --disable-g13 --disable-gpgtar \
+    --disable-dns-cert --disable-g13 --disable-gpgtar \
     --with-zlib=${SYS_ROOT} --with-regex=${SYS_ROOT}
 
 make -j8; make install
@@ -174,43 +176,49 @@ make -j8; make install
 # ${TARGET_TRIPLET}-strip ${SYS_ROOT}/bin/*.dll ${SYS_ROOT}/bin/*.exe ${SYS_ROOT}/libexec/*.exe
 
 : '
--rwxr-xr-x 1 cauchy cauchy  688192 Aug 12 17:09 libassuan6-0.dll
--rwxr-xr-x 1 cauchy cauchy 4270456 Aug 12 17:09 libgcrypt-20.dll
--rwxr-xr-x 1 cauchy cauchy  533046 Aug 12 17:09 libgpg-error6-0.dll
--rwxr-xr-x 1 cauchy cauchy 1538877 Aug 12 17:09 libiconv-2.dll
--rwxr-xr-x 1 cauchy cauchy 1200416 Aug 12 17:09 libksba-8.dll
--rwxr-xr-x 1 cauchy cauchy  184690 Aug 12 17:09 libnpth6-0.dll
--rwxr-xr-x 1 cauchy cauchy  114176 Aug 12 17:09 zlib1.dll
-
--rwxr-xr-x 1 cauchy cauchy  382583 Aug 12 17:24 dirmngr-client.exe
--rwxr-xr-x 1 cauchy cauchy 1723647 Aug 12 17:24 dirmngr.exe
--rwxr-xr-x 1 cauchy cauchy 1618019 Aug 12 17:24 gpg-agent.exe
--rwxr-xr-x 1 cauchy cauchy  502759 Aug 12 17:24 gpgconf.exe
--rwxr-xr-x 1 cauchy cauchy  649204 Aug 12 17:24 gpg-connect-agent.exe
--rwxr-xr-x 1 cauchy cauchy  167571 Aug 12 17:24 gpg-error.exe
--rwxr-xr-x 1 cauchy cauchy 4254011 Aug 12 17:24 gpg.exe
--rwxr-xr-x 1 cauchy cauchy 2240886 Aug 12 17:24 gpgsm.exe
--rwxr-xr-x 1 cauchy cauchy  241406 Aug 12 17:24 hmac256.exe
--rwxr-xr-x 1 cauchy cauchy  208186 Aug 12 17:24 iconv.exe
--rwxr-xr-x 1 cauchy cauchy  739264 Aug 12 17:24 kbxutil.exe
--rwxr-xr-x 1 cauchy cauchy  261844 Aug 12 17:24 pinentry.exe
-
-cp  libassuan*.dll libgcrypt*.dll libgpg-error*.dll \
+/bin/cp libassuan*.dll libgcrypt*.dll libgpg-error*.dll \
     libiconv*.dll libksba*.dll libnpth*.dll zlib1.dll \
     dirmngr.exe dirmngr-client.exe gpg-agent.exe gpgconf.exe \
     gpg-connect-agent.exe gpg-error.exe gpg2.exe gpgv2.exe gpgsm.exe \
     hmac256.exe iconv.exe kbxutil.exe pinentry-w32.exe xxx/
 
-${TARGET_TRIPLET}-strip *.exe *.dll ; cp gpg2.exe gpg.exe; cp gpgv2.exe gpgv.exe
+${TARGET_TRIPLET}-strip *.exe *.dll
+cp gpg2.exe gpg.exe
+cp gpgv2.exe gpgv.exe
+mv pinentry-w32.exe pinentry.exe
+
+-rwxr-xr-x 1 cauchy cauchy   75776 Dec 15 17:43 libassuan6-0.dll
+-rwxr-xr-x 1 cauchy cauchy 1038336 Dec 15 17:43 libgcrypt-20.dll
+-rwxr-xr-x 1 cauchy cauchy   89088 Dec 15 17:43 libgpg-error6-0.dll
+-rwxr-xr-x 1 cauchy cauchy  943616 Dec 15 17:43 libiconv-2.dll
+-rwxr-xr-x 1 cauchy cauchy  205312 Dec 15 17:43 libksba-8.dll
+-rwxr-xr-x 1 cauchy cauchy   28672 Dec 15 17:43 libnpth6-0.dll
+-rwxr-xr-x 1 cauchy cauchy  114176 Dec 15 17:43 zlib1.dll
+
+-rwxr-xr-x 1 cauchy cauchy  90112 Dec 15 17:43 dirmngr-client.exe
+-rwxr-xr-x 1 cauchy cauchy 327680 Dec 15 17:43 dirmngr.exe
+-rwxr-xr-x 1 cauchy cauchy 851968 Dec 15 17:43 gpg2.exe
+-rwxr-xr-x 1 cauchy cauchy 321024 Dec 15 17:43 gpg-agent.exe
+-rwxr-xr-x 1 cauchy cauchy 123392 Dec 15 17:43 gpgconf.exe
+-rwxr-xr-x 1 cauchy cauchy 142848 Dec 15 17:43 gpg-connect-agent.exe
+-rwxr-xr-x 1 cauchy cauchy  35328 Dec 15 17:43 gpg-error.exe
+-rwxr-xr-x 1 cauchy cauchy 851968 Dec 15 17:43 gpg.exe
+-rwxr-xr-x 1 cauchy cauchy 427520 Dec 15 17:43 gpgsm.exe
+-rwxr-xr-x 1 cauchy cauchy 369664 Dec 15 17:43 gpgv2.exe
+-rwxr-xr-x 1 cauchy cauchy 369664 Dec 15 17:43 gpgv.exe
+-rwxr-xr-x 1 cauchy cauchy  46592 Dec 15 17:43 hmac256.exe
+-rwxr-xr-x 1 cauchy cauchy  43008 Dec 15 17:43 iconv.exe
+-rwxr-xr-x 1 cauchy cauchy 137728 Dec 15 17:43 kbxutil.exe
+-rwxr-xr-x 1 cauchy cauchy  69632 Dec 15 17:43 pinentry.exe
 
 $ cat > version.txt <<EOF
-gnupg-2.1.8
+gnupg-2.1.10
 
 libgcrypt-1.7.0-g3a3d541
-pinentry-0.9.6
+pinentry-0.9.7
 
-libassuan-2.3.0
-libgpg-error-1.19
+libassuan-2.4.2
+libgpg-error-1.21
 libiconv-1.14
 libksba-1.3.3
 npth-1.2
@@ -218,8 +226,8 @@ pcre-8.37
 zlib-1.2.8
 EOF
 
-7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.8-w32.7z gnupg-2.1.8-w32/
-7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.8-w64.7z gnupg-2.1.8-w64/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.10-w32.7z gnupg-2.1.10-w32/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.10-w64.7z gnupg-2.1.10-w64/
 
 cd %USERPROFILE%\AppData\Roaming\gnupg
 echo Exit Code is %errorlevel%
@@ -227,9 +235,9 @@ HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\Autorun to @chcp 65001>n
 
 gpg --delete-secret-and-public-keys
 
-$env:Path = "D:\opt\gnupg-2.1.8-w32;" + $env:Path
+$env:Path = "D:\opt\gnupg-2.1.10-w32;" + $env:Path
 
-SET PATH=D:\opt\gnupg-2.1.8-w32
+SET PATH=D:\opt\gnupg-2.1.10-w32
 
 gpg-agent --debug-level expert --daemon
 
