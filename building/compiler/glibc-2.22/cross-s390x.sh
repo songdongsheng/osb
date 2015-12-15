@@ -1,19 +1,19 @@
 #!/bin/sh
 #
-# powerpc64-linux-gcc -dM -E -  < /dev/null
-# powerpc64-linux-gcc -Werror -fstack-protector -xc /dev/null -S -o /dev/null
-# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=powerpc64-linux --prefix=/tmp/powerpc64-linux --disable-nls
+# s390x-linux-gcc -dM -E -  < /dev/null
+# s390x-linux-gcc -Werror -fstack-protector -xc /dev/null -S -o /dev/null
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=s390x-linux --prefix=/tmp/s390x-linux --disable-nls
 #
 
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_9-branch
-export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.20
-export KERNEL_SRC_ROOT=${HOME}/src/linux-3.17.6
-export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.25
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-5-branch
+export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.22
+export KERNEL_SRC_ROOT=${HOME}/src/linux-4.3.3
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.25.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
-export TARGET_TRIPLET=powerpc64-linux
-export LOGGER_TAG=cross-powerpc64-gcc-4.9
+export TARGET_TRIPLET=s390x-linux
+export LOGGER_TAG=cross-s390x-gcc-5
 export SYS_ROOT=${HOME}/cross/${TARGET_TRIPLET}
 export PATH=${SYS_ROOT}/usr/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
@@ -24,9 +24,9 @@ rm -fr ${SYS_ROOT} ${HOME}/obj/${TARGET_TRIPLET}
 ################ Linux Kernel header files ################
 cd ${KERNEL_SRC_ROOT}
 
-make V=2 ARCH=powerpc pseries_defconfig
-make V=2 ARCH=powerpc headers_check
-make V=2 ARCH=powerpc INSTALL_HDR_PATH=${SYS_ROOT}/usr headers_install
+make V=2 ARCH=s390 defconfig
+make V=2 ARCH=s390 headers_check
+make V=2 ARCH=s390 INSTALL_HDR_PATH=${SYS_ROOT}/usr headers_install
 
 logger -t ${LOGGER_TAG} -s "Build linux-libc-dev success"
 
@@ -61,7 +61,8 @@ ${GCC_SRC_ROOT}/configure \
     --enable-fully-dynamic-string \
     --enable-libstdcxx-time=yes \
     --disable-multilib \
-    --with-cpu=power8 -with-tune=power8
+    --disable-libsanitizer \
+    --with-arch=z10
 
 make -j${NR_JOBS} all-gcc; make install-strip-gcc
 if [ $? -ne 0 ]; then
@@ -78,7 +79,7 @@ cd  ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 install -m 0755 -d ${SYS_ROOT}/usr/include
 install -m 0644 -t ${SYS_ROOT}/usr/include ${GLIBC_SRC_ROOT}/sysdeps/generic/unwind.h
 
-${GLIBC_SRC_ROOT}/configure --prefix=/usr --enable-kernel=2.6.32 --with-cpu=power8 \
+${GLIBC_SRC_ROOT}/configure --prefix=/usr --enable-kernel=2.6.32 \
     --host=${TARGET_TRIPLET} --with-headers=${SYS_ROOT}/usr/include
 
 /bin/rm -f ${SYS_ROOT}/usr/include/unwind.h

@@ -5,15 +5,15 @@
 # path/to/src/configure --build=`/usr/share/misc/config.guess` --host=aarch64-linux --prefix=/tmp/aarch64-linux --disable-nls
 #
 
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_9-branch
-export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.20
-export KERNEL_SRC_ROOT=${HOME}/src/linux-3.17.6
-export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.25
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-5-branch
+export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.22
+export KERNEL_SRC_ROOT=${HOME}/src/linux-4.3.3
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.25.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 export TARGET_TRIPLET=aarch64-linux
-export LOGGER_TAG=cross-arm64-gcc-4.9
+export LOGGER_TAG=cross-arm64-gcc-5
 export SYS_ROOT=${HOME}/cross/${TARGET_TRIPLET}
 export PATH=${SYS_ROOT}/usr/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
@@ -95,7 +95,8 @@ ${GCC_SRC_ROOT}/configure \
     --enable-checking=release \
     --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string \
-    --enable-libstdcxx-time=yes
+    --enable-libstdcxx-time=yes \
+    --disable-libsanitizer
 
 make -j${NR_JOBS} ; make install-strip
 if [ $? -ne 0 ]; then
