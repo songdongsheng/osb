@@ -1,0 +1,15 @@
+--host=x86_64-w64-mingw32
+--host=i686-w64-mingw32
+
+export TARGET_TRIPLET=x86_64-w64-mingw32
+rm -fr /tmp/${TARGET_TRIPLET}
+
+cd ${HOME}/vcs/git/mingw-w64-master/mingw-w64-libraries/libmangle
+git clean -dfx .
+./configure --build=`/usr/share/misc/config.guess` --host=${TARGET_TRIPLET} --prefix=/tmp/${TARGET_TRIPLET}
+make install
+
+cd ${HOME}/vcs/git/mingw-w64-master/mingw-w64-tools/gendef
+git clean -dfx .
+./configure --build=`/usr/share/misc/config.guess` --host=${TARGET_TRIPLET} --prefix=/tmp/${TARGET_TRIPLET} --with-mangle=/tmp/${TARGET_TRIPLET}
+make

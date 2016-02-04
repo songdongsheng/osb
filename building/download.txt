@@ -92,7 +92,7 @@ https://swupdate.openvpn.org/community/releases/openvpn-2.3.10.tar.xz
 https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.10-I602-i686.exe
 https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.10-I602-x86_64.exe
 https://swupdate.openvpn.org/community/releases/tap-windows-9.21.1.zip
-https://swupdate.openvpn.org/community/releases/tap-windows-9.21.1.zip
+https://swupdate.openvpn.org/community/releases/tap-windows-9.21.1.exe
 https://www.apache.org/dist/apr/apr-1.5.2.tar.bz2
 https://www.apache.org/dist/apr/apr-1.5.2-win32-src.zip
 https://www.apache.org/dist/apr/apr-iconv-1.2.1.tar.gz
