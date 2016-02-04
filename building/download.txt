@@ -1,4 +1,5 @@
 http://www.yaml.org/spec/1.2/spec.html
+https://openvpn.net/index.php/download/community-downloads.html
 
 ftp://ftp.astron.com/pub/file/file-5.25.tar.gz
 ftp://ftp.cyrusimap.org/cyrus-sasl/cyrus-sasl-2.1.26.tar.gz
@@ -27,6 +28,7 @@ http://cairographics.org/releases/cairo-1.14.6.tar.xz
 http://cairographics.org/releases/pixman-0.34.0.tar.gz
 http://curl.haxx.se/download/curl-7.47.0.tar.bz2
 http://dist.libuv.org/dist/v1.8.0/libuv-v1.8.0.tar.gz
+http://download.mono-project.com/sources/mono/mono-4.2.2.30.tar.bz2
 http://isl.gforge.inria.fr/isl-0.15.tar.xz
 http://isl.gforge.inria.fr/isl-0.16.1.tar.xz
 http://oss.oetiker.ch/rrdtool/pub/rrdtool-1.5.5.tar.gz
@@ -86,6 +88,11 @@ https://ftp.gnu.org/gnu/wget/wget-1.17.1.tar.xz
 https://github.com/jbeder/yaml-cpp/archive/release-0.5.3.tar.gz
 https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz
 https://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
+https://swupdate.openvpn.org/community/releases/openvpn-2.3.10.tar.xz
+https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.10-I602-i686.exe
+https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.10-I602-x86_64.exe
+https://swupdate.openvpn.org/community/releases/tap-windows-9.21.1.zip
+https://swupdate.openvpn.org/community/releases/tap-windows-9.21.1.zip
 https://www.apache.org/dist/apr/apr-1.5.2.tar.bz2
 https://www.apache.org/dist/apr/apr-1.5.2-win32-src.zip
 https://www.apache.org/dist/apr/apr-iconv-1.2.1.tar.gz
