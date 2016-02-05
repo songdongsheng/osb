@@ -7,8 +7,8 @@
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-5-branch
 export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.22
-export KERNEL_SRC_ROOT=${HOME}/src/linux-4.3.3
-export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.25.1
+export KERNEL_SRC_ROOT=${HOME}/src/linux-4.4.1
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.26
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -89,7 +89,7 @@ cd  ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 install -m 0755 -d ${SYS_ROOT}/usr/include
 install -m 0644 -t ${SYS_ROOT}/usr/include ${GLIBC_SRC_ROOT}/sysdeps/generic/unwind.h
 
-${GLIBC_SRC_ROOT}/configure --prefix=/usr --enable-kernel=2.6.32 \
+${GLIBC_SRC_ROOT}/configure --prefix=/usr --enable-kernel=3.10.0 \
     --host=${TARGET_TRIPLET} --with-headers=${SYS_ROOT}/usr/include
 
 /bin/rm -f ${SYS_ROOT}/usr/include/unwind.h

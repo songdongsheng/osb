@@ -6,7 +6,7 @@ export MINGW_W64_SRC_ROOT=$3
 
 cat << EOF > $SYS_ROOT/version.txt
 *) binutils 2.25.1
-https://ftp.gnu.org/gnu/binutils/binutils-2.25.1.tar.gz
+https://ftp.gnu.org/gnu/binutils/binutils-2.26.tar.gz
 
 *) gdb 7.10.1
 https://ftp.gnu.org/gnu/gdb/gdb-7.10.1.tar.xz

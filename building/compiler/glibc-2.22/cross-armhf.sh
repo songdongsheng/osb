@@ -12,8 +12,8 @@
 
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-5-branch
 export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.22
-export KERNEL_SRC_ROOT=${HOME}/src/linux-4.3.3
-export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.25.1
+export KERNEL_SRC_ROOT=${HOME}/src/linux-4.4.1
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.26
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
@@ -77,7 +77,7 @@ rm -fr ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 mkdir -p ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 cd  ${HOME}/obj/${TARGET_TRIPLET}/eglibc
 
-${GLIBC_SRC_ROOT}/configure --prefix=/usr --enable-kernel=3.2.0 \
+${GLIBC_SRC_ROOT}/configure --prefix=/usr --enable-kernel=3.10.0 \
     --host=${TARGET_TRIPLET} --with-headers=${SYS_ROOT}/usr/include
 
 fakeroot make install_root=${SYS_ROOT} install-headers install-bootstrap-headers=yes

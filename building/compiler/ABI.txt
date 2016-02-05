@@ -1,0 +1,44 @@
+https://sourceware.org/glibc/wiki/ABIList
+https://sourceware.org/glibc/wiki/Release
+
+$ readelf -l ln | grep INTERP -A 2
+  INTERP         0x0000000000000238 0x0000000000400238 0x0000000000400238
+                 0x000000000000001c 0x000000000000001c  R      1
+      [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+
+aarch64-linux           LE  3.10.0  aarch64-unknown-linux-gnu       /lib/ld-linux-aarch64.so.1
+arm-linux-gnueabihf     LE  3.10.0  arm-unknown-linux-gnueabihf     /lib/ld-linux-armhf.so.3
+powerpc64-linux         BE  3.10.0  powerpc64-unknown-linux-gnu     /lib64/ld64.so.1
+s390x-linux             BE  3.10.0  s390x-ibm-linux-gnu             /lib/ld64.so.1
+sparc64-linux           BE  3.10.0  sparc64-unknown-linux-gnu       /lib64/ld-linux.so.2
+
+x86_64-unknown-freebsd10.2      /libexec/ld-elf.so.1
+x86_64-unknown-dragonfly4.4     /libexec/ld-elf.so.2
+amd64-unknown-openbsd5.9        [/usr/libexec/ld.so]
+x86_64-unknown-netbsd7.0        /libexec/ld.elf_so
+
+x86_64-pc-linux-gnu             /lib64/ld-linux-x86-64.so.2
+x86_64-pc-solaris2.11           /lib/amd64/ld.so.1
+x86_64-w64-mingw32              []
+
+i686-pc-linux-gnu               /lib/ld-linux.so.2
+i686-pc-solaris2.11             /usr/lib/ld.so.1
+i686-w64-mingw32                []
+
+$ aarch64-linux-gcc -dM -E -  < /dev/null | sort | grep -i _ORDER
+#define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __ORDER_BIG_ENDIAN__ 4321
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __ORDER_PDP_ENDIAN__ 3412
+
+$ powerpc64-linux-gcc -dM -E -  < /dev/null | sort | grep -i _ORDER
+#define __BYTE_ORDER__ __ORDER_BIG_ENDIAN__
+#define __FLOAT_WORD_ORDER__ __ORDER_BIG_ENDIAN__
+#define __ORDER_BIG_ENDIAN__ 4321
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __ORDER_PDP_ENDIAN__ 3412
+#define __VEC_ELEMENT_REG_ORDER__ __ORDER_BIG_ENDIAN__
+
+config_guess_url="http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD"
+wget -O config.guess ${config_guess_url} && chmod +x config.guess && ./config.guess

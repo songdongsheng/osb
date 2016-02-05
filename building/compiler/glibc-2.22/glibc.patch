@@ -1,8 +1,8 @@
 diff --git a/configure b/configure
-index ce0c6a0..ed32e40 100755
+index 4f87b31..3192f43 100755
 --- a/configure
 +++ b/configure
-@@ -6240,7 +6240,7 @@ else
+@@ -6429,7 +6429,7 @@ else
    ac_status=$?
    $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
    test $ac_status = 0; }; }; then :
