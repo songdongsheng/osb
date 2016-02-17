@@ -7,6 +7,8 @@ x86_64-w64-mingw32-gcc -v
 *)
 tar -xzf openssl-1.0.2f.tar.gz
 
+export OPENSSL_CONF=/etc/ssl/openssl.cnf
+
 vi apps/openssl.c
     BIO_printf(bio_err, "WARNING: can't open config file: %s\n",p);
 

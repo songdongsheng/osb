@@ -1,0 +1,7 @@
+tar -xzf xz-5.2.2.tar.gz
+
+PKG_CONFIG_LIBDIR=/tmp/win64/lib/pkgconfig \
+./configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/win64 --enable-static --disable-shared
+
+PKG_CONFIG_LIBDIR=/tmp/win32/lib/pkgconfig \
+./configure --build=`/usr/share/misc/config.guess` --host=i686-w64-mingw32 --prefix=/tmp/win32 --enable-static --disable-shared
