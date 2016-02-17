@@ -1,0 +1,69 @@
+*)
+export PATH=${HOME}/cross/i686-windows-gcc-5/bin:${HOME}/cross/x86_64-windows-gcc-5/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+i686-w64-mingw32-gcc -v
+x86_64-w64-mingw32-gcc -v
+
+*)
+tar -xzf openssl-1.0.2f.tar.gz
+
+vi apps/openssl.c
+    BIO_printf(bio_err, "WARNING: can't open config file: %s\n",p);
+
+./Configure --prefix=/tmp/win32 --cross-compile-prefix=i686-w64-mingw32- mingw
+make clean; make -j3; make install
+
+./Configure --prefix=/tmp/win64 --cross-compile-prefix=x86_64-w64-mingw32- mingw64
+make clean; make -j3; make install
+
+*)
+tar -xzf zlib-1.2.8.tar.gz
+
+export TARGET_TRIPLET=x86_64-w64-mingw32
+export TARGET_ROOT=/tmp/win64
+
+export TARGET_TRIPLET=i686-w64-mingw32
+export TARGET_ROOT=/tmp/win32
+
+${TARGET_TRIPLET}-gcc -O2 -Ofast -Wall -c \
+        adler32.c compress.c crc32.c deflate.c gzclose.c gzlib.c gzread.c gzwrite.c \
+        infback.c inffast.c inflate.c inftrees.c trees.c uncompr.c zutil.c
+${TARGET_TRIPLET}-ar rcs libz.a \
+        adler32.o compress.o crc32.o deflate.o gzclose.o gzlib.o gzread.o gzwrite.o \
+        infback.o inffast.o inflate.o inftrees.o trees.o uncompr.o zutil.o
+
+install -m 0644 -t ${TARGET_ROOT}/include zconf.h zlib.h
+install -m 0644 -T libz.a ${TARGET_ROOT}/lib/libz.a
+
+vi /tmp/win32/lib/pkgconfig/zlib.pc
+vi /tmp/win64/lib/pkgconfig/zlib.pc
+
+#prefix=/tmp/win32
+#prefix=/tmp/win64
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.8
+
+Requires:
+Libs: -L${libdir} -lz
+Cflags: -I${includedir}
+
+*)
+tar -xJf wget-1.17.1.tar.xz
+
+PKG_CONFIG_LIBDIR=/tmp/win32/lib/pkgconfig \
+LIBS="-lcrypt32" \
+./configure --build=`/usr/share/misc/config.guess` --host=i686-w64-mingw32 --prefix=/tmp/win32 --disable-nls --with-ssl=openssl --with-libssl-prefix=/tmp/win32
+make clean; make -j3; make install
+
+LIBS="-lcrypt32" \
+
+PKG_CONFIG_LIBDIR=/tmp/win64/lib/pkgconfig \
+LIBS="-lcrypt32" \
+./configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/win64 --disable-nls --with-ssl=openssl --with-libssl-prefix=/tmp/win64
+make clean; make -j3; make install
+
+du -ks wget.exe ~/wget*.exe
