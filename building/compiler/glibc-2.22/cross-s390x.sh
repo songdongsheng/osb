@@ -24,6 +24,14 @@ rm -fr ${SYS_ROOT} ${HOME}/obj/${TARGET_TRIPLET}
 ################ Linux Kernel header files ################
 cd ${KERNEL_SRC_ROOT}
 
+# make nconfig ARCH=s390 CONFIG_MARCH_Z13=y
+
+echo CONFIG_HAVE_MARCH_ZEC12_FEATURES=y >> arch/s390/defconfig
+echo CONFIG_HAVE_MARCH_Z13_FEATURES=y   >> arch/s390/defconfig
+echo CONFIG_MARCH_Z13=y                 >> arch/s390/defconfig
+echo CONFIG_MARCH_Z13_TUNE=y            >> arch/s390/defconfig
+echo CONFIG_TUNE_Z13=y                  >> arch/s390/defconfig
+
 make V=2 ARCH=s390 defconfig
 make V=2 ARCH=s390 headers_check
 make V=2 ARCH=s390 INSTALL_HDR_PATH=${SYS_ROOT}/usr headers_install
@@ -62,7 +70,7 @@ ${GCC_SRC_ROOT}/configure \
     --enable-libstdcxx-time=yes \
     --disable-multilib \
     --disable-libsanitizer \
-    --with-arch=z10
+    --with-arch=z13
 
 make -j${NR_JOBS} all-gcc; make install-strip-gcc
 if [ $? -ne 0 ]; then
