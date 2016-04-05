@@ -92,6 +92,8 @@ https://sourceforge.net/projects/open-vm-tools/files/open-vm-tools/stable-10.0.x
 https://sourceforge.net/projects/pcre/files/pcre/8.38/pcre-8.38.tar.bz2/download
 https://sourceforge.net/projects/pcre/files/pcre2/10.21/pcre2-10.21.tar.bz2/download
 https://sourceforge.net/projects/pdcurses/files/pdcurses/3.4/PDCurses-3.4.tar.gz/download
+https://sourceforge.net/projects/sevenzip/files/7-Zip/15.14/7z1514.exe/download
+https://sourceforge.net/projects/sevenzip/files/7-Zip/15.14/7z1514-x64.exe/download
 https://swupdate.openvpn.org/community/releases/openvpn-2.3.10.tar.xz
 https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.10-I603-i686.exe
 https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.10-I603-x86_64.exe
