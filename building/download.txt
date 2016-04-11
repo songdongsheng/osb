@@ -11,7 +11,7 @@ ftp://ftp.gnupg.org/gcrypt/dirmngr/dirmngr-1.1.1.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-1.4.20.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.0.30.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.11.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.10.tar.xz
+ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.11.tar.xz
 ftp://ftp.gnupg.org/gcrypt/gnutls/w32/gnutls-3.4.9-w32.zip
 ftp://ftp.gnupg.org/gcrypt/gnutls/w32/gnutls-3.4.9-w64.zip
 ftp://ftp.gnupg.org/gcrypt/gpa/gpa-0.9.9.tar.bz2
@@ -114,8 +114,8 @@ https://www.apache.org/dist/apr/apr-util-1.5.4.tar.gz
 https://www.apache.org/dist/apr/apr-util-1.5.4-win32-src.zip
 https://www.apache.org/dist/httpd/httpd-2.2.31.tar.bz2
 https://www.apache.org/dist/httpd/httpd-2.2.31-win32-src.zip
-https://www.apache.org/dist/httpd/httpd-2.4.18.tar.bz2
-https://www.apache.org/dist/httpd/httpd-2.4.18-deps.tar.bz2
+https://www.apache.org/dist/httpd/httpd-2.4.20.tar.bz2
+https://www.apache.org/dist/httpd/httpd-2.4.20-deps.tar.bz2
 https://www.apache.org/dist/subversion/subversion-1.9.3.tar.bz2
 https://www.apache.org/dist/subversion/subversion-1.9.3.zip
 https://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.8p6.tar.gz
