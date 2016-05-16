@@ -1,6 +1,7 @@
 --------------------------------------------------------------
 export QEMU_SRC_DIR=${HOME}/vcs/git/qemu
 export QEMU_SRC_DIR=${HOME}/src/qemu-2.6.0
+export QEMU_DST_DIR=/opt/qemu-2.6
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 
 --------------------------------------------------------------
@@ -9,7 +10,7 @@ rm -fr ${HOME}/obj/qemu-system-build
 mkdir -p ${HOME}/obj/qemu-system-build
 cd ${HOME}/obj/qemu-system-build && \
         ${QEMU_SRC_DIR}/configure \
-                --prefix=/opt/qemu-2.6 \
+                --prefix=${QEMU_DST_DIR} \
                 --enable-virtfs \
                 --enable-tcg-interpreter \
                 --enable-uuid \
@@ -24,9 +25,9 @@ rm -fr ${HOME}/obj/qemu-user-build
 mkdir -p ${HOME}/obj/qemu-user-build
 cd ${HOME}/obj/qemu-user-build && \
         ${QEMU_SRC_DIR}/configure \
-                --prefix=/opt/qemu-2.6 \
+                --prefix=${QEMU_DST_DIR} \
                 --disable-system \
-                --interp-prefix=/opt/qemu-2.6/binfmt/%M
+                --interp-prefix=${QEMU_DST_DIR}/binfmt/%M
 
         make -j${NR_JOBS} && sudo make install
 
@@ -36,9 +37,9 @@ rm -fr ${HOME}/obj/qemu-user-static-build
 mkdir -p ${HOME}/obj/qemu-user-static-build
 cd ${HOME}/obj/qemu-user-static-build && \
         ${QEMU_SRC_DIR}/configure \
-                --prefix=/opt/qemu-2.6 \
+                --prefix=${QEMU_DST_DIR} \
                 --disable-system \
-                --interp-prefix=/opt/qemu-2.6/binfmt-static/%M \
+                --interp-prefix=${QEMU_DST_DIR}/binfmt-static/%M \
                 --static
 
 make -j${NR_JOBS}
@@ -49,7 +50,8 @@ done
 
 # static user build
 for target in ${HOME}/obj/qemu-user-static-build/*-*-user/qemu-* ; do
-    sudo install -m 755 $target /opt/qemu-2.6/bin/$(basename $target)-static
+    sudo install -m 755 $target ${QEMU_DST_DIR}/bin/$(basename $target)-static
+    sudo strip ${QEMU_DST_DIR}/bin/$(basename $target)-static
 done
 
 --------------------------------------------------------------
