@@ -124,7 +124,7 @@ https://sourceforge.net/projects/javagroups/files/JGroups/3.6.9.Final/jgroups-3.
 https://sourceforge.net/projects/javagroups/files/JGroups/3.6.9.Final/jgroups-3.6.9.Final-sources.jar/download
 https://sourceforge.net/projects/levent/files/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz/download
 https://sourceforge.net/projects/libjpeg-turbo/files/1.4.2/libjpeg-turbo-1.4.2.tar.gz/download
-https://sourceforge.net/projects/libpng/files/libpng16/1.6.21/libpng-1.6.21.tar.xz/download
+https://sourceforge.net/projects/libpng/files/libpng16/1.6.22/libpng-1.6.22.tar.xz/download
 https://sourceforge.net/projects/libpng/files/zlib/1.2.8/zlib-1.2.8.tar.gz/download
 https://sourceforge.net/projects/open-vm-tools/files/open-vm-tools/stable-10.0.x/open-vm-tools-10.0.5-3227872.tar.gz/download
 https://sourceforge.net/projects/pcre/files/pcre/8.38/pcre-8.38.tar.bz2/download
