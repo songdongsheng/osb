@@ -11,8 +11,8 @@ ftp://ftp.gnupg.org/gcrypt/dirmngr/dirmngr-1.1.1.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-1.4.20.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.0.30.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.12.tar.xz
-ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.12.tar.xz.sig
+ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.13.tar.xz
+ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.13.tar.xz.sig
 ftp://ftp.gnupg.org/gcrypt/gnutls/w32/gnutls-3.4.9-w32.zip
 ftp://ftp.gnupg.org/gcrypt/gnutls/w32/gnutls-3.4.9-w64.zip
 ftp://ftp.gnupg.org/gcrypt/gpa/gpa-0.9.9.tar.bz2
