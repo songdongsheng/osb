@@ -19,6 +19,16 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\sdkddkver.h
 0x0A01          Windows 10 TH2, 1511
 
 *) PlatformToolset
+
+Compiler Options Listed Alphabetically
+    http://msdn.microsoft.com/en-us/library/fwkeyyhe.aspx
+
+Linker Options
+    http://msdn.microsoft.com/en-us/library/y0zzbyt4.aspx
+
+ML and ML64 Command-Line Reference
+    http://msdn.microsoft.com/en-us/library/s0ksfwcf.aspx
+
 Visual Studio 2012 (v110)
 Visual Studio 2012 - Windows XP (v110_xp)
 
