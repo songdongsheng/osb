@@ -125,7 +125,9 @@ https://gmplib.org/repo/gmp-6.1/raw-rev/67d4ee9dead1
 https://libarchive.org/downloads/libarchive-3.2.1.tar.gz
 https://libbsd.freedesktop.org/releases/libbsd-0.8.3.tar.xz
 https://linuxcontainers.org/downloads/lxc/lxc-1.0.8.tar.gz
-https://linuxcontainers.org/downloads/lxc/lxc-2.0.0.tar.gz
+https://linuxcontainers.org/downloads/lxc/lxc-2.0.3.tar.gz
+https://linuxcontainers.org/downloads/lxcfs/lxcfs-2.0.2.tar.gz
+https://linuxcontainers.org/downloads/lxd/lxd-2.0.3.tar.gz
 https://notepad-plus-plus.org/repository/6.x/6.9.2/npp.6.9.2.Installer.exe
 https://p11-glue.freedesktop.org/releases/p11-kit-0.23.2.tar.gz
 https://sourceforge.net/projects/expat/files/expat/2.2.0/expat-2.2.0.tar.bz2/download
@@ -146,6 +148,7 @@ https://sourceforge.net/projects/pdcurses/files/pdcurses/3.4/PDCurses-3.4.tar.gz
 https://sourceforge.net/projects/sevenzip/files/7-Zip/16.02/7z1602.exe/download
 https://sourceforge.net/projects/sevenzip/files/7-Zip/16.02/7z1602-x64.exe/download
 https://unbound.net/downloads/unbound-1.5.8.tar.gz
+https://wix.codeplex.com/downloads/get/1540241
 https://www.apache.org/dist/apr/apr-1.5.2.tar.bz2
 https://www.apache.org/dist/apr/apr-1.5.2-win32-src.zip
 https://www.apache.org/dist/apr/apr-iconv-1.2.1.tar.gz
