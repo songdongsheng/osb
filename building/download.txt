@@ -115,6 +115,7 @@ https://ftp.gnu.org/gnu/nettle/nettle-3.2.tar.gz
 https://ftp.gnu.org/gnu/sed/sed-4.2.2.tar.bz2
 https://ftp.gnu.org/gnu/tar/tar-1.29.tar.xz
 https://ftp.gnu.org/gnu/wget/wget-1.18.tar.xz
+https://github.com/belaban/JGroups/archive/JGroups-3.6.10.Final.tar.gz
 https://github.com/Cyan4973/xxHash/archive/v0.6.0.tar.gz
 https://github.com/jbeder/yaml-cpp/archive/release-0.5.3.tar.gz
 https://github.com/libevent/libevent/archive/release-2.0.22-stable.tar.gz
@@ -135,8 +136,8 @@ https://sourceforge.net/projects/expect/files/Expect/5.45/expect5.45.tar.gz/down
 https://sourceforge.net/projects/flex/files/flex-2.6.0.tar.xz/download
 https://sourceforge.net/projects/freetype/files/freetype2/2.6.3/freetype-2.6.3.tar.bz2/download
 https://sourceforge.net/projects/gsoap2/files/gSOAP/gsoap_2.8.33.zip/download
-https://sourceforge.net/projects/javagroups/files/JGroups/3.6.9.Final/jgroups-3.6.9.Final.jar/download
-https://sourceforge.net/projects/javagroups/files/JGroups/3.6.9.Final/jgroups-3.6.9.Final-sources.jar/download
+https://sourceforge.net/projects/javagroups/files/JGroups/3.6.10.Final/jgroups-3.6.10.Final.jar/download
+https://sourceforge.net/projects/javagroups/files/JGroups/3.6.10.Final/jgroups-3.6.10.Final-sources.jar/download
 https://sourceforge.net/projects/levent/files/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz/download
 https://sourceforge.net/projects/libjpeg-turbo/files/1.4.2/libjpeg-turbo-1.4.2.tar.gz/download
 https://sourceforge.net/projects/libpng/files/libpng16/1.6.22/libpng-1.6.22.tar.xz/download
