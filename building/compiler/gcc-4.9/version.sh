@@ -11,8 +11,8 @@ https://ftp.gnu.org/gnu/binutils/binutils-2.26.1.tar.gz
 *) gdb 7.11.1
 https://ftp.gnu.org/gnu/gdb/gdb-7.11.1.tar.xz
 
-*) make 4.1
-https://ftp.gnu.org/gnu/make/make-4.1.tar.bz2
+*) make 4.2.1
+https://ftp.gnu.org/gnu/make/make-4.2.1.tar.bz2
 
 *) gmp 6.1.1
 https://ftp.gnu.org/gnu/gmp/gmp-6.1.1.tar.xz
