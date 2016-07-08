@@ -13,9 +13,9 @@
 # path/to/src/configure --build=`/usr/share/misc/config.guess` --host=i686-w64-mingw32 --prefix=/tmp/i686-w64-mingw32 --disable-nls
 #
 
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/trunk
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-6-branch
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
-export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.26
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.26.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`

@@ -13,16 +13,16 @@
 # path/to/src/configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/x86_64-w64-mingw32 --disable-nls
 #
 
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_9-branch
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/trunk
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.26.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 export TARGET_TRIPLET=x86_64-w64-mingw32
-export LOGGER_TAG=cross-win64-gcc-4.9
-export SYS_ROOT=${HOME}/cross/x86_64-windows-gcc-4.9
-export OBJ_ROOT=${HOME}/obj/${TARGET_TRIPLET}-gcc-4.9
+export LOGGER_TAG=cross-win64-gcc-7
+export SYS_ROOT=${HOME}/cross/x86_64-windows-gcc-7
+export OBJ_ROOT=${HOME}/obj/${TARGET_TRIPLET}-gcc-7
 export PATH=${SYS_ROOT}/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"

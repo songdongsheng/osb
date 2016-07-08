@@ -6,15 +6,15 @@
 #
 # sudo apt-get install texinfo libexpat1-dev zlib1g-dev
 #
-# x86_64-w64-mingw32-gcc     -dM -E -  < /dev/null
-# x86_64-w64-mingw32-gcc     -x c -shared -s -o t-w64.dll - < /dev/null
-# x86_64-w64-mingw32-objdump -x t-w64.dll | grep -A 25 "The Export Tables"
+# i686-w64-mingw32-gcc     -dM -E -  < /dev/null
+# i686-w64-mingw32-gcc     -x c -shared -s -o t-w32.dll - < /dev/null
+# i686-w64-mingw32-objdump -x t-w32.dll | grep -A 25 "The Export Tables"
 #
-# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/x86_64-w64-mingw32 --disable-nls
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=i686-w64-mingw32 --prefix=/tmp/i686-w64-mingw32 --disable-nls
 #
 
 export BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-5-branch
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/trunk
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
 
 export GCC_DATE_STR=`cat ${GCC_SRC_ROOT}/gcc/DATESTAMP`
@@ -28,12 +28,12 @@ export MAKE_SRC_ROOT=${HOME}/src/make-4.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
-export TARGET_TRIPLET=x86_64-w64-mingw32
-export LOGGER_TAG=native-win64-gcc-5
-export SYS_ROOT=${HOME}/native/gcc-5-win64
-export SYS_3RD_ROOT=${HOME}/native/gcc-5-win64-3rd
-export OBJ_ROOT=${HOME}/obj/native/gcc-5-win64
-export PATH=${HOME}/cross/x86_64-windows-gcc-5/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export TARGET_TRIPLET=i686-w64-mingw32
+export LOGGER_TAG=native-win32-gcc-7
+export SYS_ROOT=${HOME}/native/gcc-7-win32
+export SYS_3RD_ROOT=${HOME}/native/gcc-7-win32-3rd
+export OBJ_ROOT=${HOME}/obj/native/gcc-7-win32
+export PATH=${HOME}/cross/i686-windows-gcc-7/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 TMP_FILE=`mktemp`
@@ -160,7 +160,7 @@ mkdir -p ${OBJ_ROOT}/mingw-w64-crt
 cd  ${OBJ_ROOT}/mingw-w64-crt
 
 ${MINGW_W64_SRC_ROOT}/mingw-w64-crt/configure --prefix=${SYS_ROOT}/${TARGET_TRIPLET} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --disable-lib32 --enable-wildcard
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --disable-lib64 --enable-wildcard
 
 make -j${NR_JOBS}; make install
 if [ $? -ne 0 ]; then
@@ -178,7 +178,7 @@ ${GCC_SRC_ROOT}/configure \
     --prefix=${SYS_ROOT} \
     --with-sysroot=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --target=${TARGET_TRIPLET} \
-    --disable-gcov-tool --disable-multilib --disable-nls --disable-win32-registry \
+    --disable-multilib --disable-nls --disable-win32-registry --disable-gcov-tool \
     --enable-checking=release --enable-languages=c,c++,fortran \
     --enable-fully-dynamic-string --with-arch=core2 --with-tune=generic
 
@@ -195,9 +195,9 @@ logger -t ${LOGGER_TAG} -s "Build finished"
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/gmake.exe
 /bin/cp ${SYS_ROOT}/bin/make.exe ${SYS_ROOT}/bin/mingw32-make.exe
 
-rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.exe ${SYS_ROOT}/lib/libgcc_s_seh-1.dll
+rm -f ${SYS_ROOT}/mingw ${SYS_ROOT}/bin/${TARGET_TRIPLET}-gcc-${GCC_BASE_VER}.exe ${SYS_ROOT}/lib/libgcc_s_sjlj-1.dll
 
-/bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgcc/shlib/libgcc_s_seh-1.dll             \
+/bin/cp ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgcc/shlib/libgcc_s_sjlj-1.dll            \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libgfortran/.libs/libgfortran-3.dll         \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libquadmath/.libs/libquadmath-0.dll         \
         ${OBJ_ROOT}/gcc/${TARGET_TRIPLET}/libssp/.libs/libssp-0.dll                   \

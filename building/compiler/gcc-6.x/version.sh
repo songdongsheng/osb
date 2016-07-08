@@ -5,19 +5,19 @@ export GCC_SRC_ROOT=$2
 export MINGW_W64_SRC_ROOT=$3
 
 cat << EOF > $SYS_ROOT/version.txt
-*) binutils 2.26
-https://ftp.gnu.org/gnu/binutils/binutils-2.26.tar.gz
+*) binutils 2.26.1
+https://ftp.gnu.org/gnu/binutils/binutils-2.26.1.tar.gz
 
-*) gdb 7.11
-https://ftp.gnu.org/gnu/gdb/gdb-7.11.tar.xz
+*) gdb 7.11.1
+https://ftp.gnu.org/gnu/gdb/gdb-7.11.1.tar.xz
 
 *) make 4.1
 https://ftp.gnu.org/gnu/make/make-4.1.tar.bz2
 
-*) gmp 6.1.0
-https://ftp.gnu.org/gnu/gmp/gmp-6.1.0.tar.xz
+*) gmp 6.1.1
+https://ftp.gnu.org/gnu/gmp/gmp-6.1.1.tar.xz
 
-*) mpfr 3.1.4
+*) mpfr 3.1.4 p3
 http://www.mpfr.org/mpfr-3.1.4/mpfr-3.1.4.tar.xz
 http://www.mpfr.org/mpfr-3.1.4/allpatches
 wget -q -O - http://www.mpfr.org/mpfr-3.1.4/allpatches | patch -p1
@@ -25,8 +25,8 @@ wget -q -O - http://www.mpfr.org/mpfr-3.1.4/allpatches | patch -p1
 *) mpc 1.0.3
 https://ftp.gnu.org/gnu/mpc/mpc-1.0.3.tar.gz
 
-*) isl 0.15
-http://isl.gforge.inria.fr/isl-0.15.tar.xz
+*) isl 0.17.1
+http://isl.gforge.inria.fr/isl-0.17.1.tar.xz
 
 *) mingw-w64 master
 EOF

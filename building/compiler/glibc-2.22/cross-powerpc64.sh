@@ -8,7 +8,7 @@
 export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-5-branch
 export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.22
 export KERNEL_SRC_ROOT=${HOME}/src/linux-4.4.1
-export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.26
+export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.26.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`

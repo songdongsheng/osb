@@ -6,23 +6,23 @@
 #
 # sudo apt-get install texinfo libexpat1-dev zlib1g-dev
 #
-# x86_64-w64-mingw32-gcc     -dM -E -  < /dev/null
-# x86_64-w64-mingw32-gcc     -x c -shared -s -o t-w64.dll - < /dev/null
-# x86_64-w64-mingw32-objdump -x t-w64.dll | grep -A 25 "The Export Tables"
+# i686-w64-mingw32-gcc     -dM -E -  < /dev/null
+# i686-w64-mingw32-gcc     -x c -shared -s -o t-w32.dll - < /dev/null
+# i686-w64-mingw32-objdump -x t-w32.dll | grep -A 25 "The Export Tables"
 #
-# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/x86_64-w64-mingw32 --disable-nls
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=i686-w64-mingw32 --prefix=/tmp/i686-w64-mingw32 --disable-nls
 #
 
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-4_9-branch
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/trunk
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
 export BINUTILS_SRC_ROOT=${HOME}/src/binutils-2.26.1
 
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
-export TARGET_TRIPLET=x86_64-w64-mingw32
-export LOGGER_TAG=cross-win64-gcc-4.9
-export SYS_ROOT=${HOME}/cross/x86_64-windows-gcc-4.9
-export OBJ_ROOT=${HOME}/obj/${TARGET_TRIPLET}-gcc-4.9
+export TARGET_TRIPLET=i686-w64-mingw32
+export LOGGER_TAG=cross-win32-gcc-7
+export SYS_ROOT=${HOME}/cross/i686-windows-gcc-7
+export OBJ_ROOT=${HOME}/obj/${TARGET_TRIPLET}-gcc-7
 export PATH=${SYS_ROOT}/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
@@ -85,7 +85,7 @@ mkdir -p ${OBJ_ROOT}/mingw-w64-crt
 cd  ${OBJ_ROOT}/mingw-w64-crt
 
 ${MINGW_W64_SRC_ROOT}/mingw-w64-crt/configure --prefix=${SYS_ROOT}/${TARGET_TRIPLET} \
-    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --disable-lib32 --enable-wildcard
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} --disable-lib64 --enable-wildcard
 
 make -j${NR_JOBS}; make install
 if [ $? -ne 0 ]; then

@@ -14,7 +14,7 @@
 #
 
 export BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
-export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/branches/gcc-5-branch
+export GCC_SRC_ROOT=${HOME}/vcs/svn/gcc/trunk
 export MINGW_W64_SRC_ROOT=${HOME}/vcs/git/mingw-w64-master
 
 export GCC_DATE_STR=`cat ${GCC_SRC_ROOT}/gcc/DATESTAMP`
@@ -29,11 +29,11 @@ export MAKE_SRC_ROOT=${HOME}/src/make-4.1
 export NR_JOBS=`cat /proc/cpuinfo | grep '^processor\s*:' | wc -l`
 export BUILD_TRIPLET=`/usr/share/misc/config.guess`
 export TARGET_TRIPLET=x86_64-w64-mingw32
-export LOGGER_TAG=native-win64-gcc-5
-export SYS_ROOT=${HOME}/native/gcc-5-win64
-export SYS_3RD_ROOT=${HOME}/native/gcc-5-win64-3rd
-export OBJ_ROOT=${HOME}/obj/native/gcc-5-win64
-export PATH=${HOME}/cross/x86_64-windows-gcc-5/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export LOGGER_TAG=native-win64-gcc-7
+export SYS_ROOT=${HOME}/native/gcc-7-win64
+export SYS_3RD_ROOT=${HOME}/native/gcc-7-win64-3rd
+export OBJ_ROOT=${HOME}/obj/native/gcc-7-win64
+export PATH=${HOME}/cross/x86_64-windows-gcc-7/bin:${HOME}/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 logger -t ${LOGGER_TAG} -s "Build started"
 TMP_FILE=`mktemp`
