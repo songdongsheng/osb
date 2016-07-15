@@ -7,10 +7,12 @@ GnuPG 2.1 depends on the following packages:
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.14.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.7.2.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.4.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.9.7.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.24.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.4.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/npth/npth-1.2.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.9.7.tar.bz2
+
+ftp://ftp.g10code.com/g10code/adns/adns-1.4-g10-7.tar.bz2
 
 https://git.gnupg.org/adns.git  [adns-1.4-g10-7, c363fb22d3ce24552ab97572e348d2b024a9f16a]
 https://github.com/gpg/adns.git [adns-1.4-g10-7, c363fb22d3ce24552ab97572e348d2b024a9f16a]
