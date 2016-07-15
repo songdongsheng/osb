@@ -4,18 +4,22 @@ http://unbound.net/documentation/libunbound.html
 
 GnuPG 2.1 depends on the following packages:
 
-ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.11.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.4.2.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.4.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.3.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.14.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.7.2.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.4.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.9.7.tar.bz2
-ftp://ftp.gnupg.org/GnuPG/libgpg-error/libgpg-error-1.21.tar.bz2
-ftp://ftp.gnupg.org/GnuPG/npth/npth-1.2.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.24.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/npth/npth-1.2.tar.bz2
+
+https://git.gnupg.org/adns.git  [adns-1.4-g10-7, c363fb22d3ce24552ab97572e348d2b024a9f16a]
+https://github.com/gpg/adns.git [adns-1.4-g10-7, c363fb22d3ce24552ab97572e348d2b024a9f16a]
+git archive -9 --prefix adns-1.4-g10-7/ -o ~/adns-1.4-g10-7.tar.xz c363fb22d3ce24552ab97572e348d2b024a9f16a
 
 http://zlib.net/zlib-1.2.8.tar.gz
 https://ftp.gnu.org/gnu/libiconv/libiconv-1.14.tar.gz
 
-http://download.sourceforge.net/pcre/pcre-8.38.tar.bz2
+http://download.sourceforge.net/pcre/pcre-8.39.tar.bz2
 http://download.sourceforge.net/pcre/pcre2-10.21.tar.bz2
 '
 #-------------------------------- prepare --------------------------------
@@ -31,34 +35,35 @@ export PATH=${HOME}/cross/i686-windows-gcc-5/bin:${PATH}
 export PATH=${HOME}/cross/x86_64-windows-gcc-5/bin:${PATH}
 export PATH=${SYS_ROOT}/bin:${PATH}
 
-export GNUPG_SRC_ROOT=${OBJ_ROOT}/gnupg-2.1.11
+export GNUPG_SRC_ROOT=${OBJ_ROOT}/gnupg-2.1.14
 #export GNUPG_SRC_ROOT=${HOME}/vcs/git/gnupg
-export LIBASSUAN_SRC_ROOT=${OBJ_ROOT}/libassuan-2.4.2
-export LIBGCRYPT_SRC_ROOT=${OBJ_ROOT}/libgcrypt-1.6.4
-export LIBGCRYPT_SRC_ROOT=${HOME}/vcs/git/libgcrypt
-export LIBGPG_ERROR_SRC_ROOT=${OBJ_ROOT}/libgpg-error-1.21
+export LIBASSUAN_SRC_ROOT=${OBJ_ROOT}/libassuan-2.4.3
+export LIBGCRYPT_SRC_ROOT=${OBJ_ROOT}/libgcrypt-1.7.2
+export LIBGPG_ERROR_SRC_ROOT=${OBJ_ROOT}/libgpg-error-1.24
 export LIBICONV_SRC_ROOT=${OBJ_ROOT}/libiconv-1.14
-export LIBKSBA_SRC_ROOT=${OBJ_ROOT}/libksba-1.3.3
+export LIBKSBA_SRC_ROOT=${OBJ_ROOT}/libksba-1.3.4
 export NPTH_SRC_ROOT=${OBJ_ROOT}/npth-1.2
-export PCRF_SRC_ROOT=${OBJ_ROOT}/pcre-8.38
+export PCRF_SRC_ROOT=${OBJ_ROOT}/pcre-8.39
 export PINENTRY_SRC_ROOT=${OBJ_ROOT}/pinentry-0.9.7
 #export PINENTRY_SRC_ROOT=${HOME}/vcs/git/pinentry
 export ZLIB_SRC_ROOT=${OBJ_ROOT}/zlib-1.2.8
+export ADNS_SRC_ROOT=${OBJ_ROOT}/adns-1.4-g10-7
 
 rm -fr ${SYS_ROOT} ${OBJ_ROOT}
 
 mkdir -p ${OBJ_ROOT} ; cd ${OBJ_ROOT}
 
-tar -xjf ~/sync/building/src/gnupg-2.1.11.tar.bz2
-tar -xjf ~/sync/building/src/libassuan-2.4.2.tar.bz2
-tar -xjf ~/sync/building/src/libgcrypt-1.6.4.tar.bz2
-tar -xjf ~/sync/building/src/libgpg-error-1.21.tar.bz2
+tar -xjf ~/sync/building/src/gnupg-2.1.14.tar.bz2
+tar -xjf ~/sync/building/src/libassuan-2.4.3.tar.bz2
+tar -xjf ~/sync/building/src/libgcrypt-1.7.2.tar.bz2
+tar -xjf ~/sync/building/src/libgpg-error-1.24.tar.bz2
 tar -xzf ~/sync/building/src/libiconv-1.14.tar.gz
-tar -xjf ~/sync/building/src/libksba-1.3.3.tar.bz2
+tar -xjf ~/sync/building/src/libksba-1.3.4.tar.bz2
 tar -xjf ~/sync/building/src/npth-1.2.tar.bz2
-tar -xjf ~/sync/building/src/pcre-8.38.tar.bz2
+tar -xjf ~/sync/building/src/pcre-8.39.tar.bz2
 tar -xjf ~/sync/building/src/pinentry-0.9.7.tar.bz2
 tar -xzf ~/sync/building/src/zlib-1.2.8.tar.gz
+tar -xJf ~/sync/building/src/adns-1.4-g10-7.tar.xz
 
 #-------------------------------- x86_64-w64-mingw32-pkg-config --------------------------------
 mkdir -p ${SYS_ROOT}/bin && cat > ${SYS_ROOT}/bin/${TARGET_TRIPLET}-pkg-config <<EOF
@@ -165,22 +170,30 @@ cd ${PINENTRY_SRC_ROOT} && ${PINENTRY_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
 
 make clean; make -j8; make install
 
+#-------------------------------- adns --------------------------------
+cd ${ADNS_SRC_ROOT} && ${ADNS_SRC_ROOT}/autogen.sh && ${ADNS_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
+    --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET}
+
+make clean; make -j8; make install
+
 #-------------------------------- gnupg --------------------------------
 cd ${GNUPG_SRC_ROOT} && ${GNUPG_SRC_ROOT}/configure --prefix=${SYS_ROOT} \
     --build=${BUILD_TRIPLET} --host=${TARGET_TRIPLET} \
     --disable-card-support --disable-ccid-driver --disable-scdaemon \
     --disable-dns-cert --disable-g13 --disable-gpgtar \
-    --with-zlib=${SYS_ROOT} --with-regex=${SYS_ROOT}
+    --with-zlib=${SYS_ROOT} --with-regex=${SYS_ROOT} --with-adns=${SYS_ROOT}
 
 make -j8; make install
 
 # ${TARGET_TRIPLET}-strip ${SYS_ROOT}/bin/*.dll ${SYS_ROOT}/bin/*.exe ${SYS_ROOT}/libexec/*.exe
 
 : '
-/bin/cp libassuan*.dll libgcrypt*.dll libgpg-error*.dll \
-    libiconv*.dll libksba*.dll libnpth*.dll zlib1.dll \
-    dirmngr.exe dirmngr-client.exe gpg-agent.exe gpgconf.exe \
-    gpg-connect-agent.exe gpg-error.exe gpg2.exe gpgv2.exe gpgsm.exe \
+mkdir -p ${SYS_ROOT}/bin/xxx && cd ${SYS_ROOT}/bin
+
+/bin/cp libadns*.dll libassuan*.dll libgcrypt*.dll libgpg-error*.dll \
+    libiconv*.dll libksba*.dll libnpth*.dll zlib*.dll \
+    adnshost.exe dirmngr*.exe gpg-agent.exe gpg-connect-agent.exe \
+    gpg-error.exe gpg2.exe gpgconf.exe gpgsm.exe gpgv2.exe \
     hmac256.exe iconv.exe kbxutil.exe pinentry-w32.exe xxx/
 
 ${TARGET_TRIPLET}-strip *.exe *.dll
@@ -188,47 +201,52 @@ cp gpg2.exe gpg.exe
 cp gpgv2.exe gpgv.exe
 mv pinentry-w32.exe pinentry.exe
 
--rwxr-xr-x 1 cauchy cauchy   75776 Feb  3 15:06 libassuan6-0.dll
--rwxr-xr-x 1 cauchy cauchy 1047552 Feb  3 15:06 libgcrypt-20.dll
--rwxr-xr-x 1 cauchy cauchy   89088 Feb  3 15:06 libgpg-error6-0.dll
--rwxr-xr-x 1 cauchy cauchy  943616 Feb  3 15:06 libiconv-2.dll
--rwxr-xr-x 1 cauchy cauchy  205312 Feb  3 15:06 libksba-8.dll
--rwxr-xr-x 1 cauchy cauchy   28672 Feb  3 15:06 libnpth6-0.dll
--rwxr-xr-x 1 cauchy cauchy  114176 Feb  3 15:06 zlib1.dll
+LC_ALL=C ls -l *.dll
+-rwxr-xr-x 1 cauchy cauchy   84992 Jul 15 15:41 libadns6-1.dll
+-rwxr-xr-x 1 cauchy cauchy   75776 Jul 15 15:41 libassuan6-0.dll
+-rwxr-xr-x 1 cauchy cauchy 1073664 Jul 15 15:41 libgcrypt-20.dll
+-rwxr-xr-x 1 cauchy cauchy  104448 Jul 15 15:41 libgpg-error6-0.dll
+-rwxr-xr-x 1 cauchy cauchy  943616 Jul 15 15:41 libiconv-2.dll
+-rwxr-xr-x 1 cauchy cauchy  206336 Jul 15 15:41 libksba-8.dll
+-rwxr-xr-x 1 cauchy cauchy   28672 Jul 15 15:41 libnpth6-0.dll
+-rwxr-xr-x 1 cauchy cauchy  114176 Jul 15 15:41 zlib1.dll
 
--rwxr-xr-x 1 cauchy cauchy  91136 Feb  3 15:06 dirmngr-client.exe
--rwxr-xr-x 1 cauchy cauchy 329728 Feb  3 15:06 dirmngr.exe
--rwxr-xr-x 1 cauchy cauchy 863744 Feb  3 15:06 gpg2.exe
--rwxr-xr-x 1 cauchy cauchy 324608 Feb  3 15:06 gpg-agent.exe
--rwxr-xr-x 1 cauchy cauchy 123904 Feb  3 15:06 gpgconf.exe
--rwxr-xr-x 1 cauchy cauchy 143872 Feb  3 15:06 gpg-connect-agent.exe
--rwxr-xr-x 1 cauchy cauchy  35328 Feb  3 15:06 gpg-error.exe
--rwxr-xr-x 1 cauchy cauchy 863744 Feb  3 15:06 gpg.exe
--rwxr-xr-x 1 cauchy cauchy 430080 Feb  3 15:06 gpgsm.exe
--rwxr-xr-x 1 cauchy cauchy 375808 Feb  3 15:06 gpgv2.exe
--rwxr-xr-x 1 cauchy cauchy 375808 Feb  3 15:06 gpgv.exe
--rwxr-xr-x 1 cauchy cauchy  46592 Feb  3 15:06 hmac256.exe
--rwxr-xr-x 1 cauchy cauchy  43008 Feb  3 15:06 iconv.exe
--rwxr-xr-x 1 cauchy cauchy 140800 Feb  3 15:06 kbxutil.exe
--rwxr-xr-x 1 cauchy cauchy  69632 Feb  3 15:06 pinentry.exe
+LC_ALL=C ls -l *.exe
+-rwxr-xr-x 1 cauchy cauchy  38400 Jul 15 15:41 adnshost.exe
+-rwxr-xr-x 1 cauchy cauchy  92160 Jul 15 15:41 dirmngr-client.exe
+-rwxr-xr-x 1 cauchy cauchy 336896 Jul 15 15:41 dirmngr.exe
+-rwxr-xr-x 1 cauchy cauchy 339456 Jul 15 15:41 gpg-agent.exe
+-rwxr-xr-x 1 cauchy cauchy 144896 Jul 15 15:41 gpg-connect-agent.exe
+-rwxr-xr-x 1 cauchy cauchy  35328 Jul 15 15:41 gpg-error.exe
+-rwxr-xr-x 1 cauchy cauchy 902144 Jul 15 15:41 gpg.exe
+-rwxr-xr-x 1 cauchy cauchy 902144 Jul 15 15:41 gpg2.exe
+-rwxr-xr-x 1 cauchy cauchy 126976 Jul 15 15:41 gpgconf.exe
+-rwxr-xr-x 1 cauchy cauchy 436224 Jul 15 15:41 gpgsm.exe
+-rwxr-xr-x 1 cauchy cauchy 384512 Jul 15 15:41 gpgv.exe
+-rwxr-xr-x 1 cauchy cauchy 384512 Jul 15 15:41 gpgv2.exe
+-rwxr-xr-x 1 cauchy cauchy  46592 Jul 15 15:41 hmac256.exe
+-rwxr-xr-x 1 cauchy cauchy  43008 Jul 15 15:41 iconv.exe
+-rwxr-xr-x 1 cauchy cauchy 142848 Jul 15 15:41 kbxutil.exe
+-rwxr-xr-x 1 cauchy cauchy  69632 Jul 15 15:41 pinentry.exe
 
 $ cat > version.txt <<EOF
-gnupg-2.1.11
+gnupg-2.1.14
 
-libgcrypt-1.7.0-gb8b3361
+libgcrypt-1.7.2
 pinentry-0.9.7
 
-libassuan-2.4.2
-libgpg-error-1.21
+libassuan-2.4.3
+libgpg-error-1.24
 libiconv-1.14
-libksba-1.3.3
+libksba-1.3.4
 npth-1.2
-pcre-8.38
+pcre-8.39
 zlib-1.2.8
+adns-1.4-g10-7
 EOF
 
-7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.11-w32.7z gnupg-2.1.11-w32/
-7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.11-w64.7z gnupg-2.1.11-w64/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.14-w32.7z gnupg-2.1.14-w32/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.14-w64.7z gnupg-2.1.14-w64/
 
 cd %USERPROFILE%\AppData\Roaming\gnupg
 echo Exit Code is %errorlevel%
@@ -236,9 +254,9 @@ HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\Autorun to @chcp 65001>n
 
 gpg --delete-secret-and-public-keys
 
-$env:Path = "D:\opt\gnupg-2.1.11-w32;" + $env:Path
+$env:Path = "D:\opt\gnupg-2.1.14-w32;" + $env:Path
 
-SET PATH=D:\opt\gnupg-2.1.11-w32
+SET PATH=D:\opt\gnupg-2.1.14-w32
 
 gpg-agent --debug-level expert --daemon
 
