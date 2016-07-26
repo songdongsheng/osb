@@ -1,6 +1,11 @@
 http://www.yaml.org/spec/1.2/spec.html
 https://openvpn.net/index.php/download/community-downloads.html
 
+#
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=i686-w64-mingw32 --prefix=/tmp/i686-w64-mingw32 --disable-nls
+# path/to/src/configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/x86_64-w64-mingw32 --disable-nls
+#
+
 ftp://ftp.astron.com/pub/file/file-5.25.tar.gz
 ftp://ftp.cyrusimap.org/cyrus-sasl/cyrus-sasl-2.1.26.tar.gz
 ftp://ftp.freeradius.org/pub/freeradius/freeradius-client-1.1.7.tar.bz2
