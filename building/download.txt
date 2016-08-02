@@ -62,12 +62,12 @@ http://downloads.lightbend.com/scala/2.11.8/scala-docs-2.11.8.txz
 http://downloads.typesafe.com/akka/akka_2.11-2.4.8.zip
 http://files.allroundautomations.com/plsqldev1106.exe
 http://files.allroundautomations.com/plsqldev1106x64.exe
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.3.5.tar.gz
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.3.5-windows.zip
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.0.tar.gz
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.0-windows.zip
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.3.7.tar.gz
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.3.7-windows.zip
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.2.tar.gz
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.2-windows.zip
 http://ftp.openbsd.org/pub/OpenBSD/OpenNTPD/openntpd-6.0p1.tar.gz
-http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.2p2.tar.gz
+http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.3p1.tar.gz
 http://isl.gforge.inria.fr/isl-0.16.1.tar.xz
 http://oss.oetiker.ch/rrdtool/pub/rrdtool-1.5.5.tar.gz
 http://pyyaml.org/download/libyaml/yaml-0.1.6.tar.gz
@@ -110,6 +110,8 @@ https://download.gnome.org/sources/gobject-introspection/1.48/gobject-introspect
 https://download.gnome.org/sources/gtk+/3.20/gtk+-3.20.6.tar.xz
 https://download.gnome.org/sources/pango/1.40/pango-1.40.1.tar.xz
 https://download.gnome.org/sources/pygobject/3.20/pygobject-3.20.1.tar.xz
+https://download.microsoft.com/download/D/5/E/D5EEF288-A277-45C8-855B-8E2CB7E25B96/13.1.811.168/amd64/msodbcsql.msi
+https://download.microsoft.com/download/D/5/E/D5EEF288-A277-45C8-855B-8E2CB7E25B96/13.1.811.168/x86/msodbcsql.msi
 https://download.samba.org/pub/ldb/ldb-1.1.26.tar.gz
 https://download.samba.org/pub/samba/samba-4.4.5.tar.gz
 https://download.samba.org/pub/talloc/talloc-2.1.7.tar.gz
