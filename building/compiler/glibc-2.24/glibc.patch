@@ -1,0 +1,13 @@
+diff --git a/configure b/configure
+index 17625e1..26c36e1 100755
+--- a/configure
++++ b/configure
+@@ -5788,7 +5788,7 @@ else
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; }; then :
+-  libc_cv_ssp=yes
++  libc_cv_ssp=no
+ else
+   libc_cv_ssp=no
+ fi
