@@ -66,6 +66,7 @@ ${GCC_SRC_ROOT}/configure \
     --target=${TARGET_TRIPLET} \
     --enable-checking=release \
     --enable-languages=c,c++,fortran \
+    --enable-default-ssp \
     --enable-fully-dynamic-string \
     --enable-libstdcxx-time=yes \
     --disable-multilib \

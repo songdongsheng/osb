@@ -1,4 +1,11 @@
 #!/bin/sh
+#
+# *) libc_cv_ssp
+# gcc -Werror -fstack-protector -xc /dev/null -S -o /dev/null
+#
+# *) libc_cv_ssp_strong
+# gcc -Werror -fstack-protector-strong -xc /dev/null -S -o /dev/null
+#
 
 export GLIBC_SRC_ROOT=${HOME}/src/glibc-2.24
 export GLIBC_PATCH=${HOME}/daily/glibc-2.24/glibc.patch
