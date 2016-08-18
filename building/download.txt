@@ -151,9 +151,9 @@ https://gmplib.org/repo/gmp-6.1/raw-rev/67d4ee9dead1
 https://libarchive.org/downloads/libarchive-3.2.1.tar.gz
 https://libbsd.freedesktop.org/releases/libbsd-0.8.3.tar.xz
 https://linuxcontainers.org/downloads/lxc/lxc-1.0.8.tar.gz
-https://linuxcontainers.org/downloads/lxc/lxc-2.0.3.tar.gz
-https://linuxcontainers.org/downloads/lxcfs/lxcfs-2.0.2.tar.gz
-https://linuxcontainers.org/downloads/lxd/lxd-2.0.3.tar.gz
+https://linuxcontainers.org/downloads/lxc/lxc-2.0.4.tar.gz
+https://linuxcontainers.org/downloads/lxcfs/lxcfs-2.0.3.tar.gz
+https://linuxcontainers.org/downloads/lxd/lxd-2.0.4.tar.gz
 https://memcached.org/files/memcached-1.4.28.tar.gz
 https://notepad-plus-plus.org/repository/6.x/6.9.2/npp.6.9.2.Installer.exe
 https://p11-glue.freedesktop.org/releases/p11-kit-0.23.2.tar.gz
