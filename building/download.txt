@@ -102,7 +102,7 @@ https://cmake.org/files/v3.6/cmake-3.6.2-SHA-256.txt
 https://cmake.org/files/v3.6/cmake-3.6.2-SHA-256.txt.asc
 https://cmake.org/files/v3.6/cmake-3.6.2-win32-x86.zip
 https://cmake.org/files/v3.6/cmake-3.6.2-win64-x64.zip
-https://curl.haxx.se/download/curl-7.50.2.tar.bz2
+https://curl.haxx.se/download/curl-7.50.3.tar.bz2
 https://dist.opendnssec.org/source/opendnssec-2.0.1.tar.gz
 https://dist.opendnssec.org/source/softhsm-2.1.0.tar.gz
 https://download.gnome.org/sources/atk/2.20/atk-2.20.0.tar.xz
@@ -228,15 +228,15 @@ https://www.lua.org/ftp/lua-5.3.3.tar.gz
 https://www.mercurial-scm.org/release/mercurial-3.9.1.tar.gz
 https://www.openssl.org/policies/releasestrat.html
 https://www.openssl.org/source/openssl-1.0.2h.tar.gz
-https://www.sqlite.org/2016/sqlite-amalgamation-3140100.zip
-https://www.wireshark.org/download/src/wireshark-1.12.13.tar.bz2    [27-Jul-2016]
-https://www.wireshark.org/download/src/wireshark-2.0.5.tar.bz2      [27-Jul-2016]
+https://www.sqlite.org/2016/sqlite-amalgamation-3140200.zip
+https://www.wireshark.org/download/src/all-versions/wireshark-1.12.13.tar.bz2   [27-Jul-2016]
+https://www.wireshark.org/download/src/wireshark-2.0.6.tar.bz2      [08-Sep-2016]
 https://www.wireshark.org/download/src/wireshark-2.2.0.tar.bz2      [07-Sep-2016]
-https://www.wireshark.org/download/win32/Wireshark-win32-1.12.13.exe
-https://www.wireshark.org/download/win32/Wireshark-win32-2.0.5.exe
+https://www.wireshark.org/download/win32/all-versions/Wireshark-win32-1.12.13.exe
+https://www.wireshark.org/download/win32/Wireshark-win32-2.0.6.exe
 https://www.wireshark.org/download/win32/Wireshark-win32-2.2.0.exe
-https://www.wireshark.org/download/win64/Wireshark-win64-1.12.13.exe
-https://www.wireshark.org/download/win64/Wireshark-win64-2.0.5.exe
+https://www.wireshark.org/download/win64/all-versions/Wireshark-win64-1.12.13.exe
+https://www.wireshark.org/download/win64/Wireshark-win64-2.0.6.exe
 https://www.wireshark.org/download/win64/Wireshark-win64-2.2.0.exe
 
 https://raw.githubusercontent.com/davidjamesca/ctypesgen/master/ctypesgen.py
