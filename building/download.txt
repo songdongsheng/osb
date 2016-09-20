@@ -171,9 +171,9 @@ https://sourceforge.net/projects/expat/files/expat/2.2.0/expat-2.2.0.tar.bz2/dow
 https://sourceforge.net/projects/expect/files/Expect/5.45/expect5.45.tar.gz/download
 https://sourceforge.net/projects/flex/files/flex-2.6.0.tar.xz/download
 https://sourceforge.net/projects/freetype/files/freetype2/2.6.5/freetype-2.6.5.tar.bz2/download
-https://sourceforge.net/projects/gsoap2/files/gSOAP/gsoap_2.8.34.zip/download
-https://sourceforge.net/projects/javagroups/files/JGroups/3.6.10.Final/jgroups-3.6.10.Final.jar/download
-https://sourceforge.net/projects/javagroups/files/JGroups/3.6.10.Final/jgroups-3.6.10.Final-sources.jar/download
+https://sourceforge.net/projects/gsoap2/files/gSOAP/gsoap_2.8.35.zip/download
+https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final.jar/download
+https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final-sources.jar/download
 https://sourceforge.net/projects/levent/files/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz/download
 https://sourceforge.net/projects/libjpeg-turbo/files/1.5.0/libjpeg-turbo-1.5.0.tar.gz/download
 https://sourceforge.net/projects/libpng/files/libpng16/1.6.25/libpng-1.6.25.tar.xz/download
