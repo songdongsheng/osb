@@ -149,6 +149,7 @@ https://ftp.gnu.org/gnu/tar/tar-1.29.tar.xz
 https://ftp.gnu.org/gnu/wget/wget-1.18.tar.xz
 https://ftp.postgresql.org/pub/pgadmin3/release/v1.22.1/win32/pgadmin3-1.22.1.zip
 https://ftp.postgresql.org/pub/source/v9.5.4/postgresql-9.5.4.tar.bz2
+https://github.com/akkadotnet/akka.net/archive/v1.1.1.tar.gz
 https://github.com/belaban/JGroups/archive/JGroups-3.6.10.Final.tar.gz
 https://github.com/Cyan4973/xxHash/archive/v0.6.2.tar.gz
 https://github.com/jbeder/yaml-cpp/archive/release-0.5.3.tar.gz
@@ -174,6 +175,7 @@ https://sourceforge.net/projects/freetype/files/freetype2/2.6.5/freetype-2.6.5.t
 https://sourceforge.net/projects/gsoap2/files/gSOAP/gsoap_2.8.35.zip/download
 https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final.jar/download
 https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final-sources.jar/download
+https://sourceforge.net/projects/hibernate/files/hibernate-orm/5.2.2.Final/hibernate-release-5.2.2.Final.zip/download
 https://sourceforge.net/projects/levent/files/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz/download
 https://sourceforge.net/projects/libjpeg-turbo/files/1.5.0/libjpeg-turbo-1.5.0.tar.gz/download
 https://sourceforge.net/projects/libpng/files/libpng16/1.6.25/libpng-1.6.25.tar.xz/download
