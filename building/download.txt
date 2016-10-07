@@ -70,6 +70,7 @@ http://ftp.openbsd.org/pub/OpenBSD/OpenNTPD/openntpd-6.0p1.tar.gz
 http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.3p1.tar.gz
 http://isl.gforge.inria.fr/isl-0.16.1.tar.xz
 http://isl.gforge.inria.fr/isl-0.17.1.tar.xz
+http://openvswitch.org/releases/openvswitch-2.5.1.tar.gz
 http://oss.oetiker.ch/rrdtool/pub/rrdtool-1.6.0.tar.gz
 http://pyyaml.org/download/libyaml/yaml-0.1.7.tar.gz
 http://tukaani.org/xz/xz-5.2.2.tar.xz
@@ -96,6 +97,7 @@ http://xmlsoft.org/sources/libxml2-2.9.4.tar.gz
 http://xmlsoft.org/sources/libxslt-1.1.29.tar.gz
 http://zlib.net/zlib-1.2.8.tar.gz
 
+https://bitbucket.org/skskeyserver/sks-keyserver/downloads/sks-1.1.6.tgz
 https://bitbucket.org/tortoisehg/files/downloads/tortoisehg-3.9.2-x64.msi
 https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.xz
 https://cmake.org/files/v3.6/cmake-3.6.2.tar.gz
@@ -164,6 +166,7 @@ https://github.com/jbeder/yaml-cpp/archive/release-0.5.3.tar.gz
 https://github.com/libevent/libevent/archive/release-2.0.22-stable.tar.gz
 https://github.com/open-iscsi/open-iscsi/archive/2.0.874.tar.gz
 https://github.com/openlink/iODBC/archive/v3.52.12.tar.gz
+https://github.com/performancecopilot/pcp/archive/3.11.5.tar.gz
 https://github.com/rhash/RHash/archive/v1.3.3.tar.gz
 https://github.com/scala/scala/archive/v2.11.8.tar.gz
 https://gmplib.org/download/gmp/gmp-6.1.1.tar.xz
