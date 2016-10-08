@@ -43,7 +43,7 @@ http://build.openvpn.net/downloads/releases/tap-windows-9.21.2.zip
 http://cairographics.org/releases/cairo-1.14.6.tar.xz
 http://cairographics.org/releases/pixman-0.34.0.tar.gz
 http://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gz
-http://dl.winehq.org/wine/source/1.8/wine-1.8.4.tar.bz2
+http://dl.winehq.org/wine/source/1.8/wine-1.8.5.tar.bz2
 http://dl.winehq.org/wine/source/1.9/wine-1.9.20.tar.bz2
 http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.4-x86_64.iso
 http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-extended-3.4.4-x86_64.iso
@@ -89,8 +89,8 @@ http://www.foobar2000.org/getcomponent/6de7fa88b43df04b16159c9cb8883ac7/b7b3ef26
 http://www.foobar2000.org/getcomponent/a6f897eb1ecf49bd5a9bc60bb555a5c6/079e2f942b6d3f98f602691ffba1e605/foo_input_dsdiff.zip [1.4, released on 2011-05-19]
 http://www.foobar2000.org/getfile/b0c67d6827f0394492047a9ab3b21891/foobar2000_v1.3.11.exe [1.3.11, 2016-08-20]
 http://www.freediameter.net/hg/freeDiameter/archive/1.2.0.tar.gz
-http://www.mpfr.org/mpfr-3.1.4/allpatches
-http://www.mpfr.org/mpfr-3.1.4/mpfr-3.1.4.tar.xz
+http://www.mpfr.org/mpfr-3.1.5/allpatches
+http://www.mpfr.org/mpfr-3.1.5/mpfr-3.1.5.tar.xz
 http://www.musl-libc.org/releases/musl-1.1.15.tar.gz
 http://www.webdav.org/neon/neon-0.30.1.tar.gz
 http://xmlsoft.org/sources/libxml2-2.9.4.tar.gz
@@ -138,7 +138,7 @@ https://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.bz2
 https://ftp.gnu.org/gnu/bison/bison-3.0.4.tar.xz
 https://ftp.gnu.org/gnu/diffutils/diffutils-3.5.tar.xz
 https://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
-https://ftp.gnu.org/gnu/gdb/gdb-7.11.1.tar.xz
+https://ftp.gnu.org/gnu/gdb/gdb-7.12.tar.xz
 https://ftp.gnu.org/gnu/gettext/gettext-0.19.8.1.tar.xz
 https://ftp.gnu.org/gnu/glibc/glibc-2.24.tar.xz
 https://ftp.gnu.org/gnu/gmp/gmp-6.1.1.tar.xz
@@ -149,7 +149,7 @@ https://ftp.gnu.org/gnu/libidn/libidn-1.33.tar.gz
 https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.9.tar.gz
 https://ftp.gnu.org/gnu/make/make-4.2.1.tar.bz2
 https://ftp.gnu.org/gnu/mpc/mpc-1.0.3.tar.gz
-https://ftp.gnu.org/gnu/mpfr/mpfr-3.1.4.tar.xz
+https://ftp.gnu.org/gnu/mpfr/mpfr-3.1.5.tar.xz
 https://ftp.gnu.org/gnu/nettle/nettle-3.2.tar.gz
 https://ftp.gnu.org/gnu/sed/sed-4.2.2.tar.bz2
 https://ftp.gnu.org/gnu/tar/tar-1.29.tar.xz

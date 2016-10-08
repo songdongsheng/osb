@@ -3,7 +3,7 @@ SET OPENSSL_CONF=C:\var\pool\openssl\ssl\openssl.cnf
 
 Patch (apps\openssl.c)
 ======================
-BIO_printf(bio_err, "WARNING: can't open config file: %s\n",p);
+BIO_printf(bio_err, "WARNING: can't open config file: %s\n", p);
 
 ------------------------------------------------------------------------
 perl Configure ^
