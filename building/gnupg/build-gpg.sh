@@ -4,25 +4,26 @@ http://unbound.net/documentation/libunbound.html
 
 GnuPG 2.1 depends on the following packages:
 
-ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.14.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.15.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.7.2.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.7.3.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.24.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.4.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.5.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/npth/npth-1.2.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/pinentry/pinentry-0.9.7.tar.bz2
 
 ftp://ftp.g10code.com/g10code/adns/adns-1.4-g10-7.tar.bz2
+https://www.sqlite.org/2016/sqlite-amalgamation-3140200.zip
 
 https://git.gnupg.org/adns.git  [adns-1.4-g10-7, c363fb22d3ce24552ab97572e348d2b024a9f16a]
 https://github.com/gpg/adns.git [adns-1.4-g10-7, c363fb22d3ce24552ab97572e348d2b024a9f16a]
-git archive -9 --prefix adns-1.4-g10-7/ -o ~/adns-1.4-g10-7.tar.xz c363fb22d3ce24552ab97572e348d2b024a9f16a
+git archive -9 --prefix adns-1.4-g10-7/ -o ~/adns-1.4-g10-7.tar.bz2 c363fb22d3ce24552ab97572e348d2b024a9f16a
 
 http://zlib.net/zlib-1.2.8.tar.gz
 https://ftp.gnu.org/gnu/libiconv/libiconv-1.14.tar.gz
 
 http://download.sourceforge.net/pcre/pcre-8.39.tar.bz2
-http://download.sourceforge.net/pcre/pcre2-10.21.tar.bz2
+http://download.sourceforge.net/pcre/pcre2-10.22.tar.bz2
 '
 #-------------------------------- prepare --------------------------------
 export TARGET_TRIPLET=i686-w64-mingw32
@@ -37,35 +38,39 @@ export PATH=${HOME}/cross/i686-windows-gcc-5/bin:${PATH}
 export PATH=${HOME}/cross/x86_64-windows-gcc-5/bin:${PATH}
 export PATH=${SYS_ROOT}/bin:${PATH}
 
-export GNUPG_SRC_ROOT=${OBJ_ROOT}/gnupg-2.1.14
+export GNUPG_SRC_ROOT=${OBJ_ROOT}/gnupg-2.1.15
 #export GNUPG_SRC_ROOT=${HOME}/vcs/git/gnupg
 export LIBASSUAN_SRC_ROOT=${OBJ_ROOT}/libassuan-2.4.3
-export LIBGCRYPT_SRC_ROOT=${OBJ_ROOT}/libgcrypt-1.7.2
+export LIBGCRYPT_SRC_ROOT=${OBJ_ROOT}/libgcrypt-1.7.3
 export LIBGPG_ERROR_SRC_ROOT=${OBJ_ROOT}/libgpg-error-1.24
 export LIBICONV_SRC_ROOT=${OBJ_ROOT}/libiconv-1.14
-export LIBKSBA_SRC_ROOT=${OBJ_ROOT}/libksba-1.3.4
+export LIBKSBA_SRC_ROOT=${OBJ_ROOT}/libksba-1.3.5
 export NPTH_SRC_ROOT=${OBJ_ROOT}/npth-1.2
 export PCRF_SRC_ROOT=${OBJ_ROOT}/pcre-8.39
 export PINENTRY_SRC_ROOT=${OBJ_ROOT}/pinentry-0.9.7
 #export PINENTRY_SRC_ROOT=${HOME}/vcs/git/pinentry
 export ZLIB_SRC_ROOT=${OBJ_ROOT}/zlib-1.2.8
 export ADNS_SRC_ROOT=${OBJ_ROOT}/adns-1.4-g10-7
+export SQLITE3_SRC_ROOT=${OBJ_ROOT}/sqlite-amalgamation-3140200
 
 rm -fr ${SYS_ROOT} ${OBJ_ROOT}
 
 mkdir -p ${OBJ_ROOT} ; cd ${OBJ_ROOT}
 
-tar -xjf ~/sync/building/src/gnupg-2.1.14.tar.bz2
+tar -xjf ~/sync/building/src/gnupg-2.1.15.tar.bz2
 tar -xjf ~/sync/building/src/libassuan-2.4.3.tar.bz2
-tar -xjf ~/sync/building/src/libgcrypt-1.7.2.tar.bz2
+tar -xjf ~/sync/building/src/libgcrypt-1.7.3.tar.bz2
 tar -xjf ~/sync/building/src/libgpg-error-1.24.tar.bz2
 tar -xzf ~/sync/building/src/libiconv-1.14.tar.gz
-tar -xjf ~/sync/building/src/libksba-1.3.4.tar.bz2
+tar -xjf ~/sync/building/src/libksba-1.3.5.tar.bz2
 tar -xjf ~/sync/building/src/npth-1.2.tar.bz2
 tar -xjf ~/sync/building/src/pcre-8.39.tar.bz2
 tar -xjf ~/sync/building/src/pinentry-0.9.7.tar.bz2
 tar -xzf ~/sync/building/src/zlib-1.2.8.tar.gz
-tar -xJf ~/sync/building/src/adns-1.4-g10-7.tar.xz
+tar -xjf ~/sync/building/src/adns-1.4-g10-7.tar.bz2
+
+unzip ~/sync/building/src/sqlite-amalgamation-3140200.zip
+cp ~/sync/building/src/libsqlite3.rc ~/sync/building/src/libsqlite3.def sqlite-amalgamation-3140200
 
 #-------------------------------- x86_64-w64-mingw32-pkg-config --------------------------------
 mkdir -p ${SYS_ROOT}/bin && cat > ${SYS_ROOT}/bin/${TARGET_TRIPLET}-pkg-config <<EOF
@@ -74,6 +79,34 @@ export PKG_CONFIG_LIBDIR=${SYS_ROOT}/lib/pkgconfig
 /usr/bin/pkg-config --define-variable=prefix=${SYS_ROOT} \$@
 EOF
 chmod +x ${SYS_ROOT}/bin/${TARGET_TRIPLET}-pkg-config
+
+# ${SYS_ROOT}/bin/${TARGET_TRIPLET}-pkg-config --list-all
+
+#-------------------------------- sqlite3 --------------------------------
+mkdir -p ${SYS_ROOT}/lib/pkgconfig && cat > ${SYS_ROOT}/lib/pkgconfig/sqlite3.pc << EOF
+prefix=${SYS_ROOT}
+exec_prefix=\${prefix}
+libdir=\${exec_prefix}/lib
+includedir=\${prefix}/include
+
+Name: SQLite
+Description: SQL database engine
+Version: 3.14.2.0
+Libs: -L\${libdir} -lsqlite3
+Libs.private:
+Cflags: -I\${includedir}
+EOF
+
+cd ${SQLITE3_SRC_ROOT}
+${TARGET_TRIPLET}-windres -o libsqlite3.rc.o libsqlite3.rc
+${TARGET_TRIPLET}-gcc -shared -Wl,--out-implib,libsqlite3.dll.a -O2 -g -o sqlite3.dll libsqlite3.rc.o libsqlite3.def -D_WIN32_WINNT=0x0502 -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_LOAD_EXTENSION -DSQLITE_ENABLE_UNLOCK_NOTIFY sqlite3.c
+
+${TARGET_TRIPLET}-strip sqlite3.dll
+
+install -m 0755 -d ${SYS_ROOT}/bin ${SYS_ROOT}/lib ${SYS_ROOT}/include
+install -m 0755 -t ${SYS_ROOT}/bin sqlite3.dll
+install -m 0644 -t ${SYS_ROOT}/include sqlite3.h sqlite3ext.h
+install -m 0644 -T sqlite3.dll ${SYS_ROOT}/lib/libsqlite3.dll.a
 
 #-------------------------------- zlib --------------------------------
 cd $ZLIB_SRC_ROOT
@@ -193,11 +226,12 @@ make -j8; make install
 mkdir -p ${SYS_ROOT}/bin/xxx && cd ${SYS_ROOT}/bin
 
 /bin/cp libadns*.dll libassuan*.dll libgcrypt*.dll libgpg-error*.dll \
-    libiconv*.dll libksba*.dll libnpth*.dll zlib*.dll \
+    libiconv*.dll libksba*.dll libnpth*.dll zlib*.dll sqlite3.dll \
     adnshost.exe dirmngr*.exe gpg-agent.exe gpg-connect-agent.exe \
     gpg-error.exe gpg2.exe gpgconf.exe gpgsm.exe gpgv2.exe \
     hmac256.exe iconv.exe kbxutil.exe pinentry-w32.exe xxx/
 
+cd ${SYS_ROOT}/bin/xxx
 ${TARGET_TRIPLET}-strip *.exe *.dll
 cp gpg2.exe gpg.exe
 cp gpgv2.exe gpgv.exe
@@ -232,23 +266,24 @@ LC_ALL=C ls -l *.exe
 -rwxr-xr-x 1 cauchy cauchy  69632 Jul 15 15:41 pinentry.exe
 
 $ cat > version.txt <<EOF
-gnupg-2.1.14
+gnupg-2.1.15
 
-libgcrypt-1.7.2
+libgcrypt-1.7.3
 pinentry-0.9.7
 
 libassuan-2.4.3
 libgpg-error-1.24
 libiconv-1.14
-libksba-1.3.4
+libksba-1.3.5
 npth-1.2
 pcre-8.39
 zlib-1.2.8
 adns-1.4-g10-7
+sqlite3-3.14.2
 EOF
 
-7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.14-w32.7z gnupg-2.1.14-w32/
-7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.14-w64.7z gnupg-2.1.14-w64/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.15-w32.7z gnupg-2.1.15-w32/
+7z a -t7z -mx9 -ssc -mtc=on -mmt=on -m0=LZMA2 gnupg-2.1.15-w64.7z gnupg-2.1.15-w64/
 
 cd %USERPROFILE%\AppData\Roaming\gnupg
 echo Exit Code is %errorlevel%
@@ -256,9 +291,9 @@ HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\Autorun to @chcp 65001>n
 
 gpg --delete-secret-and-public-keys
 
-$env:Path = "D:\opt\gnupg-2.1.14-w32;" + $env:Path
+$env:Path = "D:\opt\gnupg-2.1.15-w32;" + $env:Path
 
-SET PATH=D:\opt\gnupg-2.1.14-w32
+SET PATH=D:\opt\gnupg-2.1.15-w32
 
 gpg-agent --debug-level expert --daemon
 

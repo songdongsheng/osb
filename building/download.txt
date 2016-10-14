@@ -16,8 +16,8 @@ ftp://ftp.gnupg.org/gcrypt/binary/gnupg-w32cli-1.4.21.exe
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-1.4.21.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.0.30.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.15.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.14.tar.xz
-ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.14.tar.xz.sig
+ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.16.tar.xz
+ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.16.tar.xz.sig
 ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.7.3.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.24.tar.bz2
