@@ -6,10 +6,15 @@ https://openvpn.net/index.php/download/community-downloads.html
 # path/to/src/configure --build=`/usr/share/misc/config.guess` --host=x86_64-w64-mingw32 --prefix=/tmp/x86_64-w64-mingw32 --disable-nls
 #
 
+ftp://ftp.adobe.com/pub/adobe/reader/win/AcrobatDC/1500720033/AcroRdrDC1500720033_zh_CN.exe
+ftp://ftp.adobe.com/pub/adobe/reader/win/AcrobatDC/1502020039/AcroRdrDC1502020039_en_US.exe
+ftp://ftp.adobe.com/pub/adobe/reader/win/AcrobatDC/1502020039/AcroRdrDCUpd1502020039.msp
+ftp://ftp.adobe.com/pub/adobe/reader/win/AcrobatDC/misc/AcroRdrSD1500720033_all_DC.msi
+ftp://ftp.adobe.com/pub/adobe/reader/win/AcrobatDC/misc/FontPack1500720033_XtdAlf_Lang_DC.msi
 ftp://ftp.astron.com/pub/file/file-5.28.tar.gz
 ftp://ftp.cyrusimap.org/cyrus-sasl/cyrus-sasl-2.1.26.tar.gz
 ftp://ftp.freeradius.org/pub/freeradius/freeradius-client-1.1.7.tar.bz2
-ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz
+ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.12.tar.bz2
 ftp://ftp.g10code.com/g10code/adns/adns-1.4-g10-7.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/binary/gnupg-w32-2.1.15_20160818.exe
 ftp://ftp.gnupg.org/gcrypt/binary/gnupg-w32cli-1.4.21.exe
@@ -48,8 +53,8 @@ http://dl.winehq.org/wine/source/1.9/wine-1.9.20.tar.bz2
 http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.4-x86_64.iso
 http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-extended-3.4.4-x86_64.iso
 http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-virt-3.4.4-x86_64.iso
-http://download.mono-project.com/sources/mono/mono-4.4.2.11.tar.bz2
-http://download.redis.io/releases/redis-3.2.3.tar.gz
+http://download.mono-project.com/sources/mono/mono-4.6.1.5.tar.bz2
+http://download.redis.io/releases/redis-3.2.4.tar.gz
 http://download.savannah.gnu.org/releases/libunwind/libunwind-1.1.tar.gz
 http://download.videolan.org/pub/videolan/vlc/2.2.4/vlc-2.2.4.tar.xz
 http://download.videolan.org/pub/videolan/vlc/2.2.4/win32/vlc-2.2.4-win32.7z
@@ -59,35 +64,34 @@ http://download.videolan.org/pub/videolan/vlc/2.2.4/win64/vlc-2.2.4-win64.exe
 http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.tgz
 http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.zip
 http://downloads.lightbend.com/scala/2.11.8/scala-docs-2.11.8.txz
-http://downloads.typesafe.com/akka/akka_2.11-2.4.10.zip
+http://downloads.typesafe.com/akka/akka_2.11-2.4.11.zip
 http://files.allroundautomations.com/plsqldev1106.exe
 http://files.allroundautomations.com/plsqldev1106x64.exe
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.3.7.tar.gz
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.3.7-windows.zip
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.2.tar.gz
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.2-windows.zip
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.3.tar.gz
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.3-windows.zip
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.5.0.tar.gz
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.5.0-windows.zip
 http://ftp.openbsd.org/pub/OpenBSD/OpenNTPD/openntpd-6.0p1.tar.gz
 http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.3p1.tar.gz
 http://isl.gforge.inria.fr/isl-0.16.1.tar.xz
 http://isl.gforge.inria.fr/isl-0.17.1.tar.xz
-http://openvswitch.org/releases/openvswitch-2.5.1.tar.gz
+http://openvswitch.org/releases/openvswitch-2.6.0.tar.gz
 http://oss.oetiker.ch/rrdtool/pub/rrdtool-1.6.0.tar.gz
 http://pyyaml.org/download/libyaml/yaml-0.1.7.tar.gz
 http://tukaani.org/xz/xz-5.2.2.tar.xz
-http://web.mit.edu/kerberos/dist/krb5/1.14/krb5-1.14.3.tar.gz
+http://web.mit.edu/kerberos/dist/krb5/1.14/krb5-1.14.4.tar.gz
 http://wiki.qemu.org/download/qemu-2.6.2.tar.bz2
 http://www.bastoul.net/cloog/pages/download/cloog-0.16.3.tar.gz
 http://www.bastoul.net/cloog/pages/download/cloog-0.18.4.tar.gz
 http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz
 http://www.drbd.org/download/drbd/9.0/drbd-9.0.4-1.tar.gz
 http://www.drbd.org/download/drbd/utils/drbd-utils-8.9.8.tar.gz
-http://www.drbd.org/download/drbdmanage/drbdmanage-0.97.4.tar.gz
+http://www.drbd.org/download/drbdmanage/drbdmanage-0.97.5.tar.gz
 http://www.foobar2000.org/getcomponent/36275d37f8e1c07b5927dba93a9312d5/b1ffe3a6bda23e72c14cf269a5205e32/foo_uie_lyrics3-0.5.fb2k-component [0.5, released on 2016-03-18]
 http://www.foobar2000.org/getcomponent/4305adde8ebb21d89b7f8a33ee52c642/b46511f2a818dec3fb564b9ba7c5b963/Monkey.fb2k-component [2.1.7, released on 2013-04-13]
 http://www.foobar2000.org/getcomponent/5e55f92a8e9e3aa21e6ae5a62b19b2f8/0e9d3fbb3100c9304c7b41e1916770b9/foo_hdcd.fb2k-component [1.17, released on 2016-08-06]
 http://www.foobar2000.org/getcomponent/6de7fa88b43df04b16159c9cb8883ac7/b7b3ef2618cf3da1eaee85fb4939c6a5/foo_input_dts.fb2k-component [0.5.2, released on 2016-02-21]
-http://www.foobar2000.org/getcomponent/a6f897eb1ecf49bd5a9bc60bb555a5c6/079e2f942b6d3f98f602691ffba1e605/foo_input_dsdiff.zip [1.4, released on 2011-05-19]
-http://www.foobar2000.org/getfile/b0c67d6827f0394492047a9ab3b21891/foobar2000_v1.3.11.exe [1.3.11, 2016-08-20]
+http://www.foobar2000.org/getfile/a83c75953de90d270278b037d541f462/foobar2000_v1.3.12.exe [1.3.12, 2016-09-16]
 http://www.freediameter.net/hg/freeDiameter/archive/1.2.0.tar.gz
 http://www.mpfr.org/mpfr-3.1.5/allpatches
 http://www.mpfr.org/mpfr-3.1.5/mpfr-3.1.5.tar.xz
@@ -109,15 +113,15 @@ https://cmake.org/files/v3.6/cmake-3.6.2-win64-x64.zip
 https://content.riscv.org/wp-content/uploads/2016/06/riscv-spec-v2.1.pdf            [May 31, 2016]
 https://content.riscv.org/wp-content/uploads/2016/07/riscv-privileged-v1.9-1.pdf    [July 8, 2016]
 https://curl.haxx.se/download/curl-7.50.3.tar.bz2
-https://dist.opendnssec.org/source/opendnssec-2.0.1.tar.gz
+https://dist.opendnssec.org/source/opendnssec-2.0.2.tar.gz
 https://dist.opendnssec.org/source/softhsm-2.1.0.tar.gz
-https://download.gnome.org/sources/atk/2.20/atk-2.20.0.tar.xz
-https://download.gnome.org/sources/gdk-pixbuf/2.34/gdk-pixbuf-2.34.0.tar.xz
-https://download.gnome.org/sources/glib/2.48/glib-2.48.2.tar.xz
-https://download.gnome.org/sources/gobject-introspection/1.48/gobject-introspection-1.48.0.tar.xz
-https://download.gnome.org/sources/gtk+/3.20/gtk+-3.20.9.tar.xz
-https://download.gnome.org/sources/pango/1.40/pango-1.40.2.tar.xz
-https://download.gnome.org/sources/pygobject/3.20/pygobject-3.20.1.tar.xz
+https://download.gnome.org/sources/atk/2.22/atk-2.22.0.tar.xz
+https://download.gnome.org/sources/gdk-pixbuf/2.36/gdk-pixbuf-2.36.0.tar.xz
+https://download.gnome.org/sources/glib/2.50/glib-2.50.1.tar.xz
+https://download.gnome.org/sources/gobject-introspection/1.50/gobject-introspection-1.50.0.tar.xz
+https://download.gnome.org/sources/gtk+/3.22/gtk+-3.22.1.tar.xz
+https://download.gnome.org/sources/pango/1.40/pango-1.40.3.tar.xz
+https://download.gnome.org/sources/pygobject/3.22/pygobject-3.22.0.tar.xz
 https://download.microsoft.com/download/0/2/A/02AAE597-3865-456C-AE7F-613F99F850A8/sqljdbc_6.0.7507.100_enu.exe
 https://download.microsoft.com/download/0/2/A/02AAE597-3865-456C-AE7F-613F99F850A8/sqljdbc_6.0.7507.100_enu.tar.gz
 https://download.microsoft.com/download/7/3/1/7318E2AD-E7C5-4301-AEFA-A15EDEDACFB4/msodbcsql-11.0.2260.0.tar.gz [SLES 12]
@@ -132,7 +136,7 @@ https://download.samba.org/pub/ldb/ldb-1.1.27.tar.gz
 https://download.samba.org/pub/samba/samba-4.5.0.tar.gz
 https://download.samba.org/pub/talloc/talloc-2.1.8.tar.gz
 https://download.samba.org/pub/tdb/tdb-1.3.11.tar.gz
-https://download.samba.org/pub/tevent/tevent-0.9.30.tar.gz
+https://download.samba.org/pub/tevent/tevent-0.9.31.tar.gz
 https://download.tortoisegit.org/tgit/2.3.0.0/TortoiseGit-2.3.0.0-64bit.msi
 https://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.bz2
 https://ftp.gnu.org/gnu/bison/bison-3.0.4.tar.xz
@@ -142,7 +146,7 @@ https://ftp.gnu.org/gnu/gdb/gdb-7.12.tar.xz
 https://ftp.gnu.org/gnu/gettext/gettext-0.19.8.1.tar.xz
 https://ftp.gnu.org/gnu/glibc/glibc-2.24.tar.xz
 https://ftp.gnu.org/gnu/gmp/gmp-6.1.1.tar.xz
-https://ftp.gnu.org/gnu/grep/grep-2.25.tar.xz
+https://ftp.gnu.org/gnu/grep/grep-2.26.tar.xz
 https://ftp.gnu.org/gnu/gzip/gzip-1.8.tar.xz
 https://ftp.gnu.org/gnu/libiconv/libiconv-1.14.tar.gz
 https://ftp.gnu.org/gnu/libidn/libidn-1.33.tar.gz
@@ -150,10 +154,11 @@ https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.9.tar.gz
 https://ftp.gnu.org/gnu/make/make-4.2.1.tar.bz2
 https://ftp.gnu.org/gnu/mpc/mpc-1.0.3.tar.gz
 https://ftp.gnu.org/gnu/mpfr/mpfr-3.1.5.tar.xz
-https://ftp.gnu.org/gnu/nettle/nettle-3.2.tar.gz
+https://ftp.gnu.org/gnu/nettle/nettle-3.3.tar.gz
 https://ftp.gnu.org/gnu/sed/sed-4.2.2.tar.bz2
 https://ftp.gnu.org/gnu/tar/tar-1.29.tar.xz
 https://ftp.gnu.org/gnu/wget/wget-1.18.tar.xz
+https://ftp.postgresql.org/pub/pgadmin3/pgadmin4/v1.0/source/pgadmin4-1.0.tar.gz
 https://ftp.postgresql.org/pub/pgadmin3/pgadmin4/v1.0/windows/pgadmin4-1.0-x86.exe
 https://ftp.postgresql.org/pub/pgadmin3/release/v1.22.1/win32/pgadmin3-1.22.1.zip
 https://ftp.postgresql.org/pub/source/v9.5.4/postgresql-9.5.4.tar.bz2
@@ -169,28 +174,33 @@ https://github.com/openlink/iODBC/archive/v3.52.12.tar.gz
 https://github.com/performancecopilot/pcp/archive/3.11.5.tar.gz
 https://github.com/rhash/RHash/archive/v1.3.3.tar.gz
 https://github.com/scala/scala/archive/v2.11.8.tar.gz
+http://www.memcached.org/files/memcached-1.4.32.tar.gz
 https://gmplib.org/download/gmp/gmp-6.1.1.tar.xz
 https://gmplib.org/repo/gmp-6.1/raw-rev/e225fb40ca63
 https://libarchive.org/downloads/libarchive-3.2.1.tar.gz
 https://libbsd.freedesktop.org/releases/libbsd-0.8.3.tar.xz
 https://linuxcontainers.org/downloads/lxc/lxc-1.0.8.tar.gz
-https://linuxcontainers.org/downloads/lxc/lxc-2.0.4.tar.gz
-https://linuxcontainers.org/downloads/lxcfs/lxcfs-2.0.3.tar.gz
-https://linuxcontainers.org/downloads/lxd/lxd-2.0.4.tar.gz
-https://memcached.org/files/memcached-1.4.31.tar.gz
+https://linuxcontainers.org/downloads/lxc/lxc-2.0.5.tar.gz
+https://linuxcontainers.org/downloads/lxcfs/lxcfs-2.0.4.tar.gz
+https://linuxcontainers.org/downloads/lxd/lxd-2.0.5.tar.gz
+https://linuxcontainers.org/downloads/lxd/lxd-2.4.1.tar.gz
 https://notepad-plus-plus.org/repository/6.x/6.9.2/npp.6.9.2.Installer.exe
+https://notepad-plus-plus.org/repository/7.x/7.1/npp.7.1.bin.minimalist.7z
+https://notepad-plus-plus.org/repository/7.x/7.1/npp.7.1.bin.minimalist.x64.7z
+https://notepad-plus-plus.org/repository/7.x/7.1/npp.7.1.Installer.exe
+https://notepad-plus-plus.org/repository/7.x/7.1/npp.7.1.Installer.x64.exe
 https://p11-glue.freedesktop.org/releases/p11-kit-0.23.2.tar.gz
 https://sourceforge.net/projects/boost/files/boost_1_62_0.tar.bz2
 https://sourceforge.net/projects/expat/files/expat/2.2.0/expat-2.2.0.tar.bz2/download
 https://sourceforge.net/projects/expect/files/Expect/5.45/expect5.45.tar.gz/download
 https://sourceforge.net/projects/flex/files/flex-2.6.0.tar.xz/download
-https://sourceforge.net/projects/freetype/files/freetype2/2.6.5/freetype-2.6.5.tar.bz2/download
+https://sourceforge.net/projects/freetype/files/freetype2/2.7/freetype-2.7.tar.bz2/download
 https://sourceforge.net/projects/gsoap2/files/gsoap-2.8/gsoap_2.8.36.zip/download
 https://sourceforge.net/projects/hibernate/files/hibernate-orm/5.2.3.Final/hibernate-release-5.2.3.Final.tgz/download
 https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final.jar/download
 https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final-sources.jar/download
 https://sourceforge.net/projects/levent/files/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz/download
-https://sourceforge.net/projects/libjpeg-turbo/files/1.5.0/libjpeg-turbo-1.5.0.tar.gz/download
+https://sourceforge.net/projects/libjpeg-turbo/files/1.5.1/libjpeg-turbo-1.5.1.tar.gz/download
 https://sourceforge.net/projects/libpng/files/libpng16/1.6.25/libpng-1.6.25.tar.xz/download
 https://sourceforge.net/projects/libpng/files/zlib/1.2.8/zlib-1.2.8.tar.gz/download
 https://sourceforge.net/projects/linuxptp/files/linuxptp-1.7.tgz
@@ -202,6 +212,9 @@ https://sourceforge.net/projects/pcre/files/pcre-8.39.tar.bz2
 https://sourceforge.net/projects/pdcurses/files/pdcurses/3.4/PDCurses-3.4.tar.gz/download
 https://sourceforge.net/projects/rhash/files/rhash/1.3.3/rhash-1.3.3-1-win64.zip/download
 https://sourceforge.net/projects/rhash/files/rhash/1.3.3/rhash-1.3.3-win32.zip/download
+https://sourceforge.net/projects/sacddecoder/files/ASIOProxyInstall-0.9.2.zip
+https://sourceforge.net/projects/sacddecoder/files/foo_input_sacd-0.9.11.zip
+https://sourceforge.net/projects/sacddecoder/files/foo_input_sacd-1.0.0.zip
 https://sourceforge.net/projects/sevenzip/files/7z1604.exe
 https://sourceforge.net/projects/sevenzip/files/7z1604-x64.exe
 https://sourceforge.net/projects/tortoisesvn/files/1.9.4/Application/TortoiseSVN-1.9.4.27285-x64-svn-1.9.4.msi/download
@@ -211,16 +224,16 @@ https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.12-I602-x86_
 https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.exe
 https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.tar.gz
 https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.zip
-https://unbound.net/downloads/unbound-1.5.9.tar.gz
-https://wix.codeplex.com/downloads/get/1587180  [Jul 5, 2016]
+https://unbound.net/downloads/unbound-1.5.10.tar.gz
+https://wix.codeplex.com/downloads/get/1587180  [3.10.3, Jul 5, 2016]
 https://www.apache.org/dist/apr/apr-1.5.2.tar.bz2
 https://www.apache.org/dist/apr/apr-1.5.2-win32-src.zip
 https://www.apache.org/dist/apr/apr-iconv-1.2.1.tar.gz
 https://www.apache.org/dist/apr/apr-iconv-1.2.1-win32-src-r2.zip
 https://www.apache.org/dist/apr/apr-util-1.5.4.tar.gz
 https://www.apache.org/dist/apr/apr-util-1.5.4-win32-src.zip
-https://www.apache.org/dist/cassandra/3.0.8/apache-cassandra-3.0.8-bin.tar.gz
-https://www.apache.org/dist/cassandra/3.7/apache-cassandra-3.7-bin.tar.gz
+https://www.apache.org/dist/cassandra/3.0.9/apache-cassandra-3.0.9-bin.tar.gz
+https://www.apache.org/dist/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz
 https://www.apache.org/dist/groovy/2.4.7/distribution/apache-groovy-binary-2.4.7.zip
 https://www.apache.org/dist/groovy/2.4.7/distribution/apache-groovy-sdk-2.4.7.zip
 https://www.apache.org/dist/httpcomponents/httpasyncclient/binary/httpcomponents-asyncclient-4.1.2-bin.tar.gz
@@ -236,7 +249,7 @@ https://www.apache.org/dist/serf/serf-1.3.9.tar.bz2
 https://www.apache.org/dist/serf/serf-1.3.9.zip
 https://www.apache.org/dist/subversion/subversion-1.9.4.tar.gz
 https://www.apache.org/dist/subversion/subversion-1.9.4.zip
-https://www.apache.org/dist/tomcat/tomcat-8/v8.5.5/bin/apache-tomcat-8.5.5.tar.gz
+https://www.apache.org/dist/tomcat/tomcat-8/v8.5.6/bin/apache-tomcat-8.5.6.tar.gz
 https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.12.1.tar.bz2
 https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.2.tar.xz
 https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.43.3/e2fsprogs-1.43.3.tar.xz
@@ -252,8 +265,9 @@ https://www.lua.org/ftp/lua-5.3.3.tar.gz
 https://www.mercurial-scm.org/release/mercurial-3.9.2.tar.gz
 https://www.mercurial-scm.org/release/windows/Mercurial-3.9.2-x64.exe
 https://www.openssl.org/policies/releasestrat.html
-https://www.openssl.org/source/openssl-1.0.2h.tar.gz
-https://www.sqlite.org/2016/sqlite-amalgamation-3140200.zip
+https://www.openssl.org/source/openssl-1.0.2j.tar.gz
+https://www.openssl.org/source/openssl-1.1.0b.tar.gz
+https://www.sqlite.org/2016/sqlite-amalgamation-3150000.zip
 https://www.wireshark.org/download/src/all-versions/wireshark-1.12.13.tar.bz2   [27-Jul-2016]
 https://www.wireshark.org/download/src/wireshark-2.0.7.tar.bz2      [04-Oct-2016]
 https://www.wireshark.org/download/src/wireshark-2.2.1.tar.bz2      [04-Oct-2016]
