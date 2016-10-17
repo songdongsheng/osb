@@ -2,6 +2,7 @@
 --host=i686-w64-mingw32
 
 export TARGET_TRIPLET=x86_64-w64-mingw32
+export TARGET_TRIPLET=i686-w64-mingw32
 rm -fr /tmp/${TARGET_TRIPLET}
 
 cd ${HOME}/vcs/git/mingw-w64-master/mingw-w64-libraries/libmangle
