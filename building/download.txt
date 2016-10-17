@@ -49,7 +49,7 @@ http://cairographics.org/releases/cairo-1.14.6.tar.xz
 http://cairographics.org/releases/pixman-0.34.0.tar.gz
 http://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gz
 http://dl.winehq.org/wine/source/1.8/wine-1.8.5.tar.bz2
-http://dl.winehq.org/wine/source/1.9/wine-1.9.20.tar.bz2
+http://dl.winehq.org/wine/source/1.9/wine-1.9.21.tar.bz2
 http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.4-x86_64.iso
 http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-extended-3.4.4-x86_64.iso
 http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-virt-3.4.4-x86_64.iso
