@@ -84,8 +84,8 @@ http://wiki.qemu.org/download/qemu-2.6.2.tar.bz2
 http://www.bastoul.net/cloog/pages/download/cloog-0.16.3.tar.gz
 http://www.bastoul.net/cloog/pages/download/cloog-0.18.4.tar.gz
 http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz
-http://www.drbd.org/download/drbd/9.0/drbd-9.0.4-1.tar.gz
-http://www.drbd.org/download/drbd/utils/drbd-utils-8.9.8.tar.gz
+http://www.drbd.org/download/drbd/9.0/drbd-9.0.5-1.tar.gz
+http://www.drbd.org/download/drbd/utils/drbd-utils-8.9.9.tar.gz
 http://www.drbd.org/download/drbdmanage/drbdmanage-0.97.5.tar.gz
 http://www.foobar2000.org/getcomponent/36275d37f8e1c07b5927dba93a9312d5/b1ffe3a6bda23e72c14cf269a5205e32/foo_uie_lyrics3-0.5.fb2k-component [0.5, released on 2016-03-18]
 http://www.foobar2000.org/getcomponent/4305adde8ebb21d89b7f8a33ee52c642/b46511f2a818dec3fb564b9ba7c5b963/Monkey.fb2k-component [2.1.7, released on 2013-04-13]
