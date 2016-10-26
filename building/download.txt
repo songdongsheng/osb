@@ -50,9 +50,9 @@ http://cairographics.org/releases/pixman-0.34.0.tar.gz
 http://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gz
 http://dl.winehq.org/wine/source/1.8/wine-1.8.5.tar.bz2
 http://dl.winehq.org/wine/source/1.9/wine-1.9.21.tar.bz2
-http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.4-x86_64.iso
-http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-extended-3.4.4-x86_64.iso
-http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-virt-3.4.4-x86_64.iso
+http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.5-x86_64.iso
+http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-extended-3.4.5-x86_64.iso
+http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-virt-3.4.5-x86_64.iso
 http://download.mono-project.com/sources/mono/mono-4.6.1.5.tar.bz2
 http://download.redis.io/releases/redis-3.2.4.tar.gz
 http://download.savannah.gnu.org/releases/libunwind/libunwind-1.1.tar.gz
@@ -196,7 +196,7 @@ https://sourceforge.net/projects/expat/files/expat/2.2.0/expat-2.2.0.tar.bz2/dow
 https://sourceforge.net/projects/expect/files/Expect/5.45/expect5.45.tar.gz/download
 https://sourceforge.net/projects/flex/files/flex-2.6.0.tar.xz/download
 https://sourceforge.net/projects/freetype/files/freetype2/2.7/freetype-2.7.tar.bz2/download
-https://sourceforge.net/projects/gsoap2/files/gsoap-2.8/gsoap_2.8.36.zip/download
+https://sourceforge.net/projects/gsoap2/files/gsoap-2.8/gsoap_2.8.37.zip/download
 https://sourceforge.net/projects/hibernate/files/hibernate-orm/5.2.3.Final/hibernate-release-5.2.3.Final.tgz/download
 https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final.jar/download
 https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final-sources.jar/download
