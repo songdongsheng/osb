@@ -39,9 +39,9 @@ ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz
 /?C=M;O=D
 
 http://archive.ntp.org/ntp4/ntp-4.2/ntp-4.2.8p8.tar.gz
-http://build.openvpn.net/downloads/releases/openvpn-2.3.12.tar.xz
-http://build.openvpn.net/downloads/releases/openvpn-install-2.3.12-I602-i686.exe
-http://build.openvpn.net/downloads/releases/openvpn-install-2.3.12-I602-x86_64.exe
+http://build.openvpn.net/downloads/releases/openvpn-2.3.13.tar.xz
+http://build.openvpn.net/downloads/releases/openvpn-install-2.3.13-I601-i686.exe
+http://build.openvpn.net/downloads/releases/openvpn-install-2.3.13-I601-x86_64.exe
 http://build.openvpn.net/downloads/releases/tap-windows-9.21.2.exe
 http://build.openvpn.net/downloads/releases/tap-windows-9.21.2.tar.gz
 http://build.openvpn.net/downloads/releases/tap-windows-9.21.2.zip
@@ -75,7 +75,7 @@ http://ftp.openbsd.org/pub/OpenBSD/OpenNTPD/openntpd-6.0p1.tar.gz
 http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.3p1.tar.gz
 http://isl.gforge.inria.fr/isl-0.16.1.tar.xz
 http://isl.gforge.inria.fr/isl-0.17.1.tar.xz
-http://openvswitch.org/releases/openvswitch-2.6.0.tar.gz
+http://openvswitch.org/releases/openvswitch-2.6.1.tar.gz
 http://oss.oetiker.ch/rrdtool/pub/rrdtool-1.6.0.tar.gz
 http://pyyaml.org/download/libyaml/yaml-0.1.7.tar.gz
 http://tukaani.org/xz/xz-5.2.2.tar.xz
@@ -220,9 +220,9 @@ https://sourceforge.net/projects/sacddecoder/files/foo_input_sacd-1.0.0.zip
 https://sourceforge.net/projects/sevenzip/files/7z1604.exe
 https://sourceforge.net/projects/sevenzip/files/7z1604-x64.exe
 https://sourceforge.net/projects/tortoisesvn/files/1.9.4/Application/TortoiseSVN-1.9.4.27285-x64-svn-1.9.4.msi/download
-https://swupdate.openvpn.org/community/releases/openvpn-2.3.12.tar.xz
-https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.12-I602-i686.exe
-https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.12-I602-x86_64.exe
+https://swupdate.openvpn.org/community/releases/openvpn-2.3.13.tar.xz
+https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.13-I601-i686.exe
+https://swupdate.openvpn.org/community/releases/openvpn-install-2.3.13-I601-x86_64.exe
 https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.exe
 https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.tar.gz
 https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.zip
