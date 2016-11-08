@@ -93,6 +93,7 @@ http://www.foobar2000.org/getcomponent/5e55f92a8e9e3aa21e6ae5a62b19b2f8/0e9d3fbb
 http://www.foobar2000.org/getcomponent/6de7fa88b43df04b16159c9cb8883ac7/b7b3ef2618cf3da1eaee85fb4939c6a5/foo_input_dts.fb2k-component [0.5.2, released on 2016-02-21]
 http://www.foobar2000.org/getfile/a83c75953de90d270278b037d541f462/foobar2000_v1.3.12.exe [1.3.12, 2016-09-16]
 http://www.freediameter.net/hg/freeDiameter/archive/1.2.0.tar.gz
+http://www.memcached.org/files/memcached-1.4.33.tar.gz
 http://www.mpfr.org/mpfr-3.1.5/allpatches
 http://www.mpfr.org/mpfr-3.1.5/mpfr-3.1.5.tar.xz
 http://www.musl-libc.org/releases/musl-1.1.15.tar.gz
@@ -131,6 +132,8 @@ https://download.microsoft.com/download/B/C/D/BCDD264C-7517-4B7D-8159-C99FC55356
 https://download.microsoft.com/download/B/C/D/BCDD264C-7517-4B7D-8159-C99FC5535680/RedHat6/msodbcsql-11.0.2270.0.tar.gz [RHEL 6]
 https://download.microsoft.com/download/C/8/8/C88C2E51-8D23-4301-9F4B-64C8E2F163C5/Command%20Line%20Utilities%20MSI%20files/amd64/MsSqlCmdLnUtils.msi [13.1, 8/23/2016]
 https://download.microsoft.com/download/C/8/8/C88C2E51-8D23-4301-9F4B-64C8E2F163C5/Command%20Line%20Utilities%20MSI%20files/x86/MsSqlCmdLnUtils.msi   [13.1, 8/23/2016]
+https://download.microsoft.com/download/C/B/C/CBCFAAD1-2348-4119-B093-199EE7AADCBC/SSMS-Setup-CHS.exe [October 26, 2016]
+https://download.microsoft.com/download/C/B/C/CBCFAAD1-2348-4119-B093-199EE7AADCBC/SSMS-Setup-ENU.exe [16.5, 13.0.16000.28]
 https://download.microsoft.com/download/D/5/E/D5EEF288-A277-45C8-855B-8E2CB7E25B96/13.1.811.168/amd64/msodbcsql.msi [13.1.811.168, 8/1/2016]
 https://download.microsoft.com/download/D/5/E/D5EEF288-A277-45C8-855B-8E2CB7E25B96/13.1.811.168/x86/msodbcsql.msi   [13.1.811.168, 8/1/2016]
 https://download.samba.org/pub/ldb/ldb-1.1.27.tar.gz
@@ -173,9 +176,8 @@ https://github.com/libevent/libevent/archive/release-2.0.22-stable.tar.gz
 https://github.com/open-iscsi/open-iscsi/archive/2.0.874.tar.gz
 https://github.com/openlink/iODBC/archive/v3.52.12.tar.gz
 https://github.com/performancecopilot/pcp/archive/3.11.5.tar.gz
-https://github.com/rhash/RHash/archive/v1.3.3.tar.gz
+https://github.com/rhash/RHash/archive/v1.3.4.tar.gz
 https://github.com/scala/scala/archive/v2.11.8.tar.gz
-http://www.memcached.org/files/memcached-1.4.32.tar.gz
 https://gmplib.org/download/gmp/gmp-6.1.1.tar.xz
 https://gmplib.org/repo/gmp-6.1/raw-rev/e225fb40ca63
 https://libarchive.org/downloads/libarchive-3.2.1.tar.gz
@@ -212,8 +214,8 @@ https://sourceforge.net/projects/pcre/files/pcre2/10.22/pcre2-10.22.tar.bz2/down
 https://sourceforge.net/projects/pcre/files/pcre2-10.22.tar.bz2
 https://sourceforge.net/projects/pcre/files/pcre-8.39.tar.bz2
 https://sourceforge.net/projects/pdcurses/files/pdcurses/3.4/PDCurses-3.4.tar.gz/download
-https://sourceforge.net/projects/rhash/files/rhash/1.3.3/rhash-1.3.3-1-win64.zip/download
-https://sourceforge.net/projects/rhash/files/rhash/1.3.3/rhash-1.3.3-win32.zip/download
+https://sourceforge.net/projects/rhash/files/rhash/1.3.4/rhash-1.3.4-win32.zip/download
+https://sourceforge.net/projects/rhash/files/rhash/1.3.4/rhash-1.3.4-win64.zip/download
 https://sourceforge.net/projects/sacddecoder/files/ASIOProxyInstall-0.9.2.zip
 https://sourceforge.net/projects/sacddecoder/files/foo_input_sacd-0.9.11.zip
 https://sourceforge.net/projects/sacddecoder/files/foo_input_sacd-1.0.0.zip
