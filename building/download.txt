@@ -39,6 +39,7 @@ ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz
 /?C=M;O=D
 
 http://archive.ntp.org/ntp4/ntp-4.2/ntp-4.2.8p8.tar.gz
+http://archive.ntp.org/ntp4/ntp-4.2/ntp-4.2.8p9.tar.gz
 http://build.openvpn.net/downloads/releases/openvpn-2.3.13.tar.xz
 http://build.openvpn.net/downloads/releases/openvpn-install-2.3.13-I601-i686.exe
 http://build.openvpn.net/downloads/releases/openvpn-install-2.3.13-I601-x86_64.exe
@@ -105,7 +106,7 @@ http://zlib.net/zlib-1.2.8.tar.gz
 
 https://bitbucket.org/skskeyserver/sks-keyserver/downloads/sks-1.1.6.tgz
 https://bitbucket.org/tortoisehg/files/downloads/tortoisehg-3.9.2-x64.msi
-https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.xz
+https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.bz2
 https://cmake.org/files/v3.6/cmake-3.6.2.tar.gz
 https://cmake.org/files/v3.6/cmake-3.6.2-Linux-x86_64.tar.gz
 https://cmake.org/files/v3.6/cmake-3.6.2-SHA-256.txt
@@ -207,7 +208,7 @@ https://sourceforge.net/projects/libjpeg-turbo/files/1.5.1/libjpeg-turbo-1.5.1.t
 https://sourceforge.net/projects/libpng/files/libpng16/1.6.26/libpng-1.6.26.tar.xz/download
 https://sourceforge.net/projects/libpng/files/zlib/1.2.8/zlib-1.2.8.tar.gz/download
 https://sourceforge.net/projects/linuxptp/files/linuxptp-1.8.tgz
-https://sourceforge.net/projects/nagios/files/nagios-4.2.2.tar.gz
+https://sourceforge.net/projects/nagios/files/nagios-4.2.3.tar.gz
 https://sourceforge.net/projects/open-vm-tools/files/open-vm-tools/stable-10.0.x/open-vm-tools-10.0.5-3227872.tar.gz/download
 https://sourceforge.net/projects/pcre/files/pcre/8.39/pcre-8.39.tar.bz2/download
 https://sourceforge.net/projects/pcre/files/pcre2/10.22/pcre2-10.22.tar.bz2/download
@@ -257,8 +258,8 @@ https://www.apache.org/dist/tomcat/tomcat-8/v8.5.6/bin/apache-tomcat-8.5.6.tar.g
 https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.12.1.tar.bz2
 https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.2.tar.xz
 https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.43.3/e2fsprogs-1.43.3.tar.xz
-https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.4.30.xz
-https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.8.6.xz
+https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.4.34.xz
+https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.8.10.xz
 https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.2.tar.xz
 https://www.kernel.org/pub/software/scm/git/git-2.10.2.tar.xz
 https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.10.2.tar.xz
