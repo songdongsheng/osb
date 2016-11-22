@@ -20,7 +20,7 @@ ftp://ftp.gnupg.org/gcrypt/binary/gnupg-w32-2.1.15_20160818.exe
 ftp://ftp.gnupg.org/gcrypt/binary/gnupg-w32cli-1.4.21.exe
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-1.4.21.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.0.30.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.15.tar.bz2
+ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.16.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.16.tar.xz
 ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.16.tar.xz.sig
 ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
@@ -50,10 +50,10 @@ http://cairographics.org/releases/cairo-1.14.6.tar.xz
 http://cairographics.org/releases/pixman-0.34.0.tar.gz
 http://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gz
 http://dl.winehq.org/wine/source/1.8/wine-1.8.5.tar.bz2
-http://dl.winehq.org/wine/source/1.9/wine-1.9.22.tar.bz2
-http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.5-x86_64.iso
-http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-extended-3.4.5-x86_64.iso
-http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-virt-3.4.5-x86_64.iso
+http://dl.winehq.org/wine/source/1.9/wine-1.9.23.tar.bz2
+http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.6-x86_64.iso
+http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-extended-3.4.6-x86_64.iso
+http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-virt-3.4.6-x86_64.iso
 http://download.mono-project.com/sources/mono/mono-4.6.1.5.tar.bz2
 http://download.redis.io/releases/redis-3.2.4.tar.gz
 http://download.savannah.gnu.org/releases/libunwind/libunwind-1.1.tar.gz
@@ -65,11 +65,14 @@ http://download.videolan.org/pub/videolan/vlc/2.2.4/win64/vlc-2.2.4-win64.exe
 http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.tgz
 http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.zip
 http://downloads.lightbend.com/scala/2.11.8/scala-docs-2.11.8.txz
-http://downloads.typesafe.com/akka/akka_2.11-2.4.11.zip
+http://downloads.lightbend.com/scala/2.12.0/scala-2.12.0.tgz
+http://downloads.lightbend.com/scala/2.12.0/scala-2.12.0.zip
+http://downloads.lightbend.com/scala/2.12.0/scala-docs-2.12.0.txz
+http://downloads.typesafe.com/akka/akka_2.11-2.4.12.zip
 http://files.allroundautomations.com/plsqldev1106.exe
 http://files.allroundautomations.com/plsqldev1106x64.exe
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.3.tar.gz
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.3-windows.zip
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.4.tar.gz
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.4.4-windows.zip
 http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.5.0.tar.gz
 http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.5.0-windows.zip
 http://ftp.openbsd.org/pub/OpenBSD/OpenNTPD/openntpd-6.0p1.tar.gz
@@ -176,7 +179,7 @@ https://github.com/jbeder/yaml-cpp/archive/release-0.5.3.tar.gz
 https://github.com/libevent/libevent/archive/release-2.0.22-stable.tar.gz
 https://github.com/open-iscsi/open-iscsi/archive/2.0.874.tar.gz
 https://github.com/openlink/iODBC/archive/v3.52.12.tar.gz
-https://github.com/performancecopilot/pcp/archive/3.11.5.tar.gz
+https://github.com/performancecopilot/pcp/archive/3.11.6.tar.gz
 https://github.com/rhash/RHash/archive/v1.3.4.tar.gz
 https://github.com/scala/scala/archive/v2.11.8.tar.gz
 https://gmplib.org/download/gmp/gmp-6.1.1.tar.xz
@@ -199,7 +202,7 @@ https://sourceforge.net/projects/expat/files/expat/2.2.0/expat-2.2.0.tar.bz2/dow
 https://sourceforge.net/projects/expect/files/Expect/5.45/expect5.45.tar.gz/download
 https://sourceforge.net/projects/flex/files/flex-2.6.0.tar.xz/download
 https://sourceforge.net/projects/freetype/files/freetype2/2.7/freetype-2.7.tar.bz2/download
-https://sourceforge.net/projects/gsoap2/files/gsoap-2.8/gsoap_2.8.37.zip/download
+https://sourceforge.net/projects/gsoap2/files/gsoap-2.8/gsoap_2.8.39.zip/download
 https://sourceforge.net/projects/hibernate/files/hibernate-orm/5.2.3.Final/hibernate-release-5.2.3.Final.tgz/download
 https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final.jar/download
 https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3.6.11.Final-sources.jar/download
@@ -220,6 +223,8 @@ https://sourceforge.net/projects/rhash/files/rhash/1.3.4/rhash-1.3.4-win64.zip/d
 https://sourceforge.net/projects/sacddecoder/files/ASIOProxyInstall-0.9.2.zip
 https://sourceforge.net/projects/sacddecoder/files/foo_input_sacd-0.9.11.zip
 https://sourceforge.net/projects/sacddecoder/files/foo_input_sacd-1.0.0.zip
+https://sourceforge.net/projects/scons/files/scons-2.5.1.tar.gz
+https://sourceforge.net/projects/scons/files/scons-2.5.1-amd64-setup.exe
 https://sourceforge.net/projects/sevenzip/files/7z1604.exe
 https://sourceforge.net/projects/sevenzip/files/7z1604-x64.exe
 https://sourceforge.net/projects/tortoisesvn/files/1.9.4/Application/TortoiseSVN-1.9.4.27285-x64-svn-1.9.4.msi/download
@@ -237,8 +242,9 @@ https://www.apache.org/dist/apr/apr-iconv-1.2.1.tar.gz
 https://www.apache.org/dist/apr/apr-iconv-1.2.1-win32-src-r2.zip
 https://www.apache.org/dist/apr/apr-util-1.5.4.tar.gz
 https://www.apache.org/dist/apr/apr-util-1.5.4-win32-src.zip
-https://www.apache.org/dist/cassandra/3.0.9/apache-cassandra-3.0.9-bin.tar.gz
+https://www.apache.org/dist/cassandra/3.0.10/apache-cassandra-3.0.10-bin.tar.gz
 https://www.apache.org/dist/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz
+https://www.apache.org/dist/directory/api/dist/1.0.0-RC2/apache-ldap-api-1.0.0-RC2-bin.tar.gz
 https://www.apache.org/dist/groovy/2.4.7/distribution/apache-groovy-binary-2.4.7.zip
 https://www.apache.org/dist/groovy/2.4.7/distribution/apache-groovy-sdk-2.4.7.zip
 https://www.apache.org/dist/httpcomponents/httpasyncclient/binary/httpcomponents-asyncclient-4.1.2-bin.tar.gz
@@ -254,7 +260,7 @@ https://www.apache.org/dist/serf/serf-1.3.9.tar.bz2
 https://www.apache.org/dist/serf/serf-1.3.9.zip
 https://www.apache.org/dist/subversion/subversion-1.9.4.tar.gz
 https://www.apache.org/dist/subversion/subversion-1.9.4.zip
-https://www.apache.org/dist/tomcat/tomcat-8/v8.5.6/bin/apache-tomcat-8.5.6.tar.gz
+https://www.apache.org/dist/tomcat/tomcat-8/v8.5.8/bin/apache-tomcat-8.5.8.tar.gz
 https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.12.1.tar.bz2
 https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.2.tar.xz
 https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.43.3/e2fsprogs-1.43.3.tar.xz
@@ -271,17 +277,17 @@ https://www.mercurial-scm.org/release/mercurial-3.9.2.tar.gz
 https://www.mercurial-scm.org/release/windows/Mercurial-3.9.2-x64.exe
 https://www.openssl.org/policies/releasestrat.html
 https://www.openssl.org/source/openssl-1.0.2j.tar.gz
-https://www.openssl.org/source/openssl-1.1.0b.tar.gz
+https://www.openssl.org/source/openssl-1.1.0c.tar.gz
 https://www.sqlite.org/2016/sqlite-amalgamation-3150000.zip
 https://www.wireshark.org/download/src/all-versions/wireshark-1.12.13.tar.bz2   [27-Jul-2016]
-https://www.wireshark.org/download/src/wireshark-2.0.7.tar.bz2      [04-Oct-2016]
-https://www.wireshark.org/download/src/wireshark-2.2.1.tar.bz2      [04-Oct-2016]
+https://www.wireshark.org/download/src/wireshark-2.0.8.tar.bz2      [16-Nov-2016]
+https://www.wireshark.org/download/src/wireshark-2.2.2.tar.bz2      [16-Nov-2016]
 https://www.wireshark.org/download/win32/all-versions/Wireshark-win32-1.12.13.exe
-https://www.wireshark.org/download/win32/Wireshark-win32-2.0.7.exe
-https://www.wireshark.org/download/win32/Wireshark-win32-2.2.1.exe
+https://www.wireshark.org/download/win32/Wireshark-win32-2.0.8.exe
+https://www.wireshark.org/download/win32/Wireshark-win32-2.2.2.exe
 https://www.wireshark.org/download/win64/all-versions/Wireshark-win64-1.12.13.exe
-https://www.wireshark.org/download/win64/Wireshark-win64-2.0.7.exe
-https://www.wireshark.org/download/win64/Wireshark-win64-2.2.1.exe
+https://www.wireshark.org/download/win64/Wireshark-win64-2.0.8.exe
+https://www.wireshark.org/download/win64/Wireshark-win64-2.2.2.exe
 
 https://raw.githubusercontent.com/davidjamesca/ctypesgen/master/ctypesgen.py
 https://github.com/davidjamesca/ctypesgen/wiki/Getting-Started
