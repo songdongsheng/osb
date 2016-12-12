@@ -174,7 +174,7 @@ https://ftp.postgresql.org/pub/source/v9.6.0/postgresql-9.6.0.tar.bz2
 https://github.com/akkadotnet/akka.net/archive/v1.1.2.tar.gz
 https://github.com/belaban/JGroups/archive/JGroups-3.6.11.Final.tar.gz
 https://github.com/Cyan4973/xxHash/archive/v0.6.2.tar.gz
-https://github.com/git-for-windows/git/releases/download/v2.10.1.windows.1/PortableGit-2.10.1-64-bit.7z.exe
+https://github.com/git-for-windows/git/releases/download/v2.10.2.windows.1/PortableGit-2.10.2-64-bit.7z.exe
 https://github.com/jbeder/yaml-cpp/archive/release-0.5.3.tar.gz
 https://github.com/libevent/libevent/archive/release-2.0.22-stable.tar.gz
 https://github.com/open-iscsi/open-iscsi/archive/2.0.874.tar.gz
@@ -191,12 +191,14 @@ https://linuxcontainers.org/downloads/lxc/lxc-2.0.5.tar.gz
 https://linuxcontainers.org/downloads/lxcfs/lxcfs-2.0.4.tar.gz
 https://linuxcontainers.org/downloads/lxd/lxd-2.0.5.tar.gz
 https://linuxcontainers.org/downloads/lxd/lxd-2.4.1.tar.gz
+https://marketplace.atlassian.com/plugins/com.atlassian.jira.jira-software-application/versions [atlassian-jira-software-7.2.6.zip]
 https://notepad-plus-plus.org/repository/6.x/6.9.2/npp.6.9.2.Installer.exe
 https://notepad-plus-plus.org/repository/7.x/7.1/npp.7.1.bin.minimalist.7z
 https://notepad-plus-plus.org/repository/7.x/7.1/npp.7.1.bin.minimalist.x64.7z
 https://notepad-plus-plus.org/repository/7.x/7.1/npp.7.1.Installer.exe
 https://notepad-plus-plus.org/repository/7.x/7.1/npp.7.1.Installer.x64.exe
 https://p11-glue.freedesktop.org/releases/p11-kit-0.23.2.tar.gz
+https://pypi.python.org/pypi/cx_Oracle/5.2.1
 https://sourceforge.net/projects/boost/files/boost_1_62_0.tar.bz2
 https://sourceforge.net/projects/expat/files/expat/2.2.0/expat-2.2.0.tar.bz2/download
 https://sourceforge.net/projects/expect/files/Expect/5.45/expect5.45.tar.gz/download
