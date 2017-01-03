@@ -107,7 +107,7 @@ http://www.valgrind.org/downloads/valgrind-3.12.0.tar.bz2
 http://www.webdav.org/neon/neon-0.30.2.tar.gz
 http://xmlsoft.org/sources/libxml2-2.9.4.tar.gz
 http://xmlsoft.org/sources/libxslt-1.1.29.tar.gz
-http://zlib.net/zlib-1.2.9.tar.gz
+http://zlib.net/zlib-1.2.10.tar.gz
 
 https://bitbucket.org/skskeyserver/sks-keyserver/downloads/sks-1.1.6.tgz
 https://bitbucket.org/tortoisehg/files/downloads/tortoisehg-4.0.1-x64.msi
@@ -211,7 +211,7 @@ https://sourceforge.net/projects/javagroups/files/JGroups/3.6.11.Final/jgroups-3
 https://sourceforge.net/projects/levent/files/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz/download
 https://sourceforge.net/projects/libjpeg-turbo/files/1.5.1/libjpeg-turbo-1.5.1.tar.gz/download
 https://sourceforge.net/projects/libpng/files/libpng16/1.6.26/libpng-1.6.26.tar.xz/download
-https://sourceforge.net/projects/libpng/files/zlib/1.2.9/zlib-1.2.9.tar.gz/download
+https://sourceforge.net/projects/libpng/files/zlib/1.2.10/zlib-1.2.10.tar.gz/download
 https://sourceforge.net/projects/linuxptp/files/linuxptp-1.8.tgz
 https://sourceforge.net/projects/nagios/files/nagios-4.2.4.tar.gz
 https://sourceforge.net/projects/open-vm-tools/files/open-vm-tools/stable-10.0.x/open-vm-tools-10.0.5-3227872.tar.gz/download
