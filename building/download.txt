@@ -135,26 +135,20 @@ https://download.gnome.org/sources/pango/1.40/pango-1.40.3.tar.xz
 https://download.gnome.org/sources/pygobject/3.22/pygobject-3.22.0.tar.xz
 https://download.microsoft.com/download/0/2/A/02AAE597-3865-456C-AE7F-613F99F850A8/sqljdbc_6.0.7507.100_enu.exe
 https://download.microsoft.com/download/0/2/A/02AAE597-3865-456C-AE7F-613F99F850A8/sqljdbc_6.0.7507.100_enu.tar.gz
-https://download.microsoft.com/download/7/3/1/7318E2AD-E7C5-4301-AEFA-A15EDEDACFB4/msodbcsql-11.0.2260.0.tar.gz [SLES 12]
-https://download.microsoft.com/download/7/3/1/7318E2AD-E7C5-4301-AEFA-A15EDEDACFB4/msodbcsql-13.0.0.0.tar.gz    [SLES 12]
-https://download.microsoft.com/download/B/C/D/BCDD264C-7517-4B7D-8159-C99FC5535680/msodbcsql-13.0.0.0.tar.gz    [RHEL 7]
-https://download.microsoft.com/download/B/C/D/BCDD264C-7517-4B7D-8159-C99FC5535680/RedHat6/msodbcsql-11.0.2270.0.tar.gz [RHEL 6]
-https://download.microsoft.com/download/C/8/8/C88C2E51-8D23-4301-9F4B-64C8E2F163C5/Command%20Line%20Utilities%20MSI%20files/amd64/MsSqlCmdLnUtils.msi [13.1, 8/23/2016]
-https://download.microsoft.com/download/C/8/8/C88C2E51-8D23-4301-9F4B-64C8E2F163C5/Command%20Line%20Utilities%20MSI%20files/x86/MsSqlCmdLnUtils.msi   [13.1, 8/23/2016]
-https://download.microsoft.com/download/C/B/C/CBCFAAD1-2348-4119-B093-199EE7AADCBC/SSMS-Setup-CHS.exe [October 26, 2016]
-https://download.microsoft.com/download/C/B/C/CBCFAAD1-2348-4119-B093-199EE7AADCBC/SSMS-Setup-ENU.exe [16.5, 13.0.16000.28]
-https://download.microsoft.com/download/D/5/E/D5EEF288-A277-45C8-855B-8E2CB7E25B96/13.1.811.168/amd64/msodbcsql.msi [13.1.811.168, 8/1/2016]
-https://download.microsoft.com/download/D/5/E/D5EEF288-A277-45C8-855B-8E2CB7E25B96/13.1.811.168/x86/msodbcsql.msi   [13.1.811.168, 8/1/2016]
+https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win7AndW2K8R2-KB3191566-x64.zip    [Windows Management Framework 5.1]
+https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win8.1AndW2K12R2-KB3191564-x64.msu [Windows Management Framework 5.1]
 https://download.samba.org/pub/ldb/ldb-1.1.29.tar.gz
 https://download.samba.org/pub/samba/samba-4.5.3.tar.gz
 https://download.samba.org/pub/talloc/talloc-2.1.8.tar.gz
 https://download.samba.org/pub/tdb/tdb-1.3.12.tar.gz
 https://download.samba.org/pub/tevent/tevent-0.9.31.tar.gz
+https://download.sysinternals.com/files/SysinternalsSuite.zip       [2016-11-18]
+https://download.sysinternals.com/files/SysinternalsSuite-Nano.zip  [2016-11-18]
 https://download.tortoisegit.org/tgit/2.3.0.0/TortoiseGit-2.3.0.0-64bit.msi
 https://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.bz2
 https://ftp.gnu.org/gnu/bison/bison-3.0.4.tar.xz
 https://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
-https://ftp.gnu.org/gnu/gdb/gdb-7.12.tar.xz
+https://ftp.gnu.org/gnu/gdb/gdb-7.12.1.tar.xz
 https://ftp.gnu.org/gnu/gettext/gettext-0.19.8.1.tar.xz
 https://ftp.gnu.org/gnu/glibc/glibc-2.24.tar.xz
 https://ftp.gnu.org/gnu/gmp/gmp-6.1.2.tar.xz
@@ -218,10 +212,10 @@ https://sourceforge.net/projects/libpng/files/zlib/1.2.10/zlib-1.2.10.tar.gz/dow
 https://sourceforge.net/projects/linuxptp/files/linuxptp-1.8.tgz
 https://sourceforge.net/projects/nagios/files/nagios-4.2.4.tar.gz
 https://sourceforge.net/projects/open-vm-tools/files/open-vm-tools/stable-10.0.x/open-vm-tools-10.0.5-3227872.tar.gz/download
-https://sourceforge.net/projects/pcre/files/pcre/8.39/pcre-8.39.tar.bz2/download
+https://sourceforge.net/projects/pcre/files/pcre/8.40/pcre-8.40.tar.bz2/download
 https://sourceforge.net/projects/pcre/files/pcre2/10.22/pcre2-10.22.tar.bz2/download
 https://sourceforge.net/projects/pcre/files/pcre2-10.22.tar.bz2
-https://sourceforge.net/projects/pcre/files/pcre-8.39.tar.bz2
+https://sourceforge.net/projects/pcre/files/pcre-8.40.tar.bz2
 https://sourceforge.net/projects/pdcurses/files/pdcurses/3.4/PDCurses-3.4.tar.gz/download
 https://sourceforge.net/projects/rhash/files/rhash/1.3.4/rhash-1.3.4-win32.zip/download
 https://sourceforge.net/projects/rhash/files/rhash/1.3.4/rhash-1.3.4-win64.zip/download
@@ -277,9 +271,8 @@ https://www.apache.org/dist/tomcat/tomcat-8/v8.5.9/bin/apache-tomcat-8.5.9.tar.g
 https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.12.1.tar.bz2
 https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.2.tar.xz
 https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.43.3/e2fsprogs-1.43.3.tar.xz
-https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.4.40.tar.xz
-https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.8.16.tar.xz
-https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.1.tar.xz
+https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.4.44.tar.xz
+https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.5.tar.xz
 https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.2.tar.xz
 https://www.kernel.org/pub/software/scm/git/git-2.10.2.tar.xz
 https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.10.2.tar.xz
