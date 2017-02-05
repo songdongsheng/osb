@@ -17,11 +17,11 @@ ftp://ftp.freeradius.org/pub/freeradius/freeradius-client-1.1.7.tar.bz2
 ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.12.tar.bz2
 ftp://ftp.g10code.com/g10code/adns/adns-1.4-g10-7.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/binary/gnupg-w32-2.1.17_20161220.exe
+ftp://ftp.gnupg.org/gcrypt/binary/gnupg-w32-2.1.18_20170123.exe
 ftp://ftp.gnupg.org/gcrypt/binary/gnupg-w32cli-1.4.21.exe
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-1.4.21.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.0.30.tar.bz2
 ftp://ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.18.tar.bz2
-ftp://ftp.gnupg.org/gcrypt/binary/gnupg-w32-2.1.18_20170123.exe
 ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.17.tar.xz
 ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.17.tar.xz.sig
 ftp://ftp.gnupg.org/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
@@ -53,9 +53,6 @@ http://cairographics.org/releases/pixman-0.34.0.tar.gz
 http://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gz
 http://dl.winehq.org/wine/source/1.8/wine-1.8.6.tar.bz2
 http://dl.winehq.org/wine/source/2.0/wine-2.0.tar.bz2
-https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-minirootfs-3.5.1-x86_64.tar.gz
-https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-standard-3.5.1-x86_64.iso
-https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-virt-3.5.1-x86_64.iso
 http://download.mono-project.com/sources/mono/mono-4.6.2.16.tar.bz2
 http://download.redis.io/releases/redis-3.2.7.tar.gz
 http://download.savannah.gnu.org/releases/libunwind/libunwind-1.1.tar.gz
@@ -112,6 +109,7 @@ http://www.webdav.org/neon/neon-0.30.2.tar.gz
 http://xmlsoft.org/sources/libxml2-2.9.4.tar.gz
 http://xmlsoft.org/sources/libxslt-1.1.29.tar.gz
 http://zlib.net/zlib-1.2.11.tar.gz
+
 https://bitbucket.org/skskeyserver/sks-keyserver/downloads/sks-1.1.6.tgz
 https://bitbucket.org/tortoisehg/files/downloads/tortoisehg-4.0.1-x64.msi
 https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.bz2
@@ -201,9 +199,12 @@ https://linuxcontainers.org/downloads/lxcfs/lxcfs-2.0.5.tar.gz
 https://linuxcontainers.org/downloads/lxd/lxd-2.0.8.tar.gz
 https://linuxcontainers.org/downloads/lxd/lxd-2.7.tar.gz
 https://marketplace.atlassian.com/plugins/com.atlassian.jira.jira-software-application/versions [atlassian-jira-software-7.2.6.zip]
+https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-minirootfs-3.5.1-x86_64.tar.gz
+https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-standard-3.5.1-x86_64.iso
+https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-virt-3.5.1-x86_64.iso
 https://notepad-plus-plus.org/repository/6.x/6.9.2/npp.6.9.2.Installer.exe
-https://notepad-plus-plus.org/repository/7.x/7.2.2/npp.7.2.2.Installer.exe
 https://notepad-plus-plus.org/repository/7.x/7.2.2/npp.7.2.2.bin.minimalist.7z
+https://notepad-plus-plus.org/repository/7.x/7.2.2/npp.7.2.2.Installer.exe
 https://p11-glue.freedesktop.org/releases/p11-kit-0.23.2.tar.gz
 https://pypi.python.org/pypi/cx_Oracle/5.2.1
 https://sourceforge.net/projects/boost/files/boost_1_62_0.tar.bz2
@@ -292,8 +293,6 @@ https://www.lttng.org/files/urcu/userspace-rcu-0.9.3.tar.bz2
 https://www.lua.org/ftp/lua-5.3.4.tar.gz
 https://www.mercurial-scm.org/release/mercurial-4.1.tar.gz
 https://www.mercurial-scm.org/release/windows/Mercurial-4.1-x64.exe
-https://www.mercurial-scm.org/release/windows/mercurial-4.1-x64.msi
-https://www.mercurial-scm.org/release/windows/mercurial-4.1.win-amd64-py2.7.msi
 https://www.openssl.org/policies/releasestrat.html
 https://www.openssl.org/source/openssl-1.0.2k.tar.gz
 https://www.openssl.org/source/openssl-1.1.0d.tar.gz
